@@ -6,7 +6,7 @@ routers = dict(
     ),
     # app specific router
     SIGPIE = dict(
-        default_controller = 'home',
+        default_controller = 'default',
         default_function = 'index'
     )
 )
