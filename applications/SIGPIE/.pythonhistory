@@ -1,0 +1,2 @@
+URL('static', 'js', args='holder.min.js')
+quit()
