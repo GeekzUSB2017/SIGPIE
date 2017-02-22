@@ -82,7 +82,7 @@ def login_cas():
 			telefono_habitacion=session.usuario["phone"])
 
 
-
+			print "se agrego un nuevo usuario"
 			redirect(URL('about'))
 
 		redirect(URL('about'))

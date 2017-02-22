@@ -22,7 +22,7 @@ sS'type'
 p10
 S'upload'
 p11
-ssS'informe_academico'
+ssS'programas_de_estudio'
 p12
 (dp13
 g4
@@ -30,7 +30,7 @@ I512
 sg5
 I00
 sg6
-I2
+I8
 sg7
 S'CHAR(512)'
 p14
@@ -233,7 +233,7 @@ sg9
 I00
 sg10
 g11
-ssS'programas_de_estudio'
+ssS'informe_academico'
 p75
 (dp76
 g4
@@ -241,7 +241,7 @@ I512
 sg5
 I00
 sg6
-I8
+I2
 sg7
 S'CHAR(512)'
 p77
