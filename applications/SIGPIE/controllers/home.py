@@ -72,21 +72,26 @@ def login_cas():
 
 		except:
 			print('Excepción')
-		if not db(tablaUsuarios.carnet == usbid).isempty():
-			datosUsuario = db(tablaUsuarios.usbid==usbid).select()[0]
+		if db(tablaUsuarios.carnet == usbid).isempty():
 
 			db.estudiante.insert(cedula=session.usuario["cedula"],  # Lo insertamos en la base de datos.
 			carnet=session.usuario["usbid"],
 			nombre=session.usuario["first_name"],
-			apellido=session.usuario["last_name"],
-			telefono_habitacion=session.usuario["phone"])
+			apellido=session.usuario["last_name"])
 
 
 			print "se agrego un nuevo usuario"
 			redirect(URL('about'))
 
-		redirect(URL('about'))
+		#ARREGLAR, ESTA DUPLICANDO DATA Y NO ACTUALIZANDO
+		else:
 
+			db.estudiante.insert(nombre=session.usuario["first_name"],
+			apellido=session.usuario["last_name"])
+
+
+			print "se actualizo un usuario existente"
+			redirect(URL('about'))
 def logout_cas():
 	session.usuario = None
 	return response.render()
