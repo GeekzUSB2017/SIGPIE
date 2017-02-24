@@ -1,0 +1,219 @@
+(dp1
+S'output'
+p2
+S'Unable to open included view file: /home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'{{extend \'index2.html\'}}\n\n{{block carousel}}\n\n{{end}}\n\n{{block main}}\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n\n      <h1>Pasos para postularse al Programa de Intercambio</h1>\n      <div class="row featurette">\n        <div class="col-md-7">\n          <h2 class="featurette-heading" id="paso">Primer Paso <!--span class="text-muted">It\'ll blow your mind.</span--></h2>\n          <p class="lead">Conozca sobre el Programa de Intercambio Estudiantil y navegue en los sitios web de las distintas universidades participantes.</p>\n        </div>\n        <div class="col-md-5">\n          <img class=" featurette-image img-responsive center-block img-circle"src="../static/css/images/cc947675ce0ac0c98617f27425843c35_XL.jpg" alt="Generic placeholder image">\n        </div>\n      </div>\n\n      <hr class="featurette-divider">\n\n      <div class="row featurette">\n        <div class="col-md-7 col-md-push-5">\n          <h2 class="featurette-heading">Segundo Paso </h2>\n          <p class="lead">Seleccione dos(2) universidades de su inter\xc3\xa9s e investigue sobre contenido de planes de estudio (materias,horas,c\xc5\x95editos,idioma que ofrecen)</p>\n        </div>\n        <div class="col-md-5 col-md-pull-7">\n          <img class=" featurette-image img-responsive center-block img-circle" src="../static/css/images/porto-universidad-1.jpg" alt="Generic placeholder image">\n        </div>\n      </div>\n\n      <hr class="featurette-divider">\n\n      <div class="row featurette">\n        <div class="col-md-7">\n          <h2 class="featurette-heading">Finalmente</h2>\n          <p class="lead">Tome la decisi\xc3\xb3n de postularse al Programa de Intercambio Estudiantil de la USB</p>\n        </div>\n        <div class="col-md-5">\n          <img class="featurette-image img-responsive center-block img-circle" src="../static/css/images/estudiantes1.jpg" alt="Generic placeholder image">\n        </div>\n      </div>\n      <hr class="featurette-divider">\n      <div class="col-md-10">\n          </div>\n          <a class="btn btn-success btn-lg" href="https://www.internacionales.usb.ve/es/node/323" role="button">\n          Saber m\xc3\xa1s >> </a>  \n      </div>\n\n      {{end}}\n      <!-- /END THE FEATURETTES -->\n\n\n      <!-- FOOTER -->\n      {{block footer}}\n      <footer>\n        <p class="pull-right"><a href="#">Back to top</a></p>\n        <p>&copy; 2017 DRIC USB &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>\n      </footer>\n      {{end}}\n    </div><!-- /.container -->\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p21
+sS'__init__'
+p22
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p23
+sS'__setattr__'
+p24
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p25
+sS'__reduce_ex__'
+p26
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p27
+sS'__new__'
+p28
+S'<built-in method __new__ of type object>'
+p29
+sS'errno'
+p30
+S'2'
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IOError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IOError'>"
+p34
+sS'filename'
+p35
+S"'/home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html'"
+p36
+sS'__doc__'
+p37
+S"'I/O operation failed.'"
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p44
+sS'args'
+p45
+S"(2, 'No such file or directory')"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p50
+sS'strerror'
+p51
+S"'No such file or directory'"
+p52
+sS'__delattr__'
+p53
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p54
+sS'__repr__'
+p55
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p56
+sS'__hash__'
+p57
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p58
+ssS'evalue'
+p59
+S"[Errno 2] No such file or directory: '/home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html'"
+p60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'/home/vero/Documentos/Sistemas/SIGPIE/gluon/template.py'
+p65
+sS'dump'
+p66
+(dp67
+S'builtinopen'
+p68
+S'<built-in function open>'
+p69
+sS'fileobj'
+p70
+S'undefined'
+p71
+sS'filepath'
+p72
+S"'/home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html'"
+p73
+ssS'lnum'
+p74
+I450
+sS'lines'
+p75
+(dp76
+I448
+S'        # try to read the text.'
+p77
+sI449
+S'        try:'
+p78
+sI450
+S"            fileobj = open(filepath, 'rb')"
+p79
+sI451
+S'            text = fileobj.read()'
+p80
+sI452
+S'            fileobj.close()'
+p81
+sI453
+S'        except IOError:'
+p82
+sI454
+S"            self._raise_error('Unable to open included view file: ' + filepath)"
+p83
+sI445
+S'        # Get the path of the file on the system.'
+p84
+sI446
+S'        filepath = self.path and os.path.join(self.path, filename) or filename'
+p85
+sI447
+S''
+ssS'call'
+p86
+S"(self=<gluon.template.TemplateParser object>, filename='index2.html')"
+p87
+sS'func'
+p88
+S'_get_file_text'
+p89
+sasS'pyver'
+p90
+S'Python 2.7.12: /usr/bin/python (prefix: /usr)'
+p91
+sS'etype'
+p92
+S"<type 'exceptions.IOError'>"
+p93
+sS'date'
+p94
+S'Fri Feb 24 00:44:00 2017'
+p95
+sS'locals'
+p96
+(dp97
+S'self'
+p98
+S'<gluon.template.TemplateParser object>'
+p99
+sS'filepath'
+p100
+S"'/home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html'"
+p101
+sS'context'
+p102
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, ...}"
+p103
+sg35
+S"'index2.html'"
+p104
+sssS'traceback'
+p105
+S'Traceback (most recent call last):\n  File "/home/vero/Documentos/Sistemas/SIGPIE/gluon/template.py", line 450, in _get_file_text\n    fileobj = open(filepath, \'rb\')\nIOError: [Errno 2] No such file or directory: \'/home/vero/Documentos/Sistemas/SIGPIE/applications/SIGPIE/views/index2.html\'\n'
+p106
+s.

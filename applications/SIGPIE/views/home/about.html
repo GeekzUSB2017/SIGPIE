@@ -1,29 +1,26 @@
 {{extend 'layout2.html'}}
-
-{{block carousel}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/about.css')}}" rel="stylesheet">
 
 {{end}}
 
-{{block main}}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+{{block content}}
 
-      <h1>Pasos para postularse al Programa de Intercambio</h1>
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading" id="paso">Primer Paso <!--span class="text-muted">It'll blow your mind.</span--></h2>
-          <p class="lead">Conozca sobre el Programa de Intercambio Estudiantil y navegue en los sitios web de las distintas universidades participantes.</p>
+  <hr class="featurette-divider">
+  <h1>Pasos para postularse al Programa de Intercambio</h1>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading" id="paso">Primer Paso <!--span class="text-muted">It'll blow your mind.</span--></h2>
+        <p class="lead">Conozca sobre el Programa de Intercambio Estudiantil y navegue en los sitios web de las distintas universidades participantes.</p>
         </div>
         <div class="col-md-5">
           <img class=" featurette-image img-responsive center-block img-circle"src="../static/css/images/cc947675ce0ac0c98617f27425843c35_XL.jpg" alt="Generic placeholder image">
-        </div>
       </div>
+    </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
@@ -35,7 +32,7 @@
         </div>
       </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7">
@@ -46,23 +43,14 @@
           <img class="featurette-image img-responsive center-block img-circle" src="../static/css/images/estudiantes1.jpg" alt="Generic placeholder image">
         </div>
       </div>
-      <hr class="featurette-divider">
+
+    <hr class="featurette-divider">
       <div class="col-md-10">
-          </div>
+        </div>
           <a class="btn btn-success btn-lg" href="https://www.internacionales.usb.ve/es/node/323" role="button">
           Saber más >> </a>  
       </div>
 
-      {{end}}
-      <!-- /END THE FEATURETTES -->
+{{end}}
 
-
-      <!-- FOOTER -->
-      {{block footer}}
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 DRIC USB &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-      {{end}}
-    </div><!-- /.container -->
 

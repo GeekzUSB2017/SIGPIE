@@ -1,145 +1,31 @@
 {{extend 'layout.html'}}
 
-
-
-
-{{block links}}
-<link href="{{=URL('static', 'css/navbar2.css')}}" rel="stylesheet">
-
-<style type="text/css">
-  @CHARSET "UTF-8";
-  /*
-  over-ride "Weak" message, show font in dark grey
-  */
-
-  .progress-bar {
-      color: #333;
-  }
-
-  /*
-  Reference:
-  http://www.bootstrapzen.com/item/135/simple-login-form-logo/
-  */
-
-  * {
-       -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        outline: none;
-  }
-
-      .form-control {
-      position: relative;
-      font-size: 16px;
-      height: auto;
-      padding: 10px;
-      @include box-sizing(border-box);
-
-      &:focus {
-        z-index: 2;
-      }
-    }
-
-  /*body {
-    background: url(http://cinejardin.com/wp-content/uploads/2014/11/Biblioteca_USB-1.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-  }*/
-
-  .login-form {
-    margin-top: 100px;
-  }
-
-  form[role=login] {
-    color: #5d5d5d;
-    background: #f2f2f2;
-    padding: 26px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-  }
-    form[role=login] img {
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 35px;
-    }
-    form[role=login] input,
-    form[role=login] button {
-      font-size: 18px;
-      margin: 16px 0;
-      width: 180px;
-    }
-    form[role=login] > div {
-      text-align: center;
-    }
-
-  .form-links {
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 50px;
-  }
-  .form-links a {
-    color: #fff;
-  }
-
-
-
-
-</style>
-{{end}}
-{{block carousel}}
+{{block css}}
+  <link href="{{=URL('static', 'css/register.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarhome.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
 {{end}}
 
-{{block main}}
+
+{{block content}}
+  {{block main}}
     <div class="container">
-
+    <div class="col-md-4"></div>
       <div class="row" id="pwd-container">
-        <div class="col-md-4"></div>
-
         <div class="col-md-4">
           <section class="login-form">
-            <form method="post" role="login" style="font-size: 1em;">
-              <img src="http://noticias.universia.edu.ve/ve/images/migracion/132x228/c/cl/climatico.jpg" class="img-responsive" alt="" />
-              <!--input type="email" name="email" placeholder="Email" required class="form-control input-lg"/>
-
-              <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" /-->
-
+            <form method="post" role="login" style="font-size: 1em;"">
+              <img src="../static/css/images/climatico.jpg" class="img-responsive" alt="" />
 
               <div class="pwstrength_viewport_progress"></div>
-
-
-              <!--button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button-->
                 {{=form}}
             </form>
 
             <div class="form-links">
             </div>
           </section>
-          </div>
-
-          <div class="col-md-4"></div>
-
-
-      </div>
-
-      <p>
-        <br>
-        <br>
-
-      </p>
-
-
+        </div>
     </div>
-{{end}}
-
-{{block main2}}
-
-{{end}}
-
-{{block footer}}
-<footer>
-        <p>&copy; 2017 DRIC USB </p>
-      </footer>
+    <br><br><br><br><br><br><br><br>
+  {{end}}
 {{end}}
