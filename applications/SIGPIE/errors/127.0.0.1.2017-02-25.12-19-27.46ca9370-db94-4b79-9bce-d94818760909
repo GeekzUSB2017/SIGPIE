@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S'The "end" tag is unmatched, please check if you have a starting "block" tag'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'{{extend layout2.html}}\n{{content}}\n    <br>\n    <div class="row" id="pwd-container">\n        <div class="col-md-5"></div>\n        <div class="col-md-4">\n          <label>INFORMACI\xc3\x93N ACADEMICA</label>\n        </div>\n    </div>\n    <br>\n    <div class="row" id="pwd-container">\n      <div class="col-md-6">\n        <form class="form-inline">\n          <div class="form-group">\n            <label for="sede">Sede Universidad:</label>\n            <select class="form-control" id="sede">\n              <option>Sartenejas</option>\n              <option>Litoral</option>\n            </select>\n          </div>\n          <div class="form-group">\n            <label for="decanato">Decanato:</label>\n              <select class="form-control" id="decanato">\n                <option>Decanato de estudios tecnol\xc3\xb3gicos</option>\n                <option>Decanato de estudios profesionales</option>\n              </select>\n          </div>\n          <div class="form-group">\n            <label for="carrera">Carrera que estudia en la USB:</label>\n              <input type="text" class="cod_car" id="exampleInputName2" placeholder="(C\xc3\xb3digo) - Nombre completo de la carrera, inclu\xc3\xadr menci\xc3\xb3n si la hay"> \n          </div>\n        </form>\n      </div>\n      <div class="col-md-6">\n        <form class="form-inline">\n          <div class="form-group">\n            <label for="num_cred">N\xc2\xba de cr\xc3\xa9ditos aprobados a la fecha:</label>\n              <input type="number" class="form-control" id="num_cred" placeholder="Tu n\xc3\xbamero de cr\xc3\xa9ditos aprobados"> \n          </div>\n          <div class="form-group">\n            <label for="indice">\xc3\x8dndice acad\xc3\xa9mico a la fecha:</label>\n              <input type="text" class="form-control" id="indice" placeholder="x,xxxx">\n          </div>\n        </form>\n        <br>\n        <br>\n        <div class="col-md-8"></div>         \n          <button type="button" class="btn btn-success" href="{{=URL(\'form3\')}}">Siguiente >> </button> \n      </div>\n  </div>\n{{end}}\n\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'None\n'
+p11
+s.

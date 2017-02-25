@@ -84,7 +84,7 @@ import os
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, hmac_key = Auth.get_or_create_key(), controller = "home", function = "user")
-auth.settings.login_next = URL('about')
+auth.settings.login_next = URL('welcome')
 
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables

@@ -1,335 +1,169 @@
 {{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+  <!--link href="{{=URL('static', 'css/form.css')}}" rel="stylesheet"-->
 
+{{end}}
 {{block content}}
-<br>
-<br>
-    <div class="container-fluid">
-      <div class="row" id="pwd-container">
-
-        <div class="col-md-5">
-        </div>
-        <div class="col-md-4">
-    <label for="exampleInputEmail2">DATOS PERSONALES</label>
-  </div>
-</div>
-<br>
-      <div class="row" id="pwd-container">
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">Nombres:</label>
-                <input type="datetime" class="form-control" id="exampleInputName2" placeholder="Tu nombre"> 
-            <div class="form-group">
-              <label for="exampleInputEmail2">Apellidos:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tu apellido">
-          </div>
-          <div>
-
-          <label for="genero">Género:</label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> F
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> M
-          </label>
-        </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nacionalidad:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tu nacionalidad">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Cédula de identidad:</label>
-                <select class="form-control">
-              <option>V</option>
-              <option>E</option>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="xxxxxxxx">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nº Carnet Estudiante USB:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tu número de carnet">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nº Pasaporte Vigente:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tu número de pasaporte">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Idioma a emplear en la universidad destino:</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="El idioma a emplear en la universidad destino">
-          </div>
-
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
-
-          <label for="genero">Oral:</label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Básico
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Intermedio
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Avanzado
-          </label>
-          <div>
-          <label for="genero">Escrito:</label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Básico
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Intermedio
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Avanzado
-          </label>
-        </div>
-          <div>
-          <label for="genero">Lectura:</label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Básico
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Intermedio
-          </label>
-          <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Avanzado
-          </label>
-        </div>
-        </div>
-        </div>
+  <br>
+  <br>
+  <div class="container-fluid">
+    <div class="row" id="pwd-container">
+      <div class="col-md-5"></div>
+      <div class="col-md-4">
+        <label>DATOS PERSONALES</label>
       </div>
-    
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">Domicilio Actual:</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Tu dirección"> 
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Datos de contacto:</label>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Tlf. Hab:</label>
-              <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="xxxx-xxxxxxx">          
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Tlf. Cel:</label>
-              <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="xxxx-xxxxxxx">          
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">E-mail:</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Tu e-mail">
+    </div>
+    <div class="row" id="pwd-container">
+      <div class="col-md-4">
+        <form class="form-inline">
+          <!--div class="form-group">
+            <label for="nombres">Nombres:</label>
+            <input type="datetime" class="form-control" id="nombres" placeholder="Tu nombre"> 
           </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Redes Sociales:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tus usuarios de redes sociales">
+          <br>
+          <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" class="form-control" id="apellidos" placeholder="Tu apellido">
+          </div!-->
+
+          <div class="form-group">
+            <label for="genero">Género:</label>
+            <select class="form-control" id="genero">
+              <option>F</option>
+              <option>M</option>
+            </select>
           </div>
-        </div>
+          <div class="form-group">
+            <label for="nacionalidad">Nacionalidad:</label>
+              <input type="text" class="form-control" id="nacionalidad" placeholder="Tu nacionalidad">
+          </div>
+          <!--div class="form-group">
+            <label for="ci">Cédula de identidad:</label>
+              <select class="form-control">
+                <option>V</option>
+                <option>E</option>
+              </select>
+              <input type="text" class="form-control" id="ci" placeholder="xxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label for="carnet">Nº Carnet:</label>
+              <input type="text" class="form-control" id="carnet" placeholder="Tu número de carnet">
+          </div-->
+          <div class="form-group">
+            <label for="pasaporte">Nº Pasaporte Vigente:</label>
+            <input type="text" class="form-control" id="pasaporte" placeholder="Tu número de pasaporte">
+          </div>
+          <div class="form-group">
+            <label for="idioma">Idioma a emplear en la universidad destino:</label>
+              <input type="email" class="form-control" id="idioma" placeholder="El idioma a emplear en la universidad destino">
+          </div>
+          <label>Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
+          <div class="form-group">  
+            <label for="oral">Oral:</label>
+            <select class="form-control" id="oral">
+                <option>Básico</option>
+                <option>Intermedio</option>
+                <option>Avanzado</option>
+            </select>
+          </div>
+          <div class="form-group">  
+            <label for="oral">Escrito:</label>
+            <select class="form-control" id="oral">
+                <option>Básico</option>
+                <option>Intermedio</option>
+                <option>Avanzado</option>
+            </select>
+          </div>
+          <div class="form-group">  
+            <label for="oral">Lectura:</label>
+            <select class="form-control" id="oral">
+                <option>Básico</option>
+                <option>Intermedio</option>
+                <option>Avanzado</option>
+            </select>
+          </div>
+        </form>
       </div>
-        <div class="col-md-4">
-          <form class="form-inline">
+  
+      <div class="col-md-4">
+        <form>
+          <div class="form-group">
+            <label for="direccion">Domicilio Actual:</label>
+              <textarea type="text" class="form-control" id="direccion" placeholder="Tu dirección"></textarea> 
+          </div>
+        </form>
+        <form class="form-inline">
+          <label>Datos de contacto:</label>
+        </form>
+        <form>
+          <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail2">Datos de una persona a contactar en casos de emergencias:</label>
-              <label for="exampleInputName2">Nombres y Apellidos:</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Nombre y apellido de contacto de emergencia">       
+              <label for="tlf_hab">Tlf. Hab:</label>
+              <input type="tel" class="form-control" id="tlf_hab" placeholder="xxxx-xxxxxxx">          
+            </div>
+            <div class="form-group">
+              <label for="tlf_cel">Tlf. Cel:</label>
+              <input type="tel" class="form-control" id="tlf_cel" placeholder="xxxx-xxxxxxx">          
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="e-mail">E-mail:</label>
+              <input type="email" class="form-control" id="e-mail" placeholder="Tu e-mail">
+            </div>
+            <div class="form-group">
+              <label for="redes">Redes Sociales:</label>
+              <textarea type="text" class="form-control" id="redes" placeholder="Tus usuarios de redes sociales"></textarea>
+            </div>
+          </div>
+         </form> 
+      </div>
+
+      <div class="col-md-4">
+        <form class="form-inline">
+            <label for="exampleInputEmail2">Datos de una persona a contactar en casos de emergencias:</label>
+            <div class="form-group">
+            <label for="exampleInputName2">Nombres y Apellidos:</label>
+              <input type="text" class="form-control" id="nombre_contact" placeholder="Nombre y apellido de contacto de emergencia">
+            </div>       
             <div class="form-group">
               <label for="exampleInputEmail2">Dirección:</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Dirección de contacto de emergencia">
+              <textarea type="email" class="form-control" id="exampleInputEmail2" placeholder="Dirección de contacto de emergencia"></textarea>
+            </div>  
+          <div class="form-group">
+            <label for="relacion_contact">Relación con el estudiante:</label>
+            <select class="form-control" id="relacion_contact">
+                <option>Madre</option>
+                <option>Padre</option>
+                <option>Otro Familiar</option>
+                <option>Otro</option>
+            </select>
           </div>  
-            <div class="form-group">
-              <label for="exampleInputEmail2">Relación con el estudiante:</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Tu relación con contacto de emergencia">
-          </div>  
-            <div class="form-group">
-              <label for="exampleInputEmail2">Teléfonos:</label>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Tlf. Hab:</label>
-                <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="xxxx-xxxxxxx">
+          <label for="exampleInputEmail2">Teléfonos:</label>
+          <div class="form-group">
+            <label for="tlf_hab_contact">Tlf. Hab:</label>
+              <input type="tel" class="form-control" id="tlf_hab_contact" placeholder="xxxx-xxxxxxx">
           </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Tlf. Cel:</label>
-                <input type="tel" class="form-control" id="exampleInputEmail2" placeholder="xxxx-xxxxxxx">
+          <div class="form-group">
+            <label for="tlf_cel_contact">Tlf. Cel:</label>
+              <input type="tel" class="form-control" id="tlf_cel_contact" placeholder="xxxx-xxxxxxx">
           </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">E-mail:</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="E-mail de contacto de emergencia">
+          <div class="form-group">
+            <label for="email_contact">E-mail:</label>
+              <input type="email" class="form-control" id="email_contact" placeholder="E-mail de contacto de emergencia">
           </div> 
+          </form>     
       </div>
-      </div> 
-    </div>
-    <br>
-    <div class="row" id="pwd-container">
+    </div> 
+  </div>
 
-        <div class="col-md-5">
-        </div>
-        <div class="col-md-4">
-    <label for="exampleInputEmail2">INFORMACIÓN ACADEMICA</label>
+  <div class="row">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+      <a href="{{=URL('form3')}}" class="btn btn-success" role="button">Siguiente >></a>
     </div>
-    </div>
-    <br>
+</div>
 
-      <div class="row" id="pwd-container">
-        <div class="col-md-6">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Sede Universidad:</label>
-          <select class="form-control">
-          <option>Sartenejas</option>
-          <option>Litoral</option>
-          </select>
-            <label for="exampleInputEmail2">Decanato:</label>
-          <select class="form-control">
-          <option>Decanato de estudios tecnológicos</option>
-          <option>Decanato de estudios profesionales</option>
-          </select>
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">Carrera que estudia en la USB:</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay"> 
-      </div>
-    </div>
-  </div>  
-        <div class="col-md-6">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">Nº de créditos aprobados a la fecha:</label>
-                <input type="number" class="form-control" id="exampleInputName2" placeholder="Tu número de créditos aprobados"> 
-            <div class="form-group">
-              <label for="exampleInputEmail2">Índice académico a la fecha:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Tu índice">
-          </div>
-      </div>
-    </div>
-
-<br>
-      
-    </div>
-    <div class="row" id="pwd-container">
-<br>
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8">
-    <label for="exampleInputEmail2">IDENTIFICACIÓN DEL PROGRAMA, ACTIVIDAD ACADÉMICA Y LAPSO DE ESTUDIO EN INTERCAMBIO</label>
-    </div>
-    </div>
-    <br>
-    <br>
-      <div class="row" id="pwd-container">
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">País:</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="País de destino"> 
-            <div class="form-group">
-              <label for="exampleInputEmail2">Universidad de destino:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Universidad de destino">
-          </div>
-      </div>
-    </div>
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nombre del programa:</label>
-          <select class="form-control">
-          <option>Convenio Bilateral</option>
-          <option>Red Magalhães-Programa SMILE</option>
-          <option>Programa de Movilidad Estudiantil CINDA</option>
-          </select>
-          <label for="exampleInputEmail2">Actividad Académica:</label>
-          <select class="form-control">
-          <option>Solo Asignaturas</option>
-          <option>Asignaturas + Proyecto de Grado</option>
-          <option>Asignaturas + Pasantía Internacional</option>
-          <option>Doble titulación</option>
-          </select>
-
-        </div>
-        </div>
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Fechas tentativas de inicio y fin, según calendario de la universidad de destino:</label>
-              <label for="exampleInputName2">Inicio:</label>
-                <input type="datetime" class="form-control" id="exampleInputName2" placeholder="Fecha Inicio">       
-            <div class="form-group">
-              <label for="exampleInputEmail2">Fin:</label>
-                <input type="datetime" class="form-control" id="exampleInputEmail2" placeholder="Fecha Fin">
-          </div>  
-      </div>
-    </div>
-
-    <div class="row" id="pwd-container">
-
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-10">
-          <br>
-    <label for="exampleInputEmail2">EN CASO DE NO SER ACEPTADO EN LA UNIVERSIDAD SELECCIONADA, FAVOR INDIQUE UNA SEGUNDA OPCIÓN</label>
-    </div>
-    </div>
-    <br>
-    <br>
-      <div class="row" id="pwd-container">
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputName2">País:</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="País de destino"> 
-            <div class="form-group">
-              <label for="exampleInputEmail2">Universidad de destino:</label>
-                <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Universidad de destino">
-          </div>
-      </div>
-    </div>
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Nombre del programa:</label>
-          <select class="form-control">
-          <option>Convenio Bilateral</option>
-          <option>Red Magalhães-Programa SMILE</option>
-          <option>Programa de Movilidad Estudiantil CINDA</option>
-          </select>
-          <label for="exampleInputEmail2">Actividad Académica:</label>
-          <select class="form-control">
-          <option>Solo Asignaturas</option>
-          <option>Asignaturas + Proyecto de Grado</option>
-          <option>Asignaturas + Pasantía Internacional</option>
-          <option>Doble titulación</option>
-          </select>
-
-        </div>
-        </div>
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="exampleInputEmail2">Fechas tentativas de inicio y fin, según calendario de la universidad de destino:</label>
-              <label for="exampleInputName2">Inicio:</label>
-                <input type="datetime" class="form-control" id="exampleInputName2" placeholder="Fecha Inicio">       
-            <div class="form-group">
-              <label for="exampleInputEmail2">Fin:</label>
-                <input type="datetime" class="form-control" id="exampleInputEmail2" placeholder="Fecha Fin">
-          </div>
-          <br>
-          <div class="col-md-8">
-          </div>
-          <button type="button" class="btn btn-success">Siguiente >> </button>  
-      </div>
-    </div>
-    <br>
-          <div class="col-md-5">
-          </div>
-            <a href="{{=URL('about')}}">Enviar Postulación</a>
-
-
-
-      </div>
-
-      <p>
-        <br>
-        <br>
-
-      </p>
-
-
-    </div>
 {{end}}
