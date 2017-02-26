@@ -102,4 +102,4 @@ def login_cas():
 
 def logout_cas():
 	session.usuario = None
-	return response.render()
+	redirect('https://secure.dst.usb.ve/logout')
