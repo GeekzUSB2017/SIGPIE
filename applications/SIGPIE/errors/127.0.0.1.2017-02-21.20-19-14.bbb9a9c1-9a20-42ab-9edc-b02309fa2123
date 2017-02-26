@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> global name 'get_ldap_data' is not defined"
+p3
+sS'layer'
+p4
+S'/home/julio/git/SIGPIE/applications/SIGPIE/controllers/home.py'
+p5
+sS'code'
+p6
+S'def index():\n    return dict()\n\ndef about():\n    return dict()\n\n\ndef postularse():\n    return dict()\n\n\ndef user():\n    return dict(login=auth.login())\n\ndef register():\n    return dict(form=auth.register())\n\n# URLS DE RETORNO PARA EL CAS ##\n# PARA EL SERVIDOR:\n#URL_RETORNO = "http%3A%2F%2Fsiradex.dex.usb.ve%2Fdefault%2Flogin_cas"\n# PARA DESSARROLLO. Cambiar el puerto 8000 si es necesario.\nURL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fhome%2Flogin_cas"\n\n# FUNCIONES USUARIO\n\ndef login_cas():\n    if not request.vars.getfirst(\'ticket\'):\n        #redirect(URL(\'error\'))\n        pass\n    try:\n        import urllib2, ssl\n        ssl._create_default_https_context = ssl._create_unverified_context\n\n        url = "https://secure.dst.usb.ve/validate?ticket="+\\\n        request.vars.getfirst(\'ticket\') +\\\n        "&service=" + URL_RETORNO\n\n        req = urllib2.Request(url)\n        response = urllib2.urlopen(req)\n        the_page = response.read()\n\n    except Exception, e:\n        print "Exception: "\n        print e\n        # redirect(URL(\'error\'))\n\n    if the_page[0:2] == "no":\n        pass\n    else:\n        # session.casticket = request.vars.getfirst(\'ticket\')\n        data  = the_page.split()\n        usbid = data[1]\n\n        usuario = get_ldap_data(usbid) #Se leen los datos del CAS\n\n        tablaUsuarios = db.USUARIO\n\n        session.usuario = usuario\n        session.usuario[\'usbid\'] = usbid\n        try:\n            print usuario[\'carrera\']\n        except:\n            print(\'Es una esceocion\')\n        if not db(tablaUsuarios.usbid == usbid).isempty():\n            datosUsuario = db(tablaUsuarios.usbid==usbid).select()[0]\n            session.usuario[\'tipo\'] = datosUsuario.tipo\n            session.usuario[\'alternativo\'] = datosUsuario.correo_alter\n\n            session.usuario[\'phone\'] = datosUsuario.telefono\n\n\n            if datosUsuario.tipo == "Bloqueado":\n                response.flash = T("Usuario bloqueado")\n                redirect(URL(c = "default",f="index"))\n            else:\n                redirect(URL(\'perfil\'))\n        else:\n\n            session.usuario[\'tipo\'] = "Usuario"\n            session.usuario[\'alternativo\'] = None\n           # Para el envio de notificacion\n            datos_usuario = {\'nombres\' : session.usuario[\'first_name\']}\n            datos_usuario[\'email\'] = session.usuario[\'email\']\n\n\n            db.USUARIO.insert(ci=session.usuario["cedula"],  # Lo insertamos en la base de datos.\n            usbid=session.usuario["usbid"],\n            nombres=session.usuario["first_name"],\n            apellidos=session.usuario["last_name"],\n            correo_inst=session.usuario["email"],\n            correo_alter= None,\n            telefono=session.usuario["phone"],\n            tipo = "Usuario")\n\n            # Se envia correo de bienvenida al usuario\n            enviar_correo_bienvenida(mail,datos_usuario)\n\n            redirect(URL(\'perfil\'))\n\ndef logout_cas():\n    session.usuario = None\n    return response.render()\n\n\nresponse._vars=response._caller(login_cas)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/julio/git/SIGPIE/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/julio/git/SIGPIE/applications/SIGPIE/controllers/home.py", line 105, in <module>\n  File "/home/julio/git/SIGPIE/gluon/globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/julio/git/SIGPIE/applications/SIGPIE/controllers/home.py", line 54, in login_cas\n    usuario = get_ldap_data(usbid) #Se leen los datos del CAS\nNameError: global name \'get_ldap_data\' is not defined\n'
+p11
+s.
