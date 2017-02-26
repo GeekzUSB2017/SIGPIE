@@ -3,7 +3,7 @@
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
-URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fhome%2Flogin_cas"
+URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
 def index():
