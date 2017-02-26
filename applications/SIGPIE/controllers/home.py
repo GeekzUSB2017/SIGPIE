@@ -3,27 +3,34 @@
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
+URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fhome%2Flogin_cas"
+
+
 def index():
 	return dict()
 
 def about():
-	return dict()
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
 
 
 def postularse():
-	return dict()
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
 
 
 def user():
 	return dict(login=auth.login())
 
+
 def register():
 	return dict(form=auth.register())
 
 
-URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fhome%2Flogin_cas"
-
-# FUNCIONES USUARIO
 
 def login_cas():
 	if not request.vars.getfirst('ticket'):
@@ -50,7 +57,6 @@ def login_cas():
 	if the_page[0:2] == "no":
 		pass
 	else:
-		# session.casticket = request.vars.getfirst('ticket')
 		data  = the_page.split()
 		usbid = data[1]
 
@@ -93,6 +99,7 @@ def login_cas():
 
 			print "se actualizo un usuario existente"
 			redirect(URL('about'))
+
 def logout_cas():
 	session.usuario = None
 	return response.render()
