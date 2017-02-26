@@ -6,18 +6,17 @@
 
 {{end}}
 {{block content}}
-  <br>
-  <br>
+
+
   <div class="container-fluid">
     <div class="row" id="pwd-container">
-      <div class="col-md-5"></div>
-      <div class="col-md-4">
-        <label>DATOS PERSONALES</label>
+      <h2 style=" font-size:125%; text-align:center; font-weight: bold;">DATOS PERSONALES </h2>
       </div>
     </div>
+    <br>
     <div class="row" id="pwd-container">
-      <div class="col-md-4">
-        <form class="form-inline">
+      <div class="col-md-6">
+
           <!--div class="form-group">
             <label for="nombres">Nombres:</label>
             <input type="datetime" class="form-control" id="nombres" placeholder="Tu nombre"> 
@@ -69,7 +68,7 @@
             </select>
           </div>
           <div class="form-group">  
-            <label for="oral">Escrito:</label>
+            <label for="escrito">Escrito:</label>
             <select class="form-control" id="oral">
                 <option>Básico</option>
                 <option>Intermedio</option>
@@ -77,7 +76,7 @@
             </select>
           </div>
           <div class="form-group">  
-            <label for="oral">Lectura:</label>
+            <label for="lectura">Lectura:</label>
             <select class="form-control" id="oral">
                 <option>Básico</option>
                 <option>Intermedio</option>
@@ -85,26 +84,26 @@
             </select>
           </div>
         </form>
-      </div>
-  
-      <div class="col-md-4">
+
         <form>
           <div class="form-group">
             <label for="direccion">Domicilio Actual:</label>
               <textarea type="text" class="form-control" id="direccion" placeholder="Tu dirección"></textarea> 
           </div>
+        </div>
+      <div class="col-md-6">
         </form>
-        <form class="form-inline">
-          <label>Datos de contacto:</label>
+
+      <h2 style=" font-size:125%; text-align:left; font-weight: bold;">Datos de contacto </h2>
         </form>
         <form>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="tlf_hab">Tlf. Hab:</label>
+              <label for="tlf_hab">Teléfono de Habitación:</label>
               <input type="tel" class="form-control" id="tlf_hab" placeholder="xxxx-xxxxxxx">          
             </div>
             <div class="form-group">
-              <label for="tlf_cel">Tlf. Cel:</label>
+              <label for="tlf_cel">Teléfono Celular:</label>
               <input type="tel" class="form-control" id="tlf_cel" placeholder="xxxx-xxxxxxx">          
             </div>
           </div>
@@ -119,11 +118,7 @@
             </div>
           </div>
          </form> 
-      </div>
-
-      <div class="col-md-4">
-        <form class="form-inline">
-            <label for="exampleInputEmail2">Datos de una persona a contactar en casos de emergencias:</label>
+      <h2 style=" font-size:125%; text-align:left; font-weight: bold;">Datos de una persona a contactar en casos de emergencias:</h2>
             <div class="form-group">
             <label for="exampleInputName2">Nombres y Apellidos:</label>
               <input type="text" class="form-control" id="nombre_contact" placeholder="Nombre y apellido de contacto de emergencia">
@@ -141,13 +136,12 @@
                 <option>Otro</option>
             </select>
           </div>  
-          <label for="exampleInputEmail2">Teléfonos:</label>
           <div class="form-group">
-            <label for="tlf_hab_contact">Tlf. Hab:</label>
+            <label for="tlf_hab_contact">Teléfono de Habitación:</label>
               <input type="tel" class="form-control" id="tlf_hab_contact" placeholder="xxxx-xxxxxxx">
           </div>
           <div class="form-group">
-            <label for="tlf_cel_contact">Tlf. Cel:</label>
+            <label for="tlf_cel_contact">Teléfono Celular:</label>
               <input type="tel" class="form-control" id="tlf_cel_contact" placeholder="xxxx-xxxxxxx">
           </div>
           <div class="form-group">
