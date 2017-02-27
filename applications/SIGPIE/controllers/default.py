@@ -30,6 +30,14 @@ def user():
 def register():
 	return dict(form=auth.register())
 
+def form2():
+	return dict()
+
+def form3():
+	return dict()
+
+def welcome():
+	return dict()
 
 
 def login_cas():
@@ -88,7 +96,7 @@ def login_cas():
 
 
 			print "se agrego un nuevo usuario"
-			redirect(URL('about'))
+			redirect(URL('welcome'))
 
 		#ARREGLAR, ESTA DUPLICANDO DATA Y NO ACTUALIZANDO
 		else:
@@ -98,7 +106,7 @@ def login_cas():
 
 
 			print "se actualizo un usuario existente"
-			redirect(URL('about'))
+			redirect(URL('welcome'))
 
 def logout_cas():
 	session.usuario = None

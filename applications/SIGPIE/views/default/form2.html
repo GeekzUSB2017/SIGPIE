@@ -1,0 +1,65 @@
+{{extend 'layout2.html'}}
+{{block content}}
+  <br>
+  <div class="row" id="pwd-container">
+      <div class="col-md-4"></div>
+      <div class="col-md-5">
+        <label>INFORMACIÓN ACADEMICA</label>
+      </div>
+  </div>
+  <br>
+  <div class="row" id="pwd-container">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="sede">Sede Universidad:</label>
+          <select class="form-control" id="sede">
+            <option>Sartenejas</option>
+            <option>Litoral</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="decanato">Decanato:</label>
+            <select class="form-control" id="decanato">
+              <option>Decanato de estudios tecnológicos</option>
+              <option>Decanato de estudios profesionales</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="carrera">Carrera que estudia en la USB:</label>
+            <input type="text" class="form-control" id="carrera" placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay"> 
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5">
+      <form class="form-inline">
+        <div class="form-group">
+          <label for="num_cred">Nº de créditos aprobados:</label>
+            <input type="number" class="form-control" id="num_cred" placeholder="Tu número de créditos aprobados"> 
+        </div>
+        <div class="form-group">
+          <label for="indice">Índice académico a la fecha:</label>
+            <input type="text" class="form-control" id="indice" placeholder="x,xxxx">
+        </div>
+      </form>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+      <a href="{{=URL('postularse')}}" class="btn btn-success" role="button">Regresar <<</a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-2">
+      <a href="{{=URL('form3')}}" class="btn btn-success" role="button">Siguiente >></a>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+
+      
+  
+{{end}}
+
