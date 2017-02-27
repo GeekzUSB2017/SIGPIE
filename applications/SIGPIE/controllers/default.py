@@ -31,14 +31,30 @@ def register():
 	return dict(form=auth.register())
 
 def form2():
-	return dict()
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
 
 def form3():
-	return dict()
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
+
 
 def welcome():
-	return dict()
 
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
+
+def documentos():
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
 
 def login_cas():
 	if not request.vars.getfirst('ticket'):
