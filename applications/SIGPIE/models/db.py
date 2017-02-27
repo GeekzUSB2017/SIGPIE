@@ -124,6 +124,94 @@ auth.settings.reset_password_requires_verification = True
 # auth.enable_record_versioning(db)
 # raise HTTP(404)
 
+db.define_table('contacto_emergencia',
+                Field('nombres', 'string', requires=IS_NOT_EMPTY()),
+                Field('apellidos', 'string', requires=IS_NOT_EMPTY()),
+                Field('direccion', 'string', requires=IS_NOT_EMPTY()),
+                Field('relacion', 'string', requires=IS_NOT_EMPTY()),
+                Field('telefono_habitacion', requires=IS_MATCH('^[0-9]{11}$',
+                                                               error_message='No es un telefono de habitacion')),
+                Field('telefono_celular', requires=IS_MATCH('^[0-9]{11}$',
+                                                            error_message='No es un telefono celular')),
+
+                Field('Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
+                                                  error_message='No es un correo valido')),
+                )
+
+
+
+db.define_table('decanato',
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
+
+db.define_table('coordinacion',
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()),
+                Field('decanato', db.decanato,
+                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', zero=T('choose one'))))
+
+db.define_table('carrera',
+                Field('codigo', requires=IS_MATCH('^[0-9]{4}'), unique=True),
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()),
+                Field('coordinacion', db.coordinacion,
+                      requires=IS_IN_DB(db, db.coordinacion.id, '%(nombre)s', zero=T('choose one'))))
+db.define_table('informacion_academica',
+                Field('sede', 'string', requires=IS_NOT_EMPTY()),
+                Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY()),
+                Field('indice', 'float', requires=IS_NOT_EMPTY()),
+                Field('carrera', db.carrera,
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s'))
+                )
+db.define_table('idioma',
+                Field('nombre', 'string', requires=IS_NOT_EMPTY())
+                )
+db.define_table('maneja_idioma',
+                Field('idioma', db.idioma,
+                      requires=IS_IN_DB(db, db.idioma.id,'%(nombre)s')),
+                Field('oral', 'string', requires=IS_NOT_EMPTY()),
+                Field('escrito', 'string', requires=IS_NOT_EMPTY()),
+                Field('lectura', 'string', requires=IS_NOT_EMPTY()))
+
+db.define_table('redes_sociales',
+                Field('facebook', 'string'),
+                Field('twitter', 'string'),
+                Field('instagram', 'string')
+                )
+db.define_table('recaudos',
+                Field('informe_academico', 'upload', requires=IS_NOT_EMPTY()),
+                Field('carta_motivacion', 'upload', requires=IS_NOT_EMPTY()),
+                Field('curriculum_vitae', 'upload', requires=IS_NOT_EMPTY()),
+                Field('comprobante', 'upload', requires=IS_NOT_EMPTY()),
+                Field('constancias_cv', 'upload', requires=IS_NOT_EMPTY()),
+                Field('flujograma', 'upload', requires=IS_NOT_EMPTY()),
+                Field('programas_de_estudio', 'upload', requires=IS_NOT_EMPTY()),
+                Field('foto', 'upload', requires=IS_NOT_EMPTY()),
+                Field('carnet', 'upload', requires=IS_NOT_EMPTY()),
+                Field('cedula', 'upload', requires=IS_NOT_EMPTY()))
+db.define_table('actividades_complementarias',
+                Field('preparador', 'boolean', default=False),
+                Field('becado', 'boolean', default=False),
+                Field('actividad', 'text'),
+                Field('centro_estudiantes', 'boolean', default=False))
+
+
+db.define_table('universidad',
+                Field('pais', 'string', requires=IS_NOT_EMPTY()),
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
+
+db.define_table('convenio',
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
+
+db.define_table('universidad_convenio',
+                Field('universidad', db.universidad, requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
+                Field('convenio', db.convenio, requires=IS_IN_DB(db, db.convenio.id, '%(nombre)s')),
+                Field('cupos', 'integer', default=0))
+
+
+db.define_table('datos_intercambio',
+                Field('univ', db.universidad,
+                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
+                Field('f_inicio', 'date', requires=IS_NOT_EMPTY()),
+                Field('f_fin', 'date', requires=IS_NOT_EMPTY())
+                )
 db.define_table('estudiante',
                 Field('carnet', 'string', unique=True),
                 Field('nombres', 'string', requires=IS_NOT_EMPTY()),
@@ -160,96 +248,3 @@ db.define_table('estudiante',
                 Field('op_interc_2', db.datos_intercambio,
                       requires=IS_IN_DB(db, db.datos_intercambio.id)),
                 )
-
-db.define_table('contacto_emergencia',
-                Field('nombres', 'string', requires=IS_NOT_EMPTY()),
-                Field('apellidos', 'string', requires=IS_NOT_EMPTY()),
-                Field('direccion', 'string', requires=IS_NOT_EMPTY()),
-                Field('relacion', 'string', requires=IS_NOT_EMPTY()),
-                Field('telefono_habitacion', requires=IS_MATCH('^[0-9]{11}$',
-                                                               error_message='No es un telefono de habitacion')),
-                Field('telefono_celular', requires=IS_MATCH('^[0-9]{11}$',
-                                                            error_message='No es un telefono celular')),
-
-                Field('Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-                                                  error_message='No es un correo valido')),
-                )
-
-db.define_table('informacion_academica',
-                Field('sede', 'string', requires=IS_NOT_EMPTY()),
-                Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY()),
-                Field('indice', 'float', requires=IS_NOT_EMPTY()),
-                Field('carrera', db.carrera,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s'))
-                )
-
-db.define_table('decanato',
-                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
-
-db.define_table('coordinacion',
-                Field('nombre', 'string', requires=IS_NOT_EMPTY()),
-                Field('decanato', db.decanato,
-                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', zero=T('choose one'))))
-
-db.define_table('carrera',
-                Field('codigo', requires=IS_MATCH('^[0-9]{4}'), unique=True),
-                Field('nombre', 'string', requires=IS_NOT_EMPTY()),
-                Field('coordinacion', db.coordinacion,
-                      requires=IS_IN_DB(db, db.coordinacion.id, '%(nombre)s', zero=T('choose one'))))
-
-db.define_table('maneja_idioma',
-                Field('idioma', db.idioma,
-                      requires=IS_IN_DB(db, db.idioma.id,'%(nombre)s')),
-                Field('oral', 'string', requires=IS_NOT_EMPTY()),
-                Field('escrito', 'string', requires=IS_NOT_EMPTY()),
-                Field('lectura', 'string', requires=IS_NOT_EMPTY()),
-                Field('carnet', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(carnet)s')))
-
-db.define_table('idioma',
-                Field('nombre', 'string', requires=IS_NOT_EMPTY())
-                )
-
-db.define_table('redes_sociales',
-                Field('facebook', 'string'),
-                Field('twitter', 'string'),
-                Field('instagram', 'string')
-                )
-
-db.define_table('datos_intercambio',
-                Field('univ', db.universidad,
-                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('f_inicio', 'date', requires=IS_NOT_EMPTY()),
-                Field('f_fin', 'date', requires=IS_NOT_EMPTY())
-                )
-
-db.define_table('universidad',
-                Field('pais', 'string', requires=IS_NOT_EMPTY()),
-                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
-
-db.define_table('convenio',
-                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
-
-db.define_table('universidad_convenio',
-                Field('universidad', db.universidad, requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('convenio', db.convenio, requires=IS_IN_DB(db, db.convenio.id, '%(nombre)s')),
-                Field('cupos', 'integer', default=0))
-
-db.define_table('recaudos',
-                Field('informe_academico', 'upload', requires=IS_NOT_EMPTY()),
-                Field('carta_motivacion', 'upload', requires=IS_NOT_EMPTY()),
-                Field('curriculum_vitae', 'upload', requires=IS_NOT_EMPTY()),
-                Field('comprobante', 'upload', requires=IS_NOT_EMPTY()),
-                Field('constancias_cv', 'upload', requires=IS_NOT_EMPTY()),
-                Field('flujograma', 'upload', requires=IS_NOT_EMPTY()),
-                Field('programas_de_estudio', 'upload', requires=IS_NOT_EMPTY()),
-                Field('foto', 'upload', requires=IS_NOT_EMPTY()),
-                Field('carnet', 'upload', requires=IS_NOT_EMPTY()),
-                Field('cedula', 'upload', requires=IS_NOT_EMPTY()),
-                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(carnet)s')))
-
-db.define_table('Actividades_complementarias',
-                Field('preparador', 'boolean', default=False),
-                Field('becado', 'boolean', default=False),
-                Field('actividad', 'text'),
-                Field('centro_estudiantes', 'boolean', default=False),
-                Field('carnet', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(carnet)s')))
