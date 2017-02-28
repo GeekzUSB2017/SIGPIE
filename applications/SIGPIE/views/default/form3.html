@@ -2,38 +2,34 @@
 {{block content}}
 
   <div class="row" id="pwd-container">
-    <div class="col-md-2"></div>
-      <div class="col-md-8">
-      <label>IDENTIFICACIÓN DEL PROGRAMA, ACTIVIDAD ACADÉMICA Y LAPSO DE ESTUDIO EN INTERCAMBIO</label>
-    </div>
+      <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">IDENTIFICACIÓN DEL PROGRAMA, ACTIVIDAD ACADÉMICA Y LAPSO DE ESTUDIO EN INTERCAMBIO </h2>
   </div>
     <br>
-    <br>
   <div class="row" id="pwd-container">
-    <div class="col-md-4">
-      <form class="form-inline">
+    <div class="col-md-6">
         <div class="form-group">
-            <label for="país_dest">País:</label>
+            <label style="color:black;"for="país_dest">País:</label>
               <input type="text" class="form-control" id="país_dest" placeholder="País de destino"> 
         </div>
+      </form>
         <div class="form-group">
-          <label for="uni_dest">Universidad de destino:</label>
+          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
           <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
         </div>
       </form>
-    </div>
-    <div class="col-md-4">
-      <form class="form-inline">
           <div class="form-group">
-            <label for="convenio">Nombre del programa:</label>
+            <label style="color:black;"for="convenio">Nombre del programa:</label>
             <select class="form-control" id="convenio">
               <option>Convenio Bilateral</option>
               <option>Red Magalhães-Programa SMILE</option>
               <option>Programa de Movilidad Estudiantil CINDA</option>
             </select>
           </div>
+        </form>
+    </div>
+    <div class="col-md-6">
           <div class="form-group">
-            <label for="act_academica">Actividad Académica:</label>
+            <label style="color:black;"for="act_academica">Actividad Académica:</label>
             <select class="form-control" id= "act_academica">
               <option>Solo Asignaturas</option>
               <option>Asignaturas + Proyecto de Grado</option>
@@ -42,91 +38,85 @@
             </select>
           </div>
         </form>
-    </div>
-    <div class="col-md-4">
-        <form class="form-inline">
           <div class="form-group">
-            <label>Fechas tentativas de inicio y fin, según calendario de la universidad de destino:</label>
-            <label for="f_ini">Inicio:</label>
-              <input type="datetime" class="form-control" id="f_ini" placeholder="Fecha Inicio">     
+            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:</label>
+            <select class="form-control" id= "periodo">
+              <option>Primer Semestre (A partir de Septiembre)</option>
+              <option>Segundo Semestre (A partir de Enero)</option>
+            </select>
+          </div>
+        </form>
+          <div class="form-group">
+            <label style="color:black;"for="f_ini">Año Académico:</label>
+              <input type="datetime" class="form-control" id="anyo_academico" placeholder="xxxx-xxxx">     
           </div>  
-          <div class="form-group">
-            <label for="f_fin">Fin:</label>
-              <input type="datetime" class="form-control" id="f_fin" placeholder="Fecha Fin">
-          </div> 
         </form> 
     </div>
   </div>
 
   <div class="row" id="pwd-container">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-      <br>
-        <label>EN CASO DE NO SER ACEPTADO EN LA UNIVERSIDAD SELECCIONADA, FAVOR INDIQUE UNA SEGUNDA OPCIÓN</label>
-      </div>
+    <br>
+      <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">EN CASO DE NO SER ACEPTADO EN LA UNIVERSIDAD SELECCIONADA, FAVOR INDIQUE UNA SEGUNDA OPCIÓN </h2>
   </div>
-  <br>
   <br>
   <div class="row" id="pwd-container">
-    <div class="col-md-4">
-      <form class="form-inline">
+    <div class="col-md-6">
         <div class="form-group">
-          <label for="pais2">País:</label>
-            <input type="text" class="form-control" id="pais2" placeholder="País de destino"> 
-        </div>
-        <div class="form-group">
-          <label for="uni2">Universidad de destino:</label>
-            <input type="text" class="form-control" id="uni2" placeholder="Universidad de destino">
+            <label style="color:black;"for="país_dest">País:</label>
+              <input type="text" class="form-control" id="país_dest" placeholder="País de destino"> 
         </div>
       </form>
+        <div class="form-group">
+          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
+          <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
+        </div>
+      </form>
+          <div class="form-group">
+            <label style="color:black;"for="convenio">Nombre del programa:</label>
+            <select class="form-control" id="convenio">
+              <option>Convenio Bilateral</option>
+              <option>Red Magalhães-Programa SMILE</option>
+              <option>Programa de Movilidad Estudiantil CINDA</option>
+            </select>
+          </div>
+        </form>
     </div>
-    <div class="col-md-4">
-      <form class="form-inline">
+    <div class="col-md-6">
+          <div class="form-group">
+            <label style="color:black;"for="act_academica">Actividad Académica:</label>
+            <select class="form-control" id= "act_academica">
+              <option>Solo Asignaturas</option>
+              <option>Asignaturas + Proyecto de Grado</option>
+              <option>Asignaturas + Pasantía Internacional</option>
+              <option>Doble titulación</option>
+            </select>
+          </div>
+        </form>
         <div class="form-group">
-          <label for="convenio2">Nombre del programa:</label>
-          <select class="form-control">
-            <option>Convenio Bilateral</option>
-            <option>Red Magalhães-Programa SMILE</option>
-            <option>Programa de Movilidad Estudiantil CINDA</option>
-          </select>
-        </div>
-        <div class="form-group">             
-          <label for="act_academica2">Actividad Académica:</label>
-          <select class="form-control" id="act_academica2">
-            <option>Solo Asignaturas</option>
-            <option>Asignaturas + Proyecto de Grado</option>
-            <option>Asignaturas + Pasantía Internacional</option>
-            <option>Doble titulación</option>
-          </select>
-        </div>
-      </form>
-    </div>
-
-    <div class="col-md-4">
-      <form class="form-inline">
-        <div class="form-group">
-          <label>Fechas tentativas de inicio y fin, según calendario de la universidad de destino:</label>
-          <label for="f_ini">Inicio:</label>
-            <input type="datetime" class="form-control" id="f_ini" placeholder="Fecha Inicio">     
-        </div>  
-        <div class="form-group">
-          <label for="f_fin">Fin:</label>
-            <input type="datetime" class="form-control" id="f_fin" placeholder="Fecha Fin">
-        </div>  
-      </form>
+            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:</label>
+            <select class="form-control" id= "periodo">
+              <option>Primer Semestre (A partir de Septiembre)</option>
+              <option>Segundo Semestre (A partir de Enero)</option>
+            </select>
+          </div>
+        </form>
+          <div class="form-group">
+            <label style="color:black;"for="f_ini">Año Académico:</label>
+              <input type="datetime" class="form-control" id="anyo_academico" placeholder="xxxx-xxxx">     
+          </div>  
+        </form> 
     </div>
   </div>
 
-
   <div class="row">
-    <div class="col-md-2">
-      <a href="{{=URL('form2')}}" class="btn btn-success" role="button">Regresar <<</a>
+    <div class="col-md-6">
+      <a href="{{=URL('form2')}}" class="btn btn-success" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-8"></div>
-    <div class="col-md-2">
-      <a href="{{=URL('documentos')}}" class="btn btn-success" role="button">Siguiente >></a>
+    <div class="col-md-6">
+      <a href="{{=URL('documentos')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
     </div>
-</div>
+    <div class="col-md-1"></div>
+  </div>
 
   <div class ="row">
     <br><br>
