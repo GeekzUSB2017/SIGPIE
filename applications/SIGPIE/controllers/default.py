@@ -46,7 +46,7 @@ def form3():
 def welcome():
 
 	if session.usuario is not None:
-		return dict()
+		return dict(nombre= session.usuario['first_name'])
 	else:
 		redirect(URL('index'))
 
