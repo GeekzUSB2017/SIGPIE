@@ -18,7 +18,18 @@ def about():
 
 def postularse():
 	if session.usuario is not None:
-		return dict()
+		estudiante = db(db.estudiante).select()
+		for raw in estudiante:
+			if(raw.cedula == session.usuario["cedula"]):
+				form_estudiante = SQLFORM(db.estudiante, raw)
+				if form_estudiante.accepts(request.vars, session):
+					response.flash = 'form accepted'
+				elif form_estudiante.errors:
+					response.flash = 'form has errors'
+				else:
+					response.flash = 'please fill the form'
+				return dict(form_estudiante=form_estudiante)
+		
 	else:
 		redirect(URL('index'))
 

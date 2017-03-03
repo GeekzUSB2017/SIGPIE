@@ -7,8 +7,8 @@
 {{end}}
 {{block content}}
 
-
-  <div class="container-fluid">
+  {{=form_estudiante}}
+  <!--div class="container-fluid">
     <div class="row" id="pwd-container">
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">DATOS PERSONALES </h2>
       </div>
@@ -25,7 +25,7 @@
           <div class="form-group">
             <label for="apellidos">Apellidos:</label>
             <input type="text" class="form-control" id="apellidos" placeholder="Tu apellido">
-          </div!-->
+          </div!>
 
           <div class="form-group">
             <label style="color:black;" for="genero">Género:</label>
@@ -49,7 +49,7 @@
           <div class="form-group">
             <label for="carnet">Nº Carnet:</label>
               <input type="text" class="form-control" id="carnet" placeholder="Tu número de carnet">
-          </div-->
+          </div>
           <div class="form-group">
             <label style="color:black;"for="pasaporte">Nº Pasaporte Vigente:</label>
             <input type="text" class="form-control" id="pasaporte" placeholder="Tu número de pasaporte">
@@ -164,7 +164,7 @@
     <br><br>
     <div class="col-md-5"></div>
       <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
-  </div>
+  </div-->
 
 
 {{end}}
