@@ -163,6 +163,7 @@ db.define_table('informacion_academica',
 db.define_table('idioma',
                 Field('nombre', 'string', requires=IS_NOT_EMPTY())
                 )
+
 db.define_table('maneja_idioma',
                 Field('idioma', db.idioma,
                       requires=IS_IN_DB(db, db.idioma.id,'%(nombre)s')),
