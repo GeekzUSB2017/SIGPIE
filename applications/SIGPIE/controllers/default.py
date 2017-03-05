@@ -18,6 +18,9 @@ def about():
 
 def postularse():
 	if session.usuario is not None:
+
+		generos = ('M','F','Otro')
+
 		form = SQLFORM.factory(
 				Field('carnet','string', label='Carnet'),
 				Field('nombres','string', label='Nombres'),
@@ -26,10 +29,11 @@ def postularse():
 				Field('telefono_habitacion','string', label='Teléfono habitación'),
 				Field('telefono_celular','string', label='Teléfono celular'),
 				Field('correo','string', label='Correo'),
+				Field('pasaporte','string', label='Pasaporte'),
+				Field('genero','string', requires=IS_IN_SET(generos), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad'),
-				Field('direccion','string', label='Dirección'),
-				Field('pasaporte','string', label='Pasaporte'))
-
+				Field('direccion','string', label='Dirección'))
+				
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
 		estudiante = rows.first()
@@ -38,22 +42,24 @@ def postularse():
 		form.vars.nombres = estudiante.nombres
 		form.vars.apellidos = estudiante.apellidos
 		form.vars.cedula = estudiante.cedula
-		form.vars.correo = session.usuario['email']
 		form.vars.telefono_habitacion = estudiante.telefono_habitacion
 		form.vars.telefono_celular = session.usuario['phone']
+		form.vars.correo = session.usuario['email']
+		form.vars.pasaporte = estudiante.pasaporte
+		form.vars.genero = estudiante.genero
 		form.vars.nacionalidad = estudiante.nacionalidad
 		form.vars.direccion = estudiante.direccion
-		form.vars.pasaporte = estudiante.pasaporte
 
 		if form.process().accepted:
 			# Actualizar la tabla del estudiante con un carnet especifico
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 					telefono_habitacion=form.vars.telefono_habitacion,
 					telefono_celular=form.vars.telefono_celular,
-					correo=form.vars.correo,
+					Correo=form.vars.correo,
+					pasaporte=form.vars.pasaporte,
+					genero=form.vars.genero,
 					nacionalidad=form.vars.nacionalidad,
-					direccion=form.vars.direccion,
-					pasaporte=form.vars.pasaporte)
+					direccion=form.vars.direccion)
 
 		return dict(form_estudiante = form)	
 	else:
