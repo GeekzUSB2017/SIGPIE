@@ -18,11 +18,54 @@ def about():
 
 def postularse():
 	if session.usuario is not None:
-		return dict()
+		return dict(nombre= session.usuario['first_name'],apellidos=session.usuario['last_name'],carnet=session.usuario['usbid']
+			,ci=session.usuario["cedula"])
 	else:
 		redirect(URL('index'))
 
+	'''if session.usuario is not None:
+		form = SQLFORM.factory(
+				Field('carnet','string', label='Carnet'),
+				Field('nombres','string', label='Nombres'),
+				Field('apellidos','string', label='Apellidos'),
+				Field('cedula','string', label='Cédula'),
+				Field('telefono_habitacion','string', label='Teléfono habitación'),
+				Field('telefono_celular','string', label='Teléfono celular'),
+				Field('correo','string', label='Correo'),
+				Field('nacionalidad','string', label='Nacionalidad'),
+				Field('direccion','string', label='Dirección'),
+				Field('pasaporte','string', label='Pasaporte'))
 
+		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
+
+		estudiante = rows.first()
+		
+		form.vars.carnet = estudiante.carnet
+		form.vars.nombres = estudiante.nombres
+		form.vars.apellidos = estudiante.apellidos
+		form.vars.cedula = estudiante.cedula
+		form.vars.correo = session.usuario['email']
+		form.vars.telefono_habitacion = estudiante.telefono_habitacion
+		form.vars.telefono_celular = session.usuario['phone']
+		form.vars.nacionalidad = estudiante.nacionalidad
+		form.vars.direccion = estudiante.direccion
+		form.vars.pasaporte = estudiante.pasaporte
+
+		if form.process().accepted:
+			# Actualizar la tabla del estudiante con un carnet especifico
+			db(db.estudiante.carnet == session.usuario['usbid']).update(
+					telefono_habitacion=form.vars.telefono_habitacion,
+					telefono_celular=form.vars.telefono_celular,
+					correo=form.vars.correo,
+					nacionalidad=form.vars.nacionalidad,
+					direccion=form.vars.direccion,
+					pasaporte=form.vars.pasaporte)
+
+		return dict(form_estudiante = form)	
+	else:
+		redirect(URL('index'))
+
+'''
 def user():
 	return dict(login=auth.login())
 
@@ -94,7 +137,7 @@ def login_cas():
 			print "Información extraida del CAS: "
 			print usuario['usbid']
 			print usuario['first_name']
-			print usuario['last_name']
+			print usuarios
 			print usuario['email']
 			print usuario['cedula']
 			print usuario['phone']
@@ -107,8 +150,8 @@ def login_cas():
 
 			db.estudiante.insert(cedula=session.usuario["cedula"],  # Lo insertamos en la base de datos.
 			carnet=session.usuario["usbid"],
-			nombre=session.usuario["first_name"],
-			apellido=session.usuario["last_name"])
+			nombres=session.usuario["first_name"],
+			apellidos=session.usuario["last_name"])
 
 
 			print "se agrego un nuevo usuario"
@@ -116,10 +159,6 @@ def login_cas():
 
 		#ARREGLAR, ESTA DUPLICANDO DATA Y NO ACTUALIZANDO
 		else:
-
-			db.estudiante.insert(nombre=session.usuario["first_name"],
-			apellido=session.usuario["last_name"])
-
 
 			print "se actualizo un usuario existente"
 			redirect(URL('welcome'))

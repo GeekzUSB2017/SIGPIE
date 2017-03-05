@@ -32,8 +32,6 @@
 </head>
 
   <body>
-  {{block imagen}}
-  {{end}}
 
     {{block navbar}}
     <div class="navbar-wrapper">
@@ -55,15 +53,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown" style="font-size: 1em; font-family: Arial">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >Iniciar Sesión<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('register')}}">Registrarse</a></li>
-                    <li style="font-size: 1em; font-family: Arial"><a href="#">¿Olvidaste tu Contraseña?</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li style="font-size: 1em; font-family: Arial"><a href="http://secure.dst.usb.ve/login?service=http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas">Iniciar Sesión</a></li>
-                  </ul>
-              </li>
+              <li style="font-size: 1em; font-family: Arial"><a href="http://secure.dst.usb.ve/login?service=http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas">Iniciar Sesión</a></li>
             </ul>
           </div>
         </div>
@@ -75,10 +65,22 @@
     {{end}}
 
     {{block footer}}
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 DRIC USB &middot;</p>
-      </footer>
+       <div class="col-md-1"></div>
+        <div class="col-md-10">  
+          <footer>
+            <div class="row">
+              <p class="pull-right"><a href="#">Back to top</a></p>
+              <p>&copy; 2017 DRIC USB &middot;</p>
+            </div>
+            <div class="row">
+              <p class="pull-right"><a href="{{=URL('/user/login')}}">Administrador</a></p>
+            </div>
+
+          </footer>
+        </div>
+        <div class="col-md-1"></div>
+
+
     {{end}}
 <!-- /.container -->
 
