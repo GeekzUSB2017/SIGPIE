@@ -1,100 +1,44 @@
-## Readme
+## SIGPIE
 
-web2py is a free open source full-stack framework for rapid development of fast, scalable, secure and portable database-driven web-based applications. 
+## REQUERIMIENTOS BÁSICOS
 
-It is written and programmable in Python. LGPLv3 License
-
-Learn more at http://web2py.com
-
-## Google App Engine deployment
-
-    cp examples/app.yaml ./
-    cp handlers/gaehandler.py ./
-    
-Then edit ./app.yaml and replace "yourappname" with yourappname.
-
-## Important reminder about this GIT repo
-
-An important part of web2py is the Database Abstraction Layer (DAL). In early 2015 this was decoupled into a separate code-base (PyDAL). In terms of git, it is a sub-module of the main repository.
-
-The use of a sub-module requires a one-time use of the --recursive flag for git clone if you are cloning web2py from scratch.
-
-    git clone --recursive https://github.com/web2py/web2py.git
-
-If you have an existing repository, the commands below need to be executed at least once:
-
-    git submodule update --init --recursive
-
-If you have a folder gluon/dal you must remove it:
-
-    rm -r gluon/dal
-
-PyDAL uses a separate stable release cycle to the rest of web2py. PyDAL releases will use a date-naming scheme similar to Ubuntu. Issues related to PyDAL should be reported to its separate repository.
+Sistema Operativo: Linux 
+Python: Python 2.7.9
+Pip: 9.0.1
+Base de Datos: SQLite
 
 
-## Documentation (readthedocs.org)
+## DEPENDENCIAS
 
-[![Docs Status](https://readthedocs.org/projects/web2py/badge/?version=latest&style=flat-square)](http://web2py.rtfd.org/)
+Para ejecutar SIGPIE debe poseer las siguiente librerias
 
-## Tests
+libsasl2-dev
+python-dev
+libldap2-dev
+libssl-dev
+ldap-utils
+gcc
 
-[![Build Status](https://img.shields.io/travis/web2py/web2py/master.svg?style=flat-square&label=Travis-CI)](https://travis-ci.org/web2py/web2py)
-[![MS Build Status](https://img.shields.io/appveyor/ci/web2py/web2py/master.svg?style=flat-square&label=Appveyor-CI)](https://ci.appveyor.com/project/web2py/web2py)
-[![Coverage Status](https://img.shields.io/codecov/c/github/web2py/web2py.svg?style=flat-square)](https://codecov.io/github/web2py/web2py)
+Para instalarlas, ejecutar el siguiente comando desde un terminal:
+
+sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev ldap-utils gcc
+
+Adicionalmente, se deben instalar los siguientes módulos a través de Python Pip: 
+
+setuptools
+python-ldap
+
+Para instalarlos, ejecutar el siguiente comando desde un terminal:
+
+sudo pip install setuptools
+sudo pip install python-ldap
 
 
-## Installation Instructions
+## DESCARGA
+A continuación se presentan los distintos modos de poder ejecutar  el SIGPIE:
 
-To start web2py there is NO NEED to install it. Just unzip and do:
-
-    python web2py.py
-
-That's it!!!
-
-## web2py directory structure
-
-    project/
-        README
-        LICENSE
-        VERSION                    > this web2py version
-        web2py.py                  > the startup script
-        anyserver.py               > to run with third party servers
-        ...                        > other handlers and example files
-        gluon/                     > the core libraries
-            packages/              > web2py submodules
-              dal/
-            contrib/               > third party libraries
-            tests/                 > unittests
-        applications/              > are the apps
-            admin/                 > web based IDE
-                ...
-            examples/              > examples, docs, links
-                ...
-            welcome/               > the scaffolding app (they all copy it)
-                ABOUT
-                LICENSE
-                models/
-                views/
-                controllers/
-                sessions/
-                errors/
-                cache/
-                static/
-                uploads/
-                modules/
-                cron/
-                tests/
-            ...                    > your own apps
-        examples/                  > example config files, mv .. and customize
-        extras/                    > other files which are required for building web2py
-        scripts/                   > utility and installation scripts
-        handlers/
-            wsgihandler.py         > handler to connect to WSGI
-            ...                    > handlers for Fast-CGI, SCGI, Gevent, etc
-        site-packages/             > additional optional modules
-        logs/                      > log files will go in there
-        deposit/                   > a place where web2py stores apps temporarily
-
-## Issues?
-
-Report issues at https://github.com/web2py/web2py/issues
+Descargar archivo .zip desde la página de Github que contiene el sistema completo
+Ejecutar el comando: 
+wget https://github.com/GeekzUSB2017/SIGPIE/archive/master.zip
+Clonar el repositorio de SIGPIE a través de git:
+git clone https://github.com/GeekzUSB2017/SIGPIE.git
