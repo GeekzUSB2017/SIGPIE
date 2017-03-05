@@ -1,0 +1,31 @@
+#title{
+    font-size:125%; 
+    text-align:center;
+    font-weight: bold; 
+    color: black
+}
+#filasup{
+    margin-top: 20px;
+    text-align: center;
+    font-size:90%;
+}
+
+#filas{
+    text-align:center;
+    font-size:67%;
+}
+.programa{
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+
+    font-size:70%
+}
+
+#col3{
+    font-size:70%;
+    text-align: center;
+}
+#last{
+    font-size:69% 
+}

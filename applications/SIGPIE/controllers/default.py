@@ -84,6 +84,11 @@ def form3():
 		return dict()
 	else:
 		redirect(URL('index'))
+def planestudios():
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
 
 
 def welcome():
