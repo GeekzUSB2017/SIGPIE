@@ -32,7 +32,8 @@ def postularse():
 				Field('pasaporte','string', label='Pasaporte'),
 				Field('genero','string', requires=IS_NULL_OR(IS_IN_SET(generos)), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad'),
-				Field('direccion','string', label='Dirección'))
+				Field('direccion','string', label='Dirección'),
+				Field('idioma_destino','string', requires=IS_NULL_OR(IS_IN_DB(db, 'idioma.id', '%(nombre)s')), label='Idioma'))
 				
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
@@ -50,6 +51,7 @@ def postularse():
 		form.vars.genero = estudiante.genero
 		form.vars.nacionalidad = estudiante.nacionalidad
 		form.vars.direccion = estudiante.direccion
+		form.vars.idioma_destino = estudiante.idioma_destino
 
 		if form.process().accepted:
 			# Actualizar la tabla del estudiante en sesión
@@ -60,7 +62,8 @@ def postularse():
 					pasaporte=form.vars.pasaporte,
 					genero=form.vars.genero,
 					nacionalidad=form.vars.nacionalidad,
-					direccion=form.vars.direccion)
+					direccion=form.vars.direccion,
+					idioma_destino=form.vars.idioma_destino)
 
 		return dict(form_estudiante = form)	
 	else:
