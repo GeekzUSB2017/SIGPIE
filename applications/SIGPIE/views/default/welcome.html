@@ -1,0 +1,14 @@
+{{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+{{end}}
+{{block content}}
+<div class="row">
+	<div class="col-lg-1"></div>
+    <div class="col-lg-6">
+		<h1>Bienvenid@ {{=nombre}}</h1>
+	</div>
+	<div class="col-lg-5"></div>
+</div>
+{{end}}

@@ -1,0 +1,95 @@
+{{extend 'layout2.html'}}
+
+
+{{block content}}
+<!--Time to work>
+<div class="container-fluid"-->
+
+	<div class="row" id="pwd-container">
+
+		<div class="col-md-4">
+
+			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
+				<div class="form-group">
+					<label for="ci-f">Cedula de Identidad: </label>
+					<input type="file" name="ci-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">					
+				</div>
+
+				<div class="form-group">
+					<label for="usbid-f">Carnet USB: </label>
+					<input type="file" name="usbid-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+
+				<div class="form-group">
+					<label for="expediente-f">Informe académico: </label>
+					<input type="file" name="expediente-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+			</form>	
+			</div>
+		<div class="col-md-4">
+			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
+				<div class="form-group">
+					<label for="grafo-f">Flujograma: </label>
+					<input type="file" name="grafo-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+
+				<div class="form-group">
+					<label for="comprobante-f">Comprobante de Inscripción: </label>
+					<input type="file" name="comprobante-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+				<div class="form-group">
+					<label for="expediente-f">Informe académico: </label>
+					<input type="file" name="expediente-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+			</form>					
+			</div>
+		<div class="col-md-4">
+			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
+				<div class="form-group">
+					<label for="motivacion-f">Carta de motivación: </label>
+					<input type="file" name="motivacion-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>				
+
+				<div class="form-group">
+					<label for="cele-f">Certificados de estudios de lengua extranjera: </label>
+					<input type="file" name="cele-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+
+				<div class="form-group">
+					<label for="ps-f">Programas sinópticos: </label>
+					<input type="file" name="ps-f" accept=".pdf">
+					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+				</div>
+
+			</form>			
+
+		</div>
+
+		<div class="col-md-6">
+			
+		</div>		
+
+	</div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <a href="{{=URL('form3')}}" class="btn btn-success" role="button"><< Regresar</a>
+    </div>
+</div>
+
+  <div class ="row">
+    <br><br>
+    <div class="col-md-5"></div>
+      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
+  </div>
+
+
+{{end}}
