@@ -162,7 +162,7 @@ db.define_table('informacion_academica',
                 )
 db.define_table('idioma',
                 Field('nombre', 'string', requires=IS_NOT_EMPTY()),
-                format = '%(nombre)s' 
+                format = '%(nombre)s'
                 )
 
 db.define_table('maneja_idioma',

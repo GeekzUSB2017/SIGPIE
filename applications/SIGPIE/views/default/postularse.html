@@ -8,6 +8,9 @@
 {{block content}}
 
   {{=form_estudiante}}
+  <!--{{=form_estudiante.custom.begin}}
+    <label>Cédula:</label>
+    {{=form_estudiante.custom.widget.cedula}}-->
   <!--div class="container-fluid">
     <div class="row" id="pwd-container">
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">DATOS PERSONALES </h2>
@@ -17,15 +20,15 @@
     <div class="row" id="pwd-container">
       <div class="col-md-6">
       <form>
-          <!--div class="form-group">
+          <div class="form-group">
             <label for="nombres">Nombres:</label>
-            <input type="datetime" class="form-control" id="nombres" placeholder="Tu nombre"> 
+            <input type="datetime" class="form-control" id="nombres" placeholder="Tu nombre">
           </div>
           <br>
           <div class="form-group">
             <label for="apellidos">Apellidos:</label>
             <input type="text" class="form-control" id="apellidos" placeholder="Tu apellido">
-          </div!>
+          </div>
 
           <div class="form-group">
             <label style="color:black;" for="genero">Género:</label>
@@ -38,7 +41,7 @@
             <label style="color:black;"for="nacionalidad">Nacionalidad:</label>
               <input type="text" class="form-control" id="nacionalidad" placeholder="Tu nacionalidad">
           </div>
-          <!--div class="form-group">
+          <div class="form-group">
             <label for="ci">Cédula de identidad:</label>
               <select class="form-control">
                 <option>V</option>
@@ -59,7 +62,7 @@
               <input type="email" class="form-control" id="idioma" placeholder="El idioma a emplear en la universidad destino">
           </div>
           <label style="color:black;">Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
-          <div class="form-group">  
+          <div class="form-group">
             <label style="color:black;" for="oral">Oral:</label>
             <select class="form-control" id="oral">
                 <option>Básico</option>
@@ -67,7 +70,7 @@
                 <option>Avanzado</option>
             </select>
           </div>
-          <div class="form-group">  
+          <div class="form-group">
             <label style="color:black;"for="escrito">Escrito:</label>
             <select class="form-control" id="oral">
                 <option>Básico</option>
@@ -75,7 +78,7 @@
                 <option>Avanzado</option>
             </select>
           </div>
-          <div class="form-group">  
+          <div class="form-group">
             <label style="color:black;"for="lectura">Lectura:</label>
             <select class="form-control" id="oral">
                 <option>Básico</option>
@@ -88,7 +91,7 @@
         <form>
           <div class="form-group">
             <label style="color:black;"for="direccion">Domicilio Actual:</label>
-              <textarea type="text" class="form-control" id="direccion" placeholder="Tu dirección"></textarea> 
+              <textarea type="text" class="form-control" id="direccion" placeholder="Tu dirección"></textarea>
           </div>
         </form>
       </div>
@@ -100,11 +103,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <label style="color:black;"for="tlf_hab">Teléfono de Habitación:</label>
-              <input type="tel" class="form-control" id="tlf_hab" placeholder="xxxx-xxxxxxx">          
+              <input type="tel" class="form-control" id="tlf_hab" placeholder="xxxx-xxxxxxx">
             </div>
             <div class="form-group">
               <label style="color:black;" for="tlf_cel">Teléfono Celular:</label>
-              <input type="tel" class="form-control" id="tlf_cel" placeholder="xxxx-xxxxxxx">          
+              <input type="tel" class="form-control" id="tlf_cel" placeholder="xxxx-xxxxxxx">
             </div>
           </div>
           <div class="col-md-6">
@@ -117,16 +120,16 @@
               <textarea type="text" class="form-control" id="redes" placeholder="Tus usuarios de redes sociales"></textarea>
             </div>
           </div>
-         </form> 
+         </form>
       <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de una persona a contactar en casos de emergencias:</label>
             <div class="form-group">
             <label style="color:black;"for="exampleInputName2">Nombres y Apellidos:</label>
               <input type="text" class="form-control" id="nombre_contact" placeholder="Nombre y apellido de contacto de emergencia">
-            </div>       
+            </div>
             <div class="form-group">
               <label style="color:black;" for="exampleInputEmail2">Dirección:</label>
               <textarea type="email" class="form-control" id="exampleInputEmail2" placeholder="Dirección de contacto de emergencia"></textarea>
-            </div>  
+            </div>
           <div class="form-group">
             <label style="color:black;" for="relacion_contact">Relación con el estudiante:</label>
             <select class="form-control" id="relacion_contact">
@@ -135,7 +138,7 @@
                 <option>Otro Familiar</option>
                 <option>Otro</option>
             </select>
-          </div>  
+          </div>
           <div class="form-group">
             <label style="color:black;" for="tlf_hab_contact">Teléfono de Habitación:</label>
               <input type="tel" class="form-control" id="tlf_hab_contact" placeholder="xxxx-xxxxxxx">
@@ -147,10 +150,10 @@
           <div class="form-group">
             <label style="color:black;"for="email_contact">E-mail:</label>
               <input type="email" class="form-control" id="email_contact" placeholder="E-mail de contacto de emergencia">
-          </div> 
-          </form>     
+          </div>
+          </form>
       </div>
-    </div> 
+    </div>
   </div>
 
   <div class="row">

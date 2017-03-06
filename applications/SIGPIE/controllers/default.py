@@ -19,15 +19,17 @@ def about():
 def postularse():
 	if session.usuario is not None:
 
-		generos = ('M','F','Otro')
+		generos = ('Masculino','Femenino','Otro')
 
 		niveles = ('Básico', 'Intermedio', 'Avanzado')
 
+		parentezco = ('Madre', 'Padre', 'Otro Familiar', 'Otro')
+
 		form = SQLFORM.factory(
-				Field('carnet','string', label='Carnet'),
-				Field('nombres','string', label='Nombres'),
-				Field('apellidos','string', label='Apellidos'),
-				Field('cedula','string', label='Cédula'),
+				Field('carnet', default=session.usuario['usbid'], label='Carnet', writable=False),
+				Field('nombres', default=session.usuario['first_name'], label='Nombres', writable=False),
+				Field('apellidos', default=session.usuario['last_name'], label='Apellidos', writable=False),
+				Field('cedula',default=session.usuario['cedula'], label='Cédula', writable=False),
 				Field('telefono_habitacion','string', label='Teléfono habitación'),
 				Field('telefono_celular','string', label='Teléfono celular'),
 				Field('correo','string', label='Correo'),
@@ -36,43 +38,72 @@ def postularse():
 				Field('nacionalidad','string', label='Nacionalidad'),
 				Field('direccion','string', label='Dirección'),
 				Field('idioma_destino','string', requires=IS_NULL_OR(IS_IN_DB(db, 'idioma.id', '%(nombre)s')), label='Idioma'),
-				Field('oral','string', label='Nivel oral:'),
-				Field('escrito','string', label='Nivel escrito:'),
-				Field('lectura','string', label='Nivel lectura:'))
+				Field('oral','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Oral:'),
+				Field('escrito','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Nivel escrito:'),
+				Field('lectura','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Nivel lectura:'),
+				Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia'),
+				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia'),
+				Field('direccion_cont', 'string', label='Dirección del Contacto'),
+				Field('relacion_cont', 'string', requires=IS_NULL_OR(IS_IN_SET(parentezco)),label='Relación con el estudiante'),
+				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto'),
+				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto'),
+				Field('correo_cont', 'string', label='Correo del contacto'))
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
 		estudiante = rows.first()
 
-		manejo_idioma = db(db.manejo_idioma.id == estudiante.idioma_destino).select().first()
-
+		manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
+		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
 		# Cargar valores de la base de datos
-		form.vars.carnet = estudiante.carnet
+		form.vars.carnet = session.usuario['usbid']
 		form.vars.nombres = estudiante.nombres
 		form.vars.apellidos = estudiante.apellidos
 		form.vars.cedula = estudiante.cedula
 		form.vars.telefono_habitacion = estudiante.telefono_habitacion
-		form.vars.telefono_celular = session.usuario['phone']
+		form.vars.telefono_celular = estudiante.telefono_celular
 		form.vars.correo = session.usuario['email']
 		form.vars.pasaporte = estudiante.pasaporte
 		form.vars.genero = estudiante.genero
 		form.vars.nacionalidad = estudiante.nacionalidad
 		form.vars.direccion = estudiante.direccion
-		# TODO: Verificar que pasa si manejo_idioma es nulo
-		form.vars.idioma_destino = db(db.idioma.id == manejo_idioma.idioma).select().first().nombre
-		form.vars.oral = manejo_idioma.oral
-		form.vars.escrito = manejo_idioma.escrito
-		form.vars.lectura = manejo_idioma.lectura
+
+		if (manejo_idioma != None):
+			form.vars.idioma_destino = db(db.idioma.id == manejo_idioma.idioma).select().first().id
+			#print(form.vars.idioma_destino)
+			form.vars.oral = manejo_idioma.oral
+			form.vars.escrito = manejo_idioma.escrito
+			form.vars.lectura = manejo_idioma.lectura
+
+		if (contacto_emergencia != None):
+			form.vars.nombres_cont = contacto_emergencia.nombres
+			form.vars.apellidos_cont = contacto_emergencia.apellidos
+			form.vars.direccion_cont = contacto_emergencia.direccion
+			form.vars.relacion_cont = contacto_emergencia.relacion
+			form.vars.telefono_habitacion_cont = contacto_emergencia.telefono_habitacion
+			form.vars.telefono_celular_cont = contacto_emergencia.telefono_celular
+			form.vars.correo_cont = contacto_emergencia.Correo
 
 		if form.process().accepted:
 			# Si seleccionó un idioma
 			if form.vars.idioma_destino != '':
+				#print(form.vars.idioma_destino)
 				# Obtener id del idioma seleccionado
-				id_idioma = db(db.idioma.nombre == form.vars.idioma_destino).select().first().id
+				#id_idioma = db(db.idioma.nombre == form.vars.idioma_destino).select().first().id
+				#print("Esto es: " + str(id_idioma))
 				# Guardar el manejo del idioma
-				id_manejo = db.manejo_idioma.insert(idioma=id_idioma,oral=form.vars.oral,escrito=form.vars.escrito,lectura=form.vars.lectura)
+				id_manejo = db.maneja_idioma.insert(idioma=form.vars.idioma_destino, oral=form.vars.oral, escrito=form.vars.escrito,lectura=form.vars.lectura)
 				# Actualizar el idioma_destino del estudiante en sesión
 				db(db.estudiante.carnet == session.usuario['usbid']).update(idioma_destino=id_manejo)
+			if (form.vars.nombres_cont != '' or form.vars.apellidos_cont != '' or form.vars.direccion_cont != '' or form.vars.relacion_cont != '' or form.vars.telefono_habitacion_cont != '' or form.vars.telefono_celular_cont != '' or form.vars.correo_cont != ''):
+				id_contacto_emer = db.contacto_emergencia.insert(nombres=form.vars.nombres_cont,
+																 apellidos=form.vars.apellidos_cont,
+																 direccion=form.vars.direccion_cont,
+																 relacion=form.vars.relacion_cont,
+																 telefono_habitacion=form.vars.telefono_habitacion_cont,
+																 telefono_celular=form.vars.telefono_celular_cont,
+																 Correo=form.vars.correo_cont)
+				db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
 			# Actualizar los datos del estudiante en sesión
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 						telefono_habitacion=form.vars.telefono_habitacion,
@@ -82,6 +113,7 @@ def postularse():
 						genero=form.vars.genero,
 						nacionalidad=form.vars.nacionalidad,
 						direccion=form.vars.direccion)
+			redirect(URL('form2'))
 
 		return dict(form_estudiante = form)
 	else:
