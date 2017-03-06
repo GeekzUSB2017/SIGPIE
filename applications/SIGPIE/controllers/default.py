@@ -21,6 +21,8 @@ def postularse():
 
 		generos = ('M','F','Otro')
 
+		niveles = ('Básico', 'Intermedio', 'Avanzado')
+
 		form = SQLFORM.factory(
 				Field('carnet','string', label='Carnet'),
 				Field('nombres','string', label='Nombres'),
@@ -33,12 +35,17 @@ def postularse():
 				Field('genero','string', requires=IS_NULL_OR(IS_IN_SET(generos)), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad'),
 				Field('direccion','string', label='Dirección'),
-				Field('idioma_destino','string', requires=IS_NULL_OR(IS_IN_DB(db, 'idioma.id', '%(nombre)s')), label='Idioma'))
-				
+				Field('idioma_destino','string', requires=IS_NULL_OR(IS_IN_DB(db, 'idioma.id', '%(nombre)s')), label='Idioma'),
+				Field('oral','string', label='Nivel oral:'),
+				Field('escrito','string', label='Nivel escrito:'),
+				Field('lectura','string', label='Nivel lectura:'))
+
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
 		estudiante = rows.first()
-		
+
+		manejo_idioma = db(db.manejo_idioma.id == estudiante.idioma_destino).select().first()
+
 		# Cargar valores de la base de datos
 		form.vars.carnet = estudiante.carnet
 		form.vars.nombres = estudiante.nombres
@@ -51,21 +58,32 @@ def postularse():
 		form.vars.genero = estudiante.genero
 		form.vars.nacionalidad = estudiante.nacionalidad
 		form.vars.direccion = estudiante.direccion
-		form.vars.idioma_destino = estudiante.idioma_destino
+		# TODO: Verificar que pasa si manejo_idioma es nulo
+		form.vars.idioma_destino = db(db.idioma.id == manejo_idioma.idioma).select().first().nombre
+		form.vars.oral = manejo_idioma.oral
+		form.vars.escrito = manejo_idioma.escrito
+		form.vars.lectura = manejo_idioma.lectura
 
 		if form.process().accepted:
-			# Actualizar la tabla del estudiante en sesión
+			# Si seleccionó un idioma
+			if form.vars.idioma_destino != '':
+				# Obtener id del idioma seleccionado
+				id_idioma = db(db.idioma.nombre == form.vars.idioma_destino).select().first().id
+				# Guardar el manejo del idioma
+				id_manejo = db.manejo_idioma.insert(idioma=id_idioma,oral=form.vars.oral,escrito=form.vars.escrito,lectura=form.vars.lectura)
+				# Actualizar el idioma_destino del estudiante en sesión
+				db(db.estudiante.carnet == session.usuario['usbid']).update(idioma_destino=id_manejo)
+			# Actualizar los datos del estudiante en sesión
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
-					telefono_habitacion=form.vars.telefono_habitacion,
-					telefono_celular=form.vars.telefono_celular,
-					Correo=form.vars.correo,
-					pasaporte=form.vars.pasaporte,
-					genero=form.vars.genero,
-					nacionalidad=form.vars.nacionalidad,
-					direccion=form.vars.direccion,
-					idioma_destino=form.vars.idioma_destino)
+						telefono_habitacion=form.vars.telefono_habitacion,
+						telefono_celular=form.vars.telefono_celular,
+						Correo=form.vars.correo,
+						pasaporte=form.vars.pasaporte,
+						genero=form.vars.genero,
+						nacionalidad=form.vars.nacionalidad,
+						direccion=form.vars.direccion)
 
-		return dict(form_estudiante = form)	
+		return dict(form_estudiante = form)
 	else:
 		redirect(URL('index'))
 
