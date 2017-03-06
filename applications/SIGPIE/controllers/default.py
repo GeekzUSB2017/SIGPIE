@@ -142,7 +142,7 @@ def login_cas():
 			print "Información extraida del CAS: "
 			print usuario['usbid']
 			print usuario['first_name']
-			print usuarios
+			print usuario['last_name']
 			print usuario['email']
 			print usuario['cedula']
 			print usuario['phone']
