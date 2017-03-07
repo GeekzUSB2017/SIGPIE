@@ -90,28 +90,57 @@ def postularse():
 			form.vars.correo_cont = contacto_emergencia.Correo
 
 		if form.process().accepted:
-			# Si seleccionó un idioma
-			if form.vars.idioma_destino != '':
-				# Guardar el manejo del idioma
-				id_manejo = db.maneja_idioma.insert(idioma=form.vars.idioma_destino, oral=form.vars.oral, escrito=form.vars.escrito,lectura=form.vars.lectura)
+			# Si todos los campos del idioma no están vacíos
+			if (form.vars.idioma_destino != '' and
+				form.vars.oral != '' and
+				form.vars.escrito != '' and
+				form.vars.lectura != ''):
+				# Query para ver si ya existe un manejo_idioma igual en la base
+				idioma = db(db.maneja_idioma.idioma == form.vars.idioma_destino and \
+							db.maneja_idioma.oral == form.vars.oral and \
+							db.maneja_idioma.escrito == form.vars.escrito and \
+							db.maneja_idioma.lectura == form.vars.lectura
+							).select().first()
+				# Si el manejo_idioma ya está guardado
+				if idioma != None:
+					id_manejo = idioma.id
+					print("Idioma: "+ str(form.vars.idioma_destino))
+					print("Oral: "+form.vars.oral)
+					print("Escrito: "+form.vars.escrito)
+					print("Lectura: "+form.vars.lectura)
+				else:
+					id_manejo = db.maneja_idioma.insert(idioma=form.vars.idioma_destino, oral=form.vars.oral, escrito=form.vars.escrito,lectura=form.vars.lectura)
 				# Actualizar el idioma_destino del estudiante en sesión
 				db(db.estudiante.carnet == session.usuario['usbid']).update(idioma_destino=id_manejo)
 			# Si todos los campos del contacto de emergencia son llenados, actualizo la tabla
-			if (form.vars.nombres_cont != '' or 
-				form.vars.apellidos_cont != '' or 
-				form.vars.direccion_cont != '' or 
-				form.vars.relacion_cont != '' or 
-				form.vars.telefono_habitacion_cont != '' or 
-				form.vars.telefono_celular_cont != '' or 
+			if (form.vars.nombres_cont != '' and 
+				form.vars.apellidos_cont != '' and 
+				form.vars.direccion_cont != '' and 
+				form.vars.relacion_cont != '' and 
+				form.vars.telefono_habitacion_cont != '' and 
+				form.vars.telefono_celular_cont != '' and 
 				form.vars.correo_cont != ''):
-				id_contacto_emer = db.contacto_emergencia.insert(
-							nombres=form.vars.nombres_cont,
-							apellidos=form.vars.apellidos_cont,
-							direccion=form.vars.direccion_cont,
-							relacion=form.vars.relacion_cont,
-							telefono_habitacion=form.vars.telefono_habitacion_cont,
-							telefono_celular=form.vars.telefono_celular_cont,
-							Correo=form.vars.correo_cont)
+				# Query para ver si ya existe un contacto de emergencia igual en la base
+				contacto = db(db.contacto_emergencia.nombres == form.vars.nombres_cont and
+							db.contacto_emergencia.apellidos == form.vars.apellidos_cont and
+							db.contacto_emergencia.direccion == form.vars.direccion_cont and
+							db.contacto_emergencia.relacion == form.vars.relacion_cont and
+							db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont and
+							db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont and
+							db.contacto_emergencia.correo == form.vars.correo_cont
+							).select().first()
+				# Si el contacto ya está guardado
+				if contacto != None:
+					id_contacto_emer = contacto.id
+				else:
+					id_contacto_emer = db.contacto_emergencia.insert(
+								nombres=form.vars.nombres_cont,
+								apellidos=form.vars.apellidos_cont,
+								direccion=form.vars.direccion_cont,
+								relacion=form.vars.relacion_cont,
+								telefono_habitacion=form.vars.telefono_habitacion_cont,
+								telefono_celular=form.vars.telefono_celular_cont,
+								Correo=form.vars.correo_cont)
 				db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
 			# Actualizar los datos del estudiante en sesión
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
