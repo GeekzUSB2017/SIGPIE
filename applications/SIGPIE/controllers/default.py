@@ -117,7 +117,7 @@ def postularse():
 							(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
 							(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
 							(db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont) &
-							(db.contacto_emergencia.correo == form.vars.correo_cont)
+							(db.contacto_emergencia.Correo == form.vars.correo_cont)
 							).select().first()
 				# Si el contacto ya está guardado
 				if contacto != None:
