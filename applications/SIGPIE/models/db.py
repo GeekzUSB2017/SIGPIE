@@ -192,9 +192,13 @@ db.define_table('actividades_complementarias',
                 Field('centro_estudiantes', 'boolean', default=False))
 
 
-db.define_table('universidad',
-                Field('pais', 'string', requires=IS_NOT_EMPTY()),
+db.define_table('pais',
                 Field('nombre', 'string', requires=IS_NOT_EMPTY()))
+
+db.define_table('universidad',
+                Field('pais', db.pais, requires=IS_IN_DB(db, db.pais.id, '%(nombre)s')),
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()))
+
 
 db.define_table('convenio',
                 Field('nombre', 'string', requires=IS_NOT_EMPTY()))

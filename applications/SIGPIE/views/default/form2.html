@@ -1,6 +1,6 @@
 {{extend 'layout2.html'}}
 {{block content}}
-  <br>
+  <!--br>
   <div class="row" id="pwd-container">
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">INFORMACIÓN ACADEMICA </h2>
   </div>
@@ -24,14 +24,14 @@
         </div>
         <div class="form-group">
           <label style="color:black;"for="carrera">Carrera que estudia en la USB:</label>
-            <input type="text" class="form-control" id="carrera" placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay"> 
+            <input type="text" class="form-control" id="carrera" placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay">
         </div>
       </form>
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
           <label style="color:black;"for="num_cred">Nº de créditos aprobados hasta la fecha:</label>
-            <input type="text" class="form-control" id="num_cred" placeholder="Tu número de créditos aprobados"> 
+            <input type="text" class="form-control" id="num_cred" placeholder="Tu número de créditos aprobados">
         </div>
         <div class="form-group">
           <label style="color:black;"for="indice">Índice académico a la fecha:</label>
@@ -50,10 +50,9 @@
       <a href="{{=URL('form3')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
     </div>
     <div class="col-lg-1 col-md-1 col-md-1"></div>
-  </div>
+  </div-->
 
 
-      
-  
+      {{=form_informacion_academica}}
+
 {{end}}
-

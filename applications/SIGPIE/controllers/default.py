@@ -156,7 +156,9 @@ def register():
 
 def form2():
 	if session.usuario is not None:
-		return dict()
+		form = SQLFORM(db.informacion_academica)
+
+		return dict(form_informacion_academica = form)
 	else:
 		redirect(URL('index'))
 

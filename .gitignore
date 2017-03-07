@@ -32,7 +32,6 @@ httpserver.pid
 ./admin.w2p
 ./examples.w2p
 cron.master
-applications/*
 applications/*/databases/*
 applications/*/sessions/*
 applications/*/errors/*
