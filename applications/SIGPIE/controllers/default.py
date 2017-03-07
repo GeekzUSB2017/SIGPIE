@@ -92,7 +92,6 @@ def postularse():
 		if form.process().accepted:
 			# Si todos los campos del idioma no están vacíos
 			if (form.vars.idioma_destino != None and form.vars.oral != '' and	form.vars.escrito != '' and	form.vars.lectura != ''):
-
 				# Query para ver si ya existe un manejo_idioma igual en la base
 				idioma = db((db.maneja_idioma.idioma == form.vars.idioma_destino) &
 							(db.maneja_idioma.oral == form.vars.oral) &
@@ -108,9 +107,7 @@ def postularse():
 				db(db.estudiante.carnet == session.usuario['usbid']).update(idioma_destino=id_manejo)
 			# Si todos los campos del contacto de emergencia son llenados, actualizo la tabla
 			if (form.vars.nombres_cont != '' and form.vars.apellidos_cont != '' and	form.vars.direccion_cont != '' and form.vars.relacion_cont != '' and form.vars.telefono_habitacion_cont != '' and form.vars.telefono_celular_cont != '' and	form.vars.correo_cont != ''):
-
-
-			# Query para ver si ya existe un contacto de emergencia igual en la base
+				# Query para ver si ya existe un contacto de emergencia igual en la base
 				contacto = db((db.contacto_emergencia.nombres == form.vars.nombres_cont) &
 							(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
 							(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
@@ -132,7 +129,7 @@ def postularse():
 								telefono_celular=form.vars.telefono_celular_cont,
 								Correo=form.vars.correo_cont)
 				db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
-				# Actualizar los datos del estudiante en sesión
+			# Actualizar los datos del estudiante en sesión
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 						telefono_habitacion=form.vars.telefono_habitacion,
 						telefono_celular=form.vars.telefono_celular,
@@ -158,13 +155,79 @@ def form2():
 	if session.usuario is not None:
 		form = SQLFORM(db.informacion_academica)
 
+		if form.process().accepted:
+			id_info = form.vars.id
+
+			db(db.estudiante.carnet == session.usuario['usbid']).update(info_academica=id_info)
+
+			redirect(URL('form3'))
+
 		return dict(form_informacion_academica = form)
 	else:
 		redirect(URL('index'))
 
 def form3():
 	if session.usuario is not None:
-		return dict()
+
+		actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía Internacional','Doble titulación')
+
+		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
+
+		form = SQLFORM.factory(
+				Field('pais_1', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
+				Field('actividad_1', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
+				Field('convenio_1', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
+				Field('periodo_1', requires=IS_NULL_OR(IS_IN_SET(periodos)), label='Período tentativo, según calendario de la universidad de destino'),
+				Field('universidad_1','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
+				Field('anio_1','string', label='Año académico'),
+				Field('pais_2', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
+				Field('actividad_2', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
+				Field('convenio_2', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
+				Field('periodo_2', requires=IS_NULL_OR(IS_IN_SET(periodos)), label='Período tentativo, según calendario de la universidad de destino'),
+				Field('universidad_2','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
+				Field('anio_2','string', label='Año académico')
+				)
+
+		# IMPORTANTE: COMO FECHA INICIO Y FECHA FIN ESTOY GUARDANDO EL AÑO, NO LAS FECHAS COMO DEBERÍA SER. ES SOLO PARA PROBAR
+		# FALTA LA ACTIVIDAD ACADÉMICA EN LA BASE
+		if form.process().accepted:
+			# NO DEBERÍA HACER UN QUERY PARA BUSCAR EL ID DE LA UNIVERSIDAD, PORQUE LA UNIVERSIDAD SE DEBERÍA DESPLEGAR POR EL CONVENIO Y EL PAÍS Y ESO TRAE EL ID DE LA TABLA
+			# Si eleccionó un país 1 y una universidad 1
+			if (form.vars.pais_1 != None and form.vars.universidad_1 != None):
+				# Query para saber si ya hay un datos_intercambio igual en la base
+				intercambio_1 = db((db.datos_intercambio.univ == form.vars.universidad_1) &
+							(db.datos_intercambio.f_inicio == form.vars.anio_1) &
+							(db.datos_intercambio.f_fin == form.vars.anio_1)
+							).select().first()
+
+				# Si hay un datos_intercambio igual
+				if intercambio_1 != None:
+					id_intercambio_1 = intercambio_1.id
+				else:
+					id_intercambio_1 = db.datos_intercambio.insert(
+								universidad=form.vars.universidad_1,
+								f_inicio=form.vars.anio_1,
+								f_fin=form.vars.anio_1)
+				db(db.estudiante.carnet == session.usuario['usbid']).update(op_interc_1=id_intercambio_1)
+
+			# Si eleccionó un país 2 y una universidad 2
+			if (form.vars.pais_2 != None and form.vars.universidad_2 != None):
+				# Query para saber si ya hay un datos_intercambio igual en la base
+				intercambio_2 = db((db.datos_intercambio.univ == form.vars.universidad_2) &
+							(db.datos_intercambio.f_inicio == form.vars.anio_2) &
+							(db.datos_intercambio.f_fin == form.vars.anio_2)
+							).select().first()
+
+				# Si hay un datos_intercambio igual
+				if intercambio_2 != None:
+					id_intercambio_2 = intercambio_2.id
+				else:
+					id_intercambio_2 = db.datos_intercambio.insert(
+								universidad=form.vars.universidad_2,
+								f_inicio=form.vars.anio_2,
+								f_fin=form.vars.anio_2)
+				db(db.estudiante.carnet == session.usuario['usbid']).update(op_interc_2=id_intercambio_2)
+		return dict(form_convenio = form)
 	else:
 		redirect(URL('index'))
 def planestudios():
@@ -175,7 +238,6 @@ def planestudios():
 
 
 def welcome():
-
 	if session.usuario is not None:
 		return dict(nombre= session.usuario['first_name'])
 	else:
