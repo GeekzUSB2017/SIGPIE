@@ -91,10 +91,8 @@ def postularse():
 
 		if form.process().accepted:
 			# Si todos los campos del idioma no están vacíos
-			if (form.vars.idioma_destino != '' and
-				form.vars.oral != '' and
-				form.vars.escrito != '' and
-				form.vars.lectura != ''):
+			if (form.vars.idioma_destino != None and form.vars.oral != '' and	form.vars.escrito != '' and	form.vars.lectura != ''):
+
 				# Query para ver si ya existe un manejo_idioma igual en la base
 				idioma = db((db.maneja_idioma.idioma == form.vars.idioma_destino) &
 							(db.maneja_idioma.oral == form.vars.oral) &
@@ -109,14 +107,10 @@ def postularse():
 				# Actualizar el idioma_destino del estudiante en sesión
 				db(db.estudiante.carnet == session.usuario['usbid']).update(idioma_destino=id_manejo)
 			# Si todos los campos del contacto de emergencia son llenados, actualizo la tabla
-			if (form.vars.nombres_cont != '' and 
-				form.vars.apellidos_cont != '' and 
-				form.vars.direccion_cont != '' and 
-				form.vars.relacion_cont != '' and 
-				form.vars.telefono_habitacion_cont != '' and 
-				form.vars.telefono_celular_cont != '' and 
-				form.vars.correo_cont != ''):
-				# Query para ver si ya existe un contacto de emergencia igual en la base
+			if (form.vars.nombres_cont != '' and form.vars.apellidos_cont != '' and	form.vars.direccion_cont != '' and form.vars.relacion_cont != '' and form.vars.telefono_habitacion_cont != '' and form.vars.telefono_celular_cont != '' and	form.vars.correo_cont != ''):
+
+
+			# Query para ver si ya existe un contacto de emergencia igual en la base
 				contacto = db((db.contacto_emergencia.nombres == form.vars.nombres_cont) &
 							(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
 							(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
@@ -138,7 +132,7 @@ def postularse():
 								telefono_celular=form.vars.telefono_celular_cont,
 								Correo=form.vars.correo_cont)
 				db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
-			# Actualizar los datos del estudiante en sesión
+				# Actualizar los datos del estudiante en sesión
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 						telefono_habitacion=form.vars.telefono_habitacion,
 						telefono_celular=form.vars.telefono_celular,
