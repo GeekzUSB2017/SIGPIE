@@ -193,7 +193,7 @@ def form3():
 		if form.process().accepted:
 			# NO DEBERÍA HACER UN QUERY PARA BUSCAR EL ID DE LA UNIVERSIDAD, PORQUE LA UNIVERSIDAD SE DEBERÍA DESPLEGAR POR EL CONVENIO Y EL PAÍS Y ESO TRAE EL ID DE LA TABLA
 			# Si eleccionó un país 1 y una universidad 1
-			if (form.vars.pais_1 != None and form.vars.universidad_1 != None):
+			if (form.vars.pais_1 != None and convenio_1 != None and form.vars.universidad_1 != None):
 				# Query para saber si ya hay un datos_intercambio igual en la base
 				intercambio_1 = db((db.datos_intercambio.univ == form.vars.universidad_1) &
 							(db.datos_intercambio.f_inicio == form.vars.anio_1) &
@@ -211,7 +211,7 @@ def form3():
 				db(db.estudiante.carnet == session.usuario['usbid']).update(op_interc_1=id_intercambio_1)
 
 			# Si eleccionó un país 2 y una universidad 2
-			if (form.vars.pais_2 != None and form.vars.universidad_2 != None):
+			if (form.vars.pais_2 != None and convenio_2 != None and form.vars.universidad_2 != None):
 				# Query para saber si ya hay un datos_intercambio igual en la base
 				intercambio_2 = db((db.datos_intercambio.univ == form.vars.universidad_2) &
 							(db.datos_intercambio.f_inicio == form.vars.anio_2) &
