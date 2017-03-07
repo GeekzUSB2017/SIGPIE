@@ -31,14 +31,17 @@ body {
   padding-right: 15px;
   padding-left: 15px;
 }
-.navbar-wrapper .navbar .container {
+.navbar-wrapper .navbar {
   width: auto;
+}
+#registrar{
+  padding-bottom: 700px;
 }
 
 @media (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
-    margin-top: 20px;
+    margin-top: 0px;
   }
   .navbar-wrapper .container {
     padding-right: 15px;
@@ -54,4 +57,5 @@ body {
     border-radius: 4px;
   }
 }
+
 

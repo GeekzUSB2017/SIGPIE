@@ -6,7 +6,7 @@
   </div>
   <br>
   <div class="row" id="pwd-container">
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
           <label style="color:black;"for="sede">Sede Universidad:</label>
           <select class="form-control" id="sede">
@@ -17,8 +17,9 @@
         <div class="form-group">
           <label style="color:black;"for="decanato">Decanato:</label>
             <select class="form-control" id="decanato">
-              <option>Decanato de estudios tecnológicos</option>
-              <option>Decanato de estudios profesionales</option>
+              <option>Decanato de Estudios Tecnológicos</option>
+              <option>Decanato de Estudios Profesionales</option>
+              <option>Postgrado</option>
             </select>
         </div>
         <div class="form-group">
@@ -27,9 +28,9 @@
         </div>
       </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
-          <label style="color:black;"for="num_cred">Nº de créditos aprobados:</label>
+          <label style="color:black;"for="num_cred">Nº de créditos aprobados hasta la fecha:</label>
             <input type="text" class="form-control" id="num_cred" placeholder="Tu número de créditos aprobados"> 
         </div>
         <div class="form-group">
@@ -42,20 +43,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
       <a href="{{=URL('postularse')}}" class="btn btn-success" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
       <a href="{{=URL('form3')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-lg-1 col-md-1 col-md-1"></div>
   </div>
 
-    <div class ="row">
-    <br><br>
-    <div class="col-md-5"></div>
-      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
-  </div>
 
       
   

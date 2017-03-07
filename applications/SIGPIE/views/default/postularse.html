@@ -8,33 +8,29 @@
 {{block content}}
 
   {{=form_estudiante}}
-  <!--{{=form_estudiante.custom.begin}}
-    <label>Cédula:</label>
-    {{=form_estudiante.custom.widget.cedula}}-->
-  <!--div class="container-fluid">
-    <div class="row" id="pwd-container">
-      <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">DATOS PERSONALES </h2>
-      </div>
-    </div>
-    <br>
-    <div class="row" id="pwd-container">
-      <div class="col-md-6">
-      <form>
-          <div class="form-group">
-            <label for="nombres">Nombres:</label>
-            <input type="datetime" class="form-control" id="nombres" placeholder="Tu nombre">
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" class="form-control" id="apellidos" placeholder="Tu apellido">
-          </div>
+        <!--Nombres de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label>Nombres:</label>
+          {{=form_estudiante.custom.widget.nombres}}
+        </div>
+        {{=form_estudiante.custom.end}}
 
-          <div class="form-group">
-            <label style="color:black;" for="genero">Género:</label>
-            <select class="form-control" id="genero">
-              <option>F</option>
-              <option>M</option>
+        <!--Apellidos de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label>Apellidos:</label>
+          {{=form_estudiante.custom.widget.apellidos}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Cedula de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label>Cédula de identidad:</label>
+            <select class="form-control">
+              <option>V</option>
+              <option>E</option>
             </select>
           </div>
           <div class="form-group">
@@ -62,66 +58,153 @@
               <input type="email" class="form-control" id="idioma" placeholder="El idioma a emplear en la universidad destino">
           </div>
           <label style="color:black;">Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
+            {{=form_estudiante.custom.widget.cedula}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Carnet de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label for="carnet">Nº Carnet:</label>
+          {{=form_estudiante.custom.widget.carnet}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Genero de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label for="carnet">Género:</label>
+          {{=form_estudiante.custom.widget.genero}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Nacionalidad de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label style="color:black;">Nacionalidad:</label>
+          {{form_estudiante.custom.widget.nacionalidad.update(_placeholder="Nacionalidad")}}
+          {{=form_estudiante.custom.widget.nacionalidad}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Pasaporte de estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label style="color:black;"for="pasaporte">Nº Pasaporte Vigente:</label>
+          {{form_estudiante.custom.widget.pasaporte.update(_placeholder="Nº pasaporte")}}
+          {{=form_estudiante.custom.widget.pasaporte}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+        <!--Idioma a usar estudiante-->
+        {{=form_estudiante.custom.begin}}
+        <div class="form-group">
+          <label style="color:black;" for="idioma">Idioma a emplear en la universidad destino:</label>
+          {{=form_estudiante.custom.widget.idioma_destino}}
+        </div>
+        {{=form_estudiante.custom.end}}
+
+          <label style="color:black;">Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
+
+          <!--Nivel oral del idioma-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;" for="oral">Oral:</label>
-            <select class="form-control" id="oral">
-                <option>Básico</option>
-                <option>Intermedio</option>
-                <option>Avanzado</option>
-            </select>
+            {{=form_estudiante.custom.widget.oral}}
           </div>
+          {{=form_estudiante.custom.end}}
+
+          <!--Nivel escrito del idioma-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;"for="escrito">Escrito:</label>
-            <select class="form-control" id="oral">
-                <option>Básico</option>
-                <option>Intermedio</option>
-                <option>Avanzado</option>
-            </select>
+            {{=form_estudiante.custom.widget.escrito}}
           </div>
+          {{=form_estudiante.custom.end}}
+
+          <!--Nivel de lectura del idioma-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;"for="lectura">Lectura:</label>
-            <select class="form-control" id="oral">
-                <option>Básico</option>
-                <option>Intermedio</option>
-                <option>Avanzado</option>
-            </select>
+            {{=form_estudiante.custom.widget.lectura}}
           </div>
+          {{=form_estudiante.custom.end}}
         </form>
 
         <form>
+          <!--Direccion de estudiante-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;"for="direccion">Domicilio Actual:</label>
               <textarea type="text" class="form-control" id="direccion" placeholder="Tu dirección"></textarea>
+              {{form_estudiante.custom.widget.direccion.update(_placeholder="Domicilio actual del estudiante")}}
+              {{=form_estudiante.custom.widget.direccion}}
+
           </div>
+          {{=form_estudiante.custom.end}}
         </form>
       </div>
 
-      <div class="col-md-6">
-      <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de contacto: </label>
-        </form>
+      <div class="col-lg-6 col-md-6 col-md-6">
+        <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de contacto: </label>
+
         <form>
-          <div class="col-md-6">
+          <div class="col-lg-6 col-md-6 col-md-6">
+
+            <!--Telefono de habitacion de estudiante-->
+            {{=form_estudiante.custom.begin}}
             <div class="form-group">
               <label style="color:black;"for="tlf_hab">Teléfono de Habitación:</label>
               <input type="tel" class="form-control" id="tlf_hab" placeholder="xxxx-xxxxxxx">
+              {{form_estudiante.custom.widget.telefono_habitacion.update(_placeholder="xxxx xxxxxxx")}}
+              {{=form_estudiante.custom.widget.telefono_habitacion}}
             </div>
+            {{=form_estudiante.custom.end}}
+
+            <!--Telefono celular de estudiante-->
+            {{=form_estudiante.custom.begin}}
             <div class="form-group">
               <label style="color:black;" for="tlf_cel">Teléfono Celular:</label>
               <input type="tel" class="form-control" id="tlf_cel" placeholder="xxxx-xxxxxxx">
+              <label style="color:black;"for="tlf_hab">Teléfono Celular:</label>
+              {{form_estudiante.custom.widget.telefono_celular.update(_placeholder="xxxx xxxxxxx")}}
+              {{=form_estudiante.custom.widget.telefono_celular}}
             </div>
+            {{=form_estudiante.custom.end}}
+
           </div>
-          <div class="col-md-6">
+
+          <div class="col-lg-6 col-md-6 col-md-6">
+
+            <!--Email estudiante-->
+            {{=form_estudiante.custom.begin}}
             <div class="form-group">
               <label style="color:black;" for="e-mail">E-mail:</label>
-              <input type="email" class="form-control" id="e-mail" placeholder="Tu e-mail">
+              {{form_estudiante.custom.widget.correo.update(_placeholder="Tu e-mail")}}
+              {{=form_estudiante.custom.widget.correo}}
             </div>
+            {{=form_estudiante.custom.end}}
+
             <div class="form-group">
               <label style="color:black;" for="redes">Redes Sociales:</label>
               <textarea type="text" class="form-control" id="redes" placeholder="Tus usuarios de redes sociales"></textarea>
             </div>
+
           </div>
          </form>
       <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de una persona a contactar en casos de emergencias:</label>
+
+            <!--Nombres contacto emergencia-->
+            {{=form_estudiante.custom.begin}}
+            <div class="form-group">
+            <label style="color:black;"for="exampleInputName2">Nombres:</label>
+              {{form_estudiante.custom.widget.nombres_cont.update(_placeholder="Nombres de contacto de emergencia")}}
+              {{=form_estudiante.custom.widget.nombres_cont}}
+            </div>
+            {{=form_estudiante.custom.begin}}
+
+            <!--Apellidos contacto emergencia-->
+            {{=form_estudiante.custom.begin}}
             <div class="form-group">
             <label style="color:black;"for="exampleInputName2">Nombres y Apellidos:</label>
               <input type="text" class="form-control" id="nombre_contact" placeholder="Nombre y apellido de contacto de emergencia">
@@ -139,35 +222,68 @@
                 <option>Otro</option>
             </select>
           </div>
+            <label style="color:black;"for="exampleInputName2">Apellidos:</label>
+              {{form_estudiante.custom.widget.apellidos_cont.update(_placeholder="Apellidos de contacto de emergencia")}}
+              {{=form_estudiante.custom.widget.apellidos_cont}}
+            </div>
+            {{=form_estudiante.custom.end}}
+
+              <!--Direccion contacto emergencia-->
+            {{=form_estudiante.custom.begin}}
+            <div class="form-group">
+              <label style="color:black;" for="exampleInputEmail2">Dirección:</label>
+              {{form_estudiante.custom.widget.direccion_cont.update(_placeholder="Direccion de contacto de emergencia")}}
+              {{=form_estudiante.custom.widget.direccion_cont}}
+            </div>
+            {{=form_estudiante.custom.end}}
+
+          <!--Relacion contacto con estudiante-->
+          {{=form_estudiante.custom.begin}}
+          <div class="form-group">
+            <label style="color:black;" for="relacion_contact">Relación con el estudiante:</label>
+            {{=form_estudiante.custom.widget.relacion_cont}}
+          </div>
+          {{=form_estudiante.custom.end}}
+
+          <!--Tlf de habitacion de contacto-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;" for="tlf_hab_contact">Teléfono de Habitación:</label>
-              <input type="tel" class="form-control" id="tlf_hab_contact" placeholder="xxxx-xxxxxxx">
+            {{form_estudiante.custom.widget.telefono_habitacion_cont.update(_placeholder="xxxx xxxxxxx")}}
+            {{=form_estudiante.custom.widget.telefono_habitacion_cont}}
           </div>
+          {{=form_estudiante.custom.end}}
+
+          <!--Tlf celular de contacto-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;"for="tlf_cel_contact">Teléfono Celular:</label>
-              <input type="tel" class="form-control" id="tlf_cel_contact" placeholder="xxxx-xxxxxxx">
+            {{form_estudiante.custom.widget.telefono_celular_cont.update(_placeholder="xxxx xxxxxxx")}}
+            {{=form_estudiante.custom.widget.telefono_celular_cont}}
           </div>
+          {{=form_estudiante.custom.end}}
+
+          <!--E-mail de contacto-->
+          {{=form_estudiante.custom.begin}}
           <div class="form-group">
             <label style="color:black;"for="email_contact">E-mail:</label>
               <input type="email" class="form-control" id="email_contact" placeholder="E-mail de contacto de emergencia">
           </div>
+            {{form_estudiante.custom.widget.correo_cont.update(_placeholder="E-mail de contacto de emergencia")}}
+            {{=form_estudiante.custom.widget.correo_cont}}
+          </div>
+          {{=form_estudiante.custom.end}}
+
           </form>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-1">
-      <a href="{{=URL('form2')}}" class="btn btn-success" role="button" style="float:right;">Siguiente >></a>
+    <div class="col-lg-10 col-md-10 col-md-10"></div>
+    <div class="col-lg-1 col-md-1 col-md-1">
+      {{form_estudiante.custom.submit.update(_value="Siguiente>>")}}
+      {{=form_estudiante.custom.submit}}
     </div>
 </div>
-
-    <div class ="row">
-    <br><br>
-    <div class="col-md-5"></div>
-      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
-  </div-->
-
-
 {{end}}

@@ -1,94 +1,111 @@
 {{extend 'layout2.html'}}
 
-
 {{block content}}
-<!--Time to work>
-<div class="container-fluid"-->
 
 	<div class="row" id="pwd-container">
+		<h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">RECAUDOS A COONSIGNAR JUNTO A LA APLICACIÓN </h2>
 
-		<div class="col-md-4">
+		<div class="col-lg-6 col-md-6 col-xs-6">
 
-			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
+			<form class="form" action="" enctype="multipart/form-data" method="post">
+
+				<div class="form-group">
+
+					<label for="ci-f">Foto: </label>
+					<p>Adjunte una foto carnet de su persona.</p>
+					<input type="file" name="ci-f" accept=".pdf">
+						
+				</div>
+
+
+
 				<div class="form-group">
 					<label for="ci-f">Cedula de Identidad: </label>
+					<p>Adjunte una fotocopia de su cédula de identidad.</p>	
 					<input type="file" name="ci-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">					
+
+									
 				</div>
 
 				<div class="form-group">
 					<label for="usbid-f">Carnet USB: </label>
+					<p>Adjunte una copia de su carnet de la USB.</p>
 					<input type="file" name="usbid-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+
 				</div>
 
 				<div class="form-group">
 					<label for="expediente-f">Informe académico: </label>
+					<P>Adjunte su informe académico actualizado hasta el trimestre finalizado en diciembre 2016</P>
 					<input type="file" name="expediente-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
-				</div>
-			</form>	
-			</div>
-		<div class="col-md-4">
-			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
-				<div class="form-group">
-					<label for="grafo-f">Flujograma: </label>
-					<input type="file" name="grafo-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
+
 				</div>
 
 				<div class="form-group">
 					<label for="comprobante-f">Comprobante de Inscripción: </label>
+					<p>Copia del comprobante de inscirpción correspondiente al trimestre en curso(Ene-Mar 2017)</p>
 					<input type="file" name="comprobante-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
-				</div>
-				<div class="form-group">
-					<label for="expediente-f">Informe académico: </label>
-					<input type="file" name="expediente-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
-				</div>
-			</form>					
-			</div>
-		<div class="col-md-4">
-			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
-				<div class="form-group">
-					<label for="motivacion-f">Carta de motivación: </label>
-					<input type="file" name="motivacion-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
-				</div>				
 
-				<div class="form-group">
-					<label for="cele-f">Certificados de estudios de lengua extranjera: </label>
-					<input type="file" name="cele-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
 				</div>
 
-				<div class="form-group">
-					<label for="ps-f">Programas sinópticos: </label>
-					<input type="file" name="ps-f" accept=".pdf">
-					<input type="submit" class="btn btn-default" value= "Adjuntar Documento">
-				</div>
-
-			</form>			
-
+			</form>
 		</div>
 
-		<div class="col-md-6">
-			
-		</div>		
+		<div class="col-lg-6 col-md-6 col-xs-6">
+			<form class="form-vertical" action="" enctype="multipart/form-data" method="post">
+
+				<div class="form-group">
+					<label for="motivacion-f">Carta de motivación: </label>
+					<p>Carta de motivación para cursar estudios en la Universidad seleccionada dirigida a el/la Coordinador(a) Docente respectivo(a).</p>
+					<input type="file" name="motivacion-f" accept=".pdf">
+
+				</div>	
+				<div class="form-group">
+					<label for="grafo-f">Flujograma: </label>
+					<p>El flujograma debe indicar las materias cursadas y aprobadas a la fecha,las materias pendientes por cursar antes de iniciar el PIE y las materias que cursará en la USB cuando regrese a Venezuela</p>
+					<input type="file" name="grafo-f" accept=".pdf">
+
+				</div>	
+				<div class="form-group">
+					<label for="expediente-f">Currículo Vitae: </label>
+					<p>Adjunte su currículo vitae actualizado(solo etapa universitaria) y las fotocopias que respalden su contenido</p>
+					<input type="file" name="expediente-f" accept=".pdf">
+
+				</div>	
+				<div class="form-group">
+					<label for="cele-f">Certificados de estudios de lengua extranjera: </label>
+					<P>Evidencia de manejo intermedio de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</P>
+					<input type="file" name="cele-f" accept=".pdf">
+
+				</div>
+
+				<div class="form-group">
+					<label for="cele-f">Actividades Extracurriculares: </label>
+					<P>Adjunte los documentos que evidencian las actividades extracurriculares que realiza.</P>
+					<input type="file" name="cele-f" accept=".pdf">
+
+				</div>
+
+			</form>	
+			<div class="col-lg-8 col-md-8 col-xs-8"></div>
+			<div class="col-lg-2 col-md-2 col-xs-2">
+				<input type="submit" class="btn btn-primary btn-sm adjuntar" value= "Guardar cambios">
+			</div>	
+		</div>
 
 	</div>
-
+	
+<br><br><br>
   <div class="row">
-    <div class="col-md-2">
-      <a href="{{=URL('form3')}}" class="btn btn-success" role="button"><< Regresar</a>
+    <div class="col-lg-2 col-md-2 col-xs-2">
+      <a href="{{=URL('planestudios')}}" class="btn btn-success" role="button"><< Regresar</a>
     </div>
 </div>
 
   <div class ="row">
     <br><br>
-    <div class="col-md-5"></div>
-      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
+    <div class="col-lg-5 col-md-5 col-xs-5"></div>
+      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Estado</a>
   </div>
 
 

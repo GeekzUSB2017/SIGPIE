@@ -3,6 +3,7 @@
 {{block css}}
   <link href="{{=URL('static', 'css/register.css')}}" rel="stylesheet">
   <link href="{{=URL('static', 'css/navbarhome.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/register.css')}}" rel="stylesheet">
   <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
 {{end}}
 
@@ -10,21 +11,17 @@
 {{block content}}
   {{block main}}
     <div class="container">
-    <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
       <div class="row" id="pwd-container">
         <div class="col-md-4">
-          <section class="login-form">
-            <form method="post" role="login" style="font-size: 1em;"">
+           <section class="login-form">
+              <form method="post" role="login" style="font-size: 1em;"">
               <img src="../static/css/images/climatico.jpg" class="img-responsive" alt="" />
-
-              <div class="pwstrength_viewport_progress"></div>
-                {{=form}}
-            </form>
-
-            <div class="form-links">
-            </div>
+              {{=form}}
+              </form>
           </section>
         </div>
+      </div>
     </div>
     <br><br><br><br><br><br><br><br>
   {{end}}

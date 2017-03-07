@@ -147,7 +147,6 @@ def postularse():
 	else:
 		redirect(URL('index'))
 
-
 def user():
 	return dict(login=auth.login())
 
@@ -162,6 +161,11 @@ def form2():
 		redirect(URL('index'))
 
 def form3():
+	if session.usuario is not None:
+		return dict()
+	else:
+		redirect(URL('index'))
+def planestudios():
 	if session.usuario is not None:
 		return dict()
 	else:

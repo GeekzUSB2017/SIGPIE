@@ -6,28 +6,30 @@
   </div>
     <br>
   <div class="row" id="pwd-container">
-    <div class="col-md-6">
+    <form>
+    <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
             <label style="color:black;"for="país_dest">País:</label>
               <input type="text" class="form-control" id="país_dest" placeholder="País de destino"> 
         </div>
-      </form>
+
         <div class="form-group">
-          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
-          <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
-        </div>
-      </form>
-          <div class="form-group">
             <label style="color:black;"for="convenio">Nombre del programa:</label>
             <select class="form-control" id="convenio">
               <option>Convenio Bilateral</option>
               <option>Red Magalhães-Programa SMILE</option>
               <option>Programa de Movilidad Estudiantil CINDA</option>
             </select>
-          </div>
-        </form>
+        </div>
+
+        <div class="form-group">
+          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
+          <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
+        </div>
+
+          
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
           <div class="form-group">
             <label style="color:black;"for="act_academica">Actividad Académica:</label>
             <select class="form-control" id= "act_academica">
@@ -37,21 +39,23 @@
               <option>Doble titulación</option>
             </select>
           </div>
-        </form>
+
           <div class="form-group">
             <label style="color:black;">Período tentativo, según calendario de la universidad de destino:</label>
             <select class="form-control" id= "periodo">
               <option>Primer Semestre (A partir de Septiembre)</option>
               <option>Segundo Semestre (A partir de Enero)</option>
+              <option>Primer y Segundo Semestre (A partir de Enero)</option>
             </select>
           </div>
-        </form>
+
           <div class="form-group">
             <label style="color:black;"for="f_ini">Año Académico:</label>
               <input type="datetime" class="form-control" id="anyo_academico" placeholder="xxxx-xxxx">     
           </div>  
-        </form> 
+
     </div>
+    </form>
   </div>
 
   <div class="row" id="pwd-container">
@@ -60,7 +64,7 @@
   </div>
   <br>
   <div class="row" id="pwd-container">
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
             <label style="color:black;"for="país_dest">País:</label>
               <input type="text" class="form-control" id="país_dest" placeholder="País de destino"> 
@@ -81,7 +85,7 @@
           </div>
         </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
           <div class="form-group">
             <label style="color:black;"for="act_academica">Actividad Académica:</label>
             <select class="form-control" id= "act_academica">
@@ -109,19 +113,14 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-lg-6 col-md-6 col-md-6">
       <a href="{{=URL('form2')}}" class="btn btn-success" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-6">
-      <a href="{{=URL('documentos')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
+    <div class="col-lg-6 col-md-6 col-md-6">
+      <a href="{{=URL('planestudios')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-lg-1 col-md-1 col-md-1"></div>
   </div>
 
-  <div class ="row">
-    <br><br>
-    <div class="col-md-5"></div>
-      <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Planilla</a>
-  </div>
 
 {{end}}
