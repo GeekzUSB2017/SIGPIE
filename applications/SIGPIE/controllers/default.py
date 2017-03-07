@@ -96,18 +96,14 @@ def postularse():
 				form.vars.escrito != '' and
 				form.vars.lectura != ''):
 				# Query para ver si ya existe un manejo_idioma igual en la base
-				idioma = db(db.maneja_idioma.idioma == form.vars.idioma_destino and \
-							db.maneja_idioma.oral == form.vars.oral and \
-							db.maneja_idioma.escrito == form.vars.escrito and \
-							db.maneja_idioma.lectura == form.vars.lectura
+				idioma = db((db.maneja_idioma.idioma == form.vars.idioma_destino) &
+							(db.maneja_idioma.oral == form.vars.oral) &
+							(db.maneja_idioma.escrito == form.vars.escrito) &
+							(db.maneja_idioma.lectura == form.vars.lectura)
 							).select().first()
 				# Si el manejo_idioma ya está guardado
 				if idioma != None:
 					id_manejo = idioma.id
-					print("Idioma: "+ str(form.vars.idioma_destino))
-					print("Oral: "+form.vars.oral)
-					print("Escrito: "+form.vars.escrito)
-					print("Lectura: "+form.vars.lectura)
 				else:
 					id_manejo = db.maneja_idioma.insert(idioma=form.vars.idioma_destino, oral=form.vars.oral, escrito=form.vars.escrito,lectura=form.vars.lectura)
 				# Actualizar el idioma_destino del estudiante en sesión
@@ -121,13 +117,13 @@ def postularse():
 				form.vars.telefono_celular_cont != '' and 
 				form.vars.correo_cont != ''):
 				# Query para ver si ya existe un contacto de emergencia igual en la base
-				contacto = db(db.contacto_emergencia.nombres == form.vars.nombres_cont and
-							db.contacto_emergencia.apellidos == form.vars.apellidos_cont and
-							db.contacto_emergencia.direccion == form.vars.direccion_cont and
-							db.contacto_emergencia.relacion == form.vars.relacion_cont and
-							db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont and
-							db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont and
-							db.contacto_emergencia.correo == form.vars.correo_cont
+				contacto = db((db.contacto_emergencia.nombres == form.vars.nombres_cont) &
+							(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
+							(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
+							(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
+							(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
+							(db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont) &
+							(db.contacto_emergencia.correo == form.vars.correo_cont)
 							).select().first()
 				# Si el contacto ya está guardado
 				if contacto != None:
