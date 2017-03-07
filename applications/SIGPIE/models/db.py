@@ -81,13 +81,8 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 
 
 # host names must be a list of allowed host names (glob syntax allowed)
-<<<<<<< HEAD
-auth = Auth(db, hmac_key=Auth.get_or_create_key(), controller="home", function="user")
-auth.settings.login_next = URL('about')
-=======
 auth = Auth(db, hmac_key = Auth.get_or_create_key(), controller = "default", function = "user")
 auth.settings.login_next = URL('index')
->>>>>>> ee6aab802887f85e4fb6c7619027edb5c4507065
 
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables

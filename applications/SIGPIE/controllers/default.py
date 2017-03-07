@@ -19,7 +19,7 @@ def about():
 def postularse():
 	if session.usuario is not None:
 
-		generos = ('Masculino','Femenino','Otro')
+		generos = ('Masculino','Femenino')
 
 		niveles = ('Básico', 'Intermedio', 'Avanzado')
 
