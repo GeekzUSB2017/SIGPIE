@@ -223,8 +223,9 @@ db.define_table('universidad',
 db.define_table('datos_intercambio',
                 Field('univ', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('f_inicio', 'date', requires=IS_NOT_EMPTY()),
-                Field('f_fin', 'date', requires=IS_NOT_EMPTY())
+                Field('inicio', 'string', requires=IS_NOT_EMPTY()),
+                Field('fin', 'string', requires=IS_NOT_EMPTY()),
+                Field('actividad', 'string', requires=IS_NOT_EMPTY())
                 )
 
 db.define_table('estudiante',
@@ -261,5 +262,23 @@ db.define_table('estudiante',
                 Field('op_interc_1', db.datos_intercambio,
                       requires=IS_IN_DB(db, db.datos_intercambio.id)),
                 Field('op_interc_2', db.datos_intercambio,
-                      requires=IS_IN_DB(db, db.datos_intercambio.id))
+                      requires=IS_IN_DB(db, db.datos_intercambio.id)),
+
+
+
+                Field('universidad_1', db.universidad,
+                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
+                Field('desde_mes_1', 'string', requires=IS_NOT_EMPTY()),
+                Field('desde_anio_1', 'integer', requires=IS_NOT_EMPTY()),
+                Field('hasta_mes_1', 'string', requires=IS_NOT_EMPTY()),
+                Field('hasta_anio_1', 'integer', requires=IS_NOT_EMPTY()),
+                Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
+
+                Field('universidad_2', db.universidad,
+                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
+                Field('desde_mes_2', 'string', requires=IS_NOT_EMPTY()),
+                Field('desde_anio_2', 'integer', requires=IS_NOT_EMPTY()),
+                Field('hasta_mes_2', 'string', requires=IS_NOT_EMPTY()),
+                Field('hasta_anio_2', 'integer', requires=IS_NOT_EMPTY()),
+                Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
                 )

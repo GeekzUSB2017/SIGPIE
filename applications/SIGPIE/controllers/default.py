@@ -3,6 +3,8 @@
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
+import datetime
+
 URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
@@ -171,62 +173,74 @@ def form3():
 
 		actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía Internacional','Doble titulación')
 
-		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
+		meses = ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre')
+
+		anios = (datetime.datetime.now().year,datetime.datetime.now().year+1,datetime.datetime.now().year+2)
 
 		form = SQLFORM.factory(
 				Field('pais_1', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
-				Field('actividad_1', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
 				Field('convenio_1', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
-				Field('periodo_1', requires=IS_NULL_OR(IS_IN_SET(periodos)), label='Período tentativo, según calendario de la universidad de destino'),
 				Field('universidad_1','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
-				Field('anio_1','string', label='Año académico'),
+				Field('actividad_1', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
+				Field('desde_mes_1', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
+				Field('desde_anio_1', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
+				Field('hasta_mes_1', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
+				Field('hasta_anio_1', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
+				
 				Field('pais_2', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
-				Field('actividad_2', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
 				Field('convenio_2', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
-				Field('periodo_2', requires=IS_NULL_OR(IS_IN_SET(periodos)), label='Período tentativo, según calendario de la universidad de destino'),
 				Field('universidad_2','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
-				Field('anio_2','string', label='Año académico')
+				Field('actividad_2', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
+				Field('desde_mes_2', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
+				Field('desde_anio_2', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
+				Field('hasta_mes_2', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
+				Field('hasta_anio_2', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
 				)
 
-		# IMPORTANTE: COMO FECHA INICIO Y FECHA FIN ESTOY GUARDANDO EL AÑO, NO LAS FECHAS COMO DEBERÍA SER. ES SOLO PARA PROBAR
-		# FALTA LA ACTIVIDAD ACADÉMICA EN LA BASE
+		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
+
+		estudiante = rows.first()
+
+		# Obtener el manejo del idioma que haga match con el estudiante en sesión
+		universidad_1 = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
+
+		# Obtener el contacto de emergencia que haga match con el estudiante en sesión
+		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
+
+		# Cargar valores de la base de datos
+		form.vars.pais_1 = estudiante.universidad_1.pais
+		form.vars.convenio_1 = estudiante.universidad_1.convenio
+		form.vars.universidad_1 = estudiante.universidad_1
+		form.vars.actividad_1 = estudiante.actividad_1
+		form.vars.desde_mes_1 = estudiante.desde_mes_1
+		form.vars.desde_anio_1 = estudiante.desde_anio_1
+		form.vars.hasta_mes_1 = estudiante.hasta_mes_1
+		form.vars.hasta_anio_1 = estudiante.hasta_anio_1
+
+		form.vars.pais_2 = estudiante.universidad_2.pais
+		form.vars.convenio_2 = estudiante.universidad_2.convenio
+		form.vars.universidad_2 = estudiante.universidad_2
+		form.vars.actividad_2 = estudiante.actividad_2
+		form.vars.desde_mes_2 = estudiante.desde_mes_2
+		form.vars.desde_anio_2 = estudiante.desde_anio_2
+		form.vars.hasta_mes_2 = estudiante.hasta_mes_2
+		form.vars.hasta_anio_2 = estudiante.hasta_anio_2
+
 		if form.process().accepted:
-			# NO DEBERÍA HACER UN QUERY PARA BUSCAR EL ID DE LA UNIVERSIDAD, PORQUE LA UNIVERSIDAD SE DEBERÍA DESPLEGAR POR EL CONVENIO Y EL PAÍS Y ESO TRAE EL ID DE LA TABLA
-			# Si eleccionó un país 1 y una universidad 1
-			if (form.vars.pais_1 != None and convenio_1 != None and form.vars.universidad_1 != None):
-				# Query para saber si ya hay un datos_intercambio igual en la base
-				intercambio_1 = db((db.datos_intercambio.univ == form.vars.universidad_1) &
-							(db.datos_intercambio.f_inicio == form.vars.anio_1) &
-							(db.datos_intercambio.f_fin == form.vars.anio_1)
-							).select().first()
-
-				# Si hay un datos_intercambio igual
-				if intercambio_1 != None:
-					id_intercambio_1 = intercambio_1.id
-				else:
-					id_intercambio_1 = db.datos_intercambio.insert(
-								universidad=form.vars.universidad_1,
-								f_inicio=form.vars.anio_1,
-								f_fin=form.vars.anio_1)
-				db(db.estudiante.carnet == session.usuario['usbid']).update(op_interc_1=id_intercambio_1)
-
-			# Si eleccionó un país 2 y una universidad 2
-			if (form.vars.pais_2 != None and convenio_2 != None and form.vars.universidad_2 != None):
-				# Query para saber si ya hay un datos_intercambio igual en la base
-				intercambio_2 = db((db.datos_intercambio.univ == form.vars.universidad_2) &
-							(db.datos_intercambio.f_inicio == form.vars.anio_2) &
-							(db.datos_intercambio.f_fin == form.vars.anio_2)
-							).select().first()
-
-				# Si hay un datos_intercambio igual
-				if intercambio_2 != None:
-					id_intercambio_2 = intercambio_2.id
-				else:
-					id_intercambio_2 = db.datos_intercambio.insert(
-								universidad=form.vars.universidad_2,
-								f_inicio=form.vars.anio_2,
-								f_fin=form.vars.anio_2)
-				db(db.estudiante.carnet == session.usuario['usbid']).update(op_interc_2=id_intercambio_2)
+			db(db.estudiante.carnet == session.usuario['usbid']).update(
+						universidad_1=form.vars.universidad_1,
+						desde_mes_1=form.vars.desde_mes_1,
+						desde_anio_1=form.vars.desde_anio_1,
+						hasta_mes_1=form.vars.hasta_mes_1,
+						hasta_anio_1=form.vars.hasta_anio_1,
+						actividad_1=form.vars.actividad_1,
+						
+						universidad_2=form.vars.universidad_2,
+						desde_mes_2=form.vars.desde_mes_2,
+						desde_anio_2=form.vars.desde_anio_2,
+						hasta_mes_2=form.vars.hasta_mes_2,
+						hasta_anio_2=form.vars.hasta_anio_2,
+						actividad_2=form.vars.actividad_2)
 		return dict(form_convenio = form)
 	else:
 		redirect(URL('index'))
