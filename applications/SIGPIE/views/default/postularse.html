@@ -33,13 +33,17 @@
         </div>
 
         <!--Cedula de estudiante-->
-        <div class="form-group">
-          <label>Cédula de identidad:</label>
+        <div class="form-group row">
+          <label class="col-xs-4" text-align="left">Cédula de identidad:</label>
+	    <div class="col-xs-2">
             <select class="form-control">
               <option>V</option>
               <option>E</option>
             </select>
+	    </div>
+	    <div class="col-xs-4">
             {{=form_estudiante.custom.widget.cedula}}
+	    </div>
         </div>
 
         <!--Carnet de estudiante-->
@@ -50,7 +54,7 @@
 
         <!--Genero de estudiante-->
         <div class="form-group">
-          <label for="carnet">Género:</label>
+          <label for="carnet">Género:<span style="color:red;">*</span></label>
           {{=form_estudiante.custom.widget.genero}}
         </div>
 
@@ -103,7 +107,7 @@
       </div>
 
       <div class="col-lg-6 col-md-6 col-md-6">
-        <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de contacto: </label>
+        <h6 style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de contacto: </h6>
 
           <div class="col-lg-6 col-md-6 col-md-6">
 
