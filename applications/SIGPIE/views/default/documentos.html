@@ -1,7 +1,8 @@
 {{extend 'layout2.html'}}
 
 {{block content}}
-
+{{=form_documentos}}
+<!--
 	<div class="row" id="pwd-container">
 		<h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">RECAUDOS A COONSIGNAR JUNTO A LA APLICACIÓN </h2>
 
@@ -14,17 +15,17 @@
 					<label for="ci-f">Foto: </label>
 					<p>Adjunte una foto carnet de su persona.</p>
 					<input type="file" name="ci-f" accept=".pdf">
-						
+
 				</div>
 
 
 
 				<div class="form-group">
 					<label for="ci-f">Cedula de Identidad: </label>
-					<p>Adjunte una fotocopia de su cédula de identidad.</p>	
+					<p>Adjunte una fotocopia de su cédula de identidad.</p>
 					<input type="file" name="ci-f" accept=".pdf">
 
-									
+
 				</div>
 
 				<div class="form-group">
@@ -59,19 +60,19 @@
 					<p>Carta de motivación para cursar estudios en la Universidad seleccionada dirigida a el/la Coordinador(a) Docente respectivo(a).</p>
 					<input type="file" name="motivacion-f" accept=".pdf">
 
-				</div>	
+				</div>
 				<div class="form-group">
 					<label for="grafo-f">Flujograma: </label>
 					<p>El flujograma debe indicar las materias cursadas y aprobadas a la fecha,las materias pendientes por cursar antes de iniciar el PIE y las materias que cursará en la USB cuando regrese a Venezuela</p>
 					<input type="file" name="grafo-f" accept=".pdf">
 
-				</div>	
+				</div>
 				<div class="form-group">
 					<label for="expediente-f">Currículo Vitae: </label>
 					<p>Adjunte su currículo vitae actualizado(solo etapa universitaria) y las fotocopias que respalden su contenido</p>
 					<input type="file" name="expediente-f" accept=".pdf">
 
-				</div>	
+				</div>
 				<div class="form-group">
 					<label for="cele-f">Certificados de estudios de lengua extranjera: </label>
 					<P>Evidencia de manejo intermedio de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</P>
@@ -86,15 +87,15 @@
 
 				</div>
 
-			</form>	
+			</form>
 			<div class="col-lg-8 col-md-8 col-xs-8"></div>
 			<div class="col-lg-2 col-md-2 col-xs-2">
 				<input type="submit" class="btn btn-primary btn-sm adjuntar" value= "Guardar cambios">
-			</div>	
+			</div>
 		</div>
 
 	</div>
-	
+
 <br><br><br>
   <div class="row">
     <div class="col-lg-2 col-md-2 col-xs-2">
@@ -107,6 +108,6 @@
     <div class="col-lg-5 col-md-5 col-xs-5"></div>
       <a href="{{=URL('welcome')}}" class="btn btn-primary" role="button">Guardar Estado</a>
   </div>
-
+-->
 
 {{end}}

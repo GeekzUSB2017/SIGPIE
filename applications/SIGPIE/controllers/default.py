@@ -43,7 +43,7 @@ def postularse():
 				Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo'), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-				Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', error_message='Debe completar este campo'), label='Idioma'),
+				Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', zero='Seleccione un idioma',error_message='Debe completar este campo'), label='Idioma'),
 				Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Oral:'),
 				Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Escrito:'),
 				Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Lectura:'),
@@ -160,7 +160,7 @@ def form2():
 	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		informacion = db(db.informacion_academica.estudiante == estudiante.id).select().first()
-		
+
 		if informacion != None:
 			record = db.informacion_academica(informacion.id)
 			form = SQLFORM(db.informacion_academica, record, hidden=dict(estudiante=estudiante.id))
@@ -240,7 +240,7 @@ def planestudios():
 
 def welcome():
 	if session.usuario is not None:
-		return dict(nombre= session.usuario['first_name'])
+		return dict(nombre = session.usuario['first_name'])
 	else:
 		redirect(URL('index'))
 
