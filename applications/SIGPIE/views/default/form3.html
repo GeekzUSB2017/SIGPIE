@@ -1,7 +1,5 @@
 {{extend 'layout2.html'}}
 {{block content}}
-{{=form_convenio}}
-<!--
 
 
   <div class="row" id="pwd-container">
@@ -11,50 +9,34 @@
   <div class="row" id="pwd-container">
     <form>
     <div class="col-lg-6 col-md-6 col-md-6">
+        {{=form_convenio.custom.begin}}
+
         <div class="form-group">
-            <label style="color:black;"for="país_dest">País:</label>
-              <input type="text" class="form-control" id="país_dest" placeholder="País de destino">
+            <label style="color:black;" for="país_dest">País:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.pais_1}}
         </div>
 
         <div class="form-group">
-            <label style="color:black;"for="convenio">Nombre del programa:</label>
-            <select class="form-control" id="convenio">
-              <option>Convenio Bilateral</option>
-              <option>Red Magalhães-Programa SMILE</option>
-              <option>Programa de Movilidad Estudiantil CINDA</option>
-            </select>
+            <label style="color:black;" for="convenio">Nombre del programa:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.convenio_1}}
         </div>
 
         <div class="form-group">
-          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
-          <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
+          <label style="color:black;" for="uni_dest">Universidad de destino:<span style="color:red;">*</span></label>
+          {{=form_convenio.custom.widget.universidad_1}}
         </div>
 
 
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
           <div class="form-group">
-            <label style="color:black;"for="act_academica">Actividad Académica:</label>
-            <select class="form-control" id= "act_academica">
-              <option>Solo Asignaturas</option>
-              <option>Asignaturas + Proyecto de Grado</option>
-              <option>Asignaturas + Pasantía Internacional</option>
-              <option>Doble titulación</option>
-            </select>
+            <label style="color:black;" for="act_academica">Actividad Académica:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.actividad_1}}
           </div>
 
           <div class="form-group">
-            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:</label>
-            <select class="form-control" id= "periodo">
-              <option>Primer Semestre (A partir de Septiembre)</option>
-              <option>Segundo Semestre (A partir de Enero)</option>
-              <option>Primer y Segundo Semestre (A partir de Enero)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label style="color:black;"for="f_ini">Año Académico:</label>
-              <input type="datetime" class="form-control" id="anyo_academico" placeholder="xxxx-xxxx">
+            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.periodo_1}}
           </div>
 
     </div>
@@ -69,61 +51,49 @@
   <div class="row" id="pwd-container">
     <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
-            <label style="color:black;"for="país_dest">País:</label>
-              <input type="text" class="form-control" id="país_dest" placeholder="País de destino">
+            <label style="color:black;" for="país_dest">País:<span style="color:red;">*</span></label>
+              {{=form_convenio.custom.widget.pais_2}}
         </div>
-      </form>
+
         <div class="form-group">
-          <label style="color:black;"for="uni_dest">Universidad de destino:</label>
-          <input type="text" class="form-control" id="uni_dest" placeholder="Universidad de destino">
+            <label style="color:black;" for="convenio">Nombre del programa:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.convenio_2}}
         </div>
-      </form>
-          <div class="form-group">
-            <label style="color:black;"for="convenio">Nombre del programa:</label>
-            <select class="form-control" id="convenio">
-              <option>Convenio Bilateral</option>
-              <option>Red Magalhães-Programa SMILE</option>
-              <option>Programa de Movilidad Estudiantil CINDA</option>
-            </select>
-          </div>
-        </form>
+      
+        <div class="form-group">
+          <label style="color:black;" for="uni_dest">Universidad de destino:<span style="color:red;">*</span></label>
+          {{=form_convenio.custom.widget.universidad_2}}
+        </div>
+      
+
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
           <div class="form-group">
-            <label style="color:black;"for="act_academica">Actividad Académica:</label>
-            <select class="form-control" id= "act_academica">
-              <option>Solo Asignaturas</option>
-              <option>Asignaturas + Proyecto de Grado</option>
-              <option>Asignaturas + Pasantía Internacional</option>
-              <option>Doble titulación</option>
-            </select>
+            <label style="color:black;"for="act_academica">Actividad Académica:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.actividad_2}}
           </div>
-        </form>
+        
         <div class="form-group">
-            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:</label>
-            <select class="form-control" id= "periodo">
-              <option>Primer Semestre (A partir de Septiembre)</option>
-              <option>Segundo Semestre (A partir de Enero)</option>
-            </select>
+            <label style="color:black;">Período tentativo, según calendario de la universidad de destino:<span style="color:red;">*</span></label>
+            {{=form_convenio.custom.widget.periodo_2}}
           </div>
-        </form>
-          <div class="form-group">
-            <label style="color:black;"for="f_ini">Año Académico:</label>
-              <input type="datetime" class="form-control" id="anyo_academico" placeholder="xxxx-xxxx">
-          </div>
+        </div>
+          
         </form>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-md-6">
-      <a href="{{=URL('form2')}}" class="btn btn-success" role="button" align="left"><< Regresar</a>
+    <div class="col-lg-4 col-md-4 col-md-offset-1">
+      <a href="{{=URL('form2')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
-      <a href="{{=URL('planestudios')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
+      {{form_convenio.custom.submit.update(_value="Siguiente>>")}}
+      {{=form_convenio.custom.submit}}    
     </div>
     <div class="col-lg-1 col-md-1 col-md-1"></div>
   </div>
+  {{=form_convenio.custom.begin}}
 
--->
+
 {{end}}
