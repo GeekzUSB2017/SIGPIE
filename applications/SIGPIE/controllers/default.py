@@ -158,12 +158,19 @@ def register():
 
 def form2():
 	if session.usuario is not None:
-		form = SQLFORM(db.informacion_academica)
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		informacion = db(db.informacion_academica.estudiante == estudiante.id).select().first()
+		
+		if informacion != None:
+			record = db.informacion_academica(informacion.id)
+			form = SQLFORM(db.informacion_academica, record, hidden=dict(estudiante=estudiante.id))
+		else:
+			form = SQLFORM(db.informacion_academica, hidden=dict(estudiante=estudiante.id))
 
 		if form.process().accepted:
 			id_info = form.vars.id
 
-			db(db.estudiante.carnet == session.usuario['usbid']).update(info_academica=id_info)
+			db(db.informacion_academica.id == id_info).update(estudiante=estudiante.id)
 
 			redirect(URL('form3'))
 
@@ -195,9 +202,6 @@ def form3():
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
 		estudiante = rows.first()
-
-		# Obtener el manejo del idioma que haga match con el estudiante en sesión
-		universidad_1 = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
 
 		# Cargar valores de la base de datos
 		if (estudiante.universidad_1 != None):
@@ -242,7 +246,12 @@ def welcome():
 
 def documentos():
 	if session.usuario is not None:
-		return dict()
+		form = SQLFORM(db.recaudos)
+
+		if form.process().accepted:
+			redirect(URL('index'))
+
+		return dict(form_documentos = form)
 	else:
 		redirect(URL('index'))
 
