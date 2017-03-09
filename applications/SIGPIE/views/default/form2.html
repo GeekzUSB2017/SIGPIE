@@ -5,7 +5,7 @@
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">INFORMACIÓN ACADEMICA </h2>
   </div>
   <br>
-              
+
 
   <div class="row" id="pwd-container">
 
@@ -26,41 +26,37 @@
         <div class="form-group">
           <label style="color:black;" for="carrera">Carrera que estudia en la USB:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.carrera.update(_placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay")}}
-          {{=form_informacion_academica.custom.widget.carrera}}          
+          {{=form_informacion_academica.custom.widget.carrera}}
         </div>
     </div>
+
     <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
           <label style="color:black;" for="num_cred">Nº de créditos aprobados hasta la fecha:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.creditos_aprob.update(_placeholder="Su número de créditos aprobados")}}
-          {{=form_informacion_academica.custom.widget.creditos_aprob}}          
+          {{=form_informacion_academica.custom.widget.creditos_aprob}}
         </div>
 
         <div class="form-group">
           <label style="color:black;" for="indice">Índice académico a la fecha:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.indice.update(_placeholder="Su indice actual")}}
-          {{=form_informacion_academica.custom.widget.indice}}                    
+          {{=form_informacion_academica.custom.widget.indice}}
         </div>
-
-        <div>
-        <p>
-        <span style="color:red;">*</span>: Este campo es obligatorio para avanzar
-        </p>
-        </div>
-
       <br>
       <br>
     </div>
   </div>
+
   <div class="row">
+    <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
     <div class="col-lg-4 col-md-4">
       <a href="{{=URL('postularse')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
     <div class="col-md-4">
-    </br>
-    </br>
+      </br>
+      </br>
       <p align="center"><b>2/5</b></p>
-    </div> 
+    </div>
     <div class="col-md-2"></div>
     <div class="col-lg-1 col-md-1" style="float:right;">
       {{form_informacion_academica.custom.submit.update(_value="Siguiente>>")}}
