@@ -9,7 +9,10 @@ URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
 def index():
-	return dict()
+	if session.usuario is not None:
+		redirect(URL('welcome'))
+	else:
+		return dict()
 
 def about():
 	if session.usuario is not None:
@@ -32,24 +35,25 @@ def postularse():
 				Field('nombres', default=session.usuario['first_name'], label='Nombres', writable=False),
 				Field('apellidos', default=session.usuario['last_name'], label='Apellidos', writable=False),
 				Field('cedula',default=session.usuario['cedula'], label='Cédula', writable=False),
-				Field('telefono_habitacion','string', label='Teléfono habitación'),
-				Field('telefono_celular','string', label='Teléfono celular'),
-				Field('correo','string', label='Correo'),
-				Field('pasaporte','string', label='Pasaporte'),
-				Field('genero','string', requires=IS_NULL_OR(IS_IN_SET(generos)), label='Género'),
-				Field('nacionalidad','string', label='Nacionalidad'),
-				Field('direccion','string', label='Dirección'),
-				Field('idioma_destino','string', requires=IS_NULL_OR(IS_IN_DB(db, 'idioma.id', '%(nombre)s')), label='Idioma'),
-				Field('oral','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Oral:'),
-				Field('escrito','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Escrito:'),
-				Field('lectura','string', requires=IS_NULL_OR(IS_IN_SET(niveles)),label='Lectura:'),
-				Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia'),
-				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia'),
-				Field('direccion_cont', 'string', label='Dirección del Contacto'),
-				Field('relacion_cont', 'string', requires=IS_NULL_OR(IS_IN_SET(parentezco)),label='Relación con el estudiante'),
-				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto'),
-				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto'),
-				Field('correo_cont', 'string', label='Correo del contacto'))
+				Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{11}$', error_message='No es un teléfono válido')),
+				Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{11}$', error_message='No es un celular válido')),
+				Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
+                                                  error_message='No es un correo válido')),
+				Field('pasaporte','string', label='Pasaporte', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo'), label='Género'),
+				Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', error_message='Debe completar este campo'), label='Idioma'),
+				Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Oral:'),
+				Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Escrito:'),
+				Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Lectura:'),
+				Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo'),label='Relación con el estudiante'),
+				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('correo_cont', 'string', label='Correo del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')))
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
@@ -149,7 +153,6 @@ def postularse():
 def user():
 	return dict(login=auth.login())
 
-
 def register():
 	return dict(form=auth.register())
 
@@ -173,28 +176,20 @@ def form3():
 
 		actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía Internacional','Doble titulación')
 
-		meses = ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre')
-
-		anios = (datetime.datetime.now().year,datetime.datetime.now().year+1,datetime.datetime.now().year+2)
+		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
 
 		form = SQLFORM.factory(
-				Field('pais_1', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
-				Field('convenio_1', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
-				Field('universidad_1','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
-				Field('actividad_1', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
-				Field('desde_mes_1', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
-				Field('desde_anio_1', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
-				Field('hasta_mes_1', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
-				Field('hasta_anio_1', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
-				
-				Field('pais_2', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s')), label='País'),
-				Field('convenio_2', requires=IS_NULL_OR(IS_IN_DB(db, 'convenio.id', '%(nombre)s')), label='Nombre del convenio'),
-				Field('universidad_2','string', requires=IS_NULL_OR(IS_IN_DB(db, 'universidad.id', '%(nombre)s')), label='Universidad de destino'),
-				Field('actividad_2', requires=IS_NULL_OR(IS_IN_SET(actividades)), label='Actividad académica'),
-				Field('desde_mes_2', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
-				Field('desde_anio_2', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
-				Field('hasta_mes_2', requires=IS_NULL_OR(IS_IN_SET(meses)), label='Mes'),
-				Field('hasta_anio_2', requires=IS_NULL_OR(IS_IN_SET(anios)), label='Año'),
+				Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
+				Field('convenio_1', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
+				Field('universidad_1','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
+				Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
+				Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino'),
+
+				Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
+				Field('convenio_2', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
+				Field('universidad_2','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
+				Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
+				Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino')
 				)
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
@@ -204,52 +199,40 @@ def form3():
 		# Obtener el manejo del idioma que haga match con el estudiante en sesión
 		universidad_1 = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
 
-		# Obtener el contacto de emergencia que haga match con el estudiante en sesión
-		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
-
 		# Cargar valores de la base de datos
-		form.vars.pais_1 = estudiante.universidad_1.pais
-		form.vars.convenio_1 = estudiante.universidad_1.convenio
-		form.vars.universidad_1 = estudiante.universidad_1
-		form.vars.actividad_1 = estudiante.actividad_1
-		form.vars.desde_mes_1 = estudiante.desde_mes_1
-		form.vars.desde_anio_1 = estudiante.desde_anio_1
-		form.vars.hasta_mes_1 = estudiante.hasta_mes_1
-		form.vars.hasta_anio_1 = estudiante.hasta_anio_1
+		if (estudiante.universidad_1 != None):
+			form.vars.pais_1 = estudiante.universidad_1.pais
+			form.vars.convenio_1 = estudiante.universidad_1.convenio
+			form.vars.universidad_1 = estudiante.universidad_1
+			form.vars.actividad_1 = estudiante.actividad_1
+			form.vars.periodo_1 = estudiante.periodo_1
 
-		form.vars.pais_2 = estudiante.universidad_2.pais
-		form.vars.convenio_2 = estudiante.universidad_2.convenio
-		form.vars.universidad_2 = estudiante.universidad_2
-		form.vars.actividad_2 = estudiante.actividad_2
-		form.vars.desde_mes_2 = estudiante.desde_mes_2
-		form.vars.desde_anio_2 = estudiante.desde_anio_2
-		form.vars.hasta_mes_2 = estudiante.hasta_mes_2
-		form.vars.hasta_anio_2 = estudiante.hasta_anio_2
+		if (estudiante.universidad_2 != None):
+			form.vars.pais_2 = estudiante.universidad_2.pais
+			form.vars.convenio_2 = estudiante.universidad_2.convenio
+			form.vars.universidad_2 = estudiante.universidad_2
+			form.vars.actividad_2 = estudiante.actividad_2
+			form.vars.periodo_2 = estudiante.periodo_2
 
 		if form.process().accepted:
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 						universidad_1=form.vars.universidad_1,
-						desde_mes_1=form.vars.desde_mes_1,
-						desde_anio_1=form.vars.desde_anio_1,
-						hasta_mes_1=form.vars.hasta_mes_1,
-						hasta_anio_1=form.vars.hasta_anio_1,
+						periodo_1=form.vars.periodo_1,
 						actividad_1=form.vars.actividad_1,
-						
+
 						universidad_2=form.vars.universidad_2,
-						desde_mes_2=form.vars.desde_mes_2,
-						desde_anio_2=form.vars.desde_anio_2,
-						hasta_mes_2=form.vars.hasta_mes_2,
-						hasta_anio_2=form.vars.hasta_anio_2,
+						periodo_2=form.vars.periodo_2,
 						actividad_2=form.vars.actividad_2)
+			#redirect(URL())
 		return dict(form_convenio = form)
 	else:
 		redirect(URL('index'))
+
 def planestudios():
 	if session.usuario is not None:
 		return dict()
 	else:
 		redirect(URL('index'))
-
 
 def welcome():
 	if session.usuario is not None:

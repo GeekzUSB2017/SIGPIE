@@ -139,7 +139,8 @@ db.define_table('contacto_emergencia',
                 )
 
 db.define_table('decanato',
-                Field('nombre', 'string', requires=IS_NOT_EMPTY())
+                Field('nombre', 'string', requires=IS_NOT_EMPTY()),
+                format = '%(nombre)s'
                 )
 
 db.define_table('coordinacion',
@@ -156,11 +157,13 @@ db.define_table('carrera',
                 )
 
 db.define_table('informacion_academica',
-                Field('sede', 'string'),
-                Field('creditos_aprob', 'integer'),
-                Field('indice', 'float'),
+                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo')),
+                Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+                Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}', error_message='El índice debe estar con el formato: x.xxxx')),
                 Field('carrera', db.carrera,
-                      requires=IS_NULL_OR(IS_IN_DB(db, db.carrera.id, '%(nombre)s')))
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo')),
+                Field('decanato', db.decanato,
+                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo')),
                 )
 
 db.define_table('idioma',
@@ -264,21 +267,26 @@ db.define_table('estudiante',
                 Field('op_interc_2', db.datos_intercambio,
                       requires=IS_IN_DB(db, db.datos_intercambio.id)),
 
-
-
                 Field('universidad_1', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('desde_mes_1', 'string', requires=IS_NOT_EMPTY()),
-                Field('desde_anio_1', 'integer', requires=IS_NOT_EMPTY()),
-                Field('hasta_mes_1', 'string', requires=IS_NOT_EMPTY()),
-                Field('hasta_anio_1', 'integer', requires=IS_NOT_EMPTY()),
+                Field('periodo_1', 'string', requires=IS_NOT_EMPTY()),
+                Field('anio_1', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
 
                 Field('universidad_2', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('desde_mes_2', 'string', requires=IS_NOT_EMPTY()),
-                Field('desde_anio_2', 'integer', requires=IS_NOT_EMPTY()),
-                Field('hasta_mes_2', 'string', requires=IS_NOT_EMPTY()),
-                Field('hasta_anio_2', 'integer', requires=IS_NOT_EMPTY()),
+                Field('periodo_2', 'string', requires=IS_NOT_EMPTY()),
+                Field('anio_2', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
+
+                format = '%(carnet)s'
+                )
+
+db.define_table('materia',
+                Field('materia_usb', 'string',),
+                Field('creditos_usb', 'integer'),
+                Field('codigo_ext', 'string'),
+                Field('materia_ext', 'string'),
+                Field('numero_horas','integer'),
+                Field('fk_estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(nombre)s'))
                 )
