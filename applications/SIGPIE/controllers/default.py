@@ -35,8 +35,8 @@ def postularse():
 				Field('nombres', default=session.usuario['first_name'], label='Nombres', writable=False),
 				Field('apellidos', default=session.usuario['last_name'], label='Apellidos', writable=False),
 				Field('cedula',default=session.usuario['cedula'], label='Cédula', writable=False),
-				Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{11}$', error_message='No es un teléfono válido')),
-				Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{11}$', error_message='No es un celular válido')),
+				Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
+				Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 				Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
                                                   error_message='No es un correo válido')),
 				Field('pasaporte','string', label='Pasaporte', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -51,9 +51,10 @@ def postularse():
 				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo', zero='Seleccione una relación'),label='Relación con el estudiante'),
-				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-				Field('correo_cont', 'string', label='Correo del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')))
+				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
+				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
+				Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
+                                                  error_message='No es un correo valido')))
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
 
@@ -181,7 +182,7 @@ def form2():
 def form3():
 	if session.usuario is not None:
 
-		actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía Internacional','Doble titulación')
+		actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía','Doble Titulación')
 
 		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
 
@@ -227,6 +228,7 @@ def form3():
 						universidad_2=form.vars.universidad_2,
 						periodo_2=form.vars.periodo_2,
 						actividad_2=form.vars.actividad_2)
+			redirect(URL('documentos'))
 			#redirect(URL())
 		return dict(form_convenio = form)
 	else:
@@ -246,10 +248,22 @@ def welcome():
 
 def documentos():
 	if session.usuario is not None:
-		form = SQLFORM(db.recaudos)
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		recaudo = db(db.recaudos.estudiante == estudiante.id).select().first()
+
+		if recaudo != None:
+			print("Entree")
+			record = db.recaudos(recaudo.id)
+			form = SQLFORM(db.recaudos, record, hidden=dict(estudiante=estudiante.id))
+		else:
+			form = SQLFORM(db.recaudos, hidden=dict(estudiante=estudiante.id))
 
 		if form.process().accepted:
-			redirect(URL('index'))
+			id_docs = form.vars.id
+
+			db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
+
+			redirect(URL('welcome'))
 
 		return dict(form_documentos = form)
 	else:

@@ -175,18 +175,6 @@ db.define_table('redes_sociales',
                 Field('instagram', 'string')
                 )
 
-db.define_table('recaudos',
-                Field('informe_academico', 'upload', requires=IS_NOT_EMPTY()),
-                Field('carta_motivacion', 'upload', requires=IS_NOT_EMPTY()),
-                Field('curriculum_vitae', 'upload', requires=IS_NOT_EMPTY()),
-                Field('comprobante', 'upload', requires=IS_NOT_EMPTY()),
-                Field('constancias_cv', 'upload', requires=IS_NOT_EMPTY()),
-                Field('flujograma', 'upload', requires=IS_NOT_EMPTY()),
-                Field('programas_de_estudio', 'upload', requires=IS_NOT_EMPTY()),
-                Field('foto', 'upload', requires=IS_NOT_EMPTY()),
-                Field('carnet', 'upload', requires=IS_NOT_EMPTY()),
-                Field('cedula', 'upload', requires=IS_NOT_EMPTY())
-                )
 
 db.define_table('actividades_complementarias',
                 Field('preparador', 'boolean', default=False),
@@ -244,8 +232,6 @@ db.define_table('estudiante',
                       requires=IS_IN_DB(db, db.maneja_idioma.id)),
                 Field('redes_sociales', db.redes_sociales,
                       requires=IS_IN_DB(db, db.redes_sociales.id)),
-                Field('recaudos', db.recaudos,
-                      requires=IS_IN_DB(db, db.recaudos.id)),
                 Field('act_comp', db.actividades_complementarias,
                       requires=IS_IN_DB(db, db.actividades_complementarias.id)),
                 Field('redes_sociales', db.redes_sociales,
@@ -280,10 +266,24 @@ db.define_table('materia',
 db.define_table('informacion_academica',
                 Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo', zero='Seleccione una sede')),
                 Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-                Field('indice', requires=IS_MATCH('^[0-9].[0-9][0-9][0-9][0-9]', error_message='El índice debe estar con el formato: x.xxxx')),
+                Field('indice', requires=IS_MATCH('^[0-4].[0-9][0-9][0-9][0-9]|5.0000', error_message='El índice debe estar con el formato: x.xxxx')),
                 Field('carrera', db.carrera,
                       requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera')),
                 Field('decanato', db.decanato,
                       requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione el decanato')),
+                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
+                )
+
+db.define_table('recaudos',
+                Field('informe_academico', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('carta_motivacion', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('curriculum_vitae', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('comprobante', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('constancias_cv', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('flujograma', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('programas_de_estudio', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('foto', 'upload', requires=IS_UPLOAD_FILENAME(extension='^(png|jpg|jpeg)$', error_message='Formato de archivo inválido')),
+                Field('carnet', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('cedula', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
