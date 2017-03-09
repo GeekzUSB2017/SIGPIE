@@ -5,8 +5,13 @@
   <!--link href="{{=URL('static', 'css/form.css')}}" rel="stylesheet"-->
 
 {{end}}
-{{block content}}
 
+{{block content}}
+<style type="text/css">
+  .error{
+    color: red;
+  }
+</style>
 
   <div class="container-fluid">
     <div class="row" id="pwd-container">
@@ -67,7 +72,7 @@
         <!--Pasaporte de estudiante-->
         <div class="form-group">
           <label style="color:black;" for="pasaporte">Nº Pasaporte Vigente:<span style="color:red;">*</span></label>
-          {{form_estudiante.custom.widget.pasaporte.update(_placeholder="Nº pasaporte")}}
+          {{form_estudiante.custom.widget.pasaporte.update(_placeholder="Ej: 123456789")}}
           {{=form_estudiante.custom.widget.pasaporte}}
         </div>
 
