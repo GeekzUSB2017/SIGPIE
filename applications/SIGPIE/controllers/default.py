@@ -196,9 +196,6 @@ def form3():
 
 		estudiante = rows.first()
 
-		# Obtener el manejo del idioma que haga match con el estudiante en sesión
-		universidad_1 = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
-
 		# Cargar valores de la base de datos
 		if (estudiante.universidad_1 != None):
 			form.vars.pais_1 = estudiante.universidad_1.pais
@@ -242,7 +239,12 @@ def welcome():
 
 def documentos():
 	if session.usuario is not None:
-		return dict()
+		form = SQLFORM(db.recaudos)
+
+		if form.process().accepted:
+			redirect(URL('index'))
+
+		return dict(form_documentos = form)
 	else:
 		redirect(URL('index'))
 
