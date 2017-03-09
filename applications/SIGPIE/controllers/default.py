@@ -9,7 +9,10 @@ URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
 def index():
-	return dict()
+	if session.usuario is not None:
+		redirect(URL('welcome'))
+	else:
+		return dict()
 
 def about():
 	if session.usuario is not None:
