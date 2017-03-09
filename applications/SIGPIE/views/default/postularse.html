@@ -135,9 +135,11 @@
               {{=form_estudiante.custom.widget.correo}}
             </div>
 
+            <!-- Redes sociales estudiante-->
             <div class="form-group">
               <label style="color:black;" for="redes">Redes Sociales:</label>
-              <textarea type="text" class="form-control" id="redes" placeholder="Sus redes sociales"></textarea>
+              {{form_estudiante.custom.widget.redes_sociales.update(_placeholder="Sus redes sociales")}}
+              {{=form_estudiante.custom.widget.redes_sociales}}
             </div>
           </div>
 
