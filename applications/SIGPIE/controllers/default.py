@@ -239,7 +239,536 @@ def form3():
 
 def planestudios():
 	if session.usuario is not None:
-		return dict()
+		form = SQLFORM.factory(
+				Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(), label='Código'),
+				Field('materia_usb_1', 'string', requires=IS_NOT_EMPTY(), label='Denominación'),
+				Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(), label='N° de créditos'),
+				Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(), label='Código'),
+				Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(), label='Denominación'),
+				Field('numero_horas_1', 'integer', requires=IS_NOT_EMPTY(), label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_2', 'string', label='Código'),
+				Field('materia_usb_2', 'string', label='Denominación'),
+				Field('creditos_usb_2', 'integer', label='N° de créditos'),
+				Field('codigo_ext_2', 'string', label='Código'),
+				Field('materia_ext_2', 'string', label='Denominación'),
+				Field('numero_horas_2', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_3', 'string', label='Código'),
+				Field('materia_usb_3', 'string', label='Denominación'),
+				Field('creditos_usb_3', 'integer', label='N° de créditos'),
+				Field('codigo_ext_3', 'string', label='Código'),
+				Field('materia_ext_3', 'string', label='Denominación'),
+				Field('numero_horas_3', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_4', 'string', label='Código'),
+				Field('materia_usb_4', 'string', label='Denominación'),
+				Field('creditos_usb_4', 'integer', label='N° de créditos'),
+				Field('codigo_ext_4', 'string', label='Código'),
+				Field('materia_ext_4', 'string', label='Denominación'),
+				Field('numero_horas_4', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_5', 'string', label='Código'),
+				Field('materia_usb_5', 'string', label='Denominación'),
+				Field('creditos_usb_5', 'integer', label='N° de créditos'),
+				Field('codigo_ext_5', 'string', label='Código'),
+				Field('materia_ext_5', 'string', label='Denominación'),
+				Field('numero_horas_5', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_6', 'string', label='Código'),
+				Field('materia_usb_6', 'string', label='Denominación'),
+				Field('creditos_usb_6', 'integer', label='N° de créditos'),
+				Field('codigo_ext_6', 'string', label='Código'),
+				Field('materia_ext_6', 'string', label='Denominación'),
+				Field('numero_horas_6', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_7', 'string', label='Código'),
+				Field('materia_usb_7', 'string', label='Denominación'),
+				Field('creditos_usb_7', 'integer', label='N° de créditos'),
+				Field('codigo_ext_7', 'string', label='Código'),
+				Field('materia_ext_7', 'string', label='Denominación'),
+				Field('numero_horas_7', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_8', 'string', label='Código'),
+				Field('materia_usb_8', 'string', label='Denominación'),
+				Field('creditos_usb_8', 'integer', label='N° de créditos'),
+				Field('codigo_ext_8', 'string', label='Código'),
+				Field('materia_ext_8', 'string', label='Denominación'),
+				Field('numero_horas_8', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_9', 'string', label='Código'),
+				Field('materia_usb_9', 'string', label='Denominación'),
+				Field('creditos_usb_9', 'integer', label='N° de créditos'),
+				Field('codigo_ext_9', 'string', label='Código'),
+				Field('materia_ext_9', 'string', label='Denominación'),
+				Field('numero_horas_9', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_10', 'string', label='Código'),
+				Field('materia_usb_10', 'string', label='Denominación'),
+				Field('creditos_usb_10', 'integer', label='N° de créditos'),
+				Field('codigo_ext_10', 'string', label='Código'),
+				Field('materia_ext_10', 'string', label='Denominación'),
+				Field('numero_horas_10', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_11', 'string', label='Código'),
+				Field('materia_usb_11', 'string', label='Denominación'),
+				Field('creditos_usb_11', 'integer', label='N° de créditos'),
+				Field('codigo_ext_11', 'string', label='Código'),
+				Field('materia_ext_11', 'string', label='Denominación'),
+				Field('numero_horas_11', 'integer', label='N° de créditos/N° de horas x semana'),
+
+				Field('codigo_usb_12', 'string', label='Código'),
+				Field('materia_usb_12', 'string', label='Denominación'),
+				Field('creditos_usb_12', 'integer', label='N° de créditos'),
+				Field('codigo_ext_12', 'string', label='Código'),
+				Field('materia_ext_12', 'string', label='Denominación'),
+				Field('numero_horas_12', 'integer', label='N° de créditos/N° de horas x semana')
+				)
+
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+
+		materias = db(db.materia.fk_estudiante == estudiante.id).select()
+
+		materia_1 = db((db.materia.formulario == 1) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_1 != None:
+			form.vars.codigo_usb_1 = materia_1.codigo_usb
+			form.vars.materia_usb_1 = materia_1.materia_usb
+			form.vars.creditos_usb_1 = materia_1.creditos_usb
+			form.vars.codigo_ext_1 = materia_1.codigo_ext
+			form.vars.materia_ext_1 = materia_1.materia_ext
+			form.vars.numero_horas_1 = materia_1.numero_horas
+
+		materia_2 = db((db.materia.formulario == 2) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_2 != None:
+			form.vars.codigo_usb_2 = materia_2.codigo_usb
+			form.vars.materia_usb_2 = materia_2.materia_usb
+			form.vars.creditos_usb_2 = materia_2.creditos_usb
+			form.vars.codigo_ext_2 = materia_2.codigo_ext
+			form.vars.materia_ext_2 = materia_2.materia_ext
+			form.vars.numero_horas_2 = materia_2.numero_horas
+
+		materia_3 = db((db.materia.formulario == 3) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_3 != None:
+			form.vars.codigo_usb_3 = materia_3.codigo_usb
+			form.vars.materia_usb_3 = materia_3.materia_usb
+			form.vars.creditos_usb_3 = materia_3.creditos_usb
+			form.vars.codigo_ext_3 = materia_3.codigo_ext
+			form.vars.materia_ext_3 = materia_3.materia_ext
+			form.vars.numero_horas_3 = materia_3.numero_horas
+
+		materia_4 = db((db.materia.formulario == 4) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_4 != None:
+			form.vars.codigo_usb_4 = materia_4.codigo_usb
+			form.vars.materia_usb_4 = materia_4.materia_usb
+			form.vars.creditos_usb_4 = materia_4.creditos_usb
+			form.vars.codigo_ext_4 = materia_4.codigo_ext
+			form.vars.materia_ext_4 = materia_4.materia_ext
+			form.vars.numero_horas_4 = materia_4.numero_horas
+
+		materia_5 = db((db.materia.formulario == 5) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_5 != None:
+			form.vars.codigo_usb_5 = materia_5.codigo_usb
+			form.vars.materia_usb_5 = materia_5.materia_usb
+			form.vars.creditos_usb_5 = materia_5.creditos_usb
+			form.vars.codigo_ext_5 = materia_5.codigo_ext
+			form.vars.materia_ext_5 = materia_5.materia_ext
+			form.vars.numero_horas_5 = materia_5.numero_horas
+
+		materia_6 = db((db.materia.formulario == 6) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_6 != None:
+			form.vars.codigo_usb_6 = materia_6.codigo_usb
+			form.vars.materia_usb_6 = materia_6.materia_usb
+			form.vars.creditos_usb_6 = materia_6.creditos_usb
+			form.vars.codigo_ext_6 = materia_6.codigo_ext
+			form.vars.materia_ext_6 = materia_6.materia_ext
+			form.vars.numero_horas_6 = materia_6.numero_horas
+
+		materia_7 = db((db.materia.formulario == 7) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_7 != None:
+			form.vars.codigo_usb_7 = materia_7.codigo_usb
+			form.vars.materia_usb_7 = materia_7.materia_usb
+			form.vars.creditos_usb_7 = materia_7.creditos_usb
+			form.vars.codigo_ext_7 = materia_7.codigo_ext
+			form.vars.materia_ext_7 = materia_7.materia_ext
+			form.vars.numero_horas_7 = materia_7.numero_horas
+
+		materia_8 = db((db.materia.formulario == 8) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_8 != None:
+			form.vars.codigo_usb_8 = materia_8.codigo_usb
+			form.vars.materia_usb_8 = materia_8.materia_usb
+			form.vars.creditos_usb_8 = materia_8.creditos_usb
+			form.vars.codigo_ext_8 = materia_8.codigo_ext
+			form.vars.materia_ext_8 = materia_8.materia_ext
+			form.vars.numero_horas_8 = materia_8.numero_horas
+
+		materia_9 = db((db.materia.formulario == 9) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_9 != None:
+			form.vars.codigo_usb_9 = materia_9.codigo_usb
+			form.vars.materia_usb_9 = materia_9.materia_usb
+			form.vars.creditos_usb_9 = materia_9.creditos_usb
+			form.vars.codigo_ext_9 = materia_9.codigo_ext
+			form.vars.materia_ext_9 = materia_9.materia_ext
+			form.vars.numero_horas_9 = materia_9.numero_horas
+
+		materia_10 = db((db.materia.formulario == 10) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_10 != None:
+			form.vars.codigo_usb_10 = materia_10.codigo_usb
+			form.vars.materia_usb_10 = materia_10.materia_usb
+			form.vars.creditos_usb_10 = materia_10.creditos_usb
+			form.vars.codigo_ext_10 = materia_10.codigo_ext
+			form.vars.materia_ext_10 = materia_10.materia_ext
+			form.vars.numero_horas_10 = materia_10.numero_horas
+
+		materia_11 = db((db.materia.formulario == 11) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_11 != None:
+			form.vars.codigo_usb_11 = materia_11.codigo_usb
+			form.vars.materia_usb_11 = materia_11.materia_usb
+			form.vars.creditos_usb_11 = materia_11.creditos_usb
+			form.vars.codigo_ext_11 = materia_11.codigo_ext
+			form.vars.materia_ext_11 = materia_11.materia_ext
+			form.vars.numero_horas_11 = materia_11.numero_horas
+
+		materia_12 = db((db.materia.formulario == 12) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_12 != None:
+			form.vars.codigo_usb_12 = materia_12.codigo_usb
+			form.vars.materia_usb_12 = materia_12.materia_usb
+			form.vars.creditos_usb_12 = materia_12.creditos_usb
+			form.vars.codigo_ext_12 = materia_12.codigo_ext
+			form.vars.materia_ext_12 = materia_12.materia_ext
+			form.vars.numero_horas_12 = materia_12.numero_horas
+
+		if form.process().accepted:
+			if materia_1 != None:
+				db((db.materia.formulario == 1) & (db.materia.fk_estudiante == estudiante.id)).update(
+							codigo_usb=form.vars.codigo_usb_1,
+							materia_usb=form.vars.materia_usb_1,
+							creditos_usb=form.vars.creditos_usb_1,
+							codigo_ext=form.vars.codigo_ext_1,
+							materia_ext=form.vars.materia_ext_1,
+							numero_horas=form.vars.numero_horas_1)
+			else:
+				db.materia.insert(
+							formulario=1,
+							codigo_usb=form.vars.codigo_usb_1,
+							materia_usb=form.vars.materia_usb_1,
+							creditos_usb=form.vars.creditos_usb_1,
+							codigo_ext=form.vars.codigo_ext_1,
+							materia_ext=form.vars.materia_ext_1,
+							numero_horas=form.vars.numero_horas_1,
+							fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_2 != '' and 
+				form.vars.materia_usb_2 != '' and
+				form.vars.creditos_usb_2 != '' and
+				form.vars.codigo_ext_2 != '' and
+				form.vars.materia_ext_2 != '' and
+				form.vars.numero_horas_2 != ''):
+
+				if materia_2 != None:
+					db((db.materia.formulario == 2) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_2,
+								materia_usb=form.vars.materia_usb_2,
+								creditos_usb=form.vars.creditos_usb_2,
+								codigo_ext=form.vars.codigo_ext_2,
+								materia_ext=form.vars.materia_ext_2,
+								numero_horas=form.vars.numero_horas_2)
+				else:
+					db.materia.insert(
+								formulario=2,
+								codigo_usb=form.vars.codigo_usb_2,
+								materia_usb=form.vars.materia_usb_2,
+								creditos_usb=form.vars.creditos_usb_2,
+								codigo_ext=form.vars.codigo_ext_2,
+								materia_ext=form.vars.materia_ext_2,
+								numero_horas=form.vars.numero_horas_2,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_3 != '' and 
+				form.vars.materia_usb_3 != '' and
+				form.vars.creditos_usb_3 != '' and
+				form.vars.codigo_ext_3 != '' and
+				form.vars.materia_ext_3 != '' and
+				form.vars.numero_horas_3 != ''):
+
+				if materia_3 != None:
+					db((db.materia.formulario == 3) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_3,
+								materia_usb=form.vars.materia_usb_3,
+								creditos_usb=form.vars.creditos_usb_3,
+								codigo_ext=form.vars.codigo_ext_3,
+								materia_ext=form.vars.materia_ext_3,
+								numero_horas=form.vars.numero_horas_3)
+				else:
+					db.materia.insert(
+								formulario=3,
+								codigo_usb=form.vars.codigo_usb_3,
+								materia_usb=form.vars.materia_usb_3,
+								creditos_usb=form.vars.creditos_usb_3,
+								codigo_ext=form.vars.codigo_ext_3,
+								materia_ext=form.vars.materia_ext_3,
+								numero_horas=form.vars.numero_horas_3,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_4 != '' and 
+				form.vars.materia_usb_4 != '' and
+				form.vars.creditos_usb_4 != '' and
+				form.vars.codigo_ext_4 != '' and
+				form.vars.materia_ext_4 != '' and
+				form.vars.numero_horas_4 != ''):
+
+				if materia_4 != None:
+					db((db.materia.formulario == 4) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_4,
+								materia_usb=form.vars.materia_usb_4,
+								creditos_usb=form.vars.creditos_usb_4,
+								codigo_ext=form.vars.codigo_ext_4,
+								materia_ext=form.vars.materia_ext_4,
+								numero_horas=form.vars.numero_horas_4)
+				else:
+					db.materia.insert(
+								formulario=4,
+								codigo_usb=form.vars.codigo_usb_4,
+								materia_usb=form.vars.materia_usb_4,
+								creditos_usb=form.vars.creditos_usb_4,
+								codigo_ext=form.vars.codigo_ext_4,
+								materia_ext=form.vars.materia_ext_4,
+								numero_horas=form.vars.numero_horas_4,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_5 != '' and 
+				form.vars.materia_usb_5 != '' and
+				form.vars.creditos_usb_5 != '' and
+				form.vars.codigo_ext_5 != '' and
+				form.vars.materia_ext_5 != '' and
+				form.vars.numero_horas_5 != ''):
+
+				if materia_5 != None:
+					db((db.materia.formulario == 5) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_5,
+								materia_usb=form.vars.materia_usb_5,
+								creditos_usb=form.vars.creditos_usb_5,
+								codigo_ext=form.vars.codigo_ext_5,
+								materia_ext=form.vars.materia_ext_5,
+								numero_horas=form.vars.numero_horas_5)
+				else:
+					db.materia.insert(
+								formulario=5,
+								codigo_usb=form.vars.codigo_usb_5,
+								materia_usb=form.vars.materia_usb_5,
+								creditos_usb=form.vars.creditos_usb_5,
+								codigo_ext=form.vars.codigo_ext_5,
+								materia_ext=form.vars.materia_ext_5,
+								numero_horas=form.vars.numero_horas_5,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_6 != '' and 
+				form.vars.materia_usb_6 != '' and
+				form.vars.creditos_usb_6 != '' and
+				form.vars.codigo_ext_6 != '' and
+				form.vars.materia_ext_6 != '' and
+				form.vars.numero_horas_6 != ''):
+
+				if materia_6 != None:
+					db((db.materia.formulario == 6) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_6,
+								materia_usb=form.vars.materia_usb_6,
+								creditos_usb=form.vars.creditos_usb_6,
+								codigo_ext=form.vars.codigo_ext_6,
+								materia_ext=form.vars.materia_ext_6,
+								numero_horas=form.vars.numero_horas_6)
+				else:
+					db.materia.insert(
+								formulario=6,
+								codigo_usb=form.vars.codigo_usb_6,
+								materia_usb=form.vars.materia_usb_6,
+								creditos_usb=form.vars.creditos_usb_6,
+								codigo_ext=form.vars.codigo_ext_6,
+								materia_ext=form.vars.materia_ext_6,
+								numero_horas=form.vars.numero_horas_6,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_7 != '' and 
+				form.vars.materia_usb_7 != '' and
+				form.vars.creditos_usb_7 != '' and
+				form.vars.codigo_ext_7 != '' and
+				form.vars.materia_ext_7 != '' and
+				form.vars.numero_horas_7 != ''):
+
+				if materia_7 != None:
+					db((db.materia.formulario == 7) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_7,
+								materia_usb=form.vars.materia_usb_7,
+								creditos_usb=form.vars.creditos_usb_7,
+								codigo_ext=form.vars.codigo_ext_7,
+								materia_ext=form.vars.materia_ext_7,
+								numero_horas=form.vars.numero_horas_7)
+				else:
+					db.materia.insert(
+								formulario=7,
+								codigo_usb=form.vars.codigo_usb_7,
+								materia_usb=form.vars.materia_usb_7,
+								creditos_usb=form.vars.creditos_usb_7,
+								codigo_ext=form.vars.codigo_ext_7,
+								materia_ext=form.vars.materia_ext_7,
+								numero_horas=form.vars.numero_horas_7,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_8 != '' and 
+				form.vars.materia_usb_8 != '' and
+				form.vars.creditos_usb_8 != '' and
+				form.vars.codigo_ext_8 != '' and
+				form.vars.materia_ext_8 != '' and
+				form.vars.numero_horas_8 != ''):
+
+				if materia_8 != None:
+					db((db.materia.formulario == 8) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_8,
+								materia_usb=form.vars.materia_usb_8,
+								creditos_usb=form.vars.creditos_usb_8,
+								codigo_ext=form.vars.codigo_ext_8,
+								materia_ext=form.vars.materia_ext_8,
+								numero_horas=form.vars.numero_horas_8)
+				else:
+					db.materia.insert(
+								formulario=8,
+								codigo_usb=form.vars.codigo_usb_8,
+								materia_usb=form.vars.materia_usb_8,
+								creditos_usb=form.vars.creditos_usb_8,
+								codigo_ext=form.vars.codigo_ext_8,
+								materia_ext=form.vars.materia_ext_8,
+								numero_horas=form.vars.numero_horas_8,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_9 != '' and 
+				form.vars.materia_usb_9 != '' and
+				form.vars.creditos_usb_9 != '' and
+				form.vars.codigo_ext_9 != '' and
+				form.vars.materia_ext_9 != '' and
+				form.vars.numero_horas_9 != ''):
+
+				if materia_9 != None:
+					db((db.materia.formulario == 9) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_9,
+								materia_usb=form.vars.materia_usb_9,
+								creditos_usb=form.vars.creditos_usb_9,
+								codigo_ext=form.vars.codigo_ext_9,
+								materia_ext=form.vars.materia_ext_9,
+								numero_horas=form.vars.numero_horas_9)
+				else:
+					db.materia.insert(
+								formulario=9,
+								codigo_usb=form.vars.codigo_usb_9,
+								materia_usb=form.vars.materia_usb_9,
+								creditos_usb=form.vars.creditos_usb_9,
+								codigo_ext=form.vars.codigo_ext_9,
+								materia_ext=form.vars.materia_ext_9,
+								numero_horas=form.vars.numero_horas_9,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_10 != '' and 
+				form.vars.materia_usb_10 != '' and
+				form.vars.creditos_usb_10 != '' and
+				form.vars.codigo_ext_10 != '' and
+				form.vars.materia_ext_10 != '' and
+				form.vars.numero_horas_10 != ''):
+
+				if materia_10 != None:
+					db((db.materia.formulario == 10) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_10,
+								materia_usb=form.vars.materia_usb_10,
+								creditos_usb=form.vars.creditos_usb_10,
+								codigo_ext=form.vars.codigo_ext_10,
+								materia_ext=form.vars.materia_ext_10,
+								numero_horas=form.vars.numero_horas_10)
+				else:
+					db.materia.insert(
+								formulario=10,
+								codigo_usb=form.vars.codigo_usb_10,
+								materia_usb=form.vars.materia_usb_10,
+								creditos_usb=form.vars.creditos_usb_10,
+								codigo_ext=form.vars.codigo_ext_10,
+								materia_ext=form.vars.materia_ext_10,
+								numero_horas=form.vars.numero_horas_10,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_11 != '' and 
+				form.vars.materia_usb_11 != '' and
+				form.vars.creditos_usb_11 != '' and
+				form.vars.codigo_ext_11 != '' and
+				form.vars.materia_ext_11 != '' and
+				form.vars.numero_horas_11 != ''):
+
+				if materia_11 != None:
+					db((db.materia.formulario == 11) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_11,
+								materia_usb=form.vars.materia_usb_11,
+								creditos_usb=form.vars.creditos_usb_11,
+								codigo_ext=form.vars.codigo_ext_11,
+								materia_ext=form.vars.materia_ext_11,
+								numero_horas=form.vars.numero_horas_11)
+				else:
+					db.materia.insert(
+								formulario=11,
+								codigo_usb=form.vars.codigo_usb_11,
+								materia_usb=form.vars.materia_usb_11,
+								creditos_usb=form.vars.creditos_usb_11,
+								codigo_ext=form.vars.codigo_ext_11,
+								materia_ext=form.vars.materia_ext_11,
+								numero_horas=form.vars.numero_horas_11,
+								fk_estudiante=estudiante.id)
+
+			if (form.vars.codigo_usb_12 != '' and 
+				form.vars.materia_usb_12 != '' and
+				form.vars.creditos_usb_12 != '' and
+				form.vars.codigo_ext_12 != '' and
+				form.vars.materia_ext_12 != '' and
+				form.vars.numero_horas_12 != ''):
+
+				if materia_12 != None:
+					db((db.materia.formulario == 12) & (db.materia.fk_estudiante == estudiante.id)).update(
+								codigo_usb=form.vars.codigo_usb_12,
+								materia_usb=form.vars.materia_usb_12,
+								creditos_usb=form.vars.creditos_usb_12,
+								codigo_ext=form.vars.codigo_ext_12,
+								materia_ext=form.vars.materia_ext_12,
+								numero_horas=form.vars.numero_horas_12)
+				else:
+					db.materia.insert(
+								formulario=12,
+								codigo_usb=form.vars.codigo_usb_12,
+								materia_usb=form.vars.materia_usb_12,
+								creditos_usb=form.vars.creditos_usb_12,
+								codigo_ext=form.vars.codigo_ext_12,
+								materia_ext=form.vars.materia_ext_12,
+								numero_horas=form.vars.numero_horas_12,
+								fk_estudiante=estudiante.id)
+
+			redirect(URL('documentos'))
+		return dict(form_plan=form)
 	else:
 		redirect(URL('index'))
 

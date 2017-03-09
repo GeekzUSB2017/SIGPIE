@@ -245,6 +245,7 @@ db.define_table('estudiante',
                 )
 
 db.define_table('materia',
+                Field('formulario', 'integer',),
                 Field('codigo_usb', 'string',),
                 Field('materia_usb', 'string',),
                 Field('creditos_usb', 'integer'),
