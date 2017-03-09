@@ -5,6 +5,10 @@
   .error{
     color: red;
   }
+
+  #guardar{
+  	background-color: green;
+  }
 </style>
 	<div class="row" id="pwd-container">
 		<h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">RECAUDOS A COONSIGNAR JUNTO A LA APLICACIÓN </h2>
@@ -16,37 +20,71 @@
 				<div class="form-group">
 					<label for="ci-f">Foto:<span style="color:red;">*</span> </label>
 					<p>Adjunte una foto carnet de su persona.</p>
-					{{=form_documentos.custom.widget.foto}}
-
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.foto}}
+					{{else:}}
+						{{=form_documentos.custom.widget.foto}}
+					{{pass}}
 				</div>
 
 				<div class="form-group">
 					<label for="ci-f">Cedula de Identidad:<span style="color:red;">*</span> </label>
 					<p>Adjunte una fotocopia de su cédula de identidad.</p>
-					{{=form_documentos.custom.widget.cedula}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.cedula}}
+					{{else:}}
+						{{=form_documentos.custom.widget.cedula}}
+					{{pass}}
+
 				</div>
 
 				<div class="form-group">
 					<label for="usbid-f">Carnet USB:<span style="color:red;">*</span> </label>
 					<p>Adjunte una copia de su carnet de la USB.</p>
-					{{=form_documentos.custom.widget.carnet}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.carnet}}
+					{{else:}}
+						{{=form_documentos.custom.widget.carnet}}
+					{{pass}}
+
 				</div>
 
 				<div class="form-group">
 					<label for="expediente-f">Informe académico:<span style="color:red;">*</span> </label>
 					<P>Adjunte su informe académico actualizado hasta el trimestre finalizado.</P>
-					{{=form_documentos.custom.widget.informe_academico}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.informe_academico}}
+					{{else:}}
+						{{=form_documentos.custom.widget.informe_academico}}
+					{{pass}}
+
 				</div>
 
 				<div class="form-group">
 					<label for="comprobante-f">Comprobante de Inscripción:<span style="color:red;">*</span> </label>
 					<p>Copia del comprobante de inscirpción correspondiente al trimestre en curso.</p>
-					{{=form_documentos.custom.widget.comprobante}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.comprobante}}
+					{{else:}}
+						{{=form_documentos.custom.widget.comprobante}}
+					{{pass}}
+
 				</div>
 				<div class="form-group">
 					<label for="cele-f">Programas de Estudio de la Universidad Extranjera:<span style="color:red;">*</span> </label>
-					<P>Adjunte los programas de estudio de las asignaturas que ingresó anteriormente.</P>
-					{{=form_documentos.custom.widget.programas_de_estudio}}
+					<p>Adjunte los programas de estudio de las asignaturas que ingresó anteriormente.</p>
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.programas_de_estudio}}
+					{{else:}}
+						{{=form_documentos.custom.widget.programas_de_estudio}}
+					{{pass}}
+
 				</div>
 
 		</div>
@@ -56,31 +94,62 @@
 				<div class="form-group">
 					<label for="motivacion-f">Carta de motivación:<span style="color:red;">*</span> </label>
 					<p>Carta de motivación para cursar estudios en la Universidad seleccionada dirigida a el/la Coordinador(a) Docente respectivo(a).</p>
-					{{=form_documentos.custom.widget.carta_motivacion}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.carta_motivacion}}
+					{{else:}}
+						{{=form_documentos.custom.widget.carta_motivacion}}
+					{{pass}}
+
 				</div>
 
 				<div class="form-group">
 					<label for="grafo-f">Flujograma:<span style="color:red;">*</span> </label>
 					<p>El flujograma debe indicar las materias cursadas y aprobadas a la fecha,las materias pendientes por cursar antes de iniciar el PIE y las materias que cursará en la USB cuando regrese a Venezuela</p>
-					{{=form_documentos.custom.widget.flujograma}}
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.flujograma}}
+					{{else:}}
+						{{=form_documentos.custom.widget.flujograma}}
+					{{pass}}
+
 				</div>
 
 				<div class="form-group">
 					<label for="expediente-f">Currículo Vitae:<span style="color:red;">*</span> </label>
 					<p>Adjunte su currículo vitae actualizado(solo etapa universitaria) y las fotocopias que respalden su contenido</p>
-					{{=form_documentos.custom.widget.curriculum_vitae}}
-				</div>
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.curriculum_vitae}}
+					{{else:}}
+						{{=form_documentos.custom.widget.curriculum_vitae}}
+					{{pass}}
 
-				<div class="form-group">
-					<label for="cele-f">Certificados de estudios de lengua extranjera:<span style="color:red;">*</span> </label>
-					<P>Evidencia de manejo de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</P>
-					{{=form_documentos.custom.widget.certificado_lengua}}
 				</div>
+				{{if idioma.nombre != "Español":}}
+					<div class="form-group">
+						<label for="cele-f">Certificados de estudios de lengua extranjera:<span style="color:red;">*</span> </label>
+						<p>Evidencia de manejo de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</p>
+						{{if recaudo != None:}}
+							<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+							{{=form_documentos.custom.widget.certificado_lengua}}
+						{{else:}}
+							{{=form_documentos.custom.widget.certificado_lengua}}
+						{{pass}}
+
+					</div>
+				{{pass}}
 
 				<div class="form-group">
 					<label for="cele-f">Actividades Extracurriculares:<span style="color:red;">*</span> </label>
-					<P>Adjunte los documentos que evidencian las actividades extracurriculares que realiza.</P>
-					{{=form_documentos.custom.widget.actividades_extracurriculares}}
+					<p>Adjunte los documentos que evidencian las actividades extracurriculares que realiza.</p>
+					{{if recaudo != None:}}
+						<p style="color: blue; font-weight: bold"><strong>Archivo Cargado, si desea modificarlo, cargue uno nuevo</strong></p>
+						{{=form_documentos.custom.widget.actividades_extracurriculares}}
+					{{else:}}
+						{{=form_documentos.custom.widget.actividades_extracurriculares}}
+					{{pass}}
+
 				</div>
 
 
@@ -96,7 +165,7 @@
 	<br>
 	<br>
   <div class="row">
-    <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
+    <p><span style="color:red;">*</span>: Este campo es obligatorio para Guardar el Formulario</p>
     <div class="col-lg-4 col-md-4">
       <a href="{{=URL('planestudios')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
@@ -107,7 +176,7 @@
     </div>
     <div class="col-md-2"></div>
     <div class="col-lg-1 col-md-1" style="float:right;">
-      {{form_documentos.custom.submit.update(_value="Siguiente>>")}}
+      {{form_documentos.custom.submit.update(_value="Guardar Formulario", _id="guardar")}}
       {{=form_documentos.custom.submit}}
     </div>
   </div>

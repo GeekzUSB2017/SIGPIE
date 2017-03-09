@@ -231,7 +231,7 @@ def form3():
 						universidad_2=form.vars.universidad_2,
 						periodo_2=form.vars.periodo_2,
 						actividad_2=form.vars.actividad_2)
-			redirect(URL('documentos'))
+			redirect(URL('planestudios'))
 			#redirect(URL())
 		return dict(form_convenio = form)
 	else:
@@ -781,10 +781,10 @@ def welcome():
 def documentos():
 	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		maneja_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
+		idioma = db(db.idioma.id == maneja_idioma.idioma).select().first()
 		recaudo = db(db.recaudos.estudiante == estudiante.id).select().first()
-
 		if recaudo != None:
-			print("Entree")
 			record = db.recaudos(recaudo.id)
 			form = SQLFORM(db.recaudos, record, hidden=dict(estudiante=estudiante.id))
 		else:
@@ -797,7 +797,8 @@ def documentos():
 
 			redirect(URL('welcome'))
 
-		return dict(form_documentos = form)
+
+		return dict(form_documentos = form, recaudo = recaudo, idioma = idioma)
 	else:
 		redirect(URL('index'))
 
