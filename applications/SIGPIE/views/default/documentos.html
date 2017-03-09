@@ -1,7 +1,11 @@
 {{extend 'layout2.html'}}
 
 {{block content}}
-
+<style type="text/css">
+  .error{
+    color: red;
+  }
+</style>
 	<div class="row" id="pwd-container">
 		<h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">RECAUDOS A COONSIGNAR JUNTO A LA APLICACIÓN </h2>
 		</br>
@@ -30,14 +34,19 @@
 
 				<div class="form-group">
 					<label for="expediente-f">Informe académico:<span style="color:red;">*</span> </label>
-					<P>Adjunte su informe académico actualizado hasta el trimestre finalizado en diciembre 2016</P>
+					<P>Adjunte su informe académico actualizado hasta el trimestre finalizado.</P>
 					{{=form_documentos.custom.widget.informe_academico}}
 				</div>
 
 				<div class="form-group">
 					<label for="comprobante-f">Comprobante de Inscripción:<span style="color:red;">*</span> </label>
-					<p>Copia del comprobante de inscirpción correspondiente al trimestre en curso(Ene-Mar 2017)</p>
+					<p>Copia del comprobante de inscirpción correspondiente al trimestre en curso.</p>
 					{{=form_documentos.custom.widget.comprobante}}
+				</div>
+				<div class="form-group">
+					<label for="cele-f">Programas de Estudio de la Universidad Extranjera:<span style="color:red;">*</span> </label>
+					<P>Adjunte los programas de estudio de las asignaturas que ingresó anteriormente.</P>
+					{{=form_documentos.custom.widget.programas_de_estudio}}
 				</div>
 
 		</div>
@@ -64,14 +73,14 @@
 
 				<div class="form-group">
 					<label for="cele-f">Certificados de estudios de lengua extranjera:<span style="color:red;">*</span> </label>
-					<P>Evidencia de manejo intermedio de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</P>
-					<input type="file" name="cele-f" accept=".pdf">
+					<P>Evidencia de manejo de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</P>
+					{{=form_documentos.custom.widget.certificado_lengua}}
 				</div>
 
 				<div class="form-group">
 					<label for="cele-f">Actividades Extracurriculares:<span style="color:red;">*</span> </label>
 					<P>Adjunte los documentos que evidencian las actividades extracurriculares que realiza.</P>
-					<input type="file" name="cele-f" accept=".pdf">
+					{{=form_documentos.custom.widget.actividades_extracurriculares}}
 				</div>
 
 
