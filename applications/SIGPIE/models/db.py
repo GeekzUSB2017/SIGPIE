@@ -156,16 +156,6 @@ db.define_table('carrera',
                       requires=IS_IN_DB(db, db.coordinacion.id, '%(nombre)s', zero=T('choose one')))
                 )
 
-db.define_table('informacion_academica',
-                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo')),
-                Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-                Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}', error_message='El índice debe estar con el formato: x.xxxx')),
-                Field('carrera', db.carrera,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo')),
-                Field('decanato', db.decanato,
-                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo')),
-                )
-
 db.define_table('idioma',
                 Field('nombre', 'string', requires=IS_NOT_EMPTY()),
                 format = '%(nombre)s'
@@ -254,8 +244,6 @@ db.define_table('estudiante',
                       requires=IS_IN_DB(db, db.maneja_idioma.id)),
                 Field('redes_sociales', db.redes_sociales,
                       requires=IS_IN_DB(db, db.redes_sociales.id)),
-                Field('info_academica', db.informacion_academica,
-                      requires=IS_IN_DB(db, db.informacion_academica.id)),
                 Field('recaudos', db.recaudos,
                       requires=IS_IN_DB(db, db.recaudos.id)),
                 Field('act_comp', db.actividades_complementarias,
@@ -289,4 +277,15 @@ db.define_table('materia',
                 Field('materia_ext', 'string'),
                 Field('numero_horas','integer'),
                 Field('fk_estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(nombre)s'))
+                )
+
+db.define_table('informacion_academica',
+                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo')),
+                Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+                Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}', error_message='El índice debe estar con el formato: x.xxxx')),
+                Field('carrera', db.carrera,
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo')),
+                Field('decanato', db.decanato,
+                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo')),
+                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
