@@ -231,7 +231,7 @@ def form3():
 						universidad_2=form.vars.universidad_2,
 						periodo_2=form.vars.periodo_2,
 						actividad_2=form.vars.actividad_2)
-			redirect(URL('documentos'))
+			redirect(URL('planestudios'))
 			#redirect(URL())
 		return dict(form_convenio = form)
 	else:
