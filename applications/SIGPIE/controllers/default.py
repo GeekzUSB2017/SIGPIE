@@ -175,22 +175,18 @@ def form3():
 
 		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
 
-		anios = (datetime.datetime.now().year,datetime.datetime.now().year+1)
-
 		form = SQLFORM.factory(
 				Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
 				Field('convenio_1', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
 				Field('universidad_1','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
 				Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
 				Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino'),
-				Field('anio_1', requires=IS_IN_SET(anios, error_message='Debe completar este campo'), label='Año académico'),
 
 				Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
 				Field('convenio_2', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
 				Field('universidad_2','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
 				Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
-				Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino'),
-				Field('anio_2', requires=IS_IN_SET(anios, error_message='Debe completar este campo'), label='Año académico'),
+				Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino')
 				)
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()
@@ -207,7 +203,6 @@ def form3():
 			form.vars.universidad_1 = estudiante.universidad_1
 			form.vars.actividad_1 = estudiante.actividad_1
 			form.vars.periodo_1 = estudiante.periodo_1
-			form.vars.anio_1 = estudiante.anio_1
 
 		if (estudiante.universidad_2 != None):
 			form.vars.pais_2 = estudiante.universidad_2.pais
@@ -215,18 +210,15 @@ def form3():
 			form.vars.universidad_2 = estudiante.universidad_2
 			form.vars.actividad_2 = estudiante.actividad_2
 			form.vars.periodo_2 = estudiante.periodo_2
-			form.vars.anio_2 = estudiante.anio_2
 
 		if form.process().accepted:
 			db(db.estudiante.carnet == session.usuario['usbid']).update(
 						universidad_1=form.vars.universidad_1,
 						periodo_1=form.vars.periodo_1,
-						anio_1=form.vars.anio_1,
 						actividad_1=form.vars.actividad_1,
 
 						universidad_2=form.vars.universidad_2,
 						periodo_2=form.vars.periodo_2,
-						anio_2=form.vars.anio_2,
 						actividad_2=form.vars.actividad_2)
 			#redirect(URL())
 		return dict(form_convenio = form)

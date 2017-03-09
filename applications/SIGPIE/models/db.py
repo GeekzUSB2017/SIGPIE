@@ -161,9 +161,9 @@ db.define_table('informacion_academica',
                 Field('creditos_aprob', 'integer'),
                 Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}')),
                 Field('carrera', db.carrera,
-                      requires=IS_NULL_OR(IS_IN_DB(db, db.carrera.id, '%(nombre)s'))),
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s')),
                 Field('decanato', db.decanato,
-                      requires=IS_NULL_OR(IS_IN_DB(db, db.carrera.id, '%(nombre)s'))),
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s')),
                 )
 
 db.define_table('idioma',
@@ -270,13 +270,11 @@ db.define_table('estudiante',
                 Field('universidad_1', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
                 Field('periodo_1', 'string', requires=IS_NOT_EMPTY()),
-                Field('anio_1', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
 
                 Field('universidad_2', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY()),
-                Field('anio_2', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
                 format = '%(carnet)s'
