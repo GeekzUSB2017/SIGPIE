@@ -1,19 +1,22 @@
 {{extend 'layout2.html'}}
 {{block content}}
-  <!--br>
+  <br>
   <div class="row" id="pwd-container">
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">INFORMACIÓN ACADEMICA </h2>
   </div>
   <br>
+              
+
   <div class="row" id="pwd-container">
+
     <div class="col-lg-6 col-md-6 col-md-6">
+        {{=form_informacion_academica.custom.begin}}
         <div class="form-group">
-          <label style="color:black;"for="sede">Sede Universidad:</label>
-          <select class="form-control" id="sede">
-            <option>Sartenejas</option>
-            <option>Litoral</option>
-          </select>
+          <label style="color:black; "for="sede">Sede Universidad:</label>
+          {{form_informacion_academica.custom.widget.sede.update(_placeholder="Sede")}}
+          {{=form_informacion_academica.custom.widget.sede}}
         </div>
+
         <div class="form-group">
           <label style="color:black;"for="decanato">Decanato:</label>
             <select class="form-control" id="decanato">
@@ -22,37 +25,47 @@
               <option>Postgrado</option>
             </select>
         </div>
+
         <div class="form-group">
-          <label style="color:black;"for="carrera">Carrera que estudia en la USB:</label>
-            <input type="text" class="form-control" id="carrera" placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay">
+          <label style="color:black;" for="carrera">Carrera que estudia en la USB:</label>
+          {{form_informacion_academica.custom.widget.carrera.update(_placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay")}}
+          {{=form_informacion_academica.custom.widget.carrera}}          
         </div>
-      </form>
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
         <div class="form-group">
-          <label style="color:black;"for="num_cred">Nº de créditos aprobados hasta la fecha:</label>
-            <input type="text" class="form-control" id="num_cred" placeholder="Tu número de créditos aprobados">
+          <label style="color:black;" for="num_cred">Nº de créditos aprobados hasta la fecha:</label>
+          {{form_informacion_academica.custom.widget.creditos_aprob.update(_placeholder="Su número de créditos aprobados")}}
+          {{=form_informacion_academica.custom.widget.creditos_aprob}}          
         </div>
+
         <div class="form-group">
-          <label style="color:black;"for="indice">Índice académico a la fecha:</label>
-            <input type="text" class="form-control" id="indice" placeholder="x,xxxx">
+          <label style="color:black;" for="indice">Índice académico a la fecha:</label>
+          {{form_informacion_academica.custom.widget.indice.update(_placeholder="Su indice actual")}}
+          {{=form_informacion_academica.custom.widget.indice}}                    
         </div>
+
       </form>
       <br>
       <br>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-md-6">
-      <a href="{{=URL('postularse')}}" class="btn btn-success" role="button" align="left"><< Regresar</a>
+    <div class="col-lg-4 col-md-4">
+      <a href="{{=URL('postularse')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-lg-6 col-md-6 col-md-6">
-      <a href="{{=URL('form3')}}" class="btn btn-success" role="button" style="float: right;">Siguiente >></a>
+    <div class="col-md-4">
+    </br>
+    </br>
+      <p align="center"><b>2/5</b></p>
+    </div> 
+    <div class="col-md-2"></div>
+    <div class="col-lg-1 col-md-1" style="float:right;">
+      {{form_informacion_academica.custom.submit.update(_value="Siguiente>>")}}
+      {{=form_informacion_academica.custom.submit}}
     </div>
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
-  </div-->
+  </div>
+{{=form_informacion_academica.custom.end}}
 
-
-      {{=form_informacion_academica}}
 
 {{end}}

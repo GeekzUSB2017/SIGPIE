@@ -60,21 +60,21 @@
 
         <!--Nacionalidad de estudiante-->
         <div class="form-group">
-          <label style="color:black;">Nacionalidad:</label>
+          <label style="color:black;">Nacionalidad:<span style="color:red;">*</span></label>
           {{form_estudiante.custom.widget.nacionalidad.update(_placeholder="Nacionalidad")}}
           {{=form_estudiante.custom.widget.nacionalidad}}
         </div>
 
         <!--Pasaporte de estudiante-->
         <div class="form-group">
-          <label style="color:black;"for="pasaporte">Nº Pasaporte Vigente:</label>
+          <label style="color:black;" for="pasaporte">Nº Pasaporte Vigente:<span style="color:red;">*</span></label>
           {{form_estudiante.custom.widget.pasaporte.update(_placeholder="Nº pasaporte")}}
           {{=form_estudiante.custom.widget.pasaporte}}
         </div>
 
         <!--Idioma a usar estudiante-->
         <div class="form-group">
-          <label style="color:black;" for="idioma">Idioma a emplear en la universidad destino:</label>
+          <label style="color:black;" for="idioma">Idioma a emplear en la universidad destino:<span style="color:red;">*</span></label>
           {{=form_estudiante.custom.widget.idioma_destino}}
         </div>
 
@@ -82,25 +82,25 @@
 
           <!--Nivel oral del idioma-->
           <div class="form-group">
-            <label style="color:black;" for="oral">Oral:</label>
+            <label style="color:black;" for="oral">Oral:<span style="color:red;">*</span></label>
             {{=form_estudiante.custom.widget.oral}}
           </div>
 
           <!--Nivel escrito del idioma-->
           <div class="form-group">
-            <label style="color:black;"for="escrito">Escrito:</label>
+            <label style="color:black;"for="escrito">Escrito:<span style="color:red;">*</span></label>
             {{=form_estudiante.custom.widget.escrito}}
           </div>
 
           <!--Nivel de lectura del idioma-->
           <div class="form-group">
-            <label style="color:black;"for="lectura">Lectura:</label>
+            <label style="color:black;"for="lectura">Lectura:<span style="color:red;">*</span></label>
             {{=form_estudiante.custom.widget.lectura}}
           </div>
 
           <!--Direccion de estudiante-->
           <div class="form-group">
-            <label style="color:black;"for="direccion">Domicilio Actual:</label>
+            <label style="color:black;"for="direccion">Domicilio Actual:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.direccion.update(_placeholder="Domicilio actual del estudiante")}}
               {{=form_estudiante.custom.widget.direccion}}
           </div>
@@ -113,14 +113,14 @@
 
             <!--Telefono de habitacion de estudiante-->
             <div class="form-group">
-              <label style="color:black;"for="tlf_hab">Teléfono de Habitación:</label>
+              <label style="color:black;" for="tlf_hab">Teléfono de Habitación:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.telefono_habitacion.update(_placeholder="xxxx xxxxxxx")}}
               {{=form_estudiante.custom.widget.telefono_habitacion}}
             </div>
 
             <!--Telefono celular de estudiante-->
             <div class="form-group">
-              <label style="color:black;"for="tlf_hab">Teléfono Celular:</label>
+              <label style="color:black;" for="tlf_hab">Teléfono Celular:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.telefono_celular.update(_placeholder="xxxx xxxxxxx")}}
               {{=form_estudiante.custom.widget.telefono_celular}}
             </div>
@@ -131,14 +131,14 @@
 
             <!--Email estudiante-->
             <div class="form-group">
-              <label style="color:black;" for="e-mail">E-mail:</label>
-              {{form_estudiante.custom.widget.correo.update(_placeholder="Tu e-mail")}}
+              <label style="color:black;" for="e-mail">E-mail:<span style="color:red;">*</span></label>
+              {{form_estudiante.custom.widget.correo.update(_placeholder="Su E-mail")}}
               {{=form_estudiante.custom.widget.correo}}
             </div>
 
             <div class="form-group">
               <label style="color:black;" for="redes">Redes Sociales:</label>
-              <textarea type="text" class="form-control" id="redes" placeholder="Tus usuarios de redes sociales"></textarea>
+              <textarea type="text" class="form-control" id="redes" placeholder="Sus redes sociales"></textarea>
             </div>
 
           </div>
@@ -147,48 +147,48 @@
 
             <!--Nombres contacto emergencia-->
             <div class="form-group">
-            <label style="color:black;"for="exampleInputName2">Nombres:</label>
+            <label style="color:black;" for="exampleInputName2">Nombres:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.nombres_cont.update(_placeholder="Nombres de contacto de emergencia")}}
               {{=form_estudiante.custom.widget.nombres_cont}}
             </div>
 
             <!--Apellidos contacto emergencia-->
             <div class="form-group">
-            <label style="color:black;"for="exampleInputName2">Apellidos:</label>
+            <label style="color:black;" for="exampleInputName2">Apellidos:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.apellidos_cont.update(_placeholder="Apellidos de contacto de emergencia")}}
               {{=form_estudiante.custom.widget.apellidos_cont}}
             </div>
 
               <!--Direccion contacto emergencia-->
             <div class="form-group">
-              <label style="color:black;" for="exampleInputEmail2">Dirección:</label>
+              <label style="color:black;" for="exampleInputEmail2">Dirección:<span style="color:red;">*</span></label>
               {{form_estudiante.custom.widget.direccion_cont.update(_placeholder="Direccion de contacto de emergencia")}}
               {{=form_estudiante.custom.widget.direccion_cont}}
             </div>
 
           <!--Relacion contacto con estudiante-->
           <div class="form-group">
-            <label style="color:black;" for="relacion_contact">Relación con el estudiante:</label>
+            <label style="color:black;" for="relacion_contact">Relación con el estudiante:<span style="color:red;">*</span></label>
             {{=form_estudiante.custom.widget.relacion_cont}}
           </div>
 
           <!--Tlf de habitacion de contacto-->
           <div class="form-group">
-            <label style="color:black;" for="tlf_hab_contact">Teléfono de Habitación:</label>
+            <label style="color:black;" for="tlf_hab_contact">Teléfono de Habitación:<span style="color:red;">*</span></label>
             {{form_estudiante.custom.widget.telefono_habitacion_cont.update(_placeholder="xxxx xxxxxxx")}}
             {{=form_estudiante.custom.widget.telefono_habitacion_cont}}
           </div>
 
           <!--Tlf celular de contacto-->
           <div class="form-group">
-            <label style="color:black;"for="tlf_cel_contact">Teléfono Celular:</label>
+            <label style="color:black;"for="tlf_cel_contact">Teléfono Celular:<span style="color:red;">*</span></label>
             {{form_estudiante.custom.widget.telefono_celular_cont.update(_placeholder="xxxx xxxxxxx")}}
             {{=form_estudiante.custom.widget.telefono_celular_cont}}
           </div>
 
           <!--E-mail de contacto-->
           <div class="form-group">
-            <label style="color:black;"for="email_contact">E-mail:</label>
+            <label style="color:black;" for="email_contact">E-mail:<span style="color:red;">*</span></label>
             {{form_estudiante.custom.widget.correo_cont.update(_placeholder="E-mail de contacto de emergencia")}}
             {{=form_estudiante.custom.widget.correo_cont}}
           </div>
@@ -197,9 +197,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-10"></div>
-    <div class="col-lg-1 col-md-1 col-md-1">
+  <div class="row" id="pwd-container">
+    <div class="col-lg-3 col-md-3 col-xs-offset-1">
+      <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
+    </div>
+    <div class="col-md-4">
+    </br>
+    </br>
+      <p align="center"><b>1/5</b></p>
+    </div>
+    <div class="col-lg-1 col-md-1 col-md-offset-2">
       {{form_estudiante.custom.submit.update(_value="Siguiente>>")}}
       {{=form_estudiante.custom.submit}}
     </div>
