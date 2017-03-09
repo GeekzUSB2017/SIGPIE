@@ -157,7 +157,7 @@ db.define_table('carrera',
                 )
 
 db.define_table('informacion_academica',
-                Field('sede', requires=IS_NULL_OR(IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo'))),
+                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo')),
                 Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
                 Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}', error_message='El índice debe estar con el formato: x,xxxx')),
                 Field('carrera', db.carrera,
