@@ -39,7 +39,7 @@ def postularse():
 				Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 				Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
                                                   error_message='No es un correo válido')),
-				Field('pasaporte','string', label='Pasaporte', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
+				Field('pasaporte','string', label='Pasaporte', requires=IS_MATCH('^[0-9]{9}$', error_message='No es un pasaporte válido')),
 				Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo', zero = 'Seleccione un género'), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -47,6 +47,7 @@ def postularse():
 				Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Oral:'),
 				Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Escrito:'),
 				Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Lectura:'),
+				Field('redes_sociales', 'string', label='Redes sociales'),
 				Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -78,6 +79,7 @@ def postularse():
 		form.vars.genero = estudiante.genero
 		form.vars.nacionalidad = estudiante.nacionalidad
 		form.vars.direccion = estudiante.direccion
+		form.vars.redes_sociales = estudiante.redes
 
 		# Si el estudiante tiene un manejo de idioma, lo cargo
 		if (manejo_idioma != None):
@@ -144,7 +146,8 @@ def postularse():
 						pasaporte=form.vars.pasaporte,
 						genero=form.vars.genero,
 						nacionalidad=form.vars.nacionalidad,
-						direccion=form.vars.direccion)
+						direccion=form.vars.direccion,
+						redes=form.vars.redes_sociales)
 			redirect(URL('form2'))
 
 		return dict(form_estudiante = form)

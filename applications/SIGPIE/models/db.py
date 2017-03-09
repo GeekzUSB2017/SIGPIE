@@ -169,13 +169,6 @@ db.define_table('maneja_idioma',
                 Field('lectura', 'string', requires=IS_NOT_EMPTY())
                 )
 
-db.define_table('redes_sociales',
-                Field('facebook', 'string'),
-                Field('twitter', 'string'),
-                Field('instagram', 'string')
-                )
-
-
 db.define_table('actividades_complementarias',
                 Field('preparador', 'boolean', default=False),
                 Field('becado', 'boolean', default=False),
@@ -230,12 +223,9 @@ db.define_table('estudiante',
                       requires=IS_IN_DB(db, db.contacto_emergencia.id)),
                 Field('idioma_destino', db.maneja_idioma,
                       requires=IS_IN_DB(db, db.maneja_idioma.id)),
-                Field('redes_sociales', db.redes_sociales,
-                      requires=IS_IN_DB(db, db.redes_sociales.id)),
+                Field('redes', 'string'),
                 Field('act_comp', db.actividades_complementarias,
                       requires=IS_IN_DB(db, db.actividades_complementarias.id)),
-                Field('redes_sociales', db.redes_sociales,
-                      requires=IS_IN_DB(db, db.redes_sociales.id)),
                 Field('op_interc_1', db.datos_intercambio,
                       requires=IS_IN_DB(db, db.datos_intercambio.id)),
                 Field('op_interc_2', db.datos_intercambio,
