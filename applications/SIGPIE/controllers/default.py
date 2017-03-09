@@ -40,17 +40,17 @@ def postularse():
 				Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
                                                   error_message='No es un correo válido')),
 				Field('pasaporte','string', label='Pasaporte', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-				Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo'), label='Género'),
+				Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo', zero = 'Seleccione un género'), label='Género'),
 				Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', zero='Seleccione un idioma',error_message='Debe completar este campo'), label='Idioma'),
-				Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Oral:'),
-				Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Escrito:'),
-				Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo'),label='Lectura:'),
+				Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Oral:'),
+				Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Escrito:'),
+				Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Lectura:'),
 				Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
-				Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo'),label='Relación con el estudiante'),
+				Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo', zero='Seleccione una relación'),label='Relación con el estudiante'),
 				Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 				Field('correo_cont', 'string', label='Correo del contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')))
@@ -186,17 +186,17 @@ def form3():
 		periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
 
 		form = SQLFORM.factory(
-				Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
-				Field('convenio_1', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
-				Field('universidad_1','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
-				Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
-				Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino'),
+				Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
+				Field('convenio_1', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
+				Field('universidad_1','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
+				Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
+				Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino'),
 
-				Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo'), label='País'),
-				Field('convenio_2', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo'), label='Nombre del convenio'),
-				Field('universidad_2','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo'), label='Universidad de destino'),
-				Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo'), label='Actividad académica'),
-				Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo'), label='Período tentativo, según calendario de la universidad de destino')
+				Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
+				Field('convenio_2', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
+				Field('universidad_2','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
+				Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
+				Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino')
 				)
 
 		rows = db(db.estudiante.carnet == session.usuario['usbid']).select()

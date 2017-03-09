@@ -258,13 +258,11 @@ db.define_table('estudiante',
                 Field('universidad_1', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
                 Field('periodo_1', 'string', requires=IS_NOT_EMPTY()),
-                Field('anio_1', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
 
                 Field('universidad_2', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY()),
-                Field('anio_2', 'integer', requires=IS_NOT_EMPTY()),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
                 format = '%(carnet)s'
@@ -280,12 +278,12 @@ db.define_table('materia',
                 )
 
 db.define_table('informacion_academica',
-                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo')),
+                Field('sede', requires=IS_IN_SET(('Sartenejas','Litoral'), error_message='Debe completar este campo', zero='Seleccione una sede')),
                 Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
                 Field('indice', requires=IS_MATCH('^[0-9].[0-9][0-9][0-9][0-9]', error_message='El índice debe estar con el formato: x.xxxx')),
                 Field('carrera', db.carrera,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo')),
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera')),
                 Field('decanato', db.decanato,
-                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo')),
+                      requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione el decanato')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )

@@ -7,9 +7,9 @@
   </div>
     <br>
   <div class="row" id="pwd-container">
-    <form>
+    {{=form_convenio.custom.begin}}
+
     <div class="col-lg-6 col-md-6 col-md-6">
-        {{=form_convenio.custom.begin}}
 
         <div class="form-group">
             <label style="color:black;" for="país_dest">País:<span style="color:red;">*</span></label>
@@ -40,7 +40,6 @@
           </div>
 
     </div>
-    </form>
   </div>
 
   <div class="row" id="pwd-container">
@@ -59,12 +58,12 @@
             <label style="color:black;" for="convenio">Nombre del programa:<span style="color:red;">*</span></label>
             {{=form_convenio.custom.widget.convenio_2}}
         </div>
-      
+
         <div class="form-group">
           <label style="color:black;" for="uni_dest">Universidad de destino:<span style="color:red;">*</span></label>
           {{=form_convenio.custom.widget.universidad_2}}
         </div>
-      
+
 
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
@@ -72,14 +71,13 @@
             <label style="color:black;"for="act_academica">Actividad Académica:<span style="color:red;">*</span></label>
             {{=form_convenio.custom.widget.actividad_2}}
           </div>
-        
+
         <div class="form-group">
             <label style="color:black;">Período tentativo, según calendario de la universidad de destino:<span style="color:red;">*</span></label>
             {{=form_convenio.custom.widget.periodo_2}}
           </div>
         </div>
-          
-        </form>
+
     </div>
   </div>
 
@@ -89,11 +87,11 @@
     </div>
     <div class="col-lg-6 col-md-6 col-md-6">
       {{form_convenio.custom.submit.update(_value="Siguiente>>")}}
-      {{=form_convenio.custom.submit}}    
+      {{=form_convenio.custom.submit}}
     </div>
     <div class="col-lg-1 col-md-1 col-md-1"></div>
   </div>
-  {{=form_convenio.custom.begin}}
+  {{=form_convenio.custom.end}}
 
 
 {{end}}

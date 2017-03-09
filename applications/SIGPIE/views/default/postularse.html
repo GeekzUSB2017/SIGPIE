@@ -22,19 +22,19 @@
         <!--Nombres de estudiante-->
         {{=form_estudiante.custom.begin}}
         <div class="form-group">
-          <label>Nombres:</label>
+          <label style="color:black">Nombres:</label>
           {{=form_estudiante.custom.widget.nombres}}
         </div>
 
         <!--Apellidos de estudiante-->
         <div class="form-group">
-          <label>Apellidos:</label>
+          <label style="color:black">Apellidos:</label>
           {{=form_estudiante.custom.widget.apellidos}}
         </div>
 
         <!--Cedula de estudiante-->
         <div class="form-group row">
-          <label class="col-xs-4" text-align="left">Cédula de identidad:</label>
+          <label class="col-xs-4" text-align="left" style="color:black">Cédula de identidad:</label>
 	    <div class="col-xs-2">
             <select class="form-control">
               <option>V</option>
@@ -48,19 +48,19 @@
 
         <!--Carnet de estudiante-->
         <div class="form-group">
-          <label for="carnet">Nº Carnet:</label>
+          <label for="carnet" style="color:black">Nº Carnet:</label>
           {{=form_estudiante.custom.widget.carnet}}
         </div>
 
         <!--Genero de estudiante-->
         <div class="form-group">
-          <label for="carnet">Género:<span style="color:red;">*</span></label>
+          <label for="genero" style="color:black">Género:<span style="color:red;">*</span></label>
           {{=form_estudiante.custom.widget.genero}}
         </div>
 
         <!--Nacionalidad de estudiante-->
         <div class="form-group">
-          <label style="color:black;">Nacionalidad:<span style="color:red;">*</span></label>
+          <label style="color:black">Nacionalidad:<span style="color:red;">*</span></label>
           {{form_estudiante.custom.widget.nacionalidad.update(_placeholder="Nacionalidad")}}
           {{=form_estudiante.custom.widget.nacionalidad}}
         </div>
@@ -72,13 +72,19 @@
           {{=form_estudiante.custom.widget.pasaporte}}
         </div>
 
+        <!--Direccion de estudiante-->
+        <div class="form-group">
+          <label style="color:black;"for="direccion">Dirección Domicilio Actual:<span style="color:red;">*</span></label>
+            {{form_estudiante.custom.widget.direccion.update(_placeholder="Dirección actual del estudiante")}}
+            {{=form_estudiante.custom.widget.direccion}}
+        </div>
         <!--Idioma a usar estudiante-->
         <div class="form-group">
           <label style="color:black;" for="idioma">Idioma a emplear en la universidad destino:<span style="color:red;">*</span></label>
           {{=form_estudiante.custom.widget.idioma_destino}}
         </div>
-
-          <label style="color:black;">Nivel de suficiencia del idioma a emplear verbal y escrito:</label>
+          <br>
+          <label style="color:black; font-size: 18px; text-align:center"><strong>Nivel de suficiencia del idioma a emplear verbal y escrito:</strong></label>
 
           <!--Nivel oral del idioma-->
           <div class="form-group">
@@ -98,16 +104,10 @@
             {{=form_estudiante.custom.widget.lectura}}
           </div>
 
-          <!--Direccion de estudiante-->
-          <div class="form-group">
-            <label style="color:black;"for="direccion">Domicilio Actual:<span style="color:red;">*</span></label>
-              {{form_estudiante.custom.widget.direccion.update(_placeholder="Domicilio actual del estudiante")}}
-              {{=form_estudiante.custom.widget.direccion}}
-          </div>
       </div>
 
       <div class="col-lg-6 col-md-6 col-md-6">
-        <h6 style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de contacto: </h6>
+        <h6 style=" color:black; font-size:125%; text-align: left; font-weight: bold;">Datos de contacto: </h6>
 
           <div class="col-lg-6 col-md-6 col-md-6">
 
@@ -143,7 +143,7 @@
 
           </div>
 
-      <label style=" color:black; font-size:125%; text-align:left; font-weight: bold;">Datos de una persona a contactar en casos de emergencias:</label>
+          <label style=" color:black; font-size:125%; text-align:left; font-weight: bold">Datos de una persona a contactar en casos de emergencias:</label>
 
             <!--Nombres contacto emergencia-->
             <div class="form-group">
