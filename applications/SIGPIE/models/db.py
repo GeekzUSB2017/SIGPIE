@@ -161,9 +161,9 @@ db.define_table('informacion_academica',
                 Field('creditos_aprob', 'integer'),
                 Field('indice', requires=IS_MATCH('^[0-9].[0-9]{4}')),
                 Field('carrera', db.carrera,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s')),
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s'), error_message='Debe completar este campo'),
                 Field('decanato', db.decanato,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s')),
+                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s'), error_message='Debe completar este campo'),
                 )
 
 db.define_table('idioma',
