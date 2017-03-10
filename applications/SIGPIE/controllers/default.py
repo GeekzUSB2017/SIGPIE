@@ -541,6 +541,7 @@ def planestudios():
 				form.vars.materia_ext_2 == '' and
 				form.vars.numero_horas_2 == ''):
 
+
 				if materia_2 != None:
 					db((db.materia.formulario == 2) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
@@ -937,7 +938,7 @@ def planestudios():
 
 			else:
 				redirect(URL('planestudios'))
-				
+
 			redirect(URL('documentos'))
 		return dict(form_plan=form)
 	else:
