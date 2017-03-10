@@ -22,12 +22,6 @@ def about():
 
 def renuncia():
 	if session.usuario is not None:
-		form = SQLFORM(db.renuncia)
-		return dict()
-	else:
-		redirect(URL('index'))
-
-	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		renuncia = db(db.renuncia.estudiante == estudiante.id).select().first()
 
@@ -38,7 +32,16 @@ def renuncia():
 			form = SQLFORM(db.renuncia, hidden=dict(estudiante=estudiante.id))
 
 		if form.process().accepted:
-			redirect(URL('index'))
+
+			id_renuncia = form.vars.id
+
+			db(db.renuncia.id == id_renuncia).update(estudiante=estudiante.id)
+
+			if estudiante.completo:
+				db(db.estudiante.id == estudiante.id).update(renuncio=True)
+				redirect(URL('welcome'))
+			else:
+				response.flash = 'No ha completado el formulario'
 
 		return dict(form_renuncia = form)
 	else:
@@ -851,6 +854,8 @@ def documentos():
 			id_docs = form.vars.id
 
 			db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
+
+			db(db.estudiante.id == estudiante.id).update(completo=True)
 
 			redirect(URL('welcome'))
 
