@@ -219,6 +219,8 @@ db.define_table('estudiante',
                 Field('genero', 'string', requires=IS_NOT_EMPTY()),
                 Field('nacionalidad', 'string', requires=IS_NOT_EMPTY()),
                 Field('direccion', 'string', requires=IS_NOT_EMPTY()),
+                Field('completo','boolean', default=False),
+                Field('renuncio','boolean', default=False),
                 Field('contacto_emergencia', db.contacto_emergencia,
                       requires=IS_IN_DB(db, db.contacto_emergencia.id)),
                 Field('idioma_destino', db.maneja_idioma,
@@ -278,5 +280,10 @@ db.define_table('recaudos',
                 Field('cedula', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('actividades_extracurriculares', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('certificado_lengua', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
+                )
+
+db.define_table('renuncia',
+                Field('carta_renuncia', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
