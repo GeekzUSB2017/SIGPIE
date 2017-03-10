@@ -508,8 +508,7 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_2,
 								fk_estudiante=estudiante.id)
 			else:
-				response.flash='Falta llenar toda la fila'
-				redirect(URL('documentos'))
+				redirect(URL('planestudios'))
 
 			if (form.vars.codigo_usb_3 != '' and
 				form.vars.materia_usb_3 != '' and
@@ -536,6 +535,9 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_3,
 								numero_horas=form.vars.numero_horas_3,
 								fk_estudiante=estudiante.id)
+
+			else:
+				redirect(URL('planestudios'))
 
 
 			if (form.vars.codigo_usb_4 != '' and
@@ -564,6 +566,9 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_4,
 								fk_estudiante=estudiante.id)
 
+			else:
+				redirect(URL('planestudios'))
+
 			if (form.vars.codigo_usb_5 != '' and
 				form.vars.materia_usb_5 != '' and
 				form.vars.creditos_usb_5 != '' and
@@ -589,6 +594,9 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_5,
 								numero_horas=form.vars.numero_horas_5,
 								fk_estudiante=estudiante.id)
+
+			else:
+				redirect(URL('planestudios'))
 
 			if (form.vars.codigo_usb_6 != '' and
 				form.vars.materia_usb_6 != '' and
@@ -616,6 +624,9 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_6,
 								fk_estudiante=estudiante.id)
 
+			else:
+				redirect(URL('planestudios'))
+
 			if (form.vars.codigo_usb_7 != '' and
 				form.vars.materia_usb_7 != '' and
 				form.vars.creditos_usb_7 != '' and
@@ -641,6 +652,9 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_7,
 								numero_horas=form.vars.numero_horas_7,
 								fk_estudiante=estudiante.id)
+
+			else:
+				redirect(URL('planestudios'))
 
 			if (form.vars.codigo_usb_8 != '' and
 				form.vars.materia_usb_8 != '' and
@@ -668,6 +682,9 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_8,
 								fk_estudiante=estudiante.id)
 
+			else:
+				redirect(URL('planestudios'))
+
 			if (form.vars.codigo_usb_9 != '' and
 				form.vars.materia_usb_9 != '' and
 				form.vars.creditos_usb_9 != '' and
@@ -693,6 +710,9 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_9,
 								numero_horas=form.vars.numero_horas_9,
 								fk_estudiante=estudiante.id)
+
+			else:
+				redirect(URL('planestudios'))
 
 			if (form.vars.codigo_usb_10 != '' and
 				form.vars.materia_usb_10 != '' and
@@ -720,6 +740,9 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_10,
 								fk_estudiante=estudiante.id)
 
+			else:
+				redirect(URL('planestudios'))
+
 			if (form.vars.codigo_usb_11 != '' and
 				form.vars.materia_usb_11 != '' and
 				form.vars.creditos_usb_11 != '' and
@@ -745,6 +768,9 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_11,
 								numero_horas=form.vars.numero_horas_11,
 								fk_estudiante=estudiante.id)
+
+			else:
+				redirect(URL('planestudios'))
 
 			if (form.vars.codigo_usb_12 != '' and
 				form.vars.materia_usb_12 != '' and
@@ -772,6 +798,9 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_12,
 								fk_estudiante=estudiante.id)
 
+			else:
+				redirect(URL('planestudios'))
+				
 			redirect(URL('documentos'))
 		return dict(form_plan=form)
 	else:
