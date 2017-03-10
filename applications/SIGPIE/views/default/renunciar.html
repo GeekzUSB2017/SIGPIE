@@ -3,28 +3,50 @@
   <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
 {{end}}
+{{block navbar}}
+
+  <div class="row">
+    <div class="col-lg-1 col-md-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10 col-md-10">
+      <div>
+        <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png">
+      </div>
+
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" style="color:black;">SIGPIE</span>
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right btn-xs btn-danger" >
+              <li><a id="logout" href="{{=URL(c='default', f='logout_cas')}}"><span style="color:black;" class="glyphicon glyphicon-log-out">  Cerrar Sesión</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-lg-1 col-md-1 col-md-1"></div>
+  </div>
+{{end}}
+
 {{block content}}
 <div class="row">
 	<div class="col-lg-2"></div>
     <div class="col-lg-8">
-		<h1 align="center">Cuidado!</h1>
+		<h1 align="center">¡Atención!</h1>
 		</br>
-		<p text-aling="justify">Escogiste la opción de <b>Renunciar</b> al Programa de Intercambio Estudiantil (PIE).</br>
-		Debes entender que al avanzar en ésta opción tu cuenta será suspendida del sistema</br>
-		Todos los datos personales que hayas ingresado en el formulario<span style="color:red;">*</span> se perderán y de reactivar tu cuenta tendrás que volver a proporcionarlos.
-		</p>
-		<p><span style="color:red;">*</span>: Es necesario haber rellenado todos los campos obligatorios del formulario de postulación.</p>
+		<h2 text-aling="justify">Usted ha renunciado al Programa de Intercambio Estudiantil
+		</h2>
 	</div>
 	<div class="col-lg-2"></div>
 </div>
 
-<div class="row">
-	<form>
-		<div class="form-group">
-			<label for="renuncia">Carta de renuncia:<span style="color:red;">*</span> </label>
-			<p>Para proceder con la renuncia se debe adjuntar una carta explicando los motivos de la misma.</p>
-			<input type="file" name="renuncia">
-		</div>	
-	</form>
-</div>
 {{end}}

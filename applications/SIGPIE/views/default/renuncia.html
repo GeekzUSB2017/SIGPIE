@@ -6,6 +6,9 @@
   	.agrandar {
   		font-size: 120%;
   	}
+    .error{
+    color: red;
+    }
   </style>
 {{end}}
 {{block content}}
@@ -24,16 +27,14 @@
 
 		<p class="agrandar" text-aling="justify">Para mayor información comunicarse con la Dirección de Relaciones Internacionales y Cooperación (DRIC).</p>
 
-		<form>
 		{{=form_renuncia.custom.begin}}
 			<div class="form-group">
 				<label class="agrandar" for="renuncia">Carta de renuncia:<span style="color:red;">*</span> </label>
 				<p class="agrandar" text-aling="justify">Para proceder con la renuncia se debe adjuntar una carta explicando los motivos de la misma.</p>
 				{{=form_renuncia.custom.widget.carta_renuncia}}
-		
-			</div>	
-		</form>		
-		
+
+			</div>
+
 	</div>
 	<div class="col-lg-2">
 	</div>
@@ -42,7 +43,7 @@
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-6">
-    	<p><span style="color:red;">*</span>: Este campo es necesario para formalizar la renuncia</p>		
+    	<p><span style="color:red;">*</span>: Este campo es necesario para formalizar la renuncia</p>
 	</div>
 	<div class="col-md-1"></div>
 	<div class="col-md-1">
@@ -50,7 +51,7 @@
       {{=form_renuncia.custom.submit}}
 	</div>
 	{{=form_renuncia.custom.end}}
-	<div class="col-md-2"></div>	
+	<div class="col-md-2"></div>
 </div>
 
 {{end}}
