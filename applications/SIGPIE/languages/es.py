@@ -149,6 +149,7 @@
 'Edit This App': 'Edite esta App',
 'Editing file': 'Editando archivo',
 'Editing file "%s"': 'Editando archivo "%s"',
+'El índice debe estar con el formato: x.xxxx': 'El índice debe estar con el formato: x.xxxx',
 'Email and SMS': 'Correo electrónico y SMS',
 'Email sent': 'Correo electrónico enviado',
 'End of impersonation': 'Fin de suplantación',

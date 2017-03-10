@@ -8,8 +8,24 @@
     margin-top: 20px;
     text-align: center;
     font-size:100%;
+    
 }
 
+#tit1{
+    background-color:    #2196F3;
+    padding-left: 60px;
+    padding-right: 75px;
+    color:  #000000;
+}
+#tit2{
+    background-color:    #2196F3;
+    padding-left: 120px;
+    padding-right: 100px;
+    color:  #000000;
+}
+.filas{
+    background: #E6E6FA
+}
 #filas{
     text-align:center;
     font-size:65%;
