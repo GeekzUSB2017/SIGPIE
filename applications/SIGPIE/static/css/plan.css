@@ -7,12 +7,28 @@
 #filasup{
     margin-top: 20px;
     text-align: center;
-    font-size:90%;
+    font-size:100%;
+    
 }
 
+#tit1{
+    background-color:    #2196F3;
+    padding-left: 60px;
+    padding-right: 75px;
+    color:  #000000;
+}
+#tit2{
+    background-color:    #2196F3;
+    padding-left: 120px;
+    padding-right: 100px;
+    color:  #000000;
+}
+.filas{
+    background: #F5F5F5;
+}
 #filas{
     text-align:center;
-    font-size:67%;
+    font-size:65%;
 }
 .programa{
     margin-top: 15px;
@@ -27,5 +43,5 @@
     text-align: center;
 }
 #last{
-    font-size:69% 
+    font-size:100% 
 }

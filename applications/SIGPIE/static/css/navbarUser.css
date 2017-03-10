@@ -5,7 +5,9 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  height: 100%;
 }
+
 
 #logout{
   style=font-size: 1.2em;
@@ -61,4 +63,23 @@ media (min-width: 768px) {
   .navbar-wrapper .navbar {
     border-radius: 4px;
   }
+}
+
+.tit-pasos{
+  color:#2196F3;
+  text-align: center;
+}
+
+.lead{
+  margin-top: 40px; 
+}
+
+#logout{
+  font-size: 115%;
+}
+.foto{
+  border-radius: 113px 113px 113px 113px;
+-moz-border-radius: 113px 113px 113px 113px;
+-webkit-border-radius: 113px 113px 113px 113px;
+border: 0px solid #000000;
 }
