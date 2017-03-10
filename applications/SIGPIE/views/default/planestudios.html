@@ -6,13 +6,16 @@
 
 {{end}}
 {{block content}}
-
 <div class="row" id="pwd-container">
+
   <h2 id="title">Plan de estudios</h2>
     {{=form_plan.custom.begin}}
+    <div>
+    </div>
     <div class="row" id="filasup">
       <div class="col-lg-10 col-md-10 col-md-10">
         <div class="col-lg-5 col-md-5 col-md-5">
+
           <label>Asignaturas del Plan de estudio USB que aspira convalidar</label>
         </div>
         <div class="col-lg-5 col-md-5 col-md-5">
@@ -366,10 +369,6 @@
     <div class="col-lg-4 col-md-4">
       <a href="{{=URL('form3')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-lg-1 col-md-1 col-md-offset-2">
-      {{form_plan.custom.submit.update(_value="Siguiente>>")}}
-      {{=form_plan.custom.submit}}
-    </div>
     <div class="col-md-4">
       </br>
       </br>
@@ -377,9 +376,11 @@
     </div>
     <div class="col-md-2"></div>
       <div class="col-lg-1 col-md-1" style="float:right;">
+        {{form_plan.custom.submit.update(_value="Siguiente>>")}}
+        {{=form_plan.custom.submit}}
       </div>
     </div>
   </div>
 </div>
-{{=form_plan.custom.end}}  
+{{=form_plan.custom.end}}
 {{end}}
