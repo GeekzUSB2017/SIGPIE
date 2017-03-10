@@ -1,0 +1,56 @@
+{{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+  <style type="text/css">
+  	.agrandar {
+  		font-size: 120%;
+  	}
+  </style>
+{{end}}
+{{block content}}
+
+<div class="row">
+	<div class="col-lg-2"></div>
+    <div class="col-lg-8">
+		<h1 align="center">¡Cuidado!</h1>
+		</br>
+		<p class="agrandar" text-aling="justify">Escogiste la opción de <b>Renunciar</b> al Programa de Intercambio Estudiantil (PIE). Debes entender que al avanzar en ésta opción:
+		</p>
+		<ul>
+			<li><p class="agrandar" text-aling="justify">Debes haber rellenado todos los campos obligatorios del formulario de postulación.</p></li>
+			<li><p class="agrandar" text-aling="justify">Tu cuenta será suspendida del sistema y perderás acceso al mismo.</p></li>
+		</ul>
+
+		<p class="agrandar" text-aling="justify">Para mayor información comunicarse con la Dirección de Relaciones Internacionales y Cooperación (DRIC).</p>
+
+		<form>
+		{{=form_renuncia.custom.begin}}
+			<div class="form-group">
+				<label class="agrandar" for="renuncia">Carta de renuncia:<span style="color:red;">*</span> </label>
+				<p class="agrandar" text-aling="justify">Para proceder con la renuncia se debe adjuntar una carta explicando los motivos de la misma.</p>
+				{{=form_renuncia.custom.widget.carta_renuncia}}
+		
+			</div>	
+		</form>		
+		
+	</div>
+	<div class="col-lg-2">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-6">
+    	<p><span style="color:red;">*</span>: Este campo es necesario para formalizar la renuncia</p>		
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-1">
+      {{form_renuncia.custom.submit.update(_value="Renunciar")}}
+      {{=form_renuncia.custom.submit}}
+	</div>
+	{{=form_renuncia.custom.end}}
+	<div class="col-md-2"></div>	
+</div>
+
+{{end}}
