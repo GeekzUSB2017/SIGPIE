@@ -22,12 +22,6 @@ def about():
 
 def renuncia():
 	if session.usuario is not None:
-		form = SQLFORM(db.renuncia)
-		return dict()
-	else:
-		redirect(URL('index'))
-
-	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		renuncia = db(db.renuncia.estudiante == estudiante.id).select().first()
 
@@ -38,7 +32,16 @@ def renuncia():
 			form = SQLFORM(db.renuncia, hidden=dict(estudiante=estudiante.id))
 
 		if form.process().accepted:
-			redirect(URL('index'))
+
+			id_renuncia = form.vars.id
+
+			db(db.renuncia.id == id_renuncia).update(estudiante=estudiante.id)
+
+			if estudiante.completo:
+				db(db.estudiante.id == estudiante.id).update(renuncio=True)
+				redirect(URL('welcome'))
+			else:
+				response.flash = 'No ha completado el formulario'
 
 		return dict(form_renuncia = form)
 	else:
@@ -530,6 +533,17 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_2,
 								numero_horas=form.vars.numero_horas_2,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_2 == '' and
+				form.vars.materia_usb_2 == '' and
+				form.vars.creditos_usb_2 == '' and
+				form.vars.codigo_ext_2 == '' and
+				form.vars.materia_ext_2 == '' and
+				form.vars.numero_horas_2 == ''):
+
+				if materia_2 != None:
+					db((db.materia.formulario == 2) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -558,6 +572,16 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_3,
 								numero_horas=form.vars.numero_horas_3,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_3 == '' and
+				form.vars.materia_usb_3 == '' and
+				form.vars.creditos_usb_3 == '' and
+				form.vars.codigo_ext_3 == '' and
+				form.vars.materia_ext_3 == '' and
+				form.vars.numero_horas_3 == ''):
+
+				if materia_3 != None:
+					db((db.materia.formulario == 3) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
 			else:
 				redirect(URL('planestudios'))
@@ -589,6 +613,16 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_4,
 								fk_estudiante=estudiante.id)
 
+			elif (form.vars.codigo_usb_4 == '' and
+				form.vars.materia_usb_4 == '' and
+				form.vars.creditos_usb_4 == '' and
+				form.vars.codigo_ext_4 == '' and
+				form.vars.materia_ext_4 == '' and
+				form.vars.numero_horas_4 == ''):
+
+				if materia_4 != None:
+					db((db.materia.formulario == 4) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -617,6 +651,16 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_5,
 								numero_horas=form.vars.numero_horas_5,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_5 == '' and
+				form.vars.materia_usb_5 == '' and
+				form.vars.creditos_usb_5 == '' and
+				form.vars.codigo_ext_5 == '' and
+				form.vars.materia_ext_5 == '' and
+				form.vars.numero_horas_5 == ''):
+
+				if materia_5 != None:
+					db((db.materia.formulario == 5) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
 			else:
 				redirect(URL('planestudios'))
@@ -647,6 +691,16 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_6,
 								fk_estudiante=estudiante.id)
 
+			elif (form.vars.codigo_usb_6 == '' and
+				form.vars.materia_usb_6 == '' and
+				form.vars.creditos_usb_6 == '' and
+				form.vars.codigo_ext_6 == '' and
+				form.vars.materia_ext_6 == '' and
+				form.vars.numero_horas_6 == ''):
+
+				if materia_6 != None:
+					db((db.materia.formulario == 6) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -675,6 +729,16 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_7,
 								numero_horas=form.vars.numero_horas_7,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_7 == '' and
+				form.vars.materia_usb_7 == '' and
+				form.vars.creditos_usb_7 == '' and
+				form.vars.codigo_ext_7 == '' and
+				form.vars.materia_ext_7 == '' and
+				form.vars.numero_horas_7 == ''):
+
+				if materia_7 != None:
+					db((db.materia.formulario == 7) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
 			else:
 				redirect(URL('planestudios'))
@@ -705,6 +769,16 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_8,
 								fk_estudiante=estudiante.id)
 
+			elif (form.vars.codigo_usb_8 == '' and
+				form.vars.materia_usb_8 == '' and
+				form.vars.creditos_usb_8 == '' and
+				form.vars.codigo_ext_8 == '' and
+				form.vars.materia_ext_8 == '' and
+				form.vars.numero_horas_8 == ''):
+
+				if materia_8 != None:
+					db((db.materia.formulario == 8) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -733,6 +807,16 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_9,
 								numero_horas=form.vars.numero_horas_9,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_9 == '' and
+				form.vars.materia_usb_9 == '' and
+				form.vars.creditos_usb_9 == '' and
+				form.vars.codigo_ext_9 == '' and
+				form.vars.materia_ext_9 == '' and
+				form.vars.numero_horas_9 == ''):
+
+				if materia_9 != None:
+					db((db.materia.formulario == 9) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
 			else:
 				redirect(URL('planestudios'))
@@ -763,6 +847,16 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_10,
 								fk_estudiante=estudiante.id)
 
+			elif (form.vars.codigo_usb_10 == '' and
+				form.vars.materia_usb_10 == '' and
+				form.vars.creditos_usb_10 == '' and
+				form.vars.codigo_ext_10 == '' and
+				form.vars.materia_ext_10 == '' and
+				form.vars.numero_horas_10 == ''):
+
+				if materia_10 != None:
+					db((db.materia.formulario == 10) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -792,6 +886,16 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_11,
 								fk_estudiante=estudiante.id)
 
+			elif (form.vars.codigo_usb_11 == '' and
+				form.vars.materia_usb_11 == '' and
+				form.vars.creditos_usb_11 == '' and
+				form.vars.codigo_ext_11 == '' and
+				form.vars.materia_ext_11 == '' and
+				form.vars.numero_horas_11 == ''):
+
+				if materia_11 != None:
+					db((db.materia.formulario == 11) & (db.materia.fk_estudiante == estudiante.id)).delete()
+
 			else:
 				redirect(URL('planestudios'))
 
@@ -820,6 +924,16 @@ def planestudios():
 								materia_ext=form.vars.materia_ext_12,
 								numero_horas=form.vars.numero_horas_12,
 								fk_estudiante=estudiante.id)
+
+			elif (form.vars.codigo_usb_12 == '' and
+				form.vars.materia_usb_12 == '' and
+				form.vars.creditos_usb_12 == '' and
+				form.vars.codigo_ext_12 == '' and
+				form.vars.materia_ext_12 == '' and
+				form.vars.numero_horas_12 == ''):
+
+				if materia_12 != None:
+					db((db.materia.formulario == 12) & (db.materia.fk_estudiante == estudiante.id)).delete()
 
 			else:
 				redirect(URL('planestudios'))
@@ -851,6 +965,8 @@ def documentos():
 			id_docs = form.vars.id
 
 			db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
+
+			db(db.estudiante.id == estudiante.id).update(completo=True)
 
 			redirect(URL('welcome'))
 
