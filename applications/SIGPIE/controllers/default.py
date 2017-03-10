@@ -62,7 +62,7 @@ def postularse():
 
 			niveles = ('Básico', 'Intermedio', 'Avanzado')
 
-			parentezco = ('Madre', 'Padre', 'Otro Familiar', 'Otro')
+			parentezco = ('Madre', 'Padre', 'Representante Legal', 'Otro')
 
 			form = SQLFORM.factory(
 					Field('carnet', default=session.usuario['usbid'], label='Carnet', writable=False),
@@ -227,7 +227,7 @@ def form3():
 
 			actividades = ('Solo Asignaturas','Asignaturas + Proyecto de Grado','Asignaturas + Pasantía','Doble Titulación')
 
-			periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Primer y Segundo Semestre (A partir de Enero)')
+			periodos = ('Primer Semestre (A partir de Septiembre)','Segundo Semestre (A partir de Enero)','Año Académico')
 
 			form = SQLFORM.factory(
 					Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
@@ -282,12 +282,12 @@ def planestudios():
 		else:
 
 			form = SQLFORM.factory(
-					Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(), label='Código'),
-					Field('materia_usb_1', 'string', requires=IS_NOT_EMPTY(), label='Denominación'),
-					Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(), label='N° de créditos'),
-					Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(), label='Código'),
-					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(), label='Denominación'),
-					Field('numero_horas_1', 'integer', requires=IS_NOT_EMPTY(), label='N° de créditos/N° de horas x semana'),
+					Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
+					Field('materia_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
+					Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos'),
+					Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
+					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
+					Field('numero_horas_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_2', 'string', label='Código'),
 					Field('materia_usb_2', 'string', label='Denominación'),
@@ -1050,8 +1050,10 @@ def login_cas():
 		except:
 			print('Excepción')
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
-		if (estudiante.renuncio):
-			redirect(URL('renunciar'))
+		if (estudiante != None):
+			if (estudiante.renuncio):
+
+				redirect(URL('renunciar'))
 		else:
 			if db(tablaUsuarios.carnet == usbid).isempty():
 
