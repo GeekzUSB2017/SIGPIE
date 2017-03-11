@@ -1052,21 +1052,14 @@ def login_cas():
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		if (estudiante != None):
 			if (estudiante.renuncio):
-
 				redirect(URL('renunciar'))
+			redirect(URL('welcome'))
 		else:
-			if db(tablaUsuarios.carnet == usbid).isempty():
-
-				db.estudiante.insert(cedula=session.usuario["cedula"],  # Lo insertamos en la base de datos.
-				carnet=session.usuario["usbid"],
-				nombres=session.usuario["first_name"],
-				apellidos=session.usuario["last_name"])
-
-				redirect(URL('welcome'))
-
-			#ARREGLAR, ESTA DUPLICANDO DATA Y NO ACTUALIZANDO
-			else:
-				redirect(URL('welcome'))
+			db.estudiante.insert(cedula=session.usuario["cedula"], # Lo insertamos en la base de datos.
+								 carnet=session.usuario["usbid"],
+								 nombres=session.usuario["first_name"],
+								 apellidos=session.usuario["last_name"])
+			redirect(URL('welcome'))
 
 def logout_cas():
 	session.usuario = None
