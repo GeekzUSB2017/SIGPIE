@@ -8,6 +8,17 @@ import datetime
 URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
+
+######################################
+#            NO BORRAR               #
+######################################
+def user():
+    return dict(login=auth.login())
+
+def register():
+    return dict(form=auth.register())
+######################################
+
 def index():
 	if session.usuario is not None:
 		redirect(URL('welcome'))
