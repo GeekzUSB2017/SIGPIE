@@ -18,6 +18,9 @@ def user():
 def register():
     return dict(form=auth.register())
 ######################################
+def expediente():
+	return dict()
+
 
 def index():
 	if session.usuario is not None:
