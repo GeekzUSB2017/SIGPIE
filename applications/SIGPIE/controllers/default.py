@@ -1099,15 +1099,15 @@ def expediente():
 		f.add_page()
 
 		#Se empiezan a llenar los campos
-		f["apellidos1"] = estudiante.apellidos
+		f["apellidos"] = estudiante.apellidos
 		f['nombres'] = estudiante.nombres
 		f["domicilio"] = estudiante.direccion
 		f["carnet"] = estudiante.carnet
 
 		#Se renderiza la pagina
-		stuff = open("/tmp/stuff.pdf", 'w')
-		stuff.write(f.render("./template.pdf", 'S'))
+		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
+		stuff.write(f.render("./{0}.pdf".format(estudiante.carnet), 'S'))
 		stuff.close()
-		response.stream("/tmp/stuff.pdf")
+		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
 	else: 
 		redirect(URL('index'))
