@@ -1064,3 +1064,38 @@ def login_cas():
 def logout_cas():
 	session.usuario = None
 	redirect('https://secure.dst.usb.ve/logout')
+
+def lista_postulados():
+	db.estudiante.id.readable=False
+
+	export_classes = dict(csv=True, json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
+	query = (db.estudiante.id > 0)
+	#Define the fields to show on grid. Note: (you need to specify id field in fields section in 1.99.2
+	# this is not required in later versions)
+	fields = (db.estudiante.id, db.estudiante.carnet, db.estudiante.cedula, db.estudiante.nombres,
+			  db.estudiante.apellidos, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
+			  db.estudiante.Correo, db.estudiante.universidad_1)
+
+	#Define headers as tuples/dictionaries
+	headers = {'estudiante.id': 'ID',
+			   'estudiante.carnet': 'Carnet',
+			   'estudiante.cedula': 'Cédula',
+			   'estudiante.nombres': 'Nombres',
+			   'estudiante.apellidos': 'Apellidos',
+			   'estudiante.telefono_celular': 'Telf Celular',
+			   'estudiante.telefono_habitacion': 'Telf Habitación',
+			   'estudiante.Correo': 'Email',
+			   'estudiante.universidad_1': 'Universidad seleccionada'}
+
+	#Let's specify a default sort order on date_of_birth column in grid
+	#default_sort_order=[db.contact.date_of_birth]
+
+	#Creating the grid object
+	grid = SQLFORM.grid(query=query, fields=fields, headers=headers, create=False,
+						deletable=False, editable=False, maxtextlength=64, paginate=25,
+						exportclasses=export_classes, details=False)
+	return dict(grid=grid)
+
