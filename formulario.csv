@@ -1,0 +1,70 @@
+'apellidoContacto';'T';103.60;133.20;157.10;138.20;'Arial';8;False;False;False;0;0;'L';'';0
+'apellidoContacto_label';'T';89.00;134.00;103.70;139.00;'Arial';8;False;False;False;0;0;'L';'Apellidos:';0
+'apellidos1';'T';10.60;61.80;98.90;66.80;'Arial';8;False;False;False;0;0;'L';'';0
+'apellidos_label';'T';9.10;55.50;34.20;60.50;'Arial';8;False;False;False;0;0;'L';'1.   Apellidos';0
+'cajaDatosDeContacto';'B';8.70;128.10;206.30;157.20;None;0;False;False;False;0;0;'I';None;0
+'cajaDatosPersonales1';'B';8.70;50.10;206.30;69.00;None;0;False;False;False;0;0;'I';None;0
+'cajaDatosPersonales2';'B';8.70;68.90;206.30;128.20;None;0;False;False;False;0;0;'I';None;0
+'carnet';'T';11.60;109.00;102.50;114.00;'Arial';8;False;False;False;0;0;'L';'';0
+'carnet_label';'T';9.10;103.90;34.20;108.90;'Arial';8;False;False;False;0;0;'L';'5.   No de Carnet de Estudiante USB';0
+'ci';'T';11.40;98.00;100.70;103.00;'Arial';8;False;False;False;0;0;'L';'';0
+'ci_label';'T';9.10;92.70;34.00;97.70;'Arial';8;False;False;False;0;0;'L';'4.   Numero de Cedula de Identidad';0
+'datosPersonales';'T';8.90;50.30;48.30;55.30;'Arial';10;True;False;False;0;0;'L';'DATOS PERSONALES';0
+'datoscontacto';'T';109.60;93.00;134.70;97.90;'Arial';8;False;False;False;0;0;'L';'8.   Datos de contacto';0
+'direccionContacto';'T';30.00;144.00;83.50;149.00;'Arial';8;False;False;False;0;0;'L';'';0
+'direccionContacto_label';'T';13.70;144.20;30.10;149.20;'Arial';8;False;False;False;0;0;'L';'Direcci\xf3n: ';0
+'domicilio';'T';111.00;74.80;200.00;79.80;'Arial';8;False;False;False;0;0;'L';'';1
+'domicilio_label';'T';109.30;69.50;134.40;74.50;'Arial';8;False;False;False;0;0;'L';'7.   Domicilio actual';1
+'email';'T';138.50;107.90;199.30;112.80;'Arial';8;False;False;False;0;0;'L';'';0
+'emailContacto';'T';104.60;149.40;168.70;154.40;'Arial';8;False;False;False;0;0;'L';'';0
+'emailContacto_label';'T';88.80;149.50;105.20;154.50;'Arial';8;False;False;False;0;0;'L';'E-mail:';0
+'email_label';'T';110.40;108.40;135.50;113.30;'Arial';8;False;False;False;0;0;'L';'E-mail:';0
+'encabezado1';'T';92.10;16.20;177.00;21.20;'Arial';7;True;False;False;0;16777215;'R';'Direcci\xf3n de Relaciones Internacionales y de Cooperaci\xf3n';0
+'encabezado2';'T';91.90;21.30;176.90;26.30;'Arial';7;True;False;False;0;16777215;'R';'Coordinaci\xf3n de Apoyo a los Programas de Intercambio';0
+'encabezado3';'T';91.90;26.70;176.90;31.70;'Arial';7;True;False;False;0;16777215;'R';'Programa de Intercambio de Estudiantes';0
+'encabezado4';'T';27.60;41.80;161.00;46.80;'Arial';11;True;False;False;0;16777215;'I';'SOLICITUD DE INCORPORACI\xd3N AL PROGRAMA DE INTERCAMBIO DE ESTUDIANTES';0
+'foto_label';'B';182.10;4.50;210.90;35.50;None;0;0;0;0;0;0;'I';'';0
+'genero';'T';11.00;75.00;99.30;80.00;'Arial';8;False;False;False;0;0;'L';'';0
+'genero_label';'T';9.10;69.30;34.20;74.30;'Arial';8;False;False;False;0;0;'L';'2.   Genero';0
+'linea1_copy_copy_copy_copy';'L';146.30;12.40;176.30;12.40;None;0.20;False;False;False;0;0;None;'';0
+'linea1_copy_copy_copy_copy_copy_copy_copy';'L';103.60;138.50;156.90;138.70;None;0.20;False;False;False;0;0;None;'';0
+'lineaApellidos';'L';10.70;67.00;100.00;67.20;None;0.20;False;False;False;0;0;None;'';0
+'lineaCarnet';'L';11.70;114.20;101.00;114.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaCedula';'L';11.50;103.20;100.80;103.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaCelular';'L';137.10;108.00;200.80;108.00;None;0.20;False;False;False;0;0;None;'';0
+'lineaDireccion1';'L';111.30;80.20;200.60;80.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaDireccion2';'L';111.50;85.40;200.80;85.60;None;0.20;False;False;False;0;0;None;'';0
+'lineaDireccion3';'L';111.50;91.20;200.80;91.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaDireccionContacto';'L';29.50;149.20;82.80;149.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaEmail';'L';137.10;113.00;200.80;113.00;None;0.20;False;False;False;0;0;None;'';0
+'lineaEmailContacto';'L';104.70;154.60;168.60;154.60;None;0.20;False;False;False;0;0;None;'';0
+'lineaGenero';'L';11.10;80.40;100.40;80.60;None;0.20;False;False;False;0;0;None;'';0
+'lineaNacionalidad';'L';11.30;92.00;100.60;92.20;None;0.20;False;False;False;0;0;None;'';0
+'lineaNombreContacto';'L';29.30;138.80;82.60;139.00;None;0.20;False;False;False;0;0;None;'';0
+'lineaNombres';'L';115.50;67.20;204.80;67.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaPasaporte';'L';11.90;126.20;101.20;126.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaRedesSociales';'L';137.30;118.20;201.00;118.20;None;0.20;False;False;False;0;0;None;'';0
+'lineaRelacionContacto';'L';50.30;144.20;103.60;144.40;None;0.20;False;False;False;0;0;None;'';0
+'lineaTlfo';'L';137.10;103.00;200.80;103.00;None;0.20;False;False;False;0;0;None;'';0
+'lineaTlfoContacto';'L';29.50;154.20;82.80;154.40;None;0.20;False;False;False;0;0;None;'';0
+'nacionalidad';'T';11.20;86.60;100.10;91.60;'Arial';8;False;False;False;0;0;'L';'';0
+'nacionalidad_label';'T';9.10;81.10;34.20;86.10;'Arial';8;False;False;False;0;0;'L';'3.   Nacionalidad';0
+'nombreContacto';'T';29.10;133.30;82.60;138.30;'Arial';8;False;False;False;0;0;'L';'';0
+'nombreContacto_label';'T';13.70;133.80;30.10;138.80;'Arial';8;False;False;False;0;0;'L';'Nombres:';0
+'nombres';'T';115.50;61.70;204.00;66.70;'Arial';8;False;False;False;0;0;'L';'';0
+'nombres_label';'T';115.30;55.90;140.40;60.90;'Arial';8;False;False;False;0;0;'L';'Nombres';0
+'nroSolicitud_label';'T';106.00;5.40;130.30;14.70;'Arial';12;True;0;0;0;0;'L';'No DE SOLICITUD:';0
+'pasaporte';'T';11.80;120.80;102.70;125.80;'Arial';8;False;False;False;0;0;'L';'';0
+'pasaporte_label';'T';9.10;115.10;34.20;120.10;'Arial';8;False;False;False;0;0;'L';'6.   No de Pasaporte Vigente';0
+'personaContacto_label';'T';9.20;128.40;34.30;133.40;'Arial';8;False;False;False;0;0;'L';'9. Datos de una persona a contactar en caso de emergencias:';0
+'redes';'T';138.60;113.20;199.30;118.10;'Arial';8;False;False;False;0;0;'L';'';0
+'redes_label';'T';110.30;113.70;135.40;118.60;'Arial';8;False;False;False;0;0;'L';'Redes Sociales';0
+'relacionContacto';'T';51.50;139.70;105.00;144.70;'Arial';8;False;False;False;0;0;'L';'';0
+'relacionContacto_label';'T';13.70;139.20;51.10;144.20;'Arial';8;False;False;False;0;0;'L';'Relaci\xf3n con el estudiante:';0
+'some_name';'L';108.75;69.20;108.75;127.90;None;0.20;False;False;False;0;0;None;'';0
+'tlfoContacto';'T';29.60;149.00;83.10;154.00;'Arial';8;False;False;False;0;0;'L';'';0
+'tlfoContacto_label';'T';13.80;149.30;30.20;154.30;'Arial';8;False;False;False;0;0;'L';'Tel\xe9fono: ';0
+'tlfocel';'T';138.60;103.00;199.50;107.90;'Arial';8;False;False;False;0;0;'L';'';0
+'tlfocel_label';'T';110.30;103.30;135.40;108.20;'Arial';8;False;False;False;0;0;'L';'Tlfo. celular:';0
+'tlfohabitacion';'T';138.50;97.70;199.70;102.60;'Arial';8;False;False;False;0;0;'L';'';0
+'tlfohabitacion_label';'T';110.30;98.30;135.40;103.20;'Arial';8;False;False;False;0;0;'L';'Tlfo. habitacion:';0
