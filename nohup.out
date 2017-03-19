@@ -1,0 +1,12 @@
+ERROR:Rocket.Errors.Port8000:Socket 127.0.0.1:8000 in use by other process and it won't share.
+WARNING:Rocket.Errors.Port8000:Listener started when not ready.
+ERROR:Rocket.Errors.Port8000:Socket 127.0.0.1:8000 in use by other process and it won't share.
+WARNING:Rocket.Errors.Port8000:Listener started when not ready.
+ERROR:Rocket.Errors.Port8000:Socket 127.0.0.1:8000 in use by other process and it won't share.
+WARNING:Rocket.Errors.Port8000:Listener started when not ready.
+web2py Web Framework
+Created by Massimo Di Pierro, Copyright 2007-2017
+Version 2.14.6-stable+timestamp.2016.05.10.00.21.47
+Database drivers available: sqlite3, imaplib, pymysql, pg8000
+[9379:9409:0304/232654.919748:ERROR:nss_util.cc(808)] After loading Root Certs, loaded==false: NSS error code: -8018
+Created new window in existing browser session.

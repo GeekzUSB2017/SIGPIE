@@ -8,6 +8,17 @@ import datetime
 URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
 
+
+######################################
+#            NO BORRAR               #
+######################################
+def user():
+    return dict(login=auth.login())
+
+def register():
+    return dict(form=auth.register())
+######################################
+
 def index():
 	if session.usuario is not None:
 		redirect(URL('welcome'))
@@ -996,6 +1007,46 @@ def documentos():
 
 				redirect(URL('welcome'))
 
+			elif form.errors:
+				# Si hubo errores en el formulario
+
+				if recaudo == None:
+					# Si no existe un objeto recaudo para el estudiante lo creo
+					r_id = db.recaudos.insert(estudiante=estudiante)
+				else:
+					# Si ya exite un objeto recaudo para el estudiante lo tomo
+					r_id = recaudo.id
+
+				# Actualizo el objeto recaudo con el archivo suministrado si cumple las condiciones
+				if form.vars.foto != None and form.vars.foto != '' and form.vars.foto.filename.endswith(('png','jpg','jpeg')):
+					db(db.recaudos.id == r_id).update(foto=form.vars.foto)
+
+				if form.vars.cedula != None and form.vars.cedula != '' and form.vars.cedula.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(cedula=form.vars.cedula)
+
+				if form.vars.carnet != None and form.vars.carnet != '' and form.vars.carnet.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(carnet=form.vars.carnet)
+
+				if form.vars.informe_academico != None and form.vars.informe_academico != '' and form.vars.informe_academico.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(informe_academico=form.vars.informe_academico)
+
+				if form.vars.comprobante != None and form.vars.comprobante != '' and form.vars.comprobante.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(comprobante=form.vars.comprobante)
+
+				if form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '' and form.vars.programas_de_estudio.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(programas_de_estudio=form.vars.programas_de_estudio)
+
+				if form.vars.carta_motivacion != None and form.vars.carta_motivacion != '' and form.vars.carta_motivacion.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(carta_motivacion=form.vars.carta_motivacion)
+
+				if form.vars.flujograma != None and form.vars.flujograma != '' and form.vars.flujograma.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(flujograma=form.vars.flujograma)
+
+				if form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '' and form.vars.curriculum_vitae.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(curriculum_vitae=form.vars.curriculum_vitae)
+
+				if form.vars.actividades_extracurriculares != None and form.vars.actividades_extracurriculares != '' and form.vars.actividades_extracurriculares.filename.endswith('pdf'):
+					db(db.recaudos.id == r_id).update(actividades_extracurriculares=form.vars.actividades_extracurriculares)
 
 			return dict(form_documentos = form, recaudo = recaudo, idioma = idioma, estudiante = estudiante)
 	else:
@@ -1037,14 +1088,15 @@ def login_cas():
 		session.usuario = usuario
 		session.usuario['usbid'] = usbid
 		try:
-			print "Información extraida del CAS: "
-			print usuario['usbid']
-			print usuario['first_name']
-			print usuario['last_name']
-			print usuario['email']
-			print usuario['cedula']
-			print usuario['phone']
-			print usuario['tipo']
+			pass
+			# print "Información extraida del CAS: "
+			# print usuario['usbid']
+			# print usuario['first_name']
+			# print usuario['last_name']
+			# print usuario['email']
+			# print usuario['cedula']
+			# print usuario['phone']
+			# print usuario['tipo']
 
 
 		except:
