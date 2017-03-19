@@ -1078,34 +1078,36 @@ def logout_cas():
 	redirect('https://secure.dst.usb.ve/logout')
 
 def expediente():
+	if session.usuario is not None:
+		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 
-	#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
-	estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		try:
+			from fpdf import Template
+		except:
+			print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
+		
+		#Se instancia la plantilla de la pagina 1 del formulario de postulacion
+		f = Template(format="letter",
+		             title="Expediente de Usuario")
 
-	try:
-		from fpdf import Template
-	except:
-		print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
-	
-	#Se instancia la plantilla de la pagina 1 del formulario de postulacion
-	f = Template(format="letter",
-	             title="Expediente de Usuario")
+		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y 
+		#que el . se usa para decimales
+		f.parse_csv("formulario.csv", ";", ".")
 
-	#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y 
-	#que el . se usa para decimales
-	f.parse_csv("formulario.csv", ";", ".")
+		#Se agrega una pagina al PDF
+		f.add_page()
 
-	#Se agrega una pagina al PDF
-	f.add_page()
+		#Se empiezan a llenar los campos
+		f["apellidos1"] = estudiante.apellidos
+		f['nombres'] = estudiante.nombres
+		f["domicilio"] = estudiante.direccion
+		f["carnet"] = estudiante.carnet
 
-	#Se empiezan a llenar los campos
-	f["apellidos1"] = estudiante.apellidos
-	f['nombres'] = estudiante.nombres
-	f["domicilio"] = estudiante.direccion
-	f["carnet"] = estudiante.carnet
-
-	#Se renderiza la pagina
-	stuff = open("/tmp/stuff.pdf", 'w')
-	stuff.write(f.render("./template.pdf", 'S'))
-	stuff.close()
-	response.stream("/tmp/stuff.pdf")
+		#Se renderiza la pagina
+		stuff = open("/tmp/stuff.pdf", 'w')
+		stuff.write(f.render("./template.pdf", 'S'))
+		stuff.close()
+		response.stream("/tmp/stuff.pdf")
+	else: 
+		redirect(URL('index'))
