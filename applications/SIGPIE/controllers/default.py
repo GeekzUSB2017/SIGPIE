@@ -1081,7 +1081,7 @@ def expediente():
 	if session.usuario is not None:
 		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
-
+		
 		try:
 			from fpdf import Template
 		except:
@@ -1098,11 +1098,16 @@ def expediente():
 		#Se agrega una pagina al PDF
 		f.add_page()
 
+		##################################################################
+		# REVISAR CUALES CAMPOS PUEDEN SER MULTILINEA Y MODIFICAR EL CSV #
+		##################################################################
+
+
+
 		#Se empiezan a llenar los campos
-		f["apellidos"] = estudiante.apellidos
-		f['nombres'] = estudiante.nombres
-		f["domicilio"] = estudiante.direccion
-		f["carnet"] = estudiante.carnet
+		for campo in estudiante:
+			f[campo] = estudiante[campo]
+		
 
 		#Se renderiza la pagina
 		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
