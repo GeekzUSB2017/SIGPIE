@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
@@ -13,10 +12,10 @@ URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 #            NO BORRAR               #
 ######################################
 def user():
-    return dict(login=auth.login())
+	return dict(login=auth.login())
 
 def register():
-    return dict(form=auth.register())
+	return dict(form=auth.register())
 ######################################
 def expediente():
 	return dict()
@@ -86,7 +85,7 @@ def postularse():
 					Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo válido')),
+													  error_message='No es un correo válido')),
 					Field('pasaporte','string', label='Pasaporte', requires=IS_MATCH('^[0-9]{9}$', error_message='No es un pasaporte válido')),
 					Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo', zero = 'Seleccione un género'), label='Género'),
 					Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -103,7 +102,7 @@ def postularse():
 					Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo valido')))
+													  error_message='No es un correo valido')))
 
 			# Obtener el manejo del idioma que haga match con el estudiante en sesión
 			manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
@@ -1048,6 +1047,7 @@ def login_cas():
 
 		session.usuario = usuario
 		session.usuario['usbid'] = usbid
+		'''
 		try:
 			print "Información extraida del CAS: "
 			print usuario['usbid']
@@ -1061,6 +1061,7 @@ def login_cas():
 
 		except:
 			print('Excepción')
+		'''
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		if (estudiante != None):
 			if (estudiante.renuncio):
@@ -1080,20 +1081,19 @@ def logout_cas():
 def expediente():
 	if session.usuario is not None:
 		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
-		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
-		
+
 		try:
 			from fpdf import Template
 		except:
 			print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
-		
+
 		#Se instancia la plantilla de la pagina 1 del formulario de postulacion
 		f = Template(format="letter",
-		             title="Expediente de Usuario")
+					 title="Expediente de Usuario")
 
-		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y 
+		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
 		#que el . se usa para decimales
-		f.parse_csv("formulario.csv", ";", ".")
+		f.parse_csv("./applications/SIGPIE/static/formulario.csv", ";", ".")
 
 		#Se agrega una pagina al PDF
 		f.add_page()
@@ -1102,17 +1102,50 @@ def expediente():
 		# REVISAR CUALES CAMPOS PUEDEN SER MULTILINEA Y MODIFICAR EL CSV #
 		##################################################################
 
+		#Queries para llenar los campos del formulario
+		
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		
+		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
+		manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
+		idioma = db(db.idioma.id == estudiante.idioma_destino).select().first()
+		universidad1 = db(db.universidad.id == estudiante.universidad_1).select().first()
+		pais1 = db(db.pais.id == universidad1.pais).select().first()
+		convenio1 = db(db.convenio.id == universidad1.convenio).select().first()
 
 
-		#Se empiezan a llenar los campos
+		#Se empiezan a llenar los campos triviales (que no requieren queries)
 		for campo in estudiante:
 			f[campo] = estudiante[campo]
-		
+
+
+		#Se cargan manualmente los datos de la persona de contacto, idioma, y pais/universidad de destino
+		f["apellidoContacto"] = contacto_emergencia.apellidos
+		f["direccionContacto"] = contacto_emergencia.direccion
+		f["emailContacto"] = contacto_emergencia.Correo
+		f["nombreContacto"] = contacto_emergencia.nombres
+		f["relacionContacto"] = contacto_emergencia.relacion
+		f["tlfoContacto"] = contacto_emergencia.telefono_habitacion + " - " + contacto_emergencia.telefono_celular
+
+		f["idioma_destino"] = idioma.nombre
+		f["nivelOral"] = manejo_idioma.oral
+		f["nivelEscrito"] = manejo_idioma.escrito
+		f["nivelLectura"] = manejo_idioma.lectura
+
+		f["pais1"] = pais1.nombre
+		f["universidad_1"] = universidad1.nombre
+		f["convenio"] = convenio1.nombre
+
+		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
+		f["foto"] = "foto.jpg"
+
+
+
 
 		#Se renderiza la pagina
 		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
 		stuff.write(f.render("./{0}.pdf".format(estudiante.carnet), 'S'))
 		stuff.close()
 		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
-	else: 
+	else:
 		redirect(URL('index'))
