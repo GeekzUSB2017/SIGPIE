@@ -1174,7 +1174,6 @@ def lista_postulados():
 	db.estudiante.act_comp.readable=False
 	db.estudiante.op_interc_1.readable=False
 	db.estudiante.op_interc_2.readable=False
-	db.estudiante.periodo_2.readable=False
 	db.estudiante.actividad_1.readable=False
 	db.estudiante.actividad_2.readable=False
 
@@ -1185,17 +1184,21 @@ def lista_postulados():
                           tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
 	query = (db.estudiante.id > 0)
+
+	universidad_2 = db.universidad.with_alias('universidad_2')
 	#Define the fields to show on grid
 	fields = (db.estudiante.id, db.informacion_academica.sede, db.informacion_academica.decanato,
 			  db.carrera.nombre, db.estudiante.carnet, db.estudiante.cedula, db.estudiante.nombres,
 			  db.estudiante.apellidos, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
 			  db.estudiante.Correo, db.informacion_academica.indice, db.informacion_academica.creditos_aprob,
 			  db.estudiante.renuncio, db.universidad.pais, db.estudiante.universidad_1, db.universidad.convenio,
-			  db.estudiante.periodo_1)
+			  db.estudiante.periodo_1, universidad_2.pais, db.estudiante.universidad_2, universidad_2.convenio,
+			  db.estudiante.periodo_2)
 
 	left = [db.informacion_academica.on(db.informacion_academica.estudiante == db.estudiante.id),
 			db.carrera.on(db.informacion_academica.carrera == db.carrera.id),
-			db.universidad.on(db.estudiante.universidad_1 == db.universidad.id)]
+			db.universidad.on(db.estudiante.universidad_1 == db.universidad.id),
+			universidad_2.on(db.estudiante.universidad_2 == universidad_2.id)]
 
 	#Define headers as tuples/dictionaries
 	headers = {'estudiante.id': 'ID',
@@ -1215,7 +1218,11 @@ def lista_postulados():
 			   'universidad.pais': 'País 1° Opción',
 			   'estudiante.universidad_1': 'Universidad 1° Opción',
 			   'universidad.convenio': 'Tipo de Interambio',
-			   'estudiante.periodo_1': 'Tiempo de Intercambio'}
+			   'estudiante.periodo_1': 'Tiempo de Intercambio',
+			   'universidad_2.pais': 'País 2° Opción',
+			   'estudiante.universidad_2': 'Universidad 2° Opción',
+			   'universidad_2.convenio': 'Tipo de Interambio',
+			   'estudiante.periodo_2': 'Tiempo de Intercambio'}
 
 	#Let's specify a default sort order on date_of_birth column in grid
 	#default_sort_order=[db.contact.date_of_birth]
@@ -1224,5 +1231,33 @@ def lista_postulados():
 	grid = SQLFORM.grid(query=query, left=left, fields=fields, headers=headers, create=False,
 						deletable=False, editable=False, maxtextlength=128, paginate=25,
 						exportclasses=export_classes, details=False)
+	return dict(grid=grid)
+
+def nueva_universidad():
+	db.universidad.id.readable=False
+	query = (db.universidad.id > 0)
+
+	export_classes = dict(csv=False, json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+
+	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
+			  db.universidad.cupos)
+
+	headers = {'universidad.id': 'ID',
+			   'universidad.pais': 'País',
+			   'universidad.nombre': 'Universidad',
+			   'universidad.convenio': 'Tipo de Intercambio',
+			   'universidad.cupos': 'Cupos'}
+
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+
+
+	if grid.create_form or grid.update_form:
+		o = grid.element(_type='submit', _value='%s' % T('Submit'))
+		o['_value'] = "Guardar"
+		#o['_action'] = redirect(URL('nueva_universidad'))
+		#redirect(URL('nueva_universidad'))
+
 	return dict(grid=grid)
 
