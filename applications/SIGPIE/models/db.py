@@ -189,7 +189,7 @@ db.define_table('convenio',
 db.define_table('universidad',
                 Field('pais', db.pais, requires=IS_IN_DB(db, db.pais.id, '%(nombre)s'), label='Pais Seleccionado'),
                 Field('nombre', 'string', requires=IS_NOT_EMPTY(), label='Universidad Seleccionada'),
-                Field('convenio', db.convenio, requires=IS_IN_DB(db, db.convenio.id, '%(nombre)s'), label='Programa de Movilidad'),
+                Field('convenio', db.convenio, requires=IS_IN_DB(db, db.convenio.id, '%(nombre)s'), label='Tipo de Interambio'),
                 Field('cupos', 'integer', default=0),
                 format = '%(nombre)s'
                 )
@@ -234,8 +234,8 @@ db.define_table('estudiante',
                       requires=IS_IN_DB(db, db.datos_intercambio.id)),
 
                 Field('universidad_1', db.universidad,
-                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('periodo_1', 'string', requires=IS_NOT_EMPTY()),
+                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s'), label='Universidad 1era Opcion'),
+                Field('periodo_1', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
 
                 Field('universidad_2', db.universidad,
