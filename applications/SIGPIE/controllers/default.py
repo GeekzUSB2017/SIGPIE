@@ -69,6 +69,7 @@ def index():
 	else:
 		return dict()
 
+@auth.requires_login()
 def administrador():
 	return dict()
 
@@ -1164,6 +1165,7 @@ def logout_cas():
 	session.usuario = None
 	redirect('https://secure.dst.usb.ve/logout')
 
+@auth.requires_login()
 def lista_postulados():
 	db.estudiante.id.readable=False
 	db.estudiante.pasaporte.readable=False
@@ -1236,6 +1238,7 @@ def lista_postulados():
 						exportclasses=export_classes, details=False)
 	return dict(grid=grid)
 
+@auth.requires_login()
 def nueva_universidad():
 	db.universidad.id.readable=False
 	query = (db.universidad.id > 0)
@@ -1264,6 +1267,7 @@ def nueva_universidad():
 
 	return dict(grid=grid)
 
+@auth.requires_login()
 def nuevo_convenio():
 	db.convenio.id.readable=False
 	query = (db.convenio.id > 0)
