@@ -239,8 +239,8 @@ db.define_table('estudiante',
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
 
                 Field('universidad_2', db.universidad,
-                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s')),
-                Field('periodo_2', 'string', requires=IS_NOT_EMPTY()),
+                      requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s'), label='Universidad 2da Opcion'),
+                Field('periodo_2', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
                 format = '%(carnet)s'
