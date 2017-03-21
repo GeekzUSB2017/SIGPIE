@@ -125,6 +125,7 @@
 'Controllers': 'Controladores',
 'controllers': 'controladores',
 'Convenio': 'Convenio',
+
 'Coordinacion': 'Coordinacion',
 'Copyright': 'Copyright',
 'Correo': 'Correo',
@@ -136,6 +137,7 @@
 'Created On': 'Creado En',
 'Creditos Aprob': 'Creditos Aprob',
 'csv': 'csv',
+
 'CSV': 'CSV',
 'CSV (hidden cols)': 'CSV (columnas ocultas)',
 'Cupos': 'Cupos',
@@ -170,6 +172,7 @@
 'Design for': 'Diseño por',
 'detecting': 'detectando',
 'Direccion': 'Direccion',
+
 'direction: ltr': 'direction: ltr',
 'DISK': 'DISCO',
 'Disk Cache Keys': 'Llaves de Caché en Disco',
@@ -192,6 +195,7 @@
 'Editing file "%s"': 'Editando archivo "%s"',
 'El índice debe estar con el formato: x.xxxx': 'El índice debe estar con el formato: x.xxxx',
 'El índice debe estar con el formato: x.xxxx y tener un valor entre 1.0000 - 5.0000': 'El índice debe estar con el formato: x.xxxx y tener un valor entre 1.0000 - 5.0000',
+
 'Email': 'Email',
 'Email and SMS': 'Correo electrónico y SMS',
 'Email sent': 'Correo electrónico enviado',
@@ -244,6 +248,7 @@
 'htmledit': 'htmledit',
 'Id': 'Id',
 'Idioma Destino': 'Idioma Destino',
+
 'Impersonate': 'Suplantar',
 'import': 'importar',
 'Import/Export': 'Importar/Exportar',
@@ -353,6 +358,7 @@
 'Pais': 'Pais',
 'Pais Seleccionado': 'Pais Seleccionado',
 'Pasaporte': 'Pasaporte',
+'Pais Seleccionado': 'Pais Seleccionado',
 'Password': 'Contraseña',
 'Password changed': 'Contraseña cambiada',
 "Password fields don't match": 'Los campos de contraseña no coinciden',
@@ -385,6 +391,7 @@
 'Record ID': 'ID de Registro',
 'Record id': 'Id de registro',
 'Redes': 'Redes',
+
 'Register': 'Regístrese',
 'register': 'regístrese',
 'Registrarse': 'Registrarse',
@@ -439,6 +446,7 @@
 'Telefono Habitacion': 'Telefono Habitacion',
 'Teléfono Celular': 'Teléfono Celular',
 'Teléfono Habitación': 'Teléfono Habitación',
+
 'test': 'probar',
 'Testing application': 'Probando aplicación',
 'The "query" is a condition like "db.table1.field1==\'value\'". Something like "db.table1.field1==db.table2.field2" results in a SQL JOIN.': 'La "consulta" es una condición como "db.tabla1.campo1==\'valor\'". Algo como "db.tabla1.campo1==db.tabla2.campo2" resulta en un JOIN SQL.',
@@ -494,6 +502,8 @@
 'Universidad 1era Opción': 'Universidad 1era Opción',
 'Universidad 1° Opción': 'Universidad 1° Opción',
 'Universidad 2': 'Universidad 2',
+'Universidad 1era Opcion': 'Universidad 1era Opcion',
+
 'Universidad 2da Opcion': 'Universidad 2da Opcion',
 'Universidad Seleccionada': 'Universidad Seleccionada',
 'unknown': 'desconocido',
