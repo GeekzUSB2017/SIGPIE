@@ -243,6 +243,9 @@ db.define_table('estudiante',
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY()),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
+                Field('pagina_1', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('pagina_2', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+
                 format = '%(carnet)s'
                 )
 
