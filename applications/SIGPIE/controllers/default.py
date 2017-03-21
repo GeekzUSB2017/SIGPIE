@@ -11,46 +11,46 @@ from gluon.sqlhtml import ExportClass
 
 
 class ExporterCSVlabel(ExportClass):
-    label = 'CSV (real labels)'
-    file_ext = "csv"
-    content_type = "text/csv"
+	label = 'CSV (real labels)'
+	file_ext = "csv"
+	content_type = "text/csv"
 
-    def __init__(self, rows):
-        ExportClass.__init__(self, rows)
+	def __init__(self, rows):
+		ExportClass.__init__(self, rows)
 
-    def export(self):
-        out = cStringIO.StringIO()
-        final = cStringIO.StringIO()
-        import csv
-        writer = csv.writer(out)
-        if self.rows:
-            import codecs
-            final.write(codecs.BOM_UTF16)
-            header = list()
-            for col in self.rows.colnames:
-                (t, f) = col.split('.')
-                field = self.rows.db[t][f]
-                field_label = field.label # Use the label name instead of database name
-                colname = unicode(field_label).encode("utf8")
-                header.append(colname)
-            writer.writerow(header)
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
-            out.truncate(0)
+	def export(self):
+		out = cStringIO.StringIO()
+		final = cStringIO.StringIO()
+		import csv
+		writer = csv.writer(out)
+		if self.rows:
+			import codecs
+			final.write(codecs.BOM_UTF16)
+			header = list()
+			for col in self.rows.colnames:
+				(t, f) = col.split('.')
+				field = self.rows.db[t][f]
+				field_label = field.label # Use the label name instead of database name
+				colname = unicode(field_label).encode("utf8")
+				header.append(colname)
+			writer.writerow(header)
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
+			out.truncate(0)
 
-        records = self.represented()
-        for row in records:
-            writer.writerow(
-                [str(col).decode('utf8').encode("utf-8") for col in row])
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
+		records = self.represented()
+		for row in records:
+			writer.writerow(
+				[str(col).decode('utf8').encode("utf-8") for col in row])
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
 
-            out.truncate(0)
-        return str(final.getvalue())
+			out.truncate(0)
+		return str(final.getvalue())
 
 ######################################
 #            NO BORRAR               #
@@ -1187,8 +1187,8 @@ def lista_postulados():
 	db.informacion_academica.id.readable=False
 
 	export_classes = dict(csv=(ExporterCSVlabel, 'CSV'), json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
 	query = (db.estudiante.completo == True)
 
@@ -1246,8 +1246,8 @@ def nueva_universidad():
 	query = (db.universidad.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
 			  db.universidad.cupos)
@@ -1275,8 +1275,8 @@ def nuevo_convenio():
 	query = (db.convenio.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.convenio.id, db.convenio.nombre)
 
@@ -1319,10 +1319,11 @@ def expediente():
 		#Queries para llenar los campos del formulario
 		
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
-		
+		recaudos = db(db.recaudos.estudiante == estudiante.id).select().first()
 		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
 		manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
 		idioma = db(db.idioma.id == estudiante.idioma_destino).select().first()
+		print "HIASDJOIASD"
 		universidad1 = db(db.universidad.id == estudiante.universidad_1).select().first()
 		pais1 = db(db.pais.id == universidad1.pais).select().first()
 		convenio1 = db(db.convenio.id == universidad1.convenio).select().first()
