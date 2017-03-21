@@ -6,8 +6,52 @@ from applications.SIGPIE.modules.ubsutils import random_key
 import datetime
 
 URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
+import cStringIO
+import csv
+from gluon.sqlhtml import ExportClass
 
 
+class ExporterCSVlabel(ExportClass):
+    label = 'CSV (real labels)'
+    file_ext = "csv"
+    content_type = "text/csv"
+
+    def __init__(self, rows):
+        ExportClass.__init__(self, rows)
+
+    def export(self):
+        out = cStringIO.StringIO()
+        final = cStringIO.StringIO()
+        import csv
+        writer = csv.writer(out)
+        if self.rows:
+            import codecs
+            final.write(codecs.BOM_UTF16)
+            header = list()
+            for col in self.rows.colnames:
+                (t, f) = col.split('.')
+                field = self.rows.db[t][f]
+                field_label = field.label # Use the label name instead of database name
+                colname = unicode(field_label).encode("utf8")
+                header.append(colname)
+            writer.writerow(header)
+            data = out.getvalue().decode("utf8")
+            data = data.encode("utf-16")
+            data = data[2:]
+            final.write(data)
+            out.truncate(0)
+
+        records = self.represented()
+        for row in records:
+            writer.writerow(
+                [str(col).decode('utf8').encode("utf-8") for col in row])
+            data = out.getvalue().decode("utf8")
+            data = data.encode("utf-16")
+            data = data[2:]
+            final.write(data)
+
+            out.truncate(0)
+        return str(final.getvalue())
 
 ######################################
 #            NO BORRAR               #
@@ -1116,3 +1160,104 @@ def login_cas():
 def logout_cas():
 	session.usuario = None
 	redirect('https://secure.dst.usb.ve/logout')
+
+def lista_postulados():
+	db.estudiante.id.readable=False
+	db.estudiante.pasaporte.readable=False
+	db.estudiante.genero.readable=False
+	db.estudiante.nacionalidad.readable=False
+	db.estudiante.direccion.readable=False
+	db.estudiante.completo.readable=False
+	db.estudiante.contacto_emergencia.readable=False
+	db.estudiante.idioma_destino.readable=False
+	db.estudiante.redes.readable=False
+	db.estudiante.act_comp.readable=False
+	db.estudiante.op_interc_1.readable=False
+	db.estudiante.op_interc_2.readable=False
+	db.estudiante.actividad_1.readable=False
+	db.estudiante.actividad_2.readable=False
+
+	db.informacion_academica.id.readable=False
+
+	export_classes = dict(csv=(ExporterCSVlabel, 'CSV'), json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
+	query = (db.estudiante.id > 0)
+
+	universidad_2 = db.universidad.with_alias('universidad_2')
+	#Define the fields to show on grid
+	fields = (db.estudiante.id, db.informacion_academica.sede, db.informacion_academica.decanato,
+			  db.carrera.nombre, db.estudiante.carnet, db.estudiante.cedula, db.estudiante.nombres,
+			  db.estudiante.apellidos, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
+			  db.estudiante.Correo, db.informacion_academica.indice, db.informacion_academica.creditos_aprob,
+			  db.estudiante.renuncio, db.universidad.pais, db.estudiante.universidad_1, db.universidad.convenio,
+			  db.estudiante.periodo_1, universidad_2.pais, db.estudiante.universidad_2, universidad_2.convenio,
+			  db.estudiante.periodo_2)
+
+	left = [db.informacion_academica.on(db.informacion_academica.estudiante == db.estudiante.id),
+			db.carrera.on(db.informacion_academica.carrera == db.carrera.id),
+			db.universidad.on(db.estudiante.universidad_1 == db.universidad.id),
+			universidad_2.on(db.estudiante.universidad_2 == universidad_2.id)]
+
+	#Define headers as tuples/dictionaries
+	headers = {'estudiante.id': 'ID',
+			   'informacion_academica.sede': 'Sede',
+			   'informacion_academica.decanato': 'Decanato',
+			   'carrera.nombre': 'Carrera',
+			   'estudiante.carnet': 'Carnet',
+			   'estudiante.cedula': 'C.I.',
+			   'estudiante.nombres': 'Nombres',
+			   'estudiante.apellidos': 'Apellidos',
+			   'estudiante.telefono_celular': 'Telf Celular',
+			   'estudiante.telefono_habitacion': 'Telf Habitación',
+			   'estudiante.Correo': 'Email',
+			   'informacion_academica.indice': 'Índice',
+			   'informacion_academica.creditos_aprob': 'CA',
+			   'estudiante.renuncio': 'Status de Renuncia',
+			   'universidad.pais': 'País 1° Opción',
+			   'estudiante.universidad_1': 'Universidad 1° Opción',
+			   'universidad.convenio': 'Tipo de Interambio',
+			   'estudiante.periodo_1': 'Tiempo de Intercambio',
+			   'universidad_2.pais': 'País 2° Opción',
+			   'estudiante.universidad_2': 'Universidad 2° Opción',
+			   'universidad_2.convenio': 'Tipo de Interambio',
+			   'estudiante.periodo_2': 'Tiempo de Intercambio'}
+
+	#Let's specify a default sort order on date_of_birth column in grid
+	#default_sort_order=[db.contact.date_of_birth]
+
+	#Creating the grid object
+	grid = SQLFORM.grid(query=query, left=left, fields=fields, headers=headers, create=False,
+						deletable=False, editable=False, maxtextlength=128, paginate=25,
+						exportclasses=export_classes, details=False)
+	return dict(grid=grid)
+
+def nueva_universidad():
+	db.universidad.id.readable=False
+	query = (db.universidad.id > 0)
+
+	export_classes = dict(csv=False, json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+
+	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
+			  db.universidad.cupos)
+
+	headers = {'universidad.id': 'ID',
+			   'universidad.pais': 'País',
+			   'universidad.nombre': 'Universidad',
+			   'universidad.convenio': 'Tipo de Intercambio',
+			   'universidad.cupos': 'Cupos'}
+
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+
+
+	if grid.create_form or grid.update_form:
+		o = grid.element(_type='submit', _value='%s' % T('Submit'))
+		o['_value'] = "Guardar"
+		#o['_action'] = redirect(URL('nueva_universidad'))
+		#redirect(URL('nueva_universidad'))
+
+	return dict(grid=grid)
+
