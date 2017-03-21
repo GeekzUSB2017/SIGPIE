@@ -1165,7 +1165,7 @@ def expediente_2():
 
 		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
 		#que el . se usa para decimales
-		f.parse_csv("./applications/SIGPIE/static/formulario_2.csv", ";", ".")
+		f.parse_csv("./applications/SIGPIE/static/prueba.csv", ";", ".")
 
 		#Se agrega una pagina al PDF
 		f.add_page()
@@ -1189,7 +1189,7 @@ def expediente_2():
 		for campo in estudiante:
 			f[campo] = estudiante[campo]
 
-		f["'opc_interc_2'"] = pais_2.nombre
+		f["opc_interc_2"] = pais_2.nombre
 		f["universidad_2"] = universidad_2.nombre
 		f["convenio"] = convenio_2.nombre
 
