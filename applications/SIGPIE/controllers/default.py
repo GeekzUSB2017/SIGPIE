@@ -1149,3 +1149,54 @@ def expediente():
 		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
 	else:
 		redirect(URL('index'))
+
+def expediente_2():
+	if session.usuario is not None:
+		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
+
+		try:
+			from fpdf import Template
+		except:
+			print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
+
+		#Se instancia la plantilla de la pagina 1 del formulario de postulacion
+		f = Template(format="letter",
+					 title="Expediente de Usuario 2")
+
+		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
+		#que el . se usa para decimales
+		f.parse_csv("./applications/SIGPIE/static/formulario_2.csv", ";", ".")
+
+		#Se agrega una pagina al PDF
+		f.add_page()
+
+		##################################################################
+		# REVISAR CUALES CAMPOS PUEDEN SER MULTILINEA Y MODIFICAR EL CSV #
+		##################################################################
+
+		# Estudiante en sesión
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		# Materias asociadas a ese estudiante
+		materias = db(db.materia.fk_estudiante == estudiante.id).select()
+		# Universidad segunda opçión
+		universidad_2 = db(db.universidad.id == estudiante.universidad_2).select().first()
+		# País segunda opción
+		pais_2 = db(db.pais.id == universidad_2.pais).select().first()
+		# Convenio segunda opción
+		convenio_2 = db(db.convenio.id == universidad_2.convenio).select().first()
+
+		# Se empiezan a llenar los campos triviales (que no requieren queries)
+		for campo in estudiante:
+			f[campo] = estudiante[campo]
+
+		f["'opc_interc_2'"] = pais_2.nombre
+		f["universidad_2"] = universidad_2.nombre
+		f["convenio"] = convenio_2.nombre
+
+		#Se renderiza la pagina
+		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
+		stuff.write(f.render("./{0}.pdf".format(estudiante.carnet), 'S'))
+		stuff.close()
+		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
+	else:
+		redirect(URL('index'))
