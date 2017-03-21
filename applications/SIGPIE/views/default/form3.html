@@ -1,5 +1,12 @@
 {{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
 
+
+  <!--link href="{{=URL('static', 'css/form.css')}}" rel="stylesheet"-->
+
+{{end}}
 
 {{block content}}
 <style type="text/css">
@@ -112,3 +119,11 @@
 
 
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+  });
+
+</script>
+{{ end }}
