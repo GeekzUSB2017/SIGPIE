@@ -287,3 +287,4 @@ db.define_table('renuncia',
                 Field('carta_renuncia', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
+
