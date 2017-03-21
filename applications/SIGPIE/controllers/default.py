@@ -1183,7 +1183,7 @@ def lista_postulados():
                           tsv=False, xml=False, csv_with_hidden_cols=False,
                           tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
-	query = (db.estudiante.id > 0)
+	query = (db.estudiante.completo == True)
 
 	universidad_2 = db.universidad.with_alias('universidad_2')
 	#Define the fields to show on grid
