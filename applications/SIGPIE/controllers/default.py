@@ -69,6 +69,9 @@ def index():
 	else:
 		return dict()
 
+def administrador():
+	return dict()
+
 def about():
 	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
@@ -1261,3 +1264,24 @@ def nueva_universidad():
 
 	return dict(grid=grid)
 
+def nuevo_convenio():
+	db.convenio.id.readable=False
+	query = (db.convenio.id > 0)
+
+	export_classes = dict(csv=False, json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+
+	fields = (db.convenio.id, db.convenio.nombre)
+
+	headers = {'convenio.id': 'ID',
+			   'convenio.nombre': 'Nombre'}
+
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+
+
+	if grid.create_form or grid.update_form:
+		o = grid.element(_type='submit', _value='%s' % T('Submit'))
+		o['_value'] = "Guardar"
+
+	return dict(grid=grid)
