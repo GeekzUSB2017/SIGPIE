@@ -82,7 +82,7 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, hmac_key = Auth.get_or_create_key(), controller = "default", function = "user")
-auth.settings.login_next = URL('index')
+auth.settings.login_next = URL('administrador')
 
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
@@ -269,18 +269,18 @@ db.define_table('informacion_academica',
                 )
 
 db.define_table('recaudos',
-                Field('informe_academico', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('carta_motivacion', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('curriculum_vitae', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('comprobante', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('flujograma', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('programas_de_estudio', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('foto', 'upload', requires=IS_UPLOAD_FILENAME(extension='^(png|jpg|jpeg)$', error_message='Formato de archivo inválido')),
-                Field('carnet', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('cedula', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('actividades_extracurriculares', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('informe_academico', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('carta_motivacion', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('curriculum_vitae', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('comprobante', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('flujograma', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('programas_de_estudio', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('foto', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^(png|jpg|jpeg)$', error_message='Formato de archivo inválido'))),
+                Field('carnet', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('cedula', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('actividades_extracurriculares', 'upload', requires=IS_NULL_OR(IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')))),
                 Field('certificado_lengua', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
-                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
+                Field('estudiante', db.estudiante, requires=IS_NULL_OR(IS_IN_DB(db, db.estudiante.id)), writable=False, readable=False)
                 )
 
 db.define_table('renuncia',

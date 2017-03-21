@@ -69,6 +69,10 @@ def index():
 	else:
 		return dict()
 
+@auth.requires_login()
+def administrador():
+	return dict()
+
 def about():
 	if session.usuario is not None:
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
@@ -1161,6 +1165,7 @@ def logout_cas():
 	session.usuario = None
 	redirect('https://secure.dst.usb.ve/logout')
 
+@auth.requires_login()
 def lista_postulados():
 	db.estudiante.id.readable=False
 	db.estudiante.pasaporte.readable=False
@@ -1183,7 +1188,7 @@ def lista_postulados():
                           tsv=False, xml=False, csv_with_hidden_cols=False,
                           tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
-	query = (db.estudiante.id > 0)
+	query = (db.estudiante.completo == True)
 
 	universidad_2 = db.universidad.with_alias('universidad_2')
 	#Define the fields to show on grid
@@ -1233,6 +1238,7 @@ def lista_postulados():
 						exportclasses=export_classes, details=False)
 	return dict(grid=grid)
 
+@auth.requires_login()
 def nueva_universidad():
 	db.universidad.id.readable=False
 	query = (db.universidad.id > 0)
@@ -1261,3 +1267,25 @@ def nueva_universidad():
 
 	return dict(grid=grid)
 
+@auth.requires_login()
+def nuevo_convenio():
+	db.convenio.id.readable=False
+	query = (db.convenio.id > 0)
+
+	export_classes = dict(csv=False, json=False, html=False,
+                          tsv=False, xml=False, csv_with_hidden_cols=False,
+                          tsv_with_hidden_cols=False)
+
+	fields = (db.convenio.id, db.convenio.nombre)
+
+	headers = {'convenio.id': 'ID',
+			   'convenio.nombre': 'Nombre'}
+
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+
+
+	if grid.create_form or grid.update_form:
+		o = grid.element(_type='submit', _value='%s' % T('Submit'))
+		o['_value'] = "Guardar"
+
+	return dict(grid=grid)

@@ -28,7 +28,7 @@
   <div class="col-lg-1 col-md-1 col-md-1"></div>
   <div class="col-lg-10 col-md-10 col-md-10">
     <div>
-      <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png">
+      <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png" alt ="Imagen DRIC-USB">
     </div>
 
 
@@ -41,33 +41,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{=URL('welcome')}}"><span style="color:black;">SIGPIE</span></a>
+          <a class="navbar-brand" href="{{=URL('administrador')}}"><span style="color:black;">SIGPIE</span></a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('about')}}"><span style="color:black;">Información</span></a></li>
-            <li style="font-size: 1em; font-family: Arial"><a href="https://www.internacionales.usb.ve/sites/default/files/PRESENTACION%20DE%20INTERCAMBIO%20Noviembre%202016.pdf" target="_blank"><span style="color:black;">Oferta</span></a></li>
-            <li class="dropdown" style="font-size: 1em; font-family: Arial">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span style="color:black;">Cronograma</span></a>
-              <ul class="dropdown-menu">
-                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Charlas</span></a></li>
-                <li style="font-size: 1em; font-family: Arial"><a href="https://www.internacionales.usb.ve/sites/default/files/Cronograma%20Convocatoria%20PIE%202017%20-%202018%20%2810-10-2016%29%20%282%29.pdf" target="_blank"><span style="color:black;">Fechas de interés</span></a></li>
-              </ul>
-            </li>
-            <li style="font-size: 1em; font-family: Arial" class= "dropdown">
-            <a href=""  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="color:black;">Postularse</span></a>
-              <ul class="dropdown-menu">
-                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Ver postulacion</span></a></li>
-                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Editar postulación</span></a></li>
-              </ul>
-            </li>
-            {{if estudiante.completo == True:}}
-                <li><a id="renuncia" class="btn-warning" href="{{=URL('renuncia')}}"><span style="color:black;">Renunciar</span></a></li>
-            {{pass}}
+            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('lista_postulados')}}"><span style="color:black;">Gestionar Estudiantes</span></a></li>
+            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('nueva_universidad')}}"><span style="color:black;">Gestionar Universidades</span></a></li>
+            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('nuevo_convenio')}}"><span style="color:black;">Gestionar
+            Convenios</span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right btn-xs btn-danger" >
-            <li><a id="logout" href="{{=URL(c='default', f='logout_cas')}}"><span style="color:black;" class="glyphicon glyphicon-log-out">  Cerrar Sesión</span></a></li>
+            <li><a id="logout" href="{{=URL('user/logout')}}"><span style="color:black;" class="glyphicon glyphicon-log-out"> Cerrar Sesión</span></a></li>
           </ul>
         </div>
       </div>
@@ -80,6 +65,7 @@
     <div class="col-lg-1 col-md-1 col-md-1"></div>
     <div class="col-lg-10 col-md-10 col-md-10">
       {{ block content }}
+      <h2><span style = "text-align: center"> Bienvenido Administrador</span></h2>
       {{ end }}
     </div>
     <div class="col-lg-1 col-md-1 col-md-1"></div>
@@ -103,8 +89,7 @@
     <script src="{{=URL('static', 'js/jquery.js')}}"></script>
     <script src="{{=URL('static', 'js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static', 'js/holder.min.js')}}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-    <!-- <script src="{{=URL('static', 'js/web2py.js')}}"></script> -->
+    <script src="{{=URL('static', 'js/web2py.js')}}"></script>
     <script src="{{=URL('static', 'js/modernizr-2.8.3.min.js')}}"></script>
 
   {{end}}
