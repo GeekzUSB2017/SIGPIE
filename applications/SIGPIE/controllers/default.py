@@ -137,14 +137,15 @@ def postularse():
 					Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', zero='Seleccione un idioma',error_message='Debe completar este campo'), label='Idioma'),
-					Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Oral:'),
-					Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Escrito:'),
-					Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Lectura:'),
+					Field('oral','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Oral:'),
+					Field('escrito','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Escrito:'),
+					Field('lectura','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Lectura:'),
 					Field('redes_sociales', 'string', label='Redes sociales'),
 					Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo', zero='Seleccione una relación'),label='Relación con el estudiante'),
+					Field('relacion_otro', 'string', required=False, label='Indique la relación'),
 					Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
@@ -183,6 +184,7 @@ def postularse():
 				form.vars.apellidos_cont = contacto_emergencia.apellidos
 				form.vars.direccion_cont = contacto_emergencia.direccion
 				form.vars.relacion_cont = contacto_emergencia.relacion
+				form.vars.relacion_otro = contacto_emergencia.relacion_otro
 				form.vars.telefono_habitacion_cont = contacto_emergencia.telefono_habitacion
 				form.vars.telefono_celular_cont = contacto_emergencia.telefono_celular
 				form.vars.correo_cont = contacto_emergencia.Correo
@@ -210,6 +212,7 @@ def postularse():
 								(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
 								(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
 								(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
+								(db.contacto_emergencia.relacion_otro == form.vars.relacion_otro) &
 								(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
 								(db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont) &
 								(db.contacto_emergencia.Correo == form.vars.correo_cont)
@@ -223,6 +226,7 @@ def postularse():
 									apellidos=form.vars.apellidos_cont,
 									direccion=form.vars.direccion_cont,
 									relacion=form.vars.relacion_cont,
+									relacion_otro=form.vars.relacion_otro,
 									telefono_habitacion=form.vars.telefono_habitacion_cont,
 									telefono_celular=form.vars.telefono_celular_cont,
 									Correo=form.vars.correo_cont)

@@ -183,8 +183,9 @@
           <!--Campo extra para agregar la relacion al estudiante falta linkear con la base-->
           <div class="form-group" id="otra_relacion">
             <label style="color:black;" for="relacion_contact">Indique la relación:<span style="color:red;">*</span></label>
-            <input type="text" name="" class="form-control string">
-            
+            {{form_estudiante.custom.widget.relacion_otro.update(_placeholder="Ej: Primo/Prima")}}
+            {{=form_estudiante.custom.widget.relacion_otro}}
+
           </div>
 
           <!--Tlf de habitacion de contacto-->
@@ -235,27 +236,29 @@
 {{ block custom_script }}
 <script>
   $(document).ready(function() {
+    if($("#no_table_idioma_destino").val() == "8"){
+      $("#campos_idioma").hide();
+    }
+    if ($("#no_table_relacion_cont").val() == "Otro"){
+      $("#otra_relacion").show();
+    }
 
-    $("#otra_relacion").hide();
-    $("#campos_idioma").hide();
-    
     $("#no_table_idioma_destino").change(function(){
       if ($(this).val() == "8"){
         $("#campos_idioma").hide();
-        }
-        else{
-          $("#campos_idioma").show();
-        };
+      }
+      else{
+        $("#campos_idioma").show();
+      };
     });
 
     $("#no_table_relacion_cont").change(function(){
       if ($(this).val() == "Otro"){
         $("#otra_relacion").show();
-        }
-        else{
-          
+      }
+      else{
         $("#otra_relacion").hide();
-        }; 
+      };
 
     });
 
