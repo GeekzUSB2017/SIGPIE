@@ -1,0 +1,43 @@
+{{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+
+{{end}}
+
+{{block content}}
+
+<style>
+.button {
+    background-color: white; 
+    border: 2px solid orange;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.button:hover {
+    background-color: orange;
+    color: black;
+}
+</style>
+
+<div class="container-fluid">
+    <div class="row" id="pwd-container">
+      <div class="col-lg-3 col-md-3 col-xs-offset-1">
+      </div>
+      <a href="{{=URL('expediente')}}" class="button" style="vertical-align:middle" role="button"><span class="glyphicon glyphicon-folder-open"> Consultar Postulación</span> </a>    
+    </div>
+    <br>
+    <div class="row" id="pwd-container">
+      <div class="col-lg-3 col-md-3 col-xs-offset-1">
+      </div>
+      <a href="{{=URL('postularse')}}" class="button" style="vertical-align:middle" role="button"><span class="glyphicon glyphicon-pencil"> Modificar Postulación</span></a>
+    </div>
+</div>
+
+{{end}}

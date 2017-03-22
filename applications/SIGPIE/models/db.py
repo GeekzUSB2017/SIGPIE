@@ -129,6 +129,7 @@ db.define_table('contacto_emergencia',
                 Field('apellidos', 'string', requires=IS_NOT_EMPTY()),
                 Field('direccion', 'string', requires=IS_NOT_EMPTY()),
                 Field('relacion', 'string', requires=IS_NOT_EMPTY()),
+                Field('relacion_otro', 'string', required=False),
                 Field('telefono_habitacion', requires=IS_MATCH('^[0-9]{11}$',
                                                                error_message='No es un telefono de habitacion')),
                 Field('telefono_celular', requires=IS_MATCH('^[0-9]{11}$',
@@ -243,6 +244,9 @@ db.define_table('estudiante',
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
+                Field('pagina_1', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('pagina_2', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+
                 format = '%(carnet)s'
                 )
 
@@ -265,25 +269,27 @@ db.define_table('informacion_academica',
                       requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera')),
                 Field('decanato', db.decanato,
                       requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione el decanato')),
+                Field('postgrado_nombre', 'string', required=False),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
 
 db.define_table('recaudos',
-                Field('informe_academico', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('carta_motivacion', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('curriculum_vitae', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('comprobante', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('flujograma', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('programas_de_estudio', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('foto', 'upload', requires=IS_UPLOAD_FILENAME(extension='^(png|jpg|jpeg)$', error_message='Formato de archivo inválido')),
-                Field('carnet', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('cedula', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
-                Field('actividades_extracurriculares', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('informe_academico', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('carta_motivacion', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('curriculum_vitae', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('comprobante', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('flujograma', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('programas_de_estudio', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('foto', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^(png|jpg|jpeg)$', error_message='Formato de archivo inválido'))),
+                Field('carnet', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('cedula', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
+                Field('actividades_extracurriculares', 'upload', requires=IS_NULL_OR(IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')))),
                 Field('certificado_lengua', 'upload', requires=IS_NULL_OR(IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido'))),
-                Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
+                Field('estudiante', db.estudiante, requires=IS_NULL_OR(IS_IN_DB(db, db.estudiante.id)), writable=False, readable=False)
                 )
 
 db.define_table('renuncia',
                 Field('carta_renuncia', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
+

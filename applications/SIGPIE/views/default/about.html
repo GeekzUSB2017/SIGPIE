@@ -39,9 +39,11 @@
                 <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Fechas de interés</span></a></li>
               </ul>
             </li>
-            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Postularse</span></a></li>
             {{if estudiante.completo == True:}}
+                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postulacion_finalizada')}}"><span style="color:black;">Postularse</span></a></li>
                 <li><a id="renuncia" class="btn-warning" href="{{=URL('renuncia')}}"><span style="color:black;">Renunciar</span></a></li>
+            {{else:}}
+                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Postularse</span></a></li>
             {{pass}}
           </ul>
           <ul class="nav navbar-nav navbar-right btn-xs btn-danger" >

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
@@ -12,56 +11,59 @@ from gluon.sqlhtml import ExportClass
 
 
 class ExporterCSVlabel(ExportClass):
-    label = 'CSV (real labels)'
-    file_ext = "csv"
-    content_type = "text/csv"
+	label = 'CSV (real labels)'
+	file_ext = "csv"
+	content_type = "text/csv"
 
-    def __init__(self, rows):
-        ExportClass.__init__(self, rows)
+	def __init__(self, rows):
+		ExportClass.__init__(self, rows)
 
-    def export(self):
-        out = cStringIO.StringIO()
-        final = cStringIO.StringIO()
-        import csv
-        writer = csv.writer(out)
-        if self.rows:
-            import codecs
-            final.write(codecs.BOM_UTF16)
-            header = list()
-            for col in self.rows.colnames:
-                (t, f) = col.split('.')
-                field = self.rows.db[t][f]
-                field_label = field.label # Use the label name instead of database name
-                colname = unicode(field_label).encode("utf8")
-                header.append(colname)
-            writer.writerow(header)
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
-            out.truncate(0)
+	def export(self):
+		out = cStringIO.StringIO()
+		final = cStringIO.StringIO()
+		import csv
+		writer = csv.writer(out)
+		if self.rows:
+			import codecs
+			final.write(codecs.BOM_UTF16)
+			header = list()
+			for col in self.rows.colnames:
+				(t, f) = col.split('.')
+				field = self.rows.db[t][f]
+				field_label = field.label # Use the label name instead of database name
+				colname = unicode(field_label).encode("utf8")
+				header.append(colname)
+			writer.writerow(header)
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
+			out.truncate(0)
 
-        records = self.represented()
-        for row in records:
-            writer.writerow(
-                [str(col).decode('utf8').encode("utf-8") for col in row])
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
+		records = self.represented()
+		for row in records:
+			writer.writerow(
+				[str(col).decode('utf8').encode("utf-8") for col in row])
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
 
-            out.truncate(0)
-        return str(final.getvalue())
+			out.truncate(0)
+		return str(final.getvalue())
 
 ######################################
 #            NO BORRAR               #
 ######################################
 def user():
-    return dict(login=auth.login())
+	return dict(login=auth.login())
 
 def register():
-    return dict(form=auth.register())
+	return dict(form=auth.register())
 ######################################
+def expediente():
+	return dict()
+
 
 def index():
 	if session.usuario is not None:
@@ -69,6 +71,7 @@ def index():
 	else:
 		return dict()
 
+@auth.requires_login()
 def administrador():
 	return dict()
 
@@ -101,7 +104,7 @@ def renuncia():
 					response.flash = 'No ha completado el formulario'
 					redirect(URL(renuncia))
 
-			return dict(form_renuncia = form)
+			return dict(form_renuncia = form, estudiante = estudiante)
 	else:
 		redirect(URL('index'))
 
@@ -130,7 +133,7 @@ def postularse():
 					Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo válido')),
+													  error_message='No es un correo válido')),
 					Field('pasaporte','string', label='Pasaporte', requires=IS_MATCH('^[0-9]{9}$', error_message='No es un pasaporte válido')),
 					Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo', zero = 'Seleccione un género'), label='Género'),
 					Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -147,7 +150,7 @@ def postularse():
 					Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo valido')))
+													  error_message='No es un correo valido')))
 
 			# Obtener el manejo del idioma que haga match con el estudiante en sesión
 			manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
@@ -241,6 +244,9 @@ def postularse():
 			return dict(form_estudiante = form, estudiante = estudiante)
 	else:
 		redirect(URL('index'))
+
+def postulacion_finalizada():
+	return dict()
 
 def user():
 	return dict(login=auth.login())
@@ -1102,7 +1108,6 @@ def documentos():
 def login_cas():
 
 	if not request.vars.getfirst('ticket'):
-		#redirect(URL('error'))
 		pass
 	try:
 		import urllib2, ssl
@@ -1120,7 +1125,6 @@ def login_cas():
 	except Exception, e:
 		print "Exception: "
 		print e
-		# redirect(URL('error'))
 
 	if the_page[0:2] == "no":
 		pass
@@ -1134,6 +1138,7 @@ def login_cas():
 
 		session.usuario = usuario
 		session.usuario['usbid'] = usbid
+		'''
 		try:
 			pass
 			# print "Información extraida del CAS: "
@@ -1148,6 +1153,7 @@ def login_cas():
 
 		except:
 			print('Excepción')
+		'''
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		if (estudiante != None):
 			if (estudiante.renuncio):
@@ -1164,6 +1170,7 @@ def logout_cas():
 	session.usuario = None
 	redirect('https://secure.dst.usb.ve/logout')
 
+@auth.requires_login()
 def lista_postulados():
 	db.estudiante.id.readable=False
 	db.estudiante.pasaporte.readable=False
@@ -1183,10 +1190,10 @@ def lista_postulados():
 	db.informacion_academica.id.readable=False
 
 	export_classes = dict(csv=(ExporterCSVlabel, 'CSV'), json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
-	query = (db.estudiante.id > 0)
+	query = (db.estudiante.completo == True)
 
 	universidad_2 = db.universidad.with_alias('universidad_2')
 	#Define the fields to show on grid
@@ -1236,13 +1243,14 @@ def lista_postulados():
 						exportclasses=export_classes, details=False)
 	return dict(grid=grid)
 
+@auth.requires_login()
 def nueva_universidad():
 	db.universidad.id.readable=False
 	query = (db.universidad.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
 			  db.universidad.cupos)
@@ -1264,13 +1272,14 @@ def nueva_universidad():
 
 	return dict(grid=grid)
 
+@auth.requires_login()
 def nuevo_convenio():
 	db.convenio.id.readable=False
 	query = (db.convenio.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.convenio.id, db.convenio.nombre)
 
@@ -1285,3 +1294,259 @@ def nuevo_convenio():
 		o['_value'] = "Guardar"
 
 	return dict(grid=grid)
+
+def expediente():
+	if session.usuario is not None:
+		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
+
+		try:
+			from fpdf import Template
+		except:
+			print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
+
+		#Se instancia la plantilla de la pagina 1 del formulario de postulacion
+		f = Template(format="letter",
+					 title="Expediente de Usuario")
+
+		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
+		#que el . se usa para decimales
+		f.parse_csv("./applications/SIGPIE/static/formulario.csv", ";", ".")
+
+		#Se agrega una pagina al PDF
+		f.add_page()
+
+		##################################################################
+		# REVISAR CUALES CAMPOS PUEDEN SER MULTILINEA Y MODIFICAR EL CSV #
+		##################################################################
+
+		#Queries para llenar los campos del formulario
+		
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		recaudos = db(db.recaudos.estudiante == estudiante.id).select().first()
+		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
+		manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
+		idioma = db(db.idioma.id == estudiante.idioma_destino).select().first()
+		print "HIASDJOIASD"
+		universidad1 = db(db.universidad.id == estudiante.universidad_1).select().first()
+		pais1 = db(db.pais.id == universidad1.pais).select().first()
+		convenio1 = db(db.convenio.id == universidad1.convenio).select().first()
+
+
+		#Se empiezan a llenar los campos triviales (que no requieren queries)
+		for campo in estudiante:
+			f[campo] = estudiante[campo]
+
+
+		#Se cargan manualmente los datos de la persona de contacto, idioma, y pais/universidad de destino
+		f["apellidoContacto"] = contacto_emergencia.apellidos
+		f["direccionContacto"] = contacto_emergencia.direccion
+		f["emailContacto"] = contacto_emergencia.Correo
+		f["nombreContacto"] = contacto_emergencia.nombres
+		f["relacionContacto"] = contacto_emergencia.relacion
+		f["tlfoContacto"] = contacto_emergencia.telefono_habitacion + " - " + contacto_emergencia.telefono_celular
+
+		f["idioma_destino"] = idioma.nombre
+		f["nivelOral"] = manejo_idioma.oral
+		f["nivelEscrito"] = manejo_idioma.escrito
+		f["nivelLectura"] = manejo_idioma.lectura
+
+		f["pais1"] = pais1.nombre
+		f["universidad_1"] = universidad1.nombre
+		f["convenio"] = convenio1.nombre
+
+		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
+		f["foto"] = "foto.jpg"
+
+
+
+
+		#Se renderiza la pagina
+		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
+		stuff.write(f.render("./{0}.pdf".format(estudiante.carnet), 'S'))
+		stuff.close()
+		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
+	else:
+		redirect(URL('index'))
+
+def expediente_2():
+	if session.usuario is not None:
+		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
+
+		try:
+			from fpdf import Template
+		except:
+			print "No se ha podido cargar la libreria para la generacion de PDFs: FPDF"
+
+		#Se instancia la plantilla de la pagina 1 del formulario de postulacion
+		f = Template(format="letter",
+					 title="Expediente de Usuario 2")
+
+		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
+		#que el . se usa para decimales
+		f.parse_csv("./applications/SIGPIE/static/prueba.csv", ";", ".")
+
+		#Se agrega una pagina al PDF
+		f.add_page()
+
+		##################################################################
+		# REVISAR CUALES CAMPOS PUEDEN SER MULTILINEA Y MODIFICAR EL CSV #
+		##################################################################
+
+		# Estudiante en sesión
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		# Universidad segunda opçión
+		universidad_2 = db(db.universidad.id == estudiante.universidad_2).select().first()
+		# País segunda opción
+		pais_2 = db(db.pais.id == universidad_2.pais).select().first()
+		# Convenio segunda opción
+		convenio_2 = db(db.convenio.id == universidad_2.convenio).select().first()
+		# Información académica
+		informacion_academica = db(db.informacion_academica.estudiante == estudiante.id).select().first()
+
+		f['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
+		f['creditos'] = informacion_academica.creditos_aprob
+		f['indice'] = informacion_academica.indice
+		f['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
+		f['universidad_2'] = universidad_2.nombre.decode("utf8").encode("latin1")
+		f['convenio'] = convenio_2.nombre.decode("utf8").encode("latin1")
+		f['actividad_2'] = estudiante.actividad_2
+		f['periodo_2'] = estudiante.periodo_2
+
+		materia_1 = db((db.materia.formulario == 1) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_1 != None:
+			f["codigo_usb_1"] = materia_1.codigo_usb
+			f['denominacion_usb_1'] = materia_1.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_1'] = materia_1.creditos_usb
+			f['codigo_ext_1'] = materia_1.codigo_ext
+			f['denominacion_ext_1'] = materia_1.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_1'] = materia_1.numero_horas
+
+		materia_2 = db((db.materia.formulario == 2) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_2 != None:
+			f["codigo_usb_2"] = materia_2.codigo_usb
+			f['denominacion_usb_2'] = materia_2.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_2'] = materia_2.creditos_usb
+			f['codigo_ext_2'] = materia_2.codigo_ext
+			f['denominacion_ext_2'] = materia_2.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_2'] = materia_2.numero_horas
+
+		materia_3 = db((db.materia.formulario == 3) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_3 != None:
+			f["codigo_usb_3"] = materia_3.codigo_usb
+			f['denominacion_usb_3'] = materia_3.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_3'] = materia_3.creditos_usb
+			f['codigo_ext_3'] = materia_3.codigo_ext
+			f['denominacion_ext_3'] = materia_3.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_3'] = materia_3.numero_horas
+
+		materia_4 = db((db.materia.formulario == 4) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_4 != None:
+			f["codigo_usb_4"] = materia_4.codigo_usb
+			f['denominacion_usb_4'] = materia_4.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_4'] = materia_4.creditos_usb
+			f['codigo_ext_4'] = materia_4.codigo_ext
+			f['denominacion_ext_4'] = materia_4.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_4'] = materia_4.numero_horas
+
+		materia_5 = db((db.materia.formulario == 5) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_5 != None:
+			f["codigo_usb_5"] = materia_5.codigo_usb
+			f['denominacion_usb_5'] = materia_5.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_5'] = materia_5.creditos_usb
+			f['codigo_ext_5'] = materia_5.codigo_ext
+			f['denominacion_ext_5'] = materia_5.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_5'] = materia_5.numero_horas
+
+		materia_6 = db((db.materia.formulario == 6) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_6 != None:
+			f["codigo_usb_6"] = materia_6.codigo_usb
+			f['denominacion_usb_6'] = materia_6.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_6'] = materia_6.creditos_usb
+			f['codigo_ext_6'] = materia_6.codigo_ext
+			f['denominacion_ext_6'] = materia_6.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_6'] = materia_6.numero_horas
+
+		materia_7 = db((db.materia.formulario == 7) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_7 != None:
+			f["codigo_usb_7"] = materia_7.codigo_usb
+			f['denominacion_usb_7'] = materia_7.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_7'] = materia_7.creditos_usb
+			f['codigo_ext_7'] = materia_7.codigo_ext
+			f['denominacion_ext_7'] = materia_7.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_7'] = materia_7.numero_horas
+
+		materia_8 = db((db.materia.formulario == 8) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_8 != None:
+			f["codigo_usb_8"] = materia_8.codigo_usb
+			f['denominacion_usb_8'] = materia_8.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_8'] = materia_8.creditos_usb
+			f['codigo_ext_8'] = materia_8.codigo_ext
+			f['denominacion_ext_8'] = materia_8.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_8'] = materia_8.numero_horas
+
+		materia_9 = db((db.materia.formulario == 9) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_9 != None:
+			f["codigo_usb_9"] = materia_9.codigo_usb
+			f['denominacion_usb_9'] = materia_9.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_9'] = materia_9.creditos_usb
+			f['codigo_ext_9'] = materia_9.codigo_ext
+			f['denominacion_ext_9'] = materia_9.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_9'] = materia_9.numero_horas
+
+		materia_10 = db((db.materia.formulario == 10) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_10 != None:
+			f["codigo_usb_10"] = materia_10.codigo_usb
+			f['denominacion_usb_10'] = materia_10.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_10'] = materia_10.creditos_usb
+			f['codigo_ext_10'] = materia_10.codigo_ext
+			f['denominacion_ext_10'] = materia_10.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_10'] = materia_10.numero_horas
+		materia_11 = db((db.materia.formulario == 11) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_11 != None:
+			f["codigo_usb_11"] = materia_11.codigo_usb
+			f['denominacion_usb_11'] = materia_11.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_11'] = materia_11.creditos_usb
+			f['codigo_ext_11'] = materia_11.codigo_ext
+			f['denominacion_ext_11'] = materia_11.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_11'] = materia_11.numero_horas
+
+		materia_12 = db((db.materia.formulario == 12) &
+					(db.materia.fk_estudiante == estudiante.id)).select().first()
+
+		if materia_12 != None:
+			f["codigo_usb_12"] = materia_12.codigo_usb
+			f['denominacion_usb_12'] = materia_12.materia_usb.decode("utf8").encode("latin1")
+			f['creditos_usb_12'] = materia_12.creditos_usb
+			f['codigo_ext_12'] = materia_12.codigo_ext
+			f['denominacion_ext_12'] = materia_12.materia_ext.decode("utf8").encode("latin1")
+			f['creditos_ext_12'] = materia_12.numero_horas
+
+		#Se renderiza la pagina
+		stuff = open("/tmp/{0}.pdf".format(estudiante.carnet), 'w')
+		stuff.write(f.render("./{0}.pdf".format(estudiante.carnet), 'S'))
+		stuff.close()
+		response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
+	else:
+		redirect(URL('index'))
