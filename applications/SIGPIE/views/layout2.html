@@ -1,5 +1,6 @@
+<!-- Html base para las vistas del Estudiante-->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 
 {{block head}}
@@ -22,11 +23,12 @@
 </head>
 
 <body>
+
 {{block navbar}}
 
 <div class="row">
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
-  <div class="col-lg-10 col-md-10 col-md-10">
+  <div class="col-lg-1 col-md-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-xs-10">
     <div>
       <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png">
     </div>
@@ -52,18 +54,14 @@
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span style="color:black;">Cronograma</span></a>
               <ul class="dropdown-menu">
                 <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Charlas</span></a></li>
-                <li style="font-size: 1em; font-family: Arial"><a href="https://www.internacionales.usb.ve/sites/default/files/Cronograma%20Convocatoria%20PIE%202017%20-%202018%20%2810-10-2016%29%20%282%29.pdf" target="_blank"><span style="color:black;">Fechas de interés</span></a></li>
-              </ul>
-            </li>
-            <li style="font-size: 1em; font-family: Arial" class= "dropdown">
-            <a href=""  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="color:black;">Postularse</span></a>
-              <ul class="dropdown-menu">
-                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Ver postulacion</span></a></li>
-                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Editar postulación</span></a></li>
+                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Fechas de interés</span></a></li>
               </ul>
             </li>
             {{if estudiante.completo == True:}}
+                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postulacion_finalizada')}}"><span style="color:black;">Postularse</span></a></li>
                 <li><a id="renuncia" class="btn-warning" href="{{=URL('renuncia')}}"><span style="color:black;">Renunciar</span></a></li>
+            {{else:}}
+                <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Postularse</span></a></li>
             {{pass}}
           </ul>
           <ul class="nav navbar-nav navbar-right btn-xs btn-danger" >
@@ -73,27 +71,28 @@
       </div>
     </nav>
   </div>
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
+  <div class="col-lg-1 col-md-1 col-xs-1"></div>
 </div>
-  {{end}}
+{{end}}
+
   <div class="row">
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
-    <div class="col-lg-10 col-md-10 col-md-10">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-xs-10">
       {{ block content }}
       {{ end }}
     </div>
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
   </div>
 
   {{block footer}}
   <br><br>
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
-    <div class="col-lg-10 col-md-10 col-md-10">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-xs-10">
       <footer>
         <p>&copy; DRIC USB</p>
       </footer>
     </div>
-    <div class="col-lg-1"></div>
+    <div class="col-lg-1 col-md-1 col-xs-1""></div>
   {{end}}
 
   {{block script}}

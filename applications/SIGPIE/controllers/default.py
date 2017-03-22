@@ -246,7 +246,11 @@ def postularse():
 		redirect(URL('index'))
 
 def postulacion_finalizada():
-	return dict()
+	if session.usuario is not None:
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		return dict(estudiante=estudiante)
+	else:
+		redirect(URL('index'))
 
 def user():
 	return dict(login=auth.login())
