@@ -104,7 +104,7 @@ def renuncia():
 					response.flash = 'No ha completado el formulario'
 					redirect(URL(renuncia))
 
-			return dict(form_renuncia = form)
+			return dict(form_renuncia = form, estudiante = estudiante)
 	else:
 		redirect(URL('index'))
 
@@ -1058,51 +1058,22 @@ def documentos():
 				id_docs = form.vars.id
 
 				db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
+				if ( (form.vars.foto != None and form.vars.foto != '') and (form.vars.cedula != None and form.vars.cedula != '')
+						and (form.vars.carnet != None and form.vars.carnet != '') and (form.vars.informe_academico != None and form.vars.informe_academico != '') and (form.vars.comprobante != None and form.vars.comprobante != '') and
+						(form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '') and
+						(form.vars.carta_motivacion != None and form.vars.carta_motivacion != '') and
+						(form.vars.flujograma != None and form.vars.flujograma != '') and (form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '') ):
 
-				db(db.estudiante.id == estudiante.id).update(completo=True)
+						db(db.estudiante.id == estudiante.id).update(completo=True)
+						redirect(URL('welcome'))
 
-				redirect(URL('welcome'))
-
+				redirect(URL('documentos'))
 			elif form.errors:
 				# Si hubo errores en el formulario
+				print("Estoy en Error")
 
-				if recaudo == None:
-					# Si no existe un objeto recaudo para el estudiante lo creo
-					r_id = db.recaudos.insert(estudiante=estudiante)
-				else:
-					# Si ya exite un objeto recaudo para el estudiante lo tomo
-					r_id = recaudo.id
-
-				# Actualizo el objeto recaudo con el archivo suministrado si cumple las condiciones
-				if form.vars.foto != None and form.vars.foto != '' and form.vars.foto.filename.endswith(('png','jpg','jpeg')):
-					db(db.recaudos.id == r_id).update(foto=form.vars.foto)
-
-				if form.vars.cedula != None and form.vars.cedula != '' and form.vars.cedula.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(cedula=form.vars.cedula)
-
-				if form.vars.carnet != None and form.vars.carnet != '' and form.vars.carnet.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(carnet=form.vars.carnet)
-
-				if form.vars.informe_academico != None and form.vars.informe_academico != '' and form.vars.informe_academico.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(informe_academico=form.vars.informe_academico)
-
-				if form.vars.comprobante != None and form.vars.comprobante != '' and form.vars.comprobante.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(comprobante=form.vars.comprobante)
-
-				if form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '' and form.vars.programas_de_estudio.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(programas_de_estudio=form.vars.programas_de_estudio)
-
-				if form.vars.carta_motivacion != None and form.vars.carta_motivacion != '' and form.vars.carta_motivacion.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(carta_motivacion=form.vars.carta_motivacion)
-
-				if form.vars.flujograma != None and form.vars.flujograma != '' and form.vars.flujograma.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(flujograma=form.vars.flujograma)
-
-				if form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '' and form.vars.curriculum_vitae.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(curriculum_vitae=form.vars.curriculum_vitae)
-
-				if form.vars.actividades_extracurriculares != None and form.vars.actividades_extracurriculares != '' and form.vars.actividades_extracurriculares.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(actividades_extracurriculares=form.vars.actividades_extracurriculares)
+			else:
+				print("Falta Completar")
 
 			return dict(form_documentos = form, recaudo = recaudo, idioma = idioma, estudiante = estudiante)
 	else:
