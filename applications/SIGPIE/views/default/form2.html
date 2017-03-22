@@ -16,7 +16,7 @@
 
   <div class="row" id="pwd-container">
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
         {{=form_informacion_academica.custom.begin}}
         <div class="form-group">
           <label style="color:black;" for="sede">Sede Universidad:<span style="color:red;">*</span></label>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
         <div class="form-group">
           <label style="color:black;" for="num_cred">Nº de créditos aprobados hasta la fecha:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.creditos_aprob.update(_placeholder="Su número de créditos aprobados")}}
@@ -56,16 +56,15 @@
 
   <div class="row">
     <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       <a href="{{=URL('postularse')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       </br>
       </br>
       <p align="center"><b>2/5</b></p>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-lg-1 col-md-1" style="float:right;">
+    <div class="col-lg-4 col-md-4 col-xs-4" style="text-align:right;">
       {{form_informacion_academica.custom.submit.update(_value="Siguiente>>")}}
       {{=form_informacion_academica.custom.submit}}
     </div>

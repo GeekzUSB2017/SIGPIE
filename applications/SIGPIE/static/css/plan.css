@@ -13,14 +13,12 @@
 
 #tit1{
     background-color:    #2196F3;
-    padding-left: 60px;
-    padding-right: 75px;
+    text-align: center;
     color:  #000000;
 }
 #tit2{
     background-color:    #2196F3;
-    padding-left: 120px;
-    padding-right: 100px;
+    text-align: center;
     color:  #000000;
 }
 .filas{
@@ -43,5 +41,5 @@
     text-align: center;
 }
 #last{
-    font-size:90% 
+    font-size:90% ;
 }
