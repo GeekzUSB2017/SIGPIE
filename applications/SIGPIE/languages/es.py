@@ -44,6 +44,7 @@
 'Admin is disabled because unsecure channel': 'Admin deshabilitado, el canal no es seguro',
 'Admin language': 'Admin language',
 'Administrative interface': 'Interfaz administrativa',
+'administrative interface': 'administrative interface',
 'Administrative Interface': 'Interfaz Administrativa',
 'administrative interface': 'administrative interface',
 'Administrator Password:': 'Contraseña del Administrador:',
@@ -172,7 +173,6 @@
 'Design for': 'Diseño por',
 'detecting': 'detectando',
 'Direccion': 'Direccion',
-
 'direction: ltr': 'direction: ltr',
 'DISK': 'DISCO',
 'Disk Cache Keys': 'Llaves de Caché en Disco',
