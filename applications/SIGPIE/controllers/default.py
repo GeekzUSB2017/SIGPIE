@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
 
@@ -12,56 +11,59 @@ from gluon.sqlhtml import ExportClass
 
 
 class ExporterCSVlabel(ExportClass):
-    label = 'CSV (real labels)'
-    file_ext = "csv"
-    content_type = "text/csv"
+	label = 'CSV (real labels)'
+	file_ext = "csv"
+	content_type = "text/csv"
 
-    def __init__(self, rows):
-        ExportClass.__init__(self, rows)
+	def __init__(self, rows):
+		ExportClass.__init__(self, rows)
 
-    def export(self):
-        out = cStringIO.StringIO()
-        final = cStringIO.StringIO()
-        import csv
-        writer = csv.writer(out)
-        if self.rows:
-            import codecs
-            final.write(codecs.BOM_UTF16)
-            header = list()
-            for col in self.rows.colnames:
-                (t, f) = col.split('.')
-                field = self.rows.db[t][f]
-                field_label = field.label # Use the label name instead of database name
-                colname = unicode(field_label).encode("utf8")
-                header.append(colname)
-            writer.writerow(header)
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
-            out.truncate(0)
+	def export(self):
+		out = cStringIO.StringIO()
+		final = cStringIO.StringIO()
+		import csv
+		writer = csv.writer(out)
+		if self.rows:
+			import codecs
+			final.write(codecs.BOM_UTF16)
+			header = list()
+			for col in self.rows.colnames:
+				(t, f) = col.split('.')
+				field = self.rows.db[t][f]
+				field_label = field.label # Use the label name instead of database name
+				colname = unicode(field_label).encode("utf8")
+				header.append(colname)
+			writer.writerow(header)
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
+			out.truncate(0)
 
-        records = self.represented()
-        for row in records:
-            writer.writerow(
-                [str(col).decode('utf8').encode("utf-8") for col in row])
-            data = out.getvalue().decode("utf8")
-            data = data.encode("utf-16")
-            data = data[2:]
-            final.write(data)
+		records = self.represented()
+		for row in records:
+			writer.writerow(
+				[str(col).decode('utf8').encode("utf-8") for col in row])
+			data = out.getvalue().decode("utf8")
+			data = data.encode("utf-16")
+			data = data[2:]
+			final.write(data)
 
-            out.truncate(0)
-        return str(final.getvalue())
+			out.truncate(0)
+		return str(final.getvalue())
 
 ######################################
 #            NO BORRAR               #
 ######################################
 def user():
-    return dict(login=auth.login())
+	return dict(login=auth.login())
 
 def register():
-    return dict(form=auth.register())
+	return dict(form=auth.register())
 ######################################
+def expediente():
+	return dict()
+
 
 def index():
 	if session.usuario is not None:
@@ -131,7 +133,7 @@ def postularse():
 					Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo válido')),
+													  error_message='No es un correo válido')),
 					Field('pasaporte','string', label='Pasaporte', requires=IS_MATCH('^[0-9]{9}$', error_message='No es un pasaporte válido')),
 					Field('genero','string', requires=IS_IN_SET(generos, error_message='Debe completar este campo', zero = 'Seleccione un género'), label='Género'),
 					Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
@@ -149,7 +151,7 @@ def postularse():
 					Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
-	                                                  error_message='No es un correo valido')))
+													  error_message='No es un correo valido')))
 
 			# Obtener el manejo del idioma que haga match con el estudiante en sesión
 			manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
@@ -1109,7 +1111,6 @@ def documentos():
 def login_cas():
 
 	if not request.vars.getfirst('ticket'):
-		#redirect(URL('error'))
 		pass
 	try:
 		import urllib2, ssl
@@ -1127,7 +1128,6 @@ def login_cas():
 	except Exception, e:
 		print "Exception: "
 		print e
-		# redirect(URL('error'))
 
 	if the_page[0:2] == "no":
 		pass
@@ -1141,6 +1141,7 @@ def login_cas():
 
 		session.usuario = usuario
 		session.usuario['usbid'] = usbid
+		'''
 		try:
 			pass
 			# print "Información extraida del CAS: "
@@ -1155,6 +1156,7 @@ def login_cas():
 
 		except:
 			print('Excepción')
+		'''
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		if (estudiante != None):
 			if (estudiante.renuncio):
@@ -1191,8 +1193,8 @@ def lista_postulados():
 	db.informacion_academica.id.readable=False
 
 	export_classes = dict(csv=(ExporterCSVlabel, 'CSV'), json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 	#Define the query object. Here we are pulling all contacts having date of birth less than 18 Nov 1990
 	query = (db.estudiante.completo == True)
 
@@ -1250,8 +1252,8 @@ def nueva_universidad():
 	query = (db.universidad.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
 			  db.universidad.cupos)
@@ -1279,8 +1281,8 @@ def nuevo_convenio():
 	query = (db.convenio.id > 0)
 
 	export_classes = dict(csv=False, json=False, html=False,
-                          tsv=False, xml=False, csv_with_hidden_cols=False,
-                          tsv_with_hidden_cols=False)
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
 
 	fields = (db.convenio.id, db.convenio.nombre)
 
@@ -1295,3 +1297,4 @@ def nuevo_convenio():
 		o['_value'] = "Guardar"
 
 	return dict(grid=grid)
+

@@ -244,6 +244,9 @@ db.define_table('estudiante',
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),
                 Field('actividad_2', 'string', requires=IS_NOT_EMPTY()),
 
+                Field('pagina_1', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('pagina_2', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+
                 format = '%(carnet)s'
                 )
 
@@ -289,3 +292,4 @@ db.define_table('renuncia',
                 Field('carta_renuncia', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
+
