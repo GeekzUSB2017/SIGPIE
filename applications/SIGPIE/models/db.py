@@ -129,6 +129,7 @@ db.define_table('contacto_emergencia',
                 Field('apellidos', 'string', requires=IS_NOT_EMPTY()),
                 Field('direccion', 'string', requires=IS_NOT_EMPTY()),
                 Field('relacion', 'string', requires=IS_NOT_EMPTY()),
+                Field('relacion_otro', 'string', required=False),
                 Field('telefono_habitacion', requires=IS_MATCH('^[0-9]{11}$',
                                                                error_message='No es un telefono de habitacion')),
                 Field('telefono_celular', requires=IS_MATCH('^[0-9]{11}$',
@@ -268,6 +269,7 @@ db.define_table('informacion_academica',
                       requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera')),
                 Field('decanato', db.decanato,
                       requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione el decanato')),
+                Field('postgrado_nombre', 'string', required=False),
                 Field('estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id), writable=False, readable=False)
                 )
 
