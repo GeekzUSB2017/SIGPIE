@@ -1,132 +1,144 @@
-'actividad_2','T',50.20,203.60,132.40,208.50,'Arial',8,False,False,False,0,0,'L','',0,
-'actividad_label','T',11.10,203.60,46.80,208.50,'Arial',8,False,False,False,0,0,'I','26. Actividad Acad\xe9mica:',0,
-'asignaturasDestino_label','T',116.80,48.80,193.00,53.80,'Arial',8,False,False,False,0,0,'L','22. Asignaturas a cursar en la universidad destino:',0,
-'asignaturasUSB_label','T',10.10,49.20,86.40,54.20,'Arial',8,False,False,False,0,0,'L','21. Asignaturas del Plan de Estudio USB que aspira sean convalidadas u otorgadas en equivalencia',0,
-'cajaCreditos','B',8.90,33.00,206.60,47.60,None,0,False,False,False,0,0,'I','',0,
-'cajaEtiquetas21y22','B',8.90,47.50,206.60,58.40,None,0,False,False,False,0,0,'I','',0,
-'cajaInformacionPersonal','B',8.90,14.10,206.50,32.90,None,0,False,False,False,0,0,'I','',0,
-'cajaSegunaOpcion','B',8.90,176.50,206.60,218.20,None,0,False,False,False,0,0,'I','',0,
-'carrera','T',9.90,25.60,92.40,30.60,'Arial',8,False,False,False,0,0,'L','',0,
-'carrera_label','T',9.90,19.70,56.80,24.70,'Arial',8,False,False,False,0,0,'I','17. Carrera que estudia en la USB:',0,
-'codigo_ext_1','T',108.90,68.10,129.40,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_10','T',108.90,142.00,129.40,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_11','T',108.90,150.20,129.40,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_12','T',108.90,158.40,129.40,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_2','T',108.90,76.40,129.40,81.40,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_3','T',108.90,84.70,129.40,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_4','T',108.90,93.00,129.50,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_5','T',108.90,101.30,129.40,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_6','T',108.90,109.60,129.40,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_7','T',108.90,117.40,129.40,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_8','T',108.90,125.60,129.40,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_ext_9','T',108.90,133.80,129.40,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_label','B',8.90,58.30,31.60,66.60,None,0,False,False,False,0,0,'I','C\xf3digo',0,
-'codigo_label_copy','B',107.90,58.30,130.60,66.60,None,0,False,False,False,0,0,'I','C\xf3digo',0,
-'codigo_usb_1','T',10.00,68.10,30.00,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_10','T',10.00,142.00,30.00,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_11','T',10.00,150.20,30.00,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_12','T',10.00,158.40,30.00,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_2','T',10.00,76.40,30.00,81.30,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_3','T',10.00,84.70,30.00,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_4','T',10.00,93.00,30.00,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_5','T',10.00,101.30,30.00,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_6','T',10.00,109.60,30.00,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_7','T',10.00,117.40,30.00,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_8','T',10.00,125.60,30.00,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'codigo_usb_9','T',10.00,133.80,30.00,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'convenio','T',52.20,197.60,134.70,202.20,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos','T',10.00,41.10,92.50,46.10,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_1','T',178.80,68.10,205.40,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_10','T',178.80,142.00,205.40,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_11','T',178.80,150.20,205.40,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_12','T',178.80,158.40,205.40,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_2','T',178.80,76.40,205.40,81.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_3','T',178.80,84.70,205.40,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_4','T',178.80,93.00,205.40,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_5','T',178.80,101.30,205.40,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_6','T',178.80,109.60,205.40,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_7','T',178.80,117.40,205.40,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_8','T',178.80,125.60,205.40,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_ext_9','T',178.80,133.80,205.40,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_label','T',10.10,34.90,63.90,39.90,'Arial',8,False,False,False,0,0,'I','19. N\xb0 de cr\xe9ditos aprobados a la fecha:',0,
-'creditos_label','B',79.10,58.30,107.60,66.50,None,0,False,False,False,0,0,'L','N\xb0 de cr\xe9ditos USB',0,
-'creditos_label_copy','B',178.20,58.30,206.60,66.50,None,0,False,False,False,0,0,'L','N\xb0 de cr\xe9ditos',0,
-'creditos_usb_1','T',80.00,68.10,106.60,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_10','T',80.00,142.00,106.60,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_11','T',80.00,150.20,106.60,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_12','T',80.00,158.40,106.60,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_2','T',80.00,76.40,106.60,81.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_3','T',80.00,84.70,106.60,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_4','T',80.00,93.00,106.60,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_5','T',80.00,101.30,106.60,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_6','T',80.00,109.60,106.60,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_7','T',80.00,117.40,106.60,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_8','T',80.00,125.60,106.60,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'creditos_usb_9','T',80.00,133.80,106.60,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_1','T',131.20,68.10,176.80,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_10','T',131.20,142.00,176.80,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_11','T',131.20,150.20,176.80,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_12','T',131.20,158.40,176.80,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_2','T',131.20,76.40,176.80,81.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_3','T',131.20,84.70,176.80,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_4','T',131.20,93.00,176.80,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_5','T',131.20,101.30,176.80,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_6','T',131.20,109.60,176.80,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_7','T',131.20,117.40,176.80,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_8','T',131.20,125.60,176.80,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_ext_9','T',131.20,133.80,176.80,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_label_copy','B',130.50,58.30,178.20,66.60,None,0,False,False,False,0,0,'I','Denominaci\xf3n',0,
-'denominacion_usb_1','B',31.50,58.30,79.20,66.60,None,0,False,False,False,0,0,'I','Denominaci\xf3n',0,
-'denominacion_usb_1','T',32.40,68.10,78.00,73.10,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_10','T',32.40,142.00,78.00,147.00,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_11','T',32.40,150.20,78.00,155.20,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_12','T',32.40,158.40,78.00,163.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_2','T',32.40,76.40,78.00,81.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_3','T',32.40,84.70,78.00,89.70,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_4','T',32.40,93.00,78.00,98.00,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_5','T',32.40,101.30,78.00,106.30,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_6','T',32.40,109.60,78.00,114.60,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_7','T',32.40,117.40,78.00,122.40,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_8','T',32.40,125.60,78.00,130.60,'Arial',8,False,False,False,0,0,'L','',0,
-'denominacion_usb_9','T',32.40,133.80,78.00,138.80,'Arial',8,False,False,False,0,0,'L','',0,
-'fila1','B',8.90,66.50,206.60,74.80,None,0,False,False,False,0,0,'I','',0,
-'fila10','B',8.90,140.30,206.60,148.60,None,0,False,False,False,0,0,'I','',0,
-'fila11','B',8.90,148.50,206.60,156.80,None,0,False,False,False,0,0,'I','',0,
-'fila12','B',8.90,156.70,206.60,165.00,None,0,False,False,False,0,0,'I','',0,
-'fila2','B',8.90,74.70,206.60,83.00,None,0,False,False,False,0,0,'I','',0,
-'fila3','B',8.90,82.90,206.60,91.20,None,0,False,False,False,0,0,'I','',0,
-'fila4','B',8.90,91.10,206.60,99.40,None,0,False,False,False,0,0,'I','',0,
-'fila5','B',8.90,99.30,206.60,107.60,None,0,False,False,False,0,0,'I','',0,
-'fila6','B',8.90,107.50,206.60,115.80,None,0,False,False,False,0,0,'I','',0,
-'fila7','B',8.90,115.70,206.60,124.00,None,0,False,False,False,0,0,'I','',0,
-'fila8','B',8.90,123.90,206.60,132.20,None,0,False,False,False,0,0,'I','',0,
-'fila9','B',8.90,132.10,206.60,140.40,None,0,False,False,False,0,0,'I','',0,
-'firmaEstudiante','T',59.30,169.20,125.10,174.20,'Arial',8,False,False,False,0,0,'L','',0,
-'firmaEstudiante_label','T',11.10,169.20,51.10,174.20,'Arial',8,False,False,False,0,0,'L','Firma del Solicitante:',0,
-'indice','T',116.70,41.10,199.20,46.10,'Arial',8,False,False,False,0,0,'L','',0,
-'indiceNorm_label','T',11.20,254.20,39.80,259.20,'Arial',8,False,False,False,0,0,'I',' \xcdndice normalizado: ',0,
-'indice_label','T',116.70,34.90,170.60,39.90,'Arial',8,False,False,False,0,0,'I','20. \xcdndice acad\xe9mico a la fecha:',0,
-'indice_normalizado','T',44.20,254.20,75.80,259.20,'Arial',8,False,False,False,0,0,'L','',0,
-'informacionAcademica','T',9.80,14.30,49.10,19.30,'Arial',10,True,False,False,0,0,'L','INFORMACI\xd3N ACADEMICA',0,
-'informacionAcademica_copy','T',11.10,178.10,205.40,183.10,'Arial',10,True,False,False,0,0,'L','EN CASO DE NO SER ACEPTADO EN LA UNIVERIDAD SELECCIONADA FAVOR INDIQUE UNA SEGUNDA OPCI\xd3N',0,
-'mencion','T',116.70,25.70,199.20,30.70,'Arial',8,False,False,False,0,0,'L','',0,
-'mencion_label','T',116.70,19.90,170.50,24.90,'Arial',8,False,False,False,0,0,'I','18. Menci\xf3n (en caso que aplique):',0,
-'opc_interc_2','T',29.60,184.70,112.10,189.70,'Arial',8,False,False,False,0,0,'L','',0,
-'opinionCoord','T',108.70,220.20,179.60,225.20,'Arial',8,False,False,False,0,0,'L','',0,
-'opinion_label','T',11.20,220.20,104.00,225.20,'Arial',8,False,False,False,0,0,'I','Opini\xf3 de la Coordinaci\xf3n Docente de Carrera sobre esta solicitud:',0,
-'opinion_linea1','T',11.20,231.20,179.80,236.20,'Arial',8,False,False,False,0,0,'L','',0,
-'opinion_linea2','T',11.20,237.00,179.80,242.00,'Arial',8,False,False,False,0,0,'L','',0,
-'opinion_linea3','T',11.20,242.80,179.80,247.80,'Arial',8,False,False,False,0,0,'L','',0,
-'pais_label','T',11.10,184.70,25.80,189.70,'Arial',8,False,False,False,0,0,'L','23. Pa\xeds:',0,
-'periodo_2','T',127.80,209.90,198.70,214.90,'Arial',8,False,False,False,0,0,'L','',0,
-'periodo_label','T',11.10,209.90,124.00,214.90,'Arial',8,False,False,False,0,0,'I','27. Fechas tentativas de Inicio y Fin, seg\xfan calendario de la Universidad de Destino:',0
-'programa_label','T',11.10,197.60,48.90,202.20,'Arial',8,False,False,False,0,0,'I','25. Nombre del programa:',0,
-'some_name','L',107.80,33.10,107.80,47.40,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy','L',107.70,47.30,107.70,58.40,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy_copy','L',31.55,66.70,31.55,165.00,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy_copy_copy','L',79.00,66.30,79.15,165.00,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy_copy_copy_copy','L',107.80,66.50,107.90,165.00,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy_copy_copy_copy_copy','L',130.40,66.50,130.50,165.00,None,0,False,False,False,0,0,'L','',0,
-'some_name_copy_copy_copy_copy_copy_copy','L',178.00,66.70,178.10,165.00,None,0,False,False,False,0,0,'L','',0,
-'universidad_2','T',53.70,191.10,136.20,196.10,'Arial',8,False,False,False,0,0,'L','',0,
-'universidad_label','T',11.10,191.10,50.40,196.10,'Arial',8,False,False,False,0,0,'I','24. Universidad de destino:',0,
+'actividad_2';'T';50.40;203.80;132.60;208.70;'Arial';8;False;False;False;0;0;'L';'';0;
+'actividad_label';'T';11.30;203.80;47.00;208.70;'Arial';8;False;False;False;0;0;'I';'26. Actividad Acad\xe9mica:';0;
+'asignaturasDestino_label';'T';117.00;49.00;193.20;54.00;'Arial';8;False;False;False;0;0;'L';'22. Asignaturas a cursar en la universidad destino:';0;
+'asignaturasUSB_label';'T';10.30;49.40;86.60;54.40;'Arial';8;False;False;False;0;0;'C';'21. Asignaturas del Plan de Estudio USB que aspira sean convalidadas u otorgadas en equivalencia';0;True
+'cajaCreditos';'B';9.10;33.20;206.80;47.80;None;0;False;False;False;0;0;'I';'';0;
+'cajaEtiquetas21y22';'B';9.20;47.70;206.80;58.60;None;0;False;False;False;0;0;'I';'';0;
+'cajaInformacionPersonal';'B';9.10;14.30;206.70;33.10;None;0;False;False;False;0;0;'I';'';0;
+'cajaSegunaOpcion';'B';9.10;176.70;206.80;218.40;None;0;False;False;False;0;0;'I';'';0;
+'carrera';'T';10.10;25.80;92.60;30.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'carrera_label';'T';10.10;19.90;57.00;24.90;'Arial';8;False;False;False;0;0;'I';'17. Carrera que estudia en la USB:';0;
+'codigoEXT_label';'T';109.70;60.10;129.30;64.80;'Arial';10;True;False;False;0;0;'L';'C\xf3digo';0;
+'codigoUSB_label';'T';10.40;60.10;30.00;65.10;'Arial';10;True;False;False;0;0;'L';'C\xf3digo';0;
+'codigo_ext_1';'T';109.10;68.30;129.60;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_10';'T';109.10;142.20;129.60;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_11';'T';109.10;150.40;129.60;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_12';'T';109.10;158.60;129.60;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_2';'T';109.10;76.60;129.60;81.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_3';'T';109.10;84.90;129.60;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_4';'T';109.10;93.20;129.70;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_5';'T';109.10;101.50;129.60;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_6';'T';109.10;109.80;129.60;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_7';'T';109.10;117.60;129.60;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_8';'T';109.10;125.80;129.60;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_ext_9';'T';109.10;134.00;129.60;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_label';'B';9.10;58.50;31.30;66.80;None;0;False;False;False;0;0;'I';'';0;
+'codigo_label_copy';'B';108.10;58.50;130.50;66.80;None;0;False;False;False;0;0;'I';'';0;
+'codigo_usb_1';'T';10.20;68.30;30.20;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_10';'T';10.20;142.20;30.20;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_11';'T';10.20;150.40;30.20;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_12';'T';10.20;158.60;30.20;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_2';'T';10.20;76.60;30.20;81.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_3';'T';10.20;84.90;30.20;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_4';'T';10.20;93.20;30.20;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_5';'T';10.20;101.50;30.20;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_6';'T';10.20;109.80;30.20;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_7';'T';10.20;117.60;30.20;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_8';'T';10.20;125.80;30.20;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'codigo_usb_9';'T';10.20;134.00;30.20;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'convenio';'T';52.40;197.80;134.90;202.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos';'T';10.20;41.30;92.70;46.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditosEXT_label';'T';179.50;60.10;205.20;65.00;'Arial';10;True;False;False;0;0;'L';'N\xb0 de cr\xe9ditos';0;
+'creditosUSB_label';'T';79.80;60.10;107.40;65.10;'Arial';8;True;False;False;0;0;'L';'N\xb0 de cr\xe9ditos USB';0;
+'creditos_ext_1';'T';179.00;68.30;205.60;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_10';'T';179.00;142.20;205.60;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_11';'T';179.00;150.40;205.60;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_12';'T';179.00;158.60;205.60;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_2';'T';179.00;76.60;205.60;81.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_3';'T';179.00;84.90;205.60;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_4';'T';179.00;93.20;205.60;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_5';'T';179.00;101.50;205.60;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_6';'T';179.00;109.80;205.60;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_7';'T';179.00;117.60;205.60;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_8';'T';179.00;125.80;205.60;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_ext_9';'T';179.00;134.00;205.60;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_label';'T';10.30;35.10;64.10;40.10;'Arial';8;False;False;False;0;0;'I';'19. N\xb0 de cr\xe9ditos aprobados a la fecha:';0;
+'creditos_label';'B';78.90;58.50;107.80;66.70;None;0;False;False;False;0;0;'L';'';0;
+'creditos_label_copy';'B';178.20;58.50;206.80;66.70;None;0;False;False;False;0;0;'L';'';0;
+'creditos_usb_1';'T';80.20;68.30;106.80;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_10';'T';80.20;142.20;106.80;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_11';'T';80.20;150.40;106.80;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_12';'T';80.20;158.60;106.80;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_2';'T';80.20;76.60;106.80;81.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_3';'T';80.20;84.90;106.80;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_4';'T';80.20;93.20;106.80;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_5';'T';80.20;101.50;106.80;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_6';'T';80.20;109.80;106.80;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_7';'T';80.20;117.60;106.80;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_8';'T';80.20;125.80;106.80;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'creditos_usb_9';'T';80.20;134.00;106.80;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacionEXT_label';'T';132.10;60.10;177.50;65.10;'Arial';10;True;False;False;0;0;'L';'Denominaci\xf3n';0;
+'denominacionUSB_label';'T';32.50;60.10;78.00;65.00;'Arial';10;True;False;False;0;0;'L';'Denominaci\xf3n';0;
+'denominacion_ext_1';'T';131.40;68.30;177.00;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_10';'T';131.40;142.20;177.00;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_11';'T';131.40;150.40;177.00;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_12';'T';131.40;158.60;177.00;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_2';'T';131.40;76.60;177.00;81.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_3';'T';131.40;84.90;177.00;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_4';'T';131.40;93.20;177.00;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_5';'T';131.40;101.50;177.00;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_6';'T';131.40;109.80;177.00;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_7';'T';131.40;117.60;177.00;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_8';'T';131.40;125.80;177.00;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_ext_9';'T';131.40;134.00;177.00;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_label_copy';'B';130.50;58.50;178.20;66.80;None;0;False;False;False;0;0;'I';'';0;
+'denominacion_usb_1';'B';31.30;58.50;78.90;66.80;None;0;False;False;False;0;0;'I';'';0;
+'denominacion_usb_1';'T';32.60;68.30;78.20;73.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_10';'T';32.60;142.20;78.20;147.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_11';'T';32.60;150.40;78.20;155.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_12';'T';32.60;158.60;78.20;163.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_2';'T';32.60;76.60;78.20;81.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_3';'T';32.60;84.90;78.20;89.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_4';'T';32.60;93.20;78.20;98.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_5';'T';32.60;101.50;78.20;106.50;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_6';'T';32.60;109.80;78.20;114.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_7';'T';32.60;117.60;78.20;122.60;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_8';'T';32.60;125.80;78.20;130.80;'Arial';8;False;False;False;0;0;'L';'';0;
+'denominacion_usb_9';'T';32.60;134.00;78.20;139.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'fecha';'T';153.10;169.40;206.20;174.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'fechaCoord';'T';179.40;263.00;207.00;268.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'fechaCoord_label';'T';156.60;263.00;177.20;268.00;'Arial';8;False;False;False;0;0;'L';'Fecha:';0;
+'fecha_label';'T';118.10;169.40;150.40;174.40;'Arial';8;False;False;False;0;0;'L';'Fecha de la solicitud:';0;
+'fila1';'B';9.10;66.70;206.80;75.00;None;0;False;False;False;0;0;'I';'';0;
+'fila10';'B';9.10;140.50;206.80;148.80;None;0;False;False;False;0;0;'I';'';0;
+'fila11';'B';9.10;148.70;206.80;157.00;None;0;False;False;False;0;0;'I';'';0;
+'fila12';'B';9.10;156.90;206.80;165.20;None;0;False;False;False;0;0;'I';'';0;
+'fila2';'B';9.10;74.90;206.80;83.20;None;0;False;False;False;0;0;'I';'';0;
+'fila3';'B';9.10;83.10;206.80;91.40;None;0;False;False;False;0;0;'I';'';0;
+'fila4';'B';9.10;91.30;206.80;99.60;None;0;False;False;False;0;0;'I';'';0;
+'fila5';'B';9.10;99.50;206.80;107.80;None;0;False;False;False;0;0;'I';'';0;
+'fila6';'B';9.10;107.70;206.80;116.00;None;0;False;False;False;0;0;'I';'';0;
+'fila7';'B';9.10;115.90;206.80;124.20;None;0;False;False;False;0;0;'I';'';0;
+'fila8';'B';9.10;124.10;206.80;132.40;None;0;False;False;False;0;0;'I';'';0;
+'fila9';'B';9.10;132.30;206.80;140.60;None;0;False;False;False;0;0;'I';'';0;
+'firmaCoord';'T';92.60;263.00;152.40;268.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'firmaCoord_label';'T';11.30;263.00;90.60;268.00;'Arial';8;False;False;False;0;0;'L';'Firma y Sello de la Coordinaci\xf3n Docente de Carrera:';0;
+'firmaEstudiante';'T';55.70;169.40;108.80;174.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'firmaEstudiante_label';'T';11.30;169.40;51.30;174.40;'Arial';8;False;False;False;0;0;'L';'Firma del Solicitante:';0;
+'indice';'T';116.90;41.10;199.40;46.10;'Arial';8;False;False;False;0;0;'L';'';0;
+'indiceNorm_label';'T';11.40;254.40;40.00;259.40;'Arial';8;False;False;False;0;0;'I';' \xcdndice normalizado: ';0;
+'indice_label';'T';116.90;35.10;170.80;40.10;'Arial';8;False;False;False;0;0;'I';'20. \xcdndice acad\xe9mico a la fecha:';0;
+'indice_normalizado';'T';44.40;254.40;76.00;259.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'informacionAcademica';'T';10.00;15.00;49.30;19.50;'Arial';10;True;False;False;0;0;'L';'INFORMACI\xd3N ACAD\xc9MICA';0;
+'informacionAcademica_copy';'T';11.30;178.30;205.60;183.30;'Arial';10;True;False;False;0;0;'L';'EN CASO DE NO SER ACEPTADO EN LA UNIVERIDAD SELECCIONADA FAVOR INDIQUE UNA SEGUNDA OPCI\xd3N';0;
+'linea_1';'L';108.00;33.10;108.00;47.40;None;0;False;False;False;0;0;'L';'';0;
+'linea_1';'L';107.90;47.50;107.90;58.60;None;0;False;False;False;0;0;'L';'';0;
+'linea_3';'L';31.45;66.60;31.45;164.90;None;0;False;False;False;0;0;'L';'';0;
+'linea_4';'L';79.00;66.50;79.15;165.20;None;0;False;False;False;0;0;'L';'';0;
+'linea_5';'L';108.00;66.70;108.10;165.20;None;0;False;False;False;0;0;'L';'';0;
+'linea_6';'L';130.60;66.70;130.70;165.20;None;0;False;False;False;0;0;'L';'';0;
+'linea_7';'L';178.20;66.90;178.30;165.20;None;0;False;False;False;0;0;'L';'';0;
+'mencion';'T';116.90;25.90;199.40;30.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'mencion_label';'T';116.90;20.10;170.70;25.10;'Arial';8;False;False;False;0;0;'I';'18. Menci\xf3n (en caso que aplique):';0;
+'opc_interc_2';'T';29.80;184.90;112.30;189.90;'Arial';8;False;False;False;0;0;'L';'';0;
+'opinionCoord';'T';108.90;220.40;179.80;225.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'opinion_label';'T';11.40;220.40;104.20;225.40;'Arial';8;False;False;False;0;0;'I';'Opini\xf3 de la Coordinaci\xf3n Docente de Carrera sobre esta solicitud:';0;
+'opinion_linea1';'T';11.40;231.40;180.00;236.40;'Arial';8;False;False;False;0;0;'L';'';0;
+'opinion_linea2';'T';11.40;237.20;180.00;242.20;'Arial';8;False;False;False;0;0;'L';'';0;
+'opinion_linea3';'T';11.40;243.00;180.00;248.00;'Arial';8;False;False;False;0;0;'L';'';0;
+'pais_label';'T';11.30;184.90;26.00;189.90;'Arial';8;False;False;False;0;0;'L';'23. Pa\xeds:';0;
+'periodo_2';'T';128.00;210.10;198.90;215.10;'Arial';8;False;False;False;0;0;'L';'';0;
+'periodo_label';'T';11.30;210.10;124.20;215.10;'Arial';8;False;False;False;0;0;'I';'27. Fechas tentativas de Inicio y Fin  seg\xfan calendario de la Universidad de Destino:';0;
+'programa_label';'T';11.30;197.80;49.10;202.40;'Arial';8;False;False;False;0;0;'I';'25. Nombre del programa:';0;
+'universidad_2';'T';53.90;191.30;136.40;196.30;'Arial';8;False;False;False;0;0;'L';'';0;
+'universidad_label';'T';11.30;191.30;50.60;196.30;'Arial';8;False;False;False;0;0;'I';'24. Universidad de destino:';0;

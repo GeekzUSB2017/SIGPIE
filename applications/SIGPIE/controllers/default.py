@@ -1387,7 +1387,7 @@ def expediente_2():
 
 		#Se carga la plantilla en formato csv, se especifica que los campos se separaran por ; y
 		#que el . se usa para decimales
-		f.parse_csv("./applications/SIGPIE/static/prueba.csv", ";", ".")
+		f.parse_csv("./applications/SIGPIE/static/formulario_2.csv", ";", ".")
 
 		#Se agrega una pagina al PDF
 		f.add_page()
