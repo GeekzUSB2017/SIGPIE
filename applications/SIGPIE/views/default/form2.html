@@ -30,6 +30,13 @@
           {{=form_informacion_academica.custom.widget.decanato}}
         </div>
 
+        <!--Campo extra para agregar el postgrado falta linkear con la base-->
+          <div class="form-group" id="nombre_postgrado">
+            <label style="color:black;" for="relacion_contact">Indique el postgrado:<span style="color:red;">*</span></label>
+            <input type="text" name="" class="form-control string">
+            
+          </div>
+
         <div class="form-group">
           <label style="color:black;" for="carrera">Carrera que estudia en la USB:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.carrera.update(_placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay")}}
@@ -74,3 +81,25 @@
 
 
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+
+    $("#nombre_postgrado").hide();
+
+    $("#informacion_academica_decanato").change(function(){
+      if ($(this).val() == "3"){
+        $("#nombre_postgrado").show();
+        }
+        else{
+          
+        $("#nombre_postgrado").hide();
+        }; 
+
+    });
+  });
+
+</script>
+{{ end }}
+
