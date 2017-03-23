@@ -241,7 +241,7 @@ db.define_table('estudiante',
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s'), label='Universidad 1era Opcion'),
                 Field('periodo_1', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),
                 Field('actividad_1', 'string', requires=IS_NOT_EMPTY()),
-
+                Field('segunda_opcion', 'boolean', default=False),
                 Field('universidad_2', db.universidad,
                       requires=IS_IN_DB(db, db.universidad.id, '%(nombre)s'), label='Universidad 2da Opcion'),
                 Field('periodo_2', 'string', requires=IS_NOT_EMPTY(), label='Tiempo de Intercambio'),

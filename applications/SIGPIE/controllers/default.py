@@ -303,11 +303,13 @@ def form3():
 					Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
 					Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino'),
 
-					Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
-					Field('convenio_2', requires=IS_IN_DB(convenios, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
-					Field('universidad_2','string', requires=IS_IN_DB(universidades, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
-					Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
-					Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino')
+					Field('segunda_opcion', 'boolean', default=False),
+
+					Field('pais_2', requires=IS_NULL_OR(IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país')), label='País'),
+					Field('convenio_2', requires=IS_NULL_OR(IS_IN_DB(convenios, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio')), label='Nombre del convenio'),
+					Field('universidad_2','string', requires=IS_NULL_OR(IS_IN_DB(universidades, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad')), label='Universidad de destino'),
+					Field('actividad_2', requires=IS_NULL_OR(IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica')), label='Actividad académica'),
+					Field('periodo_2', requires=IS_NULL_OR(IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo')), label='Período tentativo, según calendario de la universidad de destino')
 					)
 
 			# Cargar valores de la base de datos
@@ -317,7 +319,7 @@ def form3():
 				form.vars.universidad_1 = estudiante.universidad_1
 				form.vars.actividad_1 = estudiante.actividad_1
 				form.vars.periodo_1 = estudiante.periodo_1
-
+			form.vars.segunda_opcion = estudiante.segunda_opcion
 			if (estudiante.universidad_2 != None):
 				form.vars.pais_2 = estudiante.universidad_2.pais
 				form.vars.convenio_2 = estudiante.universidad_2.convenio
@@ -326,11 +328,12 @@ def form3():
 				form.vars.periodo_2 = estudiante.periodo_2
 
 			if form.process().accepted:
+				print("Entre")
 				db(db.estudiante.carnet == session.usuario['usbid']).update(
 							universidad_1=form.vars.universidad_1,
 							periodo_1=form.vars.periodo_1,
 							actividad_1=form.vars.actividad_1,
-
+							segunda_opcion = form.vars.segunda_opcion,
 							universidad_2=form.vars.universidad_2,
 							periodo_2=form.vars.periodo_2,
 							actividad_2=form.vars.actividad_2)

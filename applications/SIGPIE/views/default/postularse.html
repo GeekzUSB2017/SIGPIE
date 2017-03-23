@@ -236,6 +236,9 @@
     $("#no_table_idioma_destino").change(function(){
       if ($(this).val() == "8" || $("#no_table_idioma_destino").val() == ""){
         $("#campos_idioma").hide();
+        $("#no_table_oral").val("");
+        $("#no_table_escrito").val("");
+        $("#no_table_lectura").val("");
       }
       else{
         $("#campos_idioma").show();
@@ -247,6 +250,8 @@
       }
       else{
         $("#otra_relacion").hide();
+        $("#no_table_relacion_otro").val("");
+
       };
     });
   });
