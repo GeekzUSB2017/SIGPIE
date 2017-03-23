@@ -128,6 +128,7 @@ def postularse():
 					Field('nombres', default=session.usuario['first_name'], label='Nombres', writable=False),
 					Field('apellidos', default=session.usuario['last_name'], label='Apellidos', writable=False),
 					Field('cedula',default=session.usuario['cedula'], label='Cédula', writable=False),
+					Field('becado', 'boolean', label='Becado'),
 					Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
@@ -162,6 +163,7 @@ def postularse():
 			form.vars.nombres = estudiante.nombres
 			form.vars.apellidos = estudiante.apellidos
 			form.vars.cedula = estudiante.cedula
+			form.vars.becado = estudiante.becado
 			form.vars.telefono_habitacion = estudiante.telefono_habitacion
 			form.vars.telefono_celular = estudiante.telefono_celular
 			form.vars.correo = session.usuario['email']
@@ -233,6 +235,7 @@ def postularse():
 					db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
 				# Actualizar los datos del estudiante en sesión
 				db(db.estudiante.carnet == session.usuario['usbid']).update(
+							becado=form.vars.becado,
 							telefono_habitacion=form.vars.telefono_habitacion,
 							telefono_celular=form.vars.telefono_celular,
 							Correo=form.vars.correo,
@@ -1172,7 +1175,7 @@ def lista_postulados():
 	#Define the fields to show on grid
 	fields = (db.estudiante.id, db.informacion_academica.sede, db.informacion_academica.decanato,
 			  db.carrera.nombre, db.estudiante.carnet, db.estudiante.cedula, db.estudiante.nombres,
-			  db.estudiante.apellidos, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
+			  db.estudiante.apellidos, db.estudiante.becado, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
 			  db.estudiante.Correo, db.informacion_academica.indice, db.informacion_academica.creditos_aprob,
 			  db.estudiante.renuncio, db.universidad.pais, db.estudiante.universidad_1, db.universidad.convenio,
 			  db.estudiante.periodo_1, universidad_2.pais, db.estudiante.universidad_2, universidad_2.convenio,
@@ -1190,6 +1193,7 @@ def lista_postulados():
 			   'carrera.nombre': 'Carrera',
 			   'estudiante.carnet': 'Carnet',
 			   'estudiante.cedula': 'C.I.',
+			   'estudiante.becado': 'Becado',
 			   'estudiante.nombres': 'Nombres',
 			   'estudiante.apellidos': 'Apellidos',
 			   'estudiante.telefono_celular': 'Telf Celular',
