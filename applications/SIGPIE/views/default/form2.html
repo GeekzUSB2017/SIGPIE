@@ -84,8 +84,13 @@
 {{ block custom_script }}
 <script>
   $(document).ready(function() {
-    if ($("#informacion_academica_decanato").val() != "3"){
+    if ($("#informacion_academica_decanato").val() == "3"){
+      $("#nombre_postgrado").show();
+      $("#carrera").hide();
+    }
+    else{
       $("#nombre_postgrado").hide();
+      $("#carrera").show();
     }
     $("#informacion_academica_decanato").change(function(){
       if ($(this).val() == "3"){
