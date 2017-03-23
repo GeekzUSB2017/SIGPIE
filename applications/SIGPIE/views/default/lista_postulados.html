@@ -49,4 +49,31 @@ th {
 		{{=grid}}
 	</div>
 
+<script type="text/javascript">
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+	var btns = document.getElementsByTagName('input');
+	for(i = 0;i < btns.length; i++){
+	    if(btns[i].value=="Search"){
+	       btns[i].value = "Buscar";
+	    }
+	    if(btns[i].value=="Clear"){
+	       btns[i].value = "Limpiar";
+	    }	    
+	    if(btns[i].value=="New Search"){
+	       btns[i].value = "Nueva búsqueda";
+	    }	    
+	    if(btns[i].value=="+ And"){
+	       btns[i].value = "+ Y";
+	    }	    
+	    if(btns[i].value=="+ Or"){
+	       btns[i].value = "+ O";
+	    }	    
+	    if(btns[i].value=="Close"){
+	       btns[i].value = "Cerrar";
+	    }	    
+	}   
+})();
+</script>
 {{end}}
