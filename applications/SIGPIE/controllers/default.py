@@ -353,11 +353,12 @@ def planestudios():
 		if (estudiante.renuncio):
 			redirect(URL('renunciar'))
 		else:	
+			mat = ('Electiva Libre','Obligatoria','Electiva de Área','Proyecto de Grado','Pasantía','Estudio General')
 			tipo_mat =('','Obligatoria','Electiva Libre','Electiva de Área','Proyecto de Grado','Pasantía','Estudio General')
 
 			form = SQLFORM.factory(
 					Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
-					Field('materia_usb_1', 'string', requires=IS_IN_SET(tipo_mat,zero=None,error_message = 'Debe completar este campo'), label='Denominación'),
+					Field('materia_usb_1', 'string', requires=IS_IN_SET(mat,zero=None,error_message = 'Debe completar este campo'), label='Denominación'),
 					Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos'),
 					Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
 					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
