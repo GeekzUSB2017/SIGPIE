@@ -1234,7 +1234,7 @@ def nueva_universidad():
 			   'universidad.convenio': 'Tipo de Intercambio',
 			   'universidad.cupos': 'Cupos'}
 
-	grid = SQLFORM.grid(query=query, deletable=False, headers=headers, fields=fields, exportclasses=export_classes, paginate=10, maxtextlength=128)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False, paginate=10, maxtextlength=128)
 
 
 	if grid.create_form or grid.update_form:
@@ -1258,7 +1258,7 @@ def nuevo_convenio():
 	headers = {'convenio.id': 'ID',
 			   'convenio.nombre': 'Nombre'}
 
-	grid = SQLFORM.grid(query=query, deletable=False, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, paginate=10)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False,maxtextlength=128, paginate=10)
 
 
 	if grid.create_form or grid.update_form:
