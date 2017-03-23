@@ -162,14 +162,7 @@
 					{{pass}}
 
 				</div>
-
-
-			<!--div class="col-lg-8 col-md-8 col-xs-8"></div>
-			<div class="col-lg-2 col-md-2 col-xs-2">
-				<input type="submit" class="btn btn-primary btn-sm adjuntar" value= "Guardar cambios">
-			</div-->
 		</div>
-
 	</div>
 
 	<br>
@@ -177,16 +170,15 @@
 	<br>
   <div class="row">
     <p><span style="color:red;">*</span>: Este campo es obligatorio para Guardar el Formulario</p>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       <a href="{{=URL('planestudios')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-lg-4 col-xs-4">
       </br>
       </br>
       <p align="center"><b>5/5</b></p>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-lg-1 col-md-1" style="float:right;">
+    <div class="col-lg-4 col-md-4 col-xs-4" style="text-align: right;">
       {{form_documentos.custom.submit.update(_value="Guardar Formulario", _id="guardar")}}
       {{=form_documentos.custom.submit}}
     </div>

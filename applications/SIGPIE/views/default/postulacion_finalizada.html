@@ -1,0 +1,46 @@
+{{extend 'layout2.html'}}
+{{block css}}
+  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
+
+{{end}}
+
+{{block content}}
+
+<style>
+.button {
+    background-color: white; 
+    border: 2px solid orange;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 150%;
+
+.button:hover {
+    background-color: orange;
+    color: black;
+}
+#bloque{
+  margin-top: 30px;
+}
+</style>
+<div class="container-fluid" id="bloque">
+    <div class="row" id="pwd-container">
+      <div class="col-lg-12 col-md-12 col-xs-12" style="text-align: center;">
+        <h1>¡Felicidades!</h1>
+        <p >Te has postulado al Programa de Intercambio Estudiantil.</p>
+        <a align ="center" href="{{=URL('expediente')}}" class="button" style="vertical-align:middle" role="button"><span class="glyphicon glyphicon-folder-open"> Consultar Postulación</span> </a>    
+      </div>
+    </div>
+    <br>
+    <div class="row" id="pwd-container">
+      <div class="col-lg-12 col-md-12 col-xs-12" style="text-align: center;">
+        <a href="{{=URL('postularse')}}" class="button" style="vertical-align:middle" role="button"><span class="glyphicon glyphicon-pencil"> Modificar Postulación</span></a>
+      </div>
+    </div>
+</div>
+
+{{end}}

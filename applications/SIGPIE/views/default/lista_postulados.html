@@ -11,11 +11,10 @@ table{
 
 thead {
 	background-color: #e7e7e7;
-	text-align: center;
+	text-align: center;	
 }
 
 td{
-	text-align: center;
 	border: 1px solid #ccc;
 	min-width: 150px;
 	padding-left: 5px;
@@ -39,14 +38,15 @@ th {
 
 .w2p_export_menu{
 	position: absolute;
-	right: 10px;
+	right: 10px;	
 	padding: 5px;
 }
 </style>
 {{end}}
 
 {{block content}}
-
-{{=grid}}
+	<div class="col-lg-12 col-md-12 col-xs-12">
+		{{=grid}}
+	</div>
 
 {{end}}

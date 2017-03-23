@@ -19,10 +19,10 @@
     <div>
     </div>
     <div class="row" id="filasup">
-        <div class="col-lg-6 col-md-6 col-md-6">
+        <div class="col-lg-6 col-md-6 col-xs-6">
             <label id= "tit1">Asignaturas del Plan de estudio USB que aspira convalidar</label>
             </div>
-        <div class="col-lg-6 col-md-6 col-md-6">
+        <div class="col-lg-6 col-md-6 col-xs-6">
           <label id ="tit2">Asignaturas a cursar en la Universidad destino</label>
         </div>
     </div>
@@ -371,16 +371,15 @@
   <div class="row">
     <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
     <p><span style="color:red;">NOTA</span>: En cada fila escriba la información solicitada, cada materia dictada en la USB ingresada en cada fila debe corresponderse con la que cursará en la Universidad Destino. </p>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       <a href="{{=URL('form3')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       </br>
       </br>
       <p align="center"><b>4/5</b></p>
     </div>
-    <div class="col-md-2"></div>
-      <div class="col-lg-1 col-md-1" style="float:right;">
+      <div class="col-lg-4 col-md-4 col-xs-4" style="text-align: right;">
         {{form_plan.custom.submit.update(_value="Siguiente>>")}}
         {{=form_plan.custom.submit}}
       </div>
