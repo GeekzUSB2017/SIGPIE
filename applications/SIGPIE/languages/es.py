@@ -333,6 +333,7 @@
 'Nombre': 'Nombre',
 'Nombres': 'Nombres',
 'Not authorized': 'No autorizado',
+'not authorized': 'not authorized',
 'not in': 'no en',
 'Object or table name': 'Nombre del objeto o tabla',
 'Old password': 'Contraseña vieja',
