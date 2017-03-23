@@ -49,6 +49,8 @@
     </div>
   </div>
 
+  <span style="padding-top: 1px;">Desea introducir una segunda opción &nbsp</span><label><input id="checkbox-segunda" type="checkbox" value=""></label>
+  <div id="segunda_opcion">
   <div class="row" id="pwd-container">
     <br>
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">EN CASO DE NO SER ACEPTADO EN LA UNIVERSIDAD SELECCIONADA, FAVOR INDIQUE UNA SEGUNDA OPCIÓN </h2>
@@ -89,6 +91,7 @@
     </div>
 
   </div>
+  </div>
 
 
   <div class="row">
@@ -110,3 +113,22 @@
 
 
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+    $("#segunda_opcion").hide();
+
+  $("#checkbox-segunda").change(function(){
+
+    if ($("#checkbox-segunda").is(':checked')) {
+        $("#segunda_opcion").show();
+    }
+    else if ($("#checkbox-segunda").not(':checked')){
+      $("#segunda_opcion").hide();
+    }
+  });
+  
+  });
+</script>
+{{ end }}
