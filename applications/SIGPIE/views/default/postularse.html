@@ -88,6 +88,7 @@
           {{=form_estudiante.custom.widget.idioma_destino}}
         </div>
 
+        <div id="campos_idioma">
           <br>
           <label style="color:black; font-size: 18px; text-align:center"><strong>Nivel de suficiencia del idioma a emplear verbal y escrito:</strong></label>
 
@@ -108,6 +109,7 @@
             <label style="color:black;"for="lectura">Lectura:<span style="color:red;">*</span></label>
             {{=form_estudiante.custom.widget.lectura}}
           </div>
+        </div>
 
       </div>
 
@@ -177,6 +179,11 @@
             {{=form_estudiante.custom.widget.relacion_cont}}
           </div>
 
+          <div class="form-group" id="otra_relacion">
+            <label style="color:black;" for="relacion_contact">Indique la relación:<span style="color:red;">*</span></label>
+            {{form_estudiante.custom.widget.relacion_otro.update(_placeholder="Ej: Primo/Prima")}}
+            {{=form_estudiante.custom.widget.relacion_otro}}
+          </div>
           <!--Tlf de habitacion de contacto-->
           <div class="form-group">
             <label style="color:black;" for="tlf_hab_contact">Teléfono de Habitación:<span style="color:red;">*</span></label>
@@ -212,7 +219,36 @@
       </div>
     </div>
 </div>
-    {{=form_estudiante.custom.end}}
+{{=form_estudiante.custom.end}}
 
 
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+    if($("#no_table_idioma_destino").val() == "8" || $("#no_table_idioma_destino").val() == ""){
+      $("#campos_idioma").hide();
+    }
+    if ($("#no_table_relacion_cont").val() != "Otro"){
+      $("#otra_relacion").hide();
+    }
+    $("#no_table_idioma_destino").change(function(){
+      if ($(this).val() == "8" || $("#no_table_idioma_destino").val() == ""){
+        $("#campos_idioma").hide();
+      }
+      else{
+        $("#campos_idioma").show();
+      };
+    });
+    $("#no_table_relacion_cont").change(function(){
+      if ($(this).val() == "Otro"){
+        $("#otra_relacion").show();
+      }
+      else{
+        $("#otra_relacion").hide();
+      };
+    });
+  });
+</script>
+{{ end }}

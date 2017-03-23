@@ -139,14 +139,15 @@ def postularse():
 					Field('nacionalidad','string', label='Nacionalidad', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('direccion','string', label='Dirección', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('idioma_destino','string', requires=IS_IN_DB(db, 'idioma.id', '%(nombre)s', zero='Seleccione un idioma',error_message='Debe completar este campo'), label='Idioma'),
-					Field('oral','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Oral:'),
-					Field('escrito','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Escrito:'),
-					Field('lectura','string', requires=IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel'),label='Lectura:'),
+					Field('oral','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Oral:'),
+					Field('escrito','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Escrito:'),
+					Field('lectura','string', requires=IS_NULL_OR(IS_IN_SET(niveles, error_message='Debe completar este campo', zero='Seleccione un nivel')),label='Lectura:'),
 					Field('redes_sociales', 'string', label='Redes sociales'),
 					Field('nombres_cont', 'string', label='Nombres del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('apellidos_cont', 'string', label='Apellidos del Contacto de emergencia', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('direccion_cont', 'string', label='Dirección del Contacto', requires=IS_NOT_EMPTY(error_message='Debe completar este campo')),
 					Field('relacion_cont', 'string', requires=IS_IN_SET(parentezco, error_message='Debe completar este campo', zero='Seleccione una relación'),label='Relación con el estudiante'),
+					Field('relacion_otro', 'string', required=False, label='Indique la relación'),
 					Field('telefono_habitacion_cont', 'string', label='Teléfono de Habitacion del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular_cont', 'string', label='Teléfono celular del contacto', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo_cont', 'string', label='Correo del contacto', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
@@ -185,6 +186,7 @@ def postularse():
 				form.vars.apellidos_cont = contacto_emergencia.apellidos
 				form.vars.direccion_cont = contacto_emergencia.direccion
 				form.vars.relacion_cont = contacto_emergencia.relacion
+				form.vars.relacion_otro = contacto_emergencia.relacion_otro
 				form.vars.telefono_habitacion_cont = contacto_emergencia.telefono_habitacion
 				form.vars.telefono_celular_cont = contacto_emergencia.telefono_celular
 				form.vars.correo_cont = contacto_emergencia.Correo
@@ -212,6 +214,7 @@ def postularse():
 								(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
 								(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
 								(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
+								(db.contacto_emergencia.relacion_otro == form.vars.relacion_otro) &
 								(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
 								(db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont) &
 								(db.contacto_emergencia.Correo == form.vars.correo_cont)
@@ -225,6 +228,7 @@ def postularse():
 									apellidos=form.vars.apellidos_cont,
 									direccion=form.vars.direccion_cont,
 									relacion=form.vars.relacion_cont,
+									relacion_otro=form.vars.relacion_otro,
 									telefono_habitacion=form.vars.telefono_habitacion_cont,
 									telefono_celular=form.vars.telefono_celular_cont,
 									Correo=form.vars.correo_cont)
@@ -1060,50 +1064,22 @@ def documentos():
 
 				db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
 
-				db(db.estudiante.id == estudiante.id).update(completo=True)
+				if ( (form.vars.foto != None and form.vars.foto != '') and (form.vars.cedula != None and form.vars.cedula != '') and (form.vars.carnet != None and form.vars.carnet != '') and (form.vars.informe_academico != None and form.vars.informe_academico != '') and (form.vars.comprobante != None and form.vars.comprobante != '') and (form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '') and (form.vars.carta_motivacion != None and form.vars.carta_motivacion != '') and (form.vars.flujograma != None and form.vars.flujograma != '') and (form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '') ):
 
-				redirect(URL('welcome'))
+
+					db(db.estudiante.id == estudiante.id).update(completo=True)
+					redirect(URL('welcome'))
+
+
+
+				redirect(URL('documentos'))
 
 			elif form.errors:
 				# Si hubo errores en el formulario
+				print("Estoy en Error")
 
-				if recaudo == None:
-					# Si no existe un objeto recaudo para el estudiante lo creo
-					r_id = db.recaudos.insert(estudiante=estudiante)
-				else:
-					# Si ya exite un objeto recaudo para el estudiante lo tomo
-					r_id = recaudo.id
-
-				# Actualizo el objeto recaudo con el archivo suministrado si cumple las condiciones
-				if form.vars.foto != None and form.vars.foto != '' and form.vars.foto.filename.endswith(('png','jpg','jpeg')):
-					db(db.recaudos.id == r_id).update(foto=form.vars.foto)
-
-				if form.vars.cedula != None and form.vars.cedula != '' and form.vars.cedula.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(cedula=form.vars.cedula)
-
-				if form.vars.carnet != None and form.vars.carnet != '' and form.vars.carnet.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(carnet=form.vars.carnet)
-
-				if form.vars.informe_academico != None and form.vars.informe_academico != '' and form.vars.informe_academico.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(informe_academico=form.vars.informe_academico)
-
-				if form.vars.comprobante != None and form.vars.comprobante != '' and form.vars.comprobante.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(comprobante=form.vars.comprobante)
-
-				if form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '' and form.vars.programas_de_estudio.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(programas_de_estudio=form.vars.programas_de_estudio)
-
-				if form.vars.carta_motivacion != None and form.vars.carta_motivacion != '' and form.vars.carta_motivacion.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(carta_motivacion=form.vars.carta_motivacion)
-
-				if form.vars.flujograma != None and form.vars.flujograma != '' and form.vars.flujograma.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(flujograma=form.vars.flujograma)
-
-				if form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '' and form.vars.curriculum_vitae.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(curriculum_vitae=form.vars.curriculum_vitae)
-
-				if form.vars.actividades_extracurriculares != None and form.vars.actividades_extracurriculares != '' and form.vars.actividades_extracurriculares.filename.endswith('pdf'):
-					db(db.recaudos.id == r_id).update(actividades_extracurriculares=form.vars.actividades_extracurriculares)
+			else:
+				print("Falta Completar")
 
 			return dict(form_documentos = form, recaudo = recaudo, idioma = idioma, estudiante = estudiante)
 	else:
@@ -1243,7 +1219,7 @@ def lista_postulados():
 
 	#Creating the grid object
 	grid = SQLFORM.grid(query=query, left=left, fields=fields, headers=headers, create=False,
-						deletable=False, editable=False, maxtextlength=128, paginate=25,
+						deletable=False, editable=False, maxtextlength=128, paginate=10,
 						exportclasses=export_classes, details=False)
 	return dict(grid=grid)
 
@@ -1265,14 +1241,13 @@ def nueva_universidad():
 			   'universidad.convenio': 'Tipo de Intercambio',
 			   'universidad.cupos': 'Cupos'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, paginate=10, maxtextlength=128)
 
 
 	if grid.create_form or grid.update_form:
 		o = grid.element(_type='submit', _value='%s' % T('Submit'))
 		o['_value'] = "Guardar"
-		#o['_action'] = redirect(URL('nueva_universidad'))
-		#redirect(URL('nueva_universidad'))
+
 
 	return dict(grid=grid)
 
@@ -1290,7 +1265,7 @@ def nuevo_convenio():
 	headers = {'convenio.id': 'ID',
 			   'convenio.nombre': 'Nombre'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, paginate=10)
 
 
 	if grid.create_form or grid.update_form:
@@ -1324,7 +1299,7 @@ def expediente():
 		##################################################################
 
 		#Queries para llenar los campos del formulario
-		
+
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		recaudos = db(db.recaudos.estudiante == estudiante.id).select().first()
 		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
