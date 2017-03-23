@@ -524,6 +524,7 @@
 'Username retrieve': 'Recuperar nombre de usuario',
 'value already in database or empty': 'el valor ya existe en la base de datos o está vacío',
 'value not allowed': 'valor no permitido',
+'Value not allowed': 'Value not allowed',
 'Value not in database': 'Value not in database',
 'value not in database': 'el valor no está en la base de datos',
 'Verify Password': 'Verificar Contraseña',
