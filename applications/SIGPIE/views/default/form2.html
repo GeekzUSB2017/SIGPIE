@@ -92,9 +92,12 @@
       $("#nombre_postgrado").hide();
       $("#carrera").show();
     }
+
     $("#informacion_academica_decanato").change(function(){
       if ($(this).val() == "3"){
         $("#nombre_postgrado").show();
+        $("#informacion_academica_postgrado_nombre").prop('required',true);
+
         $("#carrera").hide();
         $("#informacion_academica_carrera").val("29");
       }
@@ -102,6 +105,7 @@
         $("#nombre_postgrado").hide();
         $("#informacion_academica_carrera").val("");
         $("#carrera").show();
+        $("#informacion_academica_postgrado_nombre").prop('required',false);
         $("#informacion_academica_postgrado_nombre").val("");
         };
     });
