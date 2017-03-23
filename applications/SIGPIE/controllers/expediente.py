@@ -37,8 +37,8 @@ def expediente():
 		recaudos = db(db.recaudos.estudiante == estudiante.id).select().first()
 		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
 		manejo_idioma = db(db.maneja_idioma.id == estudiante.idioma_destino).select().first()
- 		idioma = db(db.idioma.id == manejo_idioma.idioma).select().first()
- 		universidad1 = db(db.universidad.id == estudiante.universidad_1).select().first()
+		idioma = db(db.idioma.id == manejo_idioma.idioma).select().first()
+		universidad1 = db(db.universidad.id == estudiante.universidad_1).select().first()
 		pais1 = db(db.pais.id == universidad1.pais).select().first()
 		convenio1 = db(db.convenio.id == universidad1.convenio).select().first()
 
