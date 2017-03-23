@@ -249,6 +249,7 @@ db.define_table('estudiante',
 
                 Field('pagina_1', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
                 Field('pagina_2', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
+                Field('expediente', 'upload', requires=IS_UPLOAD_FILENAME(extension='^pdf', error_message='Formato de archivo inválido')),
 
                 format = '%(carnet)s'
                 )

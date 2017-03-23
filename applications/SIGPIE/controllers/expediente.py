@@ -5,6 +5,7 @@ import datetime
 import cStringIO
 import csv
 from gluon.sqlhtml import ExportClass
+import os
 
 def expediente():
 
@@ -272,7 +273,33 @@ def expediente():
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_2 = stuff)
 		stuff.close()
 
-		response.stream("/tmp/{0}(1).pdf".format(estudiante.carnet))
+		#working_dir = os.system("pwd")
+		#print(working_dir)
+		uploadpath = "./applications/SIGPIE/uploads/"
+		#os.chdir("/tmp")
+
+		statement = "pdftk "
+
+		statement += "/tmp/{0}\(1\).pdf ".format(estudiante.carnet) + " "
+		statement += "/tmp/{0}\(2\).pdf ".format(estudiante.carnet) + " "
+		statement += os.path.join(uploadpath, recaudos.cedula) + " "
+		statement += os.path.join(uploadpath, recaudos.carnet) + " "
+		statement += os.path.join(uploadpath, recaudos.informe_academico) + " "
+		statement += os.path.join(uploadpath, recaudos.comprobante) + " "
+		statement += os.path.join(uploadpath, recaudos.carta_motivacion) + " "
+		statement += os.path.join(uploadpath, recaudos.flujograma) + " "
+		if recaudos.certificado_lengua != "":
+			statement += os.path.join(uploadpath, recaudos.certificado_lengua) + " "
+		statement += os.path.join(uploadpath, recaudos.curriculum_vitae) + " "
+		statement += os.path.join(uploadpath, recaudos.programas_de_estudio) + " "
+		if recaudos.actividades_extracurriculares != "":
+			statement += os.path.join(uploadpath, recaudos.actividades_extracurriculares) + " "
+
+		statement += "output /tmp/exp{0}.pdf".format(estudiante.carnet)
+
+		os.system(statement)
+
+		response.stream("/tmp/exp{0}.pdf".format(estudiante.carnet))
 		
 
 	else:
