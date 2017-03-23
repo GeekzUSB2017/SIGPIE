@@ -1032,7 +1032,7 @@ def welcome():
 		if (estudiante.renuncio):
 			redirect(URL('renunciar'))
 		else:
-			return dict(nombre = session.usuario['first_name'], estudiante = estudiante)
+			return dict(nombre = session.usuario['first_name'],apellido=session.usuario['last_name'],estudiante = estudiante)
 	else:
 		redirect(URL('index'))
 
