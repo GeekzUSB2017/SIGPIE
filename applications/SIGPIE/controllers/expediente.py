@@ -5,6 +5,7 @@ import datetime
 import cStringIO
 import csv
 from gluon.sqlhtml import ExportClass
+import os
 
 def expediente():
 
@@ -49,21 +50,21 @@ def expediente():
 
 
 		#Se cargan manualmente los datos de la persona de contacto, idioma, y pais/universidad de destino
-		f["apellidoContacto"] = contacto_emergencia.apellidos
-		f["direccionContacto"] = contacto_emergencia.direccion
-		f["emailContacto"] = contacto_emergencia.Correo
-		f["nombreContacto"] = contacto_emergencia.nombres
-		f["relacionContacto"] = contacto_emergencia.relacion
+		f["apellidoContacto"] = contacto_emergencia.apellidos.decode("utf8").encode("latin1")
+		f["direccionContacto"] = contacto_emergencia.direccion.decode("utf8").encode("latin1")
+		f["emailContacto"] = contacto_emergencia.Correo.decode("utf8").encode("latin1")
+		f["nombreContacto"] = contacto_emergencia.nombres.decode("utf8").encode("latin1")
+		f["relacionContacto"] = contacto_emergencia.relacion.decode("utf8").encode("latin1")
 		f["tlfoContacto"] = contacto_emergencia.telefono_habitacion + " - " + contacto_emergencia.telefono_celular
 
-		f["idioma_destino"] = idioma.nombre
-		f["nivelOral"] = manejo_idioma.oral
-		f["nivelEscrito"] = manejo_idioma.escrito
-		f["nivelLectura"] = manejo_idioma.lectura
+		f["idioma_destino"] = idioma.nombre.decode("utf8").encode("latin1")
+		f["nivelOral"] = manejo_idioma.oral.decode("utf8").encode("latin1")
+		f["nivelEscrito"] = manejo_idioma.escrito.decode("utf8").encode("latin1")
+		f["nivelLectura"] = manejo_idioma.lectura.decode("utf8").encode("latin1")
 
-		f["pais1"] = pais1.nombre
-		f["universidad_1"] = universidad1.nombre
-		f["convenio"] = convenio1.nombre
+		f["pais1"] = pais1.nombre.decode("utf8").encode("latin1")
+		f["universidad_1"] = universidad1.nombre.decode("utf8").encode("latin1")
+		f["convenio"] = convenio1.nombre.decode("utf8").encode("latin1")
 
 		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
 		f["foto"] = "./applications/SIGPIE/uploads/{0}".format(recaudos.foto)
@@ -272,7 +273,33 @@ def expediente():
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_2 = stuff)
 		stuff.close()
 
-		response.stream("/tmp/{0}(1).pdf".format(estudiante.carnet))
+		#working_dir = os.system("pwd")
+		#print(working_dir)
+		uploadpath = "./applications/SIGPIE/uploads/"
+		#os.chdir("/tmp")
+
+		statement = "pdftk "
+
+		statement += "/tmp/{0}\(1\).pdf ".format(estudiante.carnet) + " "
+		statement += "/tmp/{0}\(2\).pdf ".format(estudiante.carnet) + " "
+		statement += os.path.join(uploadpath, recaudos.cedula) + " "
+		statement += os.path.join(uploadpath, recaudos.carnet) + " "
+		statement += os.path.join(uploadpath, recaudos.informe_academico) + " "
+		statement += os.path.join(uploadpath, recaudos.comprobante) + " "
+		statement += os.path.join(uploadpath, recaudos.carta_motivacion) + " "
+		statement += os.path.join(uploadpath, recaudos.flujograma) + " "
+		if recaudos.certificado_lengua != "":
+			statement += os.path.join(uploadpath, recaudos.certificado_lengua) + " "
+		statement += os.path.join(uploadpath, recaudos.curriculum_vitae) + " "
+		statement += os.path.join(uploadpath, recaudos.programas_de_estudio) + " "
+		if recaudos.actividades_extracurriculares != "":
+			statement += os.path.join(uploadpath, recaudos.actividades_extracurriculares) + " "
+
+		statement += "output /tmp/exp{0}.pdf".format(estudiante.carnet)
+
+		os.system(statement)
+
+		response.stream("/tmp/exp{0}.pdf".format(estudiante.carnet))
 		
 
 	else:

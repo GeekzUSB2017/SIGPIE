@@ -48,8 +48,7 @@
 
     </div>
   </div>
-
-  <span style="padding-top: 1px;">Desea introducir una segunda opción &nbsp</span><label><input id="checkbox-segunda" type="checkbox" value=""></label>
+  <span style="padding-top: 1px;">Desea introducir una segunda opción &nbsp</span><label>{{=form_convenio.custom.widget.segunda_opcion}}</label>
   <div id="segunda_opcion">
   <div class="row" id="pwd-container">
     <br>
@@ -117,18 +116,29 @@
 {{ block custom_script }}
 <script>
   $(document).ready(function() {
-    $("#segunda_opcion").hide();
-
-  $("#checkbox-segunda").change(function(){
-
-    if ($("#checkbox-segunda").is(':checked')) {
-        $("#segunda_opcion").show();
+    if ($("#no_table_segunda_opcion").is(':checked')) {
+      $("#segunda_opcion").show();
     }
-    else if ($("#checkbox-segunda").not(':checked')){
+    else{
       $("#segunda_opcion").hide();
     }
+
+  $("#no_table_segunda_opcion").change(function(){
+
+    if ($("#no_table_segunda_opcion").is(':checked')) {
+        $("#segunda_opcion").show();
+    }
+    else if ($("#no_table_segunda_opcion").not(':checked')){
+      $("#segunda_opcion").hide();
+      $("#no_table_pais_2").val("");
+      $("#no_table_convenio_2").val("");
+      $("#no_table_universidad_2").val("");
+      $("#no_table_actividad_2").val("");
+      $("#no_table_periodo_2").val("");
+
+    }
   });
-  
+
   });
 </script>
 {{ end }}
