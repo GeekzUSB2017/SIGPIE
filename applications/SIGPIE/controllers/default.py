@@ -285,6 +285,8 @@ def form3():
 	if session.usuario is not None:
 
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		convenios = db(db.convenio.deshabilitado == False)
+		universidades = db(db.universidad.deshabilitado == False)
 
 		if (estudiante.renuncio):
 			redirect(URL('renunciar'))
@@ -296,14 +298,14 @@ def form3():
 
 			form = SQLFORM.factory(
 					Field('pais_1', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
-					Field('convenio_1', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
-					Field('universidad_1','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
+					Field('convenio_1', requires=IS_IN_DB(convenios, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
+					Field('universidad_1','string', requires=IS_IN_DB(universidades, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
 					Field('actividad_1', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
 					Field('periodo_1', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino'),
 
 					Field('pais_2', requires=IS_IN_DB(db, 'pais.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un país'), label='País'),
-					Field('convenio_2', requires=IS_IN_DB(db, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
-					Field('universidad_2','string', requires=IS_IN_DB(db, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
+					Field('convenio_2', requires=IS_IN_DB(convenios, 'convenio.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione un convenio'), label='Nombre del convenio'),
+					Field('universidad_2','string', requires=IS_IN_DB(universidades, 'universidad.id', '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione una universidad'), label='Universidad de destino'),
 					Field('actividad_2', requires=IS_IN_SET(actividades, error_message='Debe completar este campo', zero='Seleccione el tipo de actividad académica'), label='Actividad académica'),
 					Field('periodo_2', requires=IS_IN_SET(periodos, error_message='Debe completar este campo', zero='Seleccione un período tentativo'), label='Período tentativo, según calendario de la universidad de destino')
 					)
@@ -1226,15 +1228,16 @@ def nueva_universidad():
 						  tsv_with_hidden_cols=False)
 
 	fields = (db.universidad.id, db.universidad.pais, db.universidad.nombre, db.universidad.convenio,
-			  db.universidad.cupos)
+			  db.universidad.cupos, db.universidad.deshabilitado)
 
 	headers = {'universidad.id': 'ID',
 			   'universidad.pais': 'País',
 			   'universidad.nombre': 'Universidad',
 			   'universidad.convenio': 'Tipo de Intercambio',
-			   'universidad.cupos': 'Cupos'}
+			   'universidad.cupos': 'Cupos',
+			   'universidad.deshabilitado': 'Deshabilitado'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False, paginate=10, maxtextlength=128)
+	grid = SQLFORM.grid(query=query, headers=headers, details=False, fields=fields, exportclasses=export_classes, deletable=False, paginate=10, maxtextlength=128)
 
 
 	if grid.create_form or grid.update_form:
@@ -1253,12 +1256,13 @@ def nuevo_convenio():
 						  tsv=False, xml=False, csv_with_hidden_cols=False,
 						  tsv_with_hidden_cols=False)
 
-	fields = (db.convenio.id, db.convenio.nombre)
+	fields = (db.convenio.id, db.convenio.nombre, db.convenio.deshabilitado)
 
 	headers = {'convenio.id': 'ID',
-			   'convenio.nombre': 'Nombre'}
+			   'convenio.nombre': 'Nombre',
+			   'convenio.deshabilitado': 'Deshabilitado'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False,maxtextlength=128, paginate=10)
+	grid = SQLFORM.grid(query=query, headers=headers, details=False, fields=fields, exportclasses=export_classes, deletable=False,maxtextlength=128, paginate=10)
 
 
 	if grid.create_form or grid.update_form:
