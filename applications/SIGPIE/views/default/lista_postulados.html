@@ -42,11 +42,47 @@ th {
 	right: 10px;
 	padding: 5px;
 }
+.pagination ul, li{
+display: inline;
+padding: 0px 10px 0px 10px;
+}
+.web2py_paginator{
+	margin-top: 5%;
+	text-align: center;
+}
 </style>
 {{end}}
 
 {{block content}}
+	<div class="col-lg-12 col-md-12 col-xs-12">
+		{{=grid}}
+	</div>
 
-{{=grid}}
-
+<script type="text/javascript">
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+	var btns = document.getElementsByTagName('input');
+	for(i = 0;i < btns.length; i++){
+	    if(btns[i].value=="Search"){
+	       btns[i].value = "Buscar";
+	    }
+	    if(btns[i].value=="Clear"){
+	       btns[i].value = "Limpiar";
+	    }
+	    if(btns[i].value=="New Search"){
+	       btns[i].value = "Nueva búsqueda";
+	    }
+	    if(btns[i].value=="+ And"){
+	       btns[i].value = "+ Y";
+	    }
+	    if(btns[i].value=="+ Or"){
+	       btns[i].value = "+ O";
+	    }
+	    if(btns[i].value=="Close"){
+	       btns[i].value = "Cerrar";
+	    }
+	}
+})();
+</script>
 {{end}}

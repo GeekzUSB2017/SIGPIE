@@ -1,12 +1,4 @@
 {{extend 'layout2.html'}}
-{{block css}}
-  <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{=URL('static', 'css/navbarUser.css')}}" rel="stylesheet">
-
-
-  <!--link href="{{=URL('static', 'css/form.css')}}" rel="stylesheet"-->
-
-{{end}}
 
 {{block content}}
 <style type="text/css">
@@ -23,7 +15,7 @@
   <div class="row" id="pwd-container">
     {{=form_convenio.custom.begin}}
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
 
         <div class="form-group">
             <label style="color:black;" for="país_dest">País:<span style="color:red;">*</span></label>
@@ -43,7 +35,7 @@
 
     </div>
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
           <div class="form-group">
             <label style="color:black;" for="act_academica">Actividad Académica:<span style="color:red;">*</span></label>
             {{=form_convenio.custom.widget.actividad_1}}
@@ -57,6 +49,8 @@
     </div>
   </div>
 
+  <span style="padding-top: 1px;">Desea introducir una segunda opción &nbsp</span><label><input id="checkbox-segunda" type="checkbox" value=""></label>
+  <div id="segunda_opcion">
   <div class="row" id="pwd-container">
     <br>
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">EN CASO DE NO SER ACEPTADO EN LA UNIVERSIDAD SELECCIONADA, FAVOR INDIQUE UNA SEGUNDA OPCIÓN </h2>
@@ -64,7 +58,7 @@
   <br>
   <div class="row" id="pwd-container">
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
 
         <div class="form-group">
             <label style="color:black;" for="país_dest">País:<span style="color:red;">*</span></label>
@@ -83,7 +77,7 @@
 
     </div>
 
-    <div class="col-lg-6 col-md-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-xs-6">
 
         <div class="form-group">
             <label style="color:black;"for="act_academica">Actividad Académica:<span style="color:red;">*</span></label>
@@ -97,20 +91,20 @@
     </div>
 
   </div>
+  </div>
 
 
   <div class="row">
     <p><span style="color:red;">*</span>: Este campo es obligatorio para avanzar</p>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       <a href="{{=URL('form2')}}" class="btn btn-primary" role="button" align="left"><< Regresar</a>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-xs-4">
       </br>
       </br>
       <p align="center"><b>3/5</b></p>
     </div>
-    <div class="col-xs-3"></div>
-    <div class="col-lg-1 col-md-1">
+    <div class="col-lg-4 col-md-4 col-xs-4" style="text-align:right;">
       {{form_convenio.custom.submit.update(_value="Siguiente>>")}}
       {{=form_convenio.custom.submit}}
     </div>
@@ -120,4 +114,21 @@
 
 {{end}}
 
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+    $("#segunda_opcion").hide();
 
+  $("#checkbox-segunda").change(function(){
+
+    if ($("#checkbox-segunda").is(':checked')) {
+        $("#segunda_opcion").show();
+    }
+    else if ($("#checkbox-segunda").not(':checked')){
+      $("#segunda_opcion").hide();
+    }
+  });
+  
+  });
+</script>
+{{ end }}

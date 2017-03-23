@@ -49,11 +49,70 @@ td .btn {
 	right: 100px;
 	padding: 5px;
 }
+
+.pagination ul, li{
+display: inline;
+padding: 0px 10px 0px 10px;
+}
+.web2py_paginator{
+	margin-top: 5%;
+	text-align: center;
+}
 </style>
 {{end}}
 
 {{block content}}
+	<div class="col-lg-12 col-md-12 col-xs-12">
 
-{{=grid}}
+	{{=grid}}
+	</div>
 
+<script type="text/javascript">
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+	var btns = document.getElementsByTagName('input');
+	for(i = 0;i < btns.length; i++){
+	    if(btns[i].value=="Search"){
+	       btns[i].value = "Buscar";
+	    }
+	    if(btns[i].value=="Clear"){
+	       btns[i].value = "Limpiar";
+	    }
+	    if(btns[i].value=="New Search"){
+	       btns[i].value = "Nueva búsqueda";
+	    }
+	    if(btns[i].value=="+ And"){
+	       btns[i].value = "+ Y";
+	    }
+	    if(btns[i].value=="+ Or"){
+	       btns[i].value = "+ O";
+	    }
+	    if(btns[i].value=="Close"){
+	       btns[i].value = "Cerrar";
+	    }
+	    if(btns[i].value=="Close"){
+	       btns[i].value = "Cerrar";
+	    }
+	}
+	var btns2 = document.getElementsByTagName('span');
+	for(i = 0;i < btns2.length; i++){
+	    if(btns2[i].innerHTML=="View"){
+	       btns2[i].innerHTML = "Ver";
+	    }
+	    if(btns2[i].innerHTML=="Edit"){
+	       btns2[i].innerHTML = "Editar";
+	    }
+	    if(btns2[i].innerHTML=="Delete"){
+	       btns2[i].innerHTML = "Borrar";
+	    }
+	    if(btns2[i].innerHTML=="Add Record"){
+	       btns2[i].innerHTML = "Agregar Universidad";
+	    }
+	    if(btns2[i].innerHTML=="Back"){
+	       btns2[i].innerHTML = "Regresar";
+	    }
+	}
+})();
+</script>
 {{end}}

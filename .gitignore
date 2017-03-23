@@ -36,6 +36,7 @@ applications/*/databases/*
 applications/*/sessions/*
 applications/*/errors/*
 applications/*/cache/*
+applications/*/uploads/*.*
 applications/*/*.py[oc]
 applications/*/static/temp
 *.sublime-project

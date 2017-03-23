@@ -61,8 +61,6 @@ def user():
 def register():
 	return dict(form=auth.register())
 ######################################
-def expediente():
-	return dict()
 
 
 def index():
@@ -249,11 +247,13 @@ def postularse():
 	else:
 		redirect(URL('index'))
 
-def user():
-	return dict(login=auth.login())
+def postulacion_finalizada():
+	if session.usuario is not None:
+		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+		return dict(estudiante=estudiante)
+	else:
+		redirect(URL('index'))
 
-def register():
-	return dict(form=auth.register())
 
 def form2():
 	if session.usuario is not None:
@@ -346,11 +346,9 @@ def planestudios():
 			redirect(URL('renunciar'))
 		else:
 
-			tipo_mat = ('Electiva de Área','Electiva Libre','Estudios Generales','Obligatoria','Pasantía','Proyecto de Grado')
-
 			form = SQLFORM.factory(
 					Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
-					Field('materia_usb_1', 'string', requires=IS_IN_SET(tipo_mat), label='Denominación'),
+					Field('materia_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
 					Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos'),
 					Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
 					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
@@ -1034,7 +1032,7 @@ def welcome():
 		if (estudiante.renuncio):
 			redirect(URL('renunciar'))
 		else:
-			return dict(nombre = session.usuario['first_name'], estudiante = estudiante)
+			return dict(nombre = session.usuario['first_name'],apellido=session.usuario['last_name'],estudiante = estudiante)
 	else:
 		redirect(URL('index'))
 
@@ -1058,16 +1056,17 @@ def documentos():
 				id_docs = form.vars.id
 
 				db(db.recaudos.id == id_docs).update(estudiante=estudiante.id)
-				if ( (form.vars.foto != None and form.vars.foto != '') and (form.vars.cedula != None and form.vars.cedula != '')
-						and (form.vars.carnet != None and form.vars.carnet != '') and (form.vars.informe_academico != None and form.vars.informe_academico != '') and (form.vars.comprobante != None and form.vars.comprobante != '') and
-						(form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '') and
-						(form.vars.carta_motivacion != None and form.vars.carta_motivacion != '') and
-						(form.vars.flujograma != None and form.vars.flujograma != '') and (form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '') ):
 
-						db(db.estudiante.id == estudiante.id).update(completo=True)
-						redirect(URL('welcome'))
+				if ( (form.vars.foto != None and form.vars.foto != '') and (form.vars.cedula != None and form.vars.cedula != '') and (form.vars.carnet != None and form.vars.carnet != '') and (form.vars.informe_academico != None and form.vars.informe_academico != '') and (form.vars.comprobante != None and form.vars.comprobante != '') and (form.vars.programas_de_estudio != None and form.vars.programas_de_estudio != '') and (form.vars.carta_motivacion != None and form.vars.carta_motivacion != '') and (form.vars.flujograma != None and form.vars.flujograma != '') and (form.vars.curriculum_vitae != None and form.vars.curriculum_vitae != '') ):
+
+
+					db(db.estudiante.id == estudiante.id).update(completo=True)
+					redirect(URL('welcome'))
+
+
 
 				redirect(URL('documentos'))
+
 			elif form.errors:
 				# Si hubo errores en el formulario
 				print("Estoy en Error")
@@ -1213,7 +1212,7 @@ def lista_postulados():
 
 	#Creating the grid object
 	grid = SQLFORM.grid(query=query, left=left, fields=fields, headers=headers, create=False,
-						deletable=False, editable=False, maxtextlength=128, paginate=25,
+						deletable=False, editable=False, maxtextlength=128, paginate=10,
 						exportclasses=export_classes, details=False)
 	return dict(grid=grid)
 
@@ -1235,14 +1234,13 @@ def nueva_universidad():
 			   'universidad.convenio': 'Tipo de Intercambio',
 			   'universidad.cupos': 'Cupos'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False, paginate=10, maxtextlength=128)
 
 
 	if grid.create_form or grid.update_form:
 		o = grid.element(_type='submit', _value='%s' % T('Submit'))
 		o['_value'] = "Guardar"
-		#o['_action'] = redirect(URL('nueva_universidad'))
-		#redirect(URL('nueva_universidad'))
+
 
 	return dict(grid=grid)
 
@@ -1260,7 +1258,7 @@ def nuevo_convenio():
 	headers = {'convenio.id': 'ID',
 			   'convenio.nombre': 'Nombre'}
 
-	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, maxtextlength=128, user_signature=False)
+	grid = SQLFORM.grid(query=query, headers=headers, fields=fields, exportclasses=export_classes, deletable=False,maxtextlength=128, paginate=10)
 
 
 	if grid.create_form or grid.update_form:

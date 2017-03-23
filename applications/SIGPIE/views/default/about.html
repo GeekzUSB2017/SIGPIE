@@ -6,64 +6,15 @@
 
 {{end}}
 
-{{block navbar}}
-
-<div class="row">
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
-  <div class="col-lg-10 col-md-10 col-md-10">
-    <div>
-      <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png">
-    </div>
-
-
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{=URL('welcome')}}"><span style="color:black;">SIGPIE</span></a>
-        </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('about')}}"><span style="color:black;">Información</span></a></li>
-            <li style="font-size: 1em; font-family: Arial"><a href="https://www.internacionales.usb.ve/sites/default/files/PRESENTACION%20DE%20INTERCAMBIO%20Noviembre%202016.pdf" target="_blank"><span style="color:black;">Oferta</span></a></li>
-            <li class="dropdown" style="font-size: 1em; font-family: Arial">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><span style="color:black;">Cronograma</span></a>
-              <ul class="dropdown-menu">
-                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Charlas</span></a></li>
-                <li style="font-size: 1em; font-family: Arial"><a href="#"><span style="color:black;">Fechas de interés</span></a></li>
-              </ul>
-            </li>
-            <li style="font-size: 1em; font-family: Arial"><a href="{{=URL('postularse')}}"><span style="color:black;">Postularse</span></a></li>
-            {{if estudiante.completo == True:}}
-                <li><a id="renuncia" class="btn-warning" href="{{=URL('renuncia')}}"><span style="color:black;">Renunciar</span></a></li>
-            {{pass}}
-          </ul>
-          <ul class="nav navbar-nav navbar-right btn-xs btn-danger" >
-            <li><a id="logout" href="{{=URL(c='default', f='logout_cas')}}"><span style="color:black;" class="glyphicon glyphicon-log-out">  Cerrar Sesión</span></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
-</div>
-{{end}}
-
 {{block content}}
   <hr class="featurette-divider">
   <h1>Pasos para postularse al Programa de Intercambio</h1>
     <div class="row featurette">
-      <div class="col-md-7">
+      <div class="col-lg-7 col-md-7 col-xs-7">
         <h2 class="featurette-heading tit-pasos" id="paso">Primer Paso <!--span class="text-muted">It'll blow your mind.</span--></h2>
         <p class="lead">Conozca sobre el Programa de Intercambio Estudiantil y navegue en los sitios web de las distintas universidades participantes.</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5 col-md-5 col-xs-5">
           <img class=" featurette-image img-responsive center-block img-circle foto" src="../static/css/images/fotoestu.jpg" alt="Generic placeholder image">
       </div>
     </div>
@@ -71,11 +22,11 @@
     <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
+        <div class="col-md-7 col-md-push-5 col-lg-7 col-xs-7">
           <h2 class="featurette-heading tit-pasos">Segundo Paso </h2>
           <p class="lead">Seleccione dos(2) universidades de su interés e investigue sobre contenido de planes de estudio (materias,horas,cŕeditos,idioma que ofrecen).</p>
         </div>
-        <div class="col-md-5 col-md-pull-7">
+        <div class="col-md-5 col-md-pull-7 col-lg-5 col-xs-5">
           <img class=" featurette-image img-responsive center-block img-circle foto" src="../static/css/images/porto-universidad-1.jpg" alt="Generic placeholder image">
         </div>
       </div>
@@ -83,19 +34,36 @@
     <hr class="featurette-divider">
 
       <div class="row featurette">
-        <div class="col-md-7">
+        <div class="col-lg-7 col-md-7 col-xs-7">
           <h2 class="featurette-heading tit-pasos">Finalmente</h2>
           <p class="lead">Tome la decisión de postularse al Programa de Intercambio Estudiantil de la USB.</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5 col-md-5 col-xs-5">
           <img class="featurette-image img-responsive center-block img-circle foto" src="../static/css/images/estudiantesguille.jpg" alt="Generic placeholder image">
         </div>
       </div>
 
     <hr class="featurette-divider">
-      <div class="col-md-10">
-        </div>
-          <a class="btn btn-success btn-lg" href="https://www.internacionales.usb.ve/es/node/323" role="button">
+    <div style="text-align:right;">
+      <div><strong>Ubicación:</strong></div>
+      <div><strong>Universidad Simón Bolívar</strong></div>
+      <div><strong>Biblioteca Central, Nivel Jardín, Ofc. BIB J-03</strong></div>
+      <div><strong>Valle de Sartenejas - Mun. Baruta CP. 1086</strong></div>
+      <div><strong>Edo. Miranda, Venezuela</strong></div>
+      <div> </div>
+      <div><strong>Dirección Postal:</strong></div>
+      <div><strong>Universidad Simón Bolívar</strong></div>
+      <div><strong>Apartado Postal 89000</strong></div>
+      <div><strong>Caracas, Venezuela</strong></div>
+      <div> </div>
+      <div><strong>Puntos de Contacto:</strong></div>
+      <div><strong>Tel/Fax:  <strong style="color:blue">+58 (212) 906.31.33</strong> </strong></div>
+      <div><strong>E-mail:  <a style="color:blue" href="mailto:direccion-dri@usb.ve">direccion-dri@usb.ve</a></strong></div>
+      <div><strong>Skype:<strong style="color:blue"> internacional-usb</strong></strong></div>
+    </div>
+    <br><br>
+      <div style="text-align:right;" class="col-lg-12 col-md-12 col-xs-12">
+          <a class="btn btn-success btn-lg" href="https://www.internacionales.usb.ve/es/node/323" target="_blank" role="button">
           Saber más >> </a>
       </div>
 

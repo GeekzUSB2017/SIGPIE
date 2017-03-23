@@ -1,5 +1,6 @@
+<!-- Html base para las vistas del Administrador-->
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 
 {{block head}}
@@ -25,13 +26,11 @@
 {{block navbar}}
 
 <div class="row">
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
-  <div class="col-lg-10 col-md-10 col-md-10">
+  <div class="col-lg-1 col-md-1 col-xs-1"></div>
+  <div class="col-lg-10 col-md-10 col-xs-10">
     <div>
-      <img id="header" class="img-responsive" src="../static/css/images/fotoHeader.png" alt ="Imagen DRIC-USB">
+      <img id="header" class="img-responsive" src="{{=URL('static', 'css/images/fotoHeader.png')}}" alt ="Imagen DRIC-USB">
     </div>
-
-
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -58,28 +57,27 @@
       </div>
     </nav>
   </div>
-  <div class="col-lg-1 col-md-1 col-md-1"></div>
+  <div class="col-lg-1 col-md-1 col-xs-1"></div>
 </div>
   {{end}}
   <div class="row">
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
-    <div class="col-lg-10 col-md-10 col-md-10">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-xs-10">
       {{ block content }}
-      <h2><span style = "text-align: center"> Bienvenido Administrador</span></h2>
       {{ end }}
     </div>
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
   </div>
 
   {{block footer}}
   <br><br>
-    <div class="col-lg-1 col-md-1 col-md-1"></div>
-    <div class="col-lg-10 col-md-10 col-md-10">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-xs-10">
       <footer>
         <p>&copy; DRIC USB</p>
       </footer>
     </div>
-    <div class="col-lg-1"></div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
   {{end}}
 
   {{block script}}
@@ -89,7 +87,7 @@
     <script src="{{=URL('static', 'js/jquery.js')}}"></script>
     <script src="{{=URL('static', 'js/bootstrap.min.js')}}"></script>
     <script src="{{=URL('static', 'js/holder.min.js')}}"></script>
-    <script src="{{=URL('static', 'js/web2py.js')}}"></script>
+    <!-- <script src="{{=URL('static', 'js/web2py.js')}}"></script> -->
     <script src="{{=URL('static', 'js/modernizr-2.8.3.min.js')}}"></script>
 
   {{end}}
