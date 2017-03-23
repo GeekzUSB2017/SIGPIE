@@ -30,12 +30,19 @@
           {{=form_informacion_academica.custom.widget.decanato}}
         </div>
 
+        <div class="form-group" id="nombre_postgrado">
+            <label style="color:black;" for="relacion_contact">Indique el postgrado:<span style="color:red;">*</span></label>
+            {{form_informacion_academica.custom.widget.postgrado_nombre.update(_placeholder="Ej: Doctorado en Ciencias de la Computación")}}
+            {{=form_informacion_academica.custom.widget.postgrado_nombre}}
+        </div>
+
         <div class="form-group">
           <label style="color:black;" for="carrera">Carrera que estudia en la USB:<span style="color:red;">*</span></label>
           {{form_informacion_academica.custom.widget.carrera.update(_placeholder="(Código) - Nombre completo de la carrera, incluír mención si la hay")}}
           {{=form_informacion_academica.custom.widget.carrera}}
         </div>
     </div>
+
 
     <div class="col-lg-6 col-md-6 col-xs-6">
         <div class="form-group">
@@ -73,3 +80,22 @@
 
 
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+    if ($("#informacion_academica_decanato").val() != "3"){
+      $("#nombre_postgrado").hide();
+    }
+    $("#informacion_academica_decanato").change(function(){
+      if ($(this).val() == "3"){
+        $("#nombre_postgrado").show();
+        }
+        else{
+        $("#nombre_postgrado").hide();
+        };
+    });
+  });
+</script>
+{{ end }}
+
