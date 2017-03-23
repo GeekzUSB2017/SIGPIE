@@ -7,6 +7,7 @@ import csv
 from gluon.sqlhtml import ExportClass
 
 def expediente():
+
 	if session.usuario is not None:
 		#Se hace el query correspondiente al estudiante logueado actual para obtener la informacion y llenar el formulario
 
@@ -83,7 +84,6 @@ def expediente():
 		stuff.close()
 		
 		#Descomentar para mostrar pdf recien generado
-		#response.stream("/tmp/{0}.pdf".format(estudiante.carnet))
 
 
 
@@ -272,7 +272,10 @@ def expediente():
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_2 = stuff)
 		stuff.close()
 
-		return dict()
+		response.stream("/tmp/{0}(1).pdf".format(estudiante.carnet))
+		
 
 	else:
 		redirect(URL('index'))
+
+
