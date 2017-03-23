@@ -54,7 +54,11 @@ def expediente():
 		f["direccionContacto"] = contacto_emergencia.direccion.decode("utf8").encode("latin1")
 		f["emailContacto"] = contacto_emergencia.Correo.decode("utf8").encode("latin1")
 		f["nombreContacto"] = contacto_emergencia.nombres.decode("utf8").encode("latin1")
-		f["relacionContacto"] = contacto_emergencia.relacion.decode("utf8").encode("latin1")
+		
+		if contacto_emergencia.relacion == "Otro":
+			f["relacionContacto"] = (contacto_emergencia.relacion + " - " + contacto_emergencia.relacion_otro).decode("utf8").encode("latin1")
+		else:
+			f["relacionContacto"] = contacto_emergencia.relacion.decode("utf8").encode("latin1")
 		f["tlfoContacto"] = contacto_emergencia.telefono_habitacion + " - " + contacto_emergencia.telefono_celular
 
 		f["idioma_destino"] = idioma.nombre.decode("utf8").encode("latin1")
@@ -120,7 +124,11 @@ def expediente():
 		# Información académica
 		informacion_academica = db(db.informacion_academica.estudiante == estudiante.id).select().first()
 
-		g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
+		if informacion_academica.postgrado_nombre is not None:
+			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")	
+		else:
+			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
+		
 		g['creditos'] = informacion_academica.creditos_aprob
 		g['indice'] = informacion_academica.indice
 		g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
