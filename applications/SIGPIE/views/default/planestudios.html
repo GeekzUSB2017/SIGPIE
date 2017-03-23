@@ -30,7 +30,7 @@
 
     <!-- Fila 1-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod1 cod">
         <label>Código <span style="color:red;">*</span>
         {{=form_plan.custom.widget.codigo_usb_1}}</label>
       </div>
@@ -58,7 +58,7 @@
 
     <!-- Fila 2-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod2 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_2}}</label>
       </div>
@@ -86,7 +86,7 @@
 
     <!-- Fila 3-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod3 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_3}}</label>
       </div>
@@ -114,7 +114,7 @@
 
     <!-- Fila 4-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod4 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_4}}</label>
       </div>
@@ -142,7 +142,7 @@
 
     <!-- Fila 5-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod5 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_5}}</label>
       </div>
@@ -170,7 +170,7 @@
 
     <!-- Fila 6-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod6 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_6}}</label>
       </div>
@@ -198,7 +198,7 @@
 
     <!-- Fila 7-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod7 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_7}}</label>
       </div>
@@ -226,7 +226,7 @@
 
     <!-- Fila 8-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod8 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_8}}</label>
       </div>
@@ -254,7 +254,7 @@
 
     <!-- Fila 9-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod9 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_9}}</label>
       </div>
@@ -282,7 +282,7 @@
 
     <!-- Fila 10-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod10 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_10}}</label>
       </div>
@@ -310,7 +310,7 @@
 
     <!-- Fila 11-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod11 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_11}}</label>
       </div>
@@ -338,7 +338,7 @@
 
     <!-- Fila 12-->
     <div class="row filas" id="filas">
-      <div class="col-lg-2 col-md-2 col-xs-2">
+      <div class="col-lg-2 col-md-2 col-xs-2 cod12 cod">
         <label>Código
         {{=form_plan.custom.widget.codigo_usb_12}}</label>
       </div>
@@ -388,3 +388,138 @@
 </div>
 {{=form_plan.custom.end}}
 {{end}}
+
+{{ block custom_script }}
+<script>
+  $(document).ready(function() {
+    $('div.cod').each(function() {
+      var $cod = $(this);
+      $cod.hide()
+    });
+
+    $("#no_table_materia_usb_1").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod1").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod1").show();
+      }else{
+        $(".cod1").hide();
+
+      };
+    });
+
+    $("#no_table_materia_usb_2").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod2").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod2").show();
+      }else{
+        $(".cod2").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_3").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod3").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod3").show();
+      }else{
+        $(".cod3").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_4").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod4").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod4").show();
+      }else{
+        $(".cod4").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_5").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod5").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod5").show();
+      }else{
+        $(".cod5").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_6").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod6").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod6").show();
+      }else{
+        $(".cod6").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_7").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod7").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod7").show();
+      }else{
+        $(".cod7").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_8").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod8").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod8").show();
+      }else{
+        $(".cod8").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_9").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod9").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod9").show();
+      }else{
+        $(".cod9").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_10").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod10").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod10").show();
+      }else{
+        $(".cod10").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_11").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod11").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod11").show();
+      }else{
+        $(".cod11").hide();
+
+      };
+    });
+    $("#no_table_materia_usb_12").change(function(){
+      if ($(this).val() == "Electiva de Área"){
+        $(".cod12").show();
+      }else if  ($(this).val() == "Obligatoria"){
+        $(".cod12").show();
+      }else{
+        $(".cod12").hide();
+
+      };
+    });
+
+
+  });
+</script>
+{{ end }}
