@@ -50,21 +50,25 @@ def expediente():
 
 
 		#Se cargan manualmente los datos de la persona de contacto, idioma, y pais/universidad de destino
-		f["apellidoContacto"] = contacto_emergencia.apellidos
-		f["direccionContacto"] = contacto_emergencia.direccion
-		f["emailContacto"] = contacto_emergencia.Correo
-		f["nombreContacto"] = contacto_emergencia.nombres
-		f["relacionContacto"] = contacto_emergencia.relacion
+		f["apellidoContacto"] = contacto_emergencia.apellidos.decode("utf8").encode("latin1")
+		f["direccionContacto"] = contacto_emergencia.direccion.decode("utf8").encode("latin1")
+		f["emailContacto"] = contacto_emergencia.Correo.decode("utf8").encode("latin1")
+		f["nombreContacto"] = contacto_emergencia.nombres.decode("utf8").encode("latin1")
+		
+		if contacto_emergencia.relacion == "Otro":
+			f["relacionContacto"] = (contacto_emergencia.relacion + " - " + contacto_emergencia.relacion_otro).decode("utf8").encode("latin1")
+		else:
+			f["relacionContacto"] = contacto_emergencia.relacion.decode("utf8").encode("latin1")
 		f["tlfoContacto"] = contacto_emergencia.telefono_habitacion + " - " + contacto_emergencia.telefono_celular
 
-		f["idioma_destino"] = idioma.nombre
-		f["nivelOral"] = manejo_idioma.oral
-		f["nivelEscrito"] = manejo_idioma.escrito
-		f["nivelLectura"] = manejo_idioma.lectura
+		f["idioma_destino"] = idioma.nombre.decode("utf8").encode("latin1")
+		f["nivelOral"] = manejo_idioma.oral.decode("utf8").encode("latin1")
+		f["nivelEscrito"] = manejo_idioma.escrito.decode("utf8").encode("latin1")
+		f["nivelLectura"] = manejo_idioma.lectura.decode("utf8").encode("latin1")
 
-		f["pais1"] = pais1.nombre
-		f["universidad_1"] = universidad1.nombre
-		f["convenio"] = convenio1.nombre
+		f["pais1"] = pais1.nombre.decode("utf8").encode("latin1")
+		f["universidad_1"] = universidad1.nombre.decode("utf8").encode("latin1")
+		f["convenio"] = convenio1.nombre.decode("utf8").encode("latin1")
 
 		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
 		f["foto"] = "./applications/SIGPIE/uploads/{0}".format(recaudos.foto)
@@ -120,7 +124,11 @@ def expediente():
 		# Información académica
 		informacion_academica = db(db.informacion_academica.estudiante == estudiante.id).select().first()
 
-		g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
+		if informacion_academica.postgrado_nombre is not None:
+			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")	
+		else:
+			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
+		
 		g['creditos'] = informacion_academica.creditos_aprob
 		g['indice'] = informacion_academica.indice
 		g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")

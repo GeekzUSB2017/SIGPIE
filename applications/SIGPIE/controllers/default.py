@@ -128,6 +128,7 @@ def postularse():
 					Field('nombres', default=session.usuario['first_name'], label='Nombres', writable=False),
 					Field('apellidos', default=session.usuario['last_name'], label='Apellidos', writable=False),
 					Field('cedula',default=session.usuario['cedula'], label='Cédula', writable=False),
+					Field('becado', 'boolean', label='Becado'),
 					Field('telefono_habitacion','string', label='Teléfono habitación', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un teléfono válido')),
 					Field('telefono_celular','string', label='Teléfono celular', requires=IS_MATCH('^[0-9]{4}-[0-9]{7}$', error_message='No es un celular válido')),
 					Field('correo','mail', label='Correo', requires=IS_MATCH('[^@]+@[^@]+\.[^@]+',
@@ -162,6 +163,7 @@ def postularse():
 			form.vars.nombres = estudiante.nombres
 			form.vars.apellidos = estudiante.apellidos
 			form.vars.cedula = estudiante.cedula
+			form.vars.becado = estudiante.becado
 			form.vars.telefono_habitacion = estudiante.telefono_habitacion
 			form.vars.telefono_celular = estudiante.telefono_celular
 			form.vars.correo = session.usuario['email']
@@ -208,9 +210,9 @@ def postularse():
 				# Si todos los campos del contacto de emergencia son llenados, actualizo la tabla
 				if (form.vars.nombres_cont != '' and form.vars.apellidos_cont != '' and	form.vars.direccion_cont != '' and form.vars.relacion_cont != '' and form.vars.telefono_habitacion_cont != '' and form.vars.telefono_celular_cont != '' and	form.vars.correo_cont != ''):
 					# Query para ver si ya existe un contacto de emergencia igual en la base
-					contacto = db((db.contacto_emergencia.nombres == form.vars.nombres_cont) &
-								(db.contacto_emergencia.apellidos == form.vars.apellidos_cont) &
-								(db.contacto_emergencia.direccion == form.vars.direccion_cont) &
+					contacto = db((db.contacto_emergencia.nombres == form.vars.nombres_cont.capitalize()) &
+								(db.contacto_emergencia.apellidos == form.vars.apellidos_cont.capitalize()) &
+								(db.contacto_emergencia.direccion == form.vars.direccion_cont.capitalize()) &
 								(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
 								(db.contacto_emergencia.relacion_otro == form.vars.relacion_otro) &
 								(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
@@ -222,9 +224,9 @@ def postularse():
 						id_contacto_emer = contacto.id
 					else:
 						id_contacto_emer = db.contacto_emergencia.insert(
-									nombres=form.vars.nombres_cont,
-									apellidos=form.vars.apellidos_cont,
-									direccion=form.vars.direccion_cont,
+									nombres=form.vars.nombres_cont.capitalize(),
+									apellidos=form.vars.apellidos_cont.capitalize(),
+									direccion=form.vars.direccion_cont.capitalize(),
 									relacion=form.vars.relacion_cont,
 									relacion_otro=form.vars.relacion_otro,
 									telefono_habitacion=form.vars.telefono_habitacion_cont,
@@ -233,13 +235,14 @@ def postularse():
 					db(db.estudiante.carnet == session.usuario['usbid']).update(contacto_emergencia=id_contacto_emer)
 				# Actualizar los datos del estudiante en sesión
 				db(db.estudiante.carnet == session.usuario['usbid']).update(
+							becado=form.vars.becado,
 							telefono_habitacion=form.vars.telefono_habitacion,
 							telefono_celular=form.vars.telefono_celular,
 							Correo=form.vars.correo,
 							pasaporte=form.vars.pasaporte,
 							genero=form.vars.genero,
-							nacionalidad=form.vars.nacionalidad,
-							direccion=form.vars.direccion,
+							nacionalidad=form.vars.nacionalidad.capitalize(),
+							direccion=form.vars.direccion.capitalize(),
 							redes=form.vars.redes_sociales)
 				redirect(URL('form2'))
 
@@ -349,88 +352,89 @@ def planestudios():
 
 		if (estudiante.renuncio):
 			redirect(URL('renunciar'))
-		else:
+		else:	
+			tipo_mat =('','Obligatoria','Electiva Libre','Electiva de Área','Proyecto de Grado','Pasantía','Estudio General')
 
 			form = SQLFORM.factory(
 					Field('codigo_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
-					Field('materia_usb_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
+					Field('materia_usb_1', 'string', requires=IS_IN_SET(tipo_mat,zero=None,error_message = 'Debe completar este campo'), label='Denominación'),
 					Field('creditos_usb_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos'),
 					Field('codigo_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Código'),
 					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
 					Field('numero_horas_1', 'integer', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_2', 'string', label='Código'),
-					Field('materia_usb_2', 'string', label='Denominación'),
+					Field('materia_usb_2', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_2', 'integer', label='N° de créditos'),
 					Field('codigo_ext_2', 'string', label='Código'),
 					Field('materia_ext_2', 'string', label='Denominación'),
 					Field('numero_horas_2', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_3', 'string', label='Código'),
-					Field('materia_usb_3', 'string', label='Denominación'),
+					Field('materia_usb_3', 'string', requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_3', 'integer', label='N° de créditos'),
 					Field('codigo_ext_3', 'string', label='Código'),
 					Field('materia_ext_3', 'string', label='Denominación'),
 					Field('numero_horas_3', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_4', 'string', label='Código'),
-					Field('materia_usb_4', 'string', label='Denominación'),
+					Field('materia_usb_4', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_4', 'integer', label='N° de créditos'),
 					Field('codigo_ext_4', 'string', label='Código'),
 					Field('materia_ext_4', 'string', label='Denominación'),
 					Field('numero_horas_4', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_5', 'string', label='Código'),
-					Field('materia_usb_5', 'string', label='Denominación'),
+					Field('materia_usb_5', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_5', 'integer', label='N° de créditos'),
 					Field('codigo_ext_5', 'string', label='Código'),
 					Field('materia_ext_5', 'string', label='Denominación'),
 					Field('numero_horas_5', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_6', 'string', label='Código'),
-					Field('materia_usb_6', 'string', label='Denominación'),
+					Field('materia_usb_6', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_6', 'integer', label='N° de créditos'),
 					Field('codigo_ext_6', 'string', label='Código'),
 					Field('materia_ext_6', 'string', label='Denominación'),
 					Field('numero_horas_6', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_7', 'string', label='Código'),
-					Field('materia_usb_7', 'string', label='Denominación'),
+					Field('materia_usb_7', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_7', 'integer', label='N° de créditos'),
 					Field('codigo_ext_7', 'string', label='Código'),
 					Field('materia_ext_7', 'string', label='Denominación'),
 					Field('numero_horas_7', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_8', 'string', label='Código'),
-					Field('materia_usb_8', 'string', label='Denominación'),
+					Field('materia_usb_8', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_8', 'integer', label='N° de créditos'),
 					Field('codigo_ext_8', 'string', label='Código'),
 					Field('materia_ext_8', 'string', label='Denominación'),
 					Field('numero_horas_8', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_9', 'string', label='Código'),
-					Field('materia_usb_9', 'string', label='Denominación'),
+					Field('materia_usb_9', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_9', 'integer', label='N° de créditos'),
 					Field('codigo_ext_9', 'string', label='Código'),
 					Field('materia_ext_9', 'string', label='Denominación'),
 					Field('numero_horas_9', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_10', 'string', label='Código'),
-					Field('materia_usb_10', 'string', label='Denominación'),
+					Field('materia_usb_10', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_10', 'integer', label='N° de créditos'),
 					Field('codigo_ext_10', 'string', label='Código'),
 					Field('materia_ext_10', 'string', label='Denominación'),
 					Field('numero_horas_10', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_11', 'string', label='Código'),
-					Field('materia_usb_11', 'string', label='Denominación'),
+					Field('materia_usb_11', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_11', 'integer', label='N° de créditos'),
 					Field('codigo_ext_11', 'string', label='Código'),
 					Field('materia_ext_11', 'string', label='Denominación'),
 					Field('numero_horas_11', 'integer', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_12', 'string', label='Código'),
-					Field('materia_usb_12', 'string', label='Denominación'),
+					Field('materia_usb_12', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_12', 'integer', label='N° de créditos'),
 					Field('codigo_ext_12', 'string', label='Código'),
 					Field('materia_ext_12', 'string', label='Denominación'),
@@ -446,10 +450,10 @@ def planestudios():
 
 			if materia_1 != None:
 				form.vars.codigo_usb_1 = materia_1.codigo_usb
-				form.vars.materia_usb_1 = materia_1.materia_usb
+				form.vars.materia_usb_1 = materia_1.materia_usb.capitalize()
 				form.vars.creditos_usb_1 = materia_1.creditos_usb
 				form.vars.codigo_ext_1 = materia_1.codigo_ext
-				form.vars.materia_ext_1 = materia_1.materia_ext
+				form.vars.materia_ext_1 = materia_1.materia_ext.capitalize()
 				form.vars.numero_horas_1 = materia_1.numero_horas
 
 			materia_2 = db((db.materia.formulario == 2) &
@@ -457,10 +461,10 @@ def planestudios():
 
 			if materia_2 != None:
 				form.vars.codigo_usb_2 = materia_2.codigo_usb
-				form.vars.materia_usb_2 = materia_2.materia_usb
+				form.vars.materia_usb_2 = materia_2.materia_usb.capitalize()
 				form.vars.creditos_usb_2 = materia_2.creditos_usb
 				form.vars.codigo_ext_2 = materia_2.codigo_ext
-				form.vars.materia_ext_2 = materia_2.materia_ext
+				form.vars.materia_ext_2 = materia_2.materia_ext.capitalize()
 				form.vars.numero_horas_2 = materia_2.numero_horas
 
 			materia_3 = db((db.materia.formulario == 3) &
@@ -468,10 +472,10 @@ def planestudios():
 
 			if materia_3 != None:
 				form.vars.codigo_usb_3 = materia_3.codigo_usb
-				form.vars.materia_usb_3 = materia_3.materia_usb
+				form.vars.materia_usb_3 = materia_3.materia_usb.capitalize()
 				form.vars.creditos_usb_3 = materia_3.creditos_usb
 				form.vars.codigo_ext_3 = materia_3.codigo_ext
-				form.vars.materia_ext_3 = materia_3.materia_ext
+				form.vars.materia_ext_3 = materia_3.materia_ext.capitalize()
 				form.vars.numero_horas_3 = materia_3.numero_horas
 
 			materia_4 = db((db.materia.formulario == 4) &
@@ -479,10 +483,10 @@ def planestudios():
 
 			if materia_4 != None:
 				form.vars.codigo_usb_4 = materia_4.codigo_usb
-				form.vars.materia_usb_4 = materia_4.materia_usb
+				form.vars.materia_usb_4 = materia_4.materia_usb.capitalize()
 				form.vars.creditos_usb_4 = materia_4.creditos_usb
 				form.vars.codigo_ext_4 = materia_4.codigo_ext
-				form.vars.materia_ext_4 = materia_4.materia_ext
+				form.vars.materia_ext_4 = materia_4.materia_ext.capitalize()
 				form.vars.numero_horas_4 = materia_4.numero_horas
 
 			materia_5 = db((db.materia.formulario == 5) &
@@ -490,10 +494,10 @@ def planestudios():
 
 			if materia_5 != None:
 				form.vars.codigo_usb_5 = materia_5.codigo_usb
-				form.vars.materia_usb_5 = materia_5.materia_usb
+				form.vars.materia_usb_5 = materia_5.materia_usb.capitalize()
 				form.vars.creditos_usb_5 = materia_5.creditos_usb
 				form.vars.codigo_ext_5 = materia_5.codigo_ext
-				form.vars.materia_ext_5 = materia_5.materia_ext
+				form.vars.materia_ext_5 = materia_5.materia_ext.capitalize()
 				form.vars.numero_horas_5 = materia_5.numero_horas
 
 			materia_6 = db((db.materia.formulario == 6) &
@@ -501,10 +505,10 @@ def planestudios():
 
 			if materia_6 != None:
 				form.vars.codigo_usb_6 = materia_6.codigo_usb
-				form.vars.materia_usb_6 = materia_6.materia_usb
+				form.vars.materia_usb_6 = materia_6.materia_usb.capitalize()
 				form.vars.creditos_usb_6 = materia_6.creditos_usb
 				form.vars.codigo_ext_6 = materia_6.codigo_ext
-				form.vars.materia_ext_6 = materia_6.materia_ext
+				form.vars.materia_ext_6 = materia_6.materia_ext.capitalize()
 				form.vars.numero_horas_6 = materia_6.numero_horas
 
 			materia_7 = db((db.materia.formulario == 7) &
@@ -512,10 +516,10 @@ def planestudios():
 
 			if materia_7 != None:
 				form.vars.codigo_usb_7 = materia_7.codigo_usb
-				form.vars.materia_usb_7 = materia_7.materia_usb
+				form.vars.materia_usb_7 = materia_7.materia_usb.capitalize()
 				form.vars.creditos_usb_7 = materia_7.creditos_usb
 				form.vars.codigo_ext_7 = materia_7.codigo_ext
-				form.vars.materia_ext_7 = materia_7.materia_ext
+				form.vars.materia_ext_7 = materia_7.materia_ext.capitalize()
 				form.vars.numero_horas_7 = materia_7.numero_horas
 
 			materia_8 = db((db.materia.formulario == 8) &
@@ -523,10 +527,10 @@ def planestudios():
 
 			if materia_8 != None:
 				form.vars.codigo_usb_8 = materia_8.codigo_usb
-				form.vars.materia_usb_8 = materia_8.materia_usb
+				form.vars.materia_usb_8 = materia_8.materia_usb.capitalize()
 				form.vars.creditos_usb_8 = materia_8.creditos_usb
 				form.vars.codigo_ext_8 = materia_8.codigo_ext
-				form.vars.materia_ext_8 = materia_8.materia_ext
+				form.vars.materia_ext_8 = materia_8.materia_ext.capitalize()
 				form.vars.numero_horas_8 = materia_8.numero_horas
 
 			materia_9 = db((db.materia.formulario == 9) &
@@ -534,10 +538,10 @@ def planestudios():
 
 			if materia_9 != None:
 				form.vars.codigo_usb_9 = materia_9.codigo_usb
-				form.vars.materia_usb_9 = materia_9.materia_usb
+				form.vars.materia_usb_9 = materia_9.materia_usb.capitalize()
 				form.vars.creditos_usb_9 = materia_9.creditos_usb
 				form.vars.codigo_ext_9 = materia_9.codigo_ext
-				form.vars.materia_ext_9 = materia_9.materia_ext
+				form.vars.materia_ext_9 = materia_9.materia_ext.capitalize()
 				form.vars.numero_horas_9 = materia_9.numero_horas
 
 			materia_10 = db((db.materia.formulario == 10) &
@@ -545,10 +549,10 @@ def planestudios():
 
 			if materia_10 != None:
 				form.vars.codigo_usb_10 = materia_10.codigo_usb
-				form.vars.materia_usb_10 = materia_10.materia_usb
+				form.vars.materia_usb_10 = materia_10.materia_usb.capitalize()
 				form.vars.creditos_usb_10 = materia_10.creditos_usb
 				form.vars.codigo_ext_10 = materia_10.codigo_ext
-				form.vars.materia_ext_10 = materia_10.materia_ext
+				form.vars.materia_ext_10 = materia_10.materia_ext.capitalize()
 				form.vars.numero_horas_10 = materia_10.numero_horas
 
 			materia_11 = db((db.materia.formulario == 11) &
@@ -556,10 +560,10 @@ def planestudios():
 
 			if materia_11 != None:
 				form.vars.codigo_usb_11 = materia_11.codigo_usb
-				form.vars.materia_usb_11 = materia_11.materia_usb
+				form.vars.materia_usb_11 = materia_11.materia_usb.capitalize()
 				form.vars.creditos_usb_11 = materia_11.creditos_usb
 				form.vars.codigo_ext_11 = materia_11.codigo_ext
-				form.vars.materia_ext_11 = materia_11.materia_ext
+				form.vars.materia_ext_11 = materia_11.materia_ext.capitalize()
 				form.vars.numero_horas_11 = materia_11.numero_horas
 
 			materia_12 = db((db.materia.formulario == 12) &
@@ -567,10 +571,10 @@ def planestudios():
 
 			if materia_12 != None:
 				form.vars.codigo_usb_12 = materia_12.codigo_usb
-				form.vars.materia_usb_12 = materia_12.materia_usb
+				form.vars.materia_usb_12 = materia_12.materia_usb.capitalize()
 				form.vars.creditos_usb_12 = materia_12.creditos_usb
 				form.vars.codigo_ext_12 = materia_12.codigo_ext
-				form.vars.materia_ext_12 = materia_12.materia_ext
+				form.vars.materia_ext_12 = materia_12.materia_ext.capitalize()
 				form.vars.numero_horas_12 = materia_12.numero_horas
 
 			if form.process().accepted:
@@ -1177,7 +1181,7 @@ def lista_postulados():
 	#Define the fields to show on grid
 	fields = (db.estudiante.id, db.informacion_academica.sede, db.informacion_academica.decanato,
 			  db.carrera.nombre, db.estudiante.carnet, db.estudiante.cedula, db.estudiante.nombres,
-			  db.estudiante.apellidos, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
+			  db.estudiante.apellidos, db.estudiante.becado, db.estudiante.telefono_celular, db.estudiante.telefono_habitacion,
 			  db.estudiante.Correo, db.informacion_academica.indice, db.informacion_academica.creditos_aprob,
 			  db.estudiante.renuncio, db.universidad.pais, db.estudiante.universidad_1, db.universidad.convenio,
 			  db.estudiante.periodo_1, universidad_2.pais, db.estudiante.universidad_2, universidad_2.convenio,
@@ -1195,6 +1199,7 @@ def lista_postulados():
 			   'carrera.nombre': 'Carrera',
 			   'estudiante.carnet': 'Carnet',
 			   'estudiante.cedula': 'C.I.',
+			   'estudiante.becado': 'Becado',
 			   'estudiante.nombres': 'Nombres',
 			   'estudiante.apellidos': 'Apellidos',
 			   'estudiante.telefono_celular': 'Telf Celular',
@@ -1273,4 +1278,3 @@ def nuevo_convenio():
 		o['_value'] = "Guardar"
 
 	return dict(grid=grid)
-
