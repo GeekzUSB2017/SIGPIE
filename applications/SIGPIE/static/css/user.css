@@ -6,7 +6,9 @@
   .progress-bar {
       color: #333;
   }
-
+body{
+  background:url("https://i.ytimg.com/vi/w8MVOjQbUq0/maxresdefault.jpg");
+}
   /*
   Reference:
   http://www.bootstrapzen.com/item/135/simple-login-form-logo/
@@ -30,14 +32,6 @@
     z-index: 2;
   }
 }
-
-  /*body {
-    background: url(http://cinejardin.com/wp-content/uploads/2014/11/Biblioteca_USB-1.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-  }*/
 
 .login-form {
   margin-top: 150px;
