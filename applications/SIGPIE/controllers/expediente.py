@@ -117,25 +117,29 @@ def expediente():
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		# Universidad segunda opçión
 		universidad_2 = db(db.universidad.id == estudiante.universidad_2).select().first()
-		# País segunda opción
-		pais_2 = db(db.pais.id == universidad_2.pais).select().first()
-		# Convenio segunda opción
-		convenio_2 = db(db.convenio.id == universidad_2.convenio).select().first()
+		if universidad_2 != None:
+			# País segunda opción
+			pais_2 = db(db.pais.id == universidad_2.pais).select().first()
+			# Convenio segunda opción
+			convenio_2 = db(db.convenio.id == universidad_2.convenio).select().first()
 		# Información académica
 		informacion_academica = db(db.informacion_academica.estudiante == estudiante.id).select().first()
 
 		if informacion_academica.postgrado_nombre is not None:
 			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")	
+		elif informacion_academica.postgrado_nombre == "":
+			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
 		else:
 			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
 		
 		g['creditos'] = informacion_academica.creditos_aprob
 		g['indice'] = informacion_academica.indice
-		g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
-		g['universidad_2'] = universidad_2.nombre.decode("utf8").encode("latin1")
-		g['convenio'] = convenio_2.nombre.decode("utf8").encode("latin1")
-		g['actividad_2'] = estudiante.actividad_2
-		g['periodo_2'] = estudiante.periodo_2
+		if universidad_2 != None:
+			g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
+			g['universidad_2'] = universidad_2.nombre.decode("utf8").encode("latin1")
+			g['convenio'] = convenio_2.nombre.decode("utf8").encode("latin1")
+			g['actividad_2'] = estudiante.actividad_2
+			g['periodo_2'] = estudiante.periodo_2
 
 		materia_1 = db((db.materia.formulario == 1) &
 					(db.materia.fk_estudiante == estudiante.id)).select().first()
