@@ -140,8 +140,8 @@ def expediente():
 			g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
 			g['universidad_2'] = universidad_2.nombre.decode("utf8").encode("latin1")
 			g['convenio'] = convenio_2.nombre.decode("utf8").encode("latin1")
-			g['actividad_2'] = estudiante.actividad_2
-			g['periodo_2'] = estudiante.periodo_2
+			g['actividad_2'] = estudiante.actividad_2.decode("utf8").encode("latin1")
+			g['periodo_2'] = estudiante.periodo_2.decode("utf8").encode("latin1")
 
 		materia_1 = db((db.materia.formulario == 1) &
 					(db.materia.fk_estudiante == estudiante.id)).select().first()
