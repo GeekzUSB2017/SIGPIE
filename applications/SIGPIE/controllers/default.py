@@ -450,7 +450,7 @@ def planestudios():
 
 			if materia_1 != None:
 				form.vars.codigo_usb_1 = materia_1.codigo_usb
-				form.vars.materia_usb_1 = materia_1.materia_usb.capitalize()
+				form.vars.materia_usb_1 = materia_1.materia_usb
 				form.vars.creditos_usb_1 = materia_1.creditos_usb
 				form.vars.codigo_ext_1 = materia_1.codigo_ext
 				form.vars.materia_ext_1 = materia_1.materia_ext.capitalize()
@@ -461,7 +461,7 @@ def planestudios():
 
 			if materia_2 != None:
 				form.vars.codigo_usb_2 = materia_2.codigo_usb
-				form.vars.materia_usb_2 = materia_2.materia_usb.capitalize()
+				form.vars.materia_usb_2 = materia_2.materia_usb
 				form.vars.creditos_usb_2 = materia_2.creditos_usb
 				form.vars.codigo_ext_2 = materia_2.codigo_ext
 				form.vars.materia_ext_2 = materia_2.materia_ext.capitalize()
@@ -472,7 +472,7 @@ def planestudios():
 
 			if materia_3 != None:
 				form.vars.codigo_usb_3 = materia_3.codigo_usb
-				form.vars.materia_usb_3 = materia_3.materia_usb.capitalize()
+				form.vars.materia_usb_3 = materia_3.materia_usb
 				form.vars.creditos_usb_3 = materia_3.creditos_usb
 				form.vars.codigo_ext_3 = materia_3.codigo_ext
 				form.vars.materia_ext_3 = materia_3.materia_ext.capitalize()
@@ -483,7 +483,7 @@ def planestudios():
 
 			if materia_4 != None:
 				form.vars.codigo_usb_4 = materia_4.codigo_usb
-				form.vars.materia_usb_4 = materia_4.materia_usb.capitalize()
+				form.vars.materia_usb_4 = materia_4.materia_usb
 				form.vars.creditos_usb_4 = materia_4.creditos_usb
 				form.vars.codigo_ext_4 = materia_4.codigo_ext
 				form.vars.materia_ext_4 = materia_4.materia_ext.capitalize()
@@ -494,7 +494,7 @@ def planestudios():
 
 			if materia_5 != None:
 				form.vars.codigo_usb_5 = materia_5.codigo_usb
-				form.vars.materia_usb_5 = materia_5.materia_usb.capitalize()
+				form.vars.materia_usb_5 = materia_5.materia_usb
 				form.vars.creditos_usb_5 = materia_5.creditos_usb
 				form.vars.codigo_ext_5 = materia_5.codigo_ext
 				form.vars.materia_ext_5 = materia_5.materia_ext.capitalize()
@@ -505,7 +505,7 @@ def planestudios():
 
 			if materia_6 != None:
 				form.vars.codigo_usb_6 = materia_6.codigo_usb
-				form.vars.materia_usb_6 = materia_6.materia_usb.capitalize()
+				form.vars.materia_usb_6 = materia_6.materia_usb
 				form.vars.creditos_usb_6 = materia_6.creditos_usb
 				form.vars.codigo_ext_6 = materia_6.codigo_ext
 				form.vars.materia_ext_6 = materia_6.materia_ext.capitalize()
@@ -516,7 +516,7 @@ def planestudios():
 
 			if materia_7 != None:
 				form.vars.codigo_usb_7 = materia_7.codigo_usb
-				form.vars.materia_usb_7 = materia_7.materia_usb.capitalize()
+				form.vars.materia_usb_7 = materia_7.materia_usb
 				form.vars.creditos_usb_7 = materia_7.creditos_usb
 				form.vars.codigo_ext_7 = materia_7.codigo_ext
 				form.vars.materia_ext_7 = materia_7.materia_ext.capitalize()
@@ -527,7 +527,7 @@ def planestudios():
 
 			if materia_8 != None:
 				form.vars.codigo_usb_8 = materia_8.codigo_usb
-				form.vars.materia_usb_8 = materia_8.materia_usb.capitalize()
+				form.vars.materia_usb_8 = materia_8.materia_usb
 				form.vars.creditos_usb_8 = materia_8.creditos_usb
 				form.vars.codigo_ext_8 = materia_8.codigo_ext
 				form.vars.materia_ext_8 = materia_8.materia_ext.capitalize()
@@ -538,7 +538,7 @@ def planestudios():
 
 			if materia_9 != None:
 				form.vars.codigo_usb_9 = materia_9.codigo_usb
-				form.vars.materia_usb_9 = materia_9.materia_usb.capitalize()
+				form.vars.materia_usb_9 = materia_9.materia_usb
 				form.vars.creditos_usb_9 = materia_9.creditos_usb
 				form.vars.codigo_ext_9 = materia_9.codigo_ext
 				form.vars.materia_ext_9 = materia_9.materia_ext.capitalize()
@@ -549,7 +549,7 @@ def planestudios():
 
 			if materia_10 != None:
 				form.vars.codigo_usb_10 = materia_10.codigo_usb
-				form.vars.materia_usb_10 = materia_10.materia_usb.capitalize()
+				form.vars.materia_usb_10 = materia_10.materia_usb
 				form.vars.creditos_usb_10 = materia_10.creditos_usb
 				form.vars.codigo_ext_10 = materia_10.codigo_ext
 				form.vars.materia_ext_10 = materia_10.materia_ext.capitalize()
@@ -560,7 +560,7 @@ def planestudios():
 
 			if materia_11 != None:
 				form.vars.codigo_usb_11 = materia_11.codigo_usb
-				form.vars.materia_usb_11 = materia_11.materia_usb.capitalize()
+				form.vars.materia_usb_11 = materia_11.materia_usb
 				form.vars.creditos_usb_11 = materia_11.creditos_usb
 				form.vars.codigo_ext_11 = materia_11.codigo_ext
 				form.vars.materia_ext_11 = materia_11.materia_ext.capitalize()
@@ -571,7 +571,7 @@ def planestudios():
 
 			if materia_12 != None:
 				form.vars.codigo_usb_12 = materia_12.codigo_usb
-				form.vars.materia_usb_12 = materia_12.materia_usb.capitalize()
+				form.vars.materia_usb_12 = materia_12.materia_usb
 				form.vars.creditos_usb_12 = materia_12.creditos_usb
 				form.vars.codigo_ext_12 = materia_12.codigo_ext
 				form.vars.materia_ext_12 = materia_12.materia_ext.capitalize()
