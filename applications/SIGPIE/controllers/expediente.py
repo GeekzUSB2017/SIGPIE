@@ -69,12 +69,11 @@ def expediente():
 		f["pais1"] = pais1.nombre.decode("utf8").encode("latin1")
 		f["universidad_1"] = universidad1.nombre.decode("utf8").encode("latin1")
 		f["convenio"] = convenio1.nombre.decode("utf8").encode("latin1")
+		f['actividad_1'] = estudiante.actividad_1.decode("utf8").encode("latin1")
+		f['periodo_1'] = estudiante.periodo_1.decode("utf8").encode("latin1")
 
 		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
 		f["foto"] = "./applications/SIGPIE/uploads/{0}".format(recaudos.foto)
-		
-
-
 
 		#Escribo la informacion en el pdf
 		stuff = open("/tmp/{0}(1).pdf".format(estudiante.carnet), 'w')
@@ -87,17 +86,10 @@ def expediente():
 		#Lo almaceno en la base
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_1 = stuff)
 		stuff.close()
-		
-		#Descomentar para mostrar pdf recien generado
-
-
-
-
+	
 		############
 		# PAGINA 2 #
 		############
-
-
 
 		g = Template(format="letter",
 					 title="Pagina 2 Expediente")
@@ -125,12 +117,14 @@ def expediente():
 		# Información académica
 		informacion_academica = db(db.informacion_academica.estudiante == estudiante.id).select().first()
 
-		if informacion_academica.postgrado_nombre is not None:
-			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")	
+		if informacion_academica.postgrado_nombre is None:
+			g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
 		elif informacion_academica.postgrado_nombre == "":
-			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
+			g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
+		elif informacion_academica.postgrado_nombre is not None:
+			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")
 		else:
-			g['carrera'] = informacion_academica.carrera_nombre.decode("utf8").encode("latin1")
+			g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
 		
 		g['creditos'] = informacion_academica.creditos_aprob
 		g['indice'] = informacion_academica.indice
@@ -138,8 +132,8 @@ def expediente():
 			g['opc_interc_2'] = pais_2.nombre.decode("utf8").encode("latin1")
 			g['universidad_2'] = universidad_2.nombre.decode("utf8").encode("latin1")
 			g['convenio'] = convenio_2.nombre.decode("utf8").encode("latin1")
-			g['actividad_2'] = estudiante.actividad_2
-			g['periodo_2'] = estudiante.periodo_2
+			g['actividad_2'] = estudiante.actividad_2.decode("utf8").encode("latin1")
+			g['periodo_2'] = estudiante.periodo_2.decode("utf8").encode("latin1")
 
 		materia_1 = db((db.materia.formulario == 1) &
 					(db.materia.fk_estudiante == estudiante.id)).select().first()
