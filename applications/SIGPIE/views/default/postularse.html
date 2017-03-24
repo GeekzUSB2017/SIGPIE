@@ -242,9 +242,9 @@
     $("#no_table_idioma_destino").change(function(){
       if ($(this).val() == "8" || $("#no_table_idioma_destino").val() == ""){
         $("#campos_idioma").hide();
-        $("#no_table_oral").val("");
-        $("#no_table_escrito").val("");
-        $("#no_table_lectura").val("");
+        $("#no_table_oral").val("Avanzado");
+        $("#no_table_escrito").val("Avanzado");
+        $("#no_table_lectura").val("Avanzado");
         $("#no_table_oral").prop('required',false);
         $("#no_table_escrito").prop('required',false);
         $("#no_table_lectura").prop('required',false);
