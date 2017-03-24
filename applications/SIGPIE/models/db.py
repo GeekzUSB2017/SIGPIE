@@ -261,7 +261,7 @@ db.define_table('materia',
                 Field('creditos_usb', 'integer'),
                 Field('codigo_ext', 'string'),
                 Field('materia_ext', 'string'),
-                Field('numero_horas','integer'),
+                Field('numero_horas','string'),
                 Field('fk_estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(nombre)s'))
                 )
 
@@ -270,7 +270,7 @@ db.define_table('informacion_academica',
                 Field('creditos_aprob', 'integer', requires=IS_NOT_EMPTY(error_message='Debe completar este campo'), label='CA'),
                 Field('indice', requires=IS_MATCH('^[3-4].[0-9][0-9][0-9][0-9]|5.0000', error_message='El índice debe estar con el formato: x.xxxx y tener un valor entre 3.0000 - 5.0000'), label='Indice'),
                 Field('carrera', db.carrera,
-                      requires=IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera')),
+                      requires=IS_NULL_OR(IS_IN_DB(db, db.carrera.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione su carrera'))),
                 Field('decanato', db.decanato,
                       requires=IS_IN_DB(db, db.decanato.id, '%(nombre)s', error_message='Debe completar este campo', zero='Seleccione el decanato')),
                 Field('postgrado_nombre', 'string', required=False),
