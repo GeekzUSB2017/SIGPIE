@@ -33,7 +33,7 @@ def expediente():
 		##################################################################
 
 		#Queries para llenar los campos del formulario
-		
+
 		estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 		recaudos = db(db.recaudos.estudiante == estudiante.id).select().first()
 		contacto_emergencia = db(db.contacto_emergencia.id == estudiante.contacto_emergencia).select().first()
@@ -54,7 +54,8 @@ def expediente():
 		f["direccionContacto"] = contacto_emergencia.direccion.decode("utf8").encode("latin1")
 		f["emailContacto"] = contacto_emergencia.Correo.decode("utf8").encode("latin1")
 		f["nombreContacto"] = contacto_emergencia.nombres.decode("utf8").encode("latin1")
-		
+		f["direccion"] = estudiante.direccion.decode("utf8").encode("latin1")
+
 		if contacto_emergencia.relacion == "Otro":
 			f["relacionContacto"] = (contacto_emergencia.relacion + " - " + contacto_emergencia.relacion_otro).decode("utf8").encode("latin1")
 		else:
@@ -82,11 +83,11 @@ def expediente():
 
 		#Abro el archivo recien escrito
 		stuff = open("/tmp/{0}(1).pdf".format(estudiante.carnet), 'r')
-		
+
 		#Lo almaceno en la base
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_1 = stuff)
 		stuff.close()
-	
+
 		############
 		# PAGINA 2 #
 		############
@@ -125,7 +126,7 @@ def expediente():
 			g['carrera'] = informacion_academica.postgrado_nombre.decode("utf8").encode("latin1")
 		else:
 			g['carrera'] = informacion_academica.carrera.nombre.decode("utf8").encode("latin1")
-		
+
 		g['creditos'] = informacion_academica.creditos_aprob
 		g['indice'] = informacion_academica.indice
 		if universidad_2 != None:
@@ -265,7 +266,7 @@ def expediente():
 			g['codigo_ext_12'] = materia_12.codigo_ext
 			g['denominacion_ext_12'] = materia_12.materia_ext.decode("utf8").encode("latin1")
 			g['creditos_ext_12'] = materia_12.numero_horas
-		
+
 
 		#Escribo la informacion en el pdf
 		stuff = open("/tmp/{0}(2).pdf".format(estudiante.carnet), 'w')
@@ -274,7 +275,7 @@ def expediente():
 
 		#Abro el archivo recien escrito
 		stuff = open("/tmp/{0}(2).pdf".format(estudiante.carnet), 'r')
-		
+
 		#Lo almaceno en la base
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_2 = stuff)
 		stuff.close()
@@ -306,7 +307,7 @@ def expediente():
 		os.system(statement)
 
 		response.stream("/tmp/exp{0}.pdf".format(estudiante.carnet))
-		
+
 
 	else:
 		redirect(URL('index'))
