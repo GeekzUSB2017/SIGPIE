@@ -214,7 +214,7 @@ def postularse():
 								(db.contacto_emergencia.apellidos == form.vars.apellidos_cont.capitalize()) &
 								(db.contacto_emergencia.direccion == form.vars.direccion_cont.capitalize()) &
 								(db.contacto_emergencia.relacion == form.vars.relacion_cont) &
-								(db.contacto_emergencia.relacion_otro == form.vars.relacion_otro) &
+								(db.contacto_emergencia.relacion_otro == form.vars.relacion_otro.capitalize()) &
 								(db.contacto_emergencia.telefono_habitacion == form.vars.telefono_habitacion_cont) &
 								(db.contacto_emergencia.telefono_celular == form.vars.telefono_celular_cont) &
 								(db.contacto_emergencia.Correo == form.vars.correo_cont)
@@ -228,7 +228,7 @@ def postularse():
 									apellidos=form.vars.apellidos_cont.capitalize(),
 									direccion=form.vars.direccion_cont.capitalize(),
 									relacion=form.vars.relacion_cont,
-									relacion_otro=form.vars.relacion_otro,
+									relacion_otro=form.vars.relacion_otro.capitalize(),
 									telefono_habitacion=form.vars.telefono_habitacion_cont,
 									telefono_celular=form.vars.telefono_celular_cont,
 									Correo=form.vars.correo_cont)
