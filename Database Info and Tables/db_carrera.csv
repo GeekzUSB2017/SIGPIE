@@ -1,0 +1,30 @@
+carrera.id,carrera.codigo,carrera.nombre,carrera.coordinacion
+1,0100,Ingeniería Eléctrica,1
+2,0200,Ingeniería Mecánica,2
+3,0300,Ingeniería Química,3
+4,0600,Ingeniería Electrónica,4
+5,1500,Ingeniería Materiales,5
+6,0800,Ingeniería de la Computación,6
+7,1200,Ingeniería Geofísica,7
+8,1700,Ingeniería de Producción,8
+9,4000,Ingeniería de Mantenimiento,9
+10,1800,Ingeniería de Telecomunicaciones,10
+11,0400,Licenciatura en Química,3
+12,0500,Licenciatura en Matemáticas,12
+13,1000,Licenciatura en Física,13
+14,1900,Licenciatura en Biología,14
+15,0700,Arquitectura,15
+16,1100,Urbanismo,16
+17,3200,Licenciatura en Comercio Internacional,17
+18,3000,Licenciatura en Gestión de la Hospitalidad,18
+19,0001,Tecnología Eléctrica,19
+20,0002,Tecnología Electrónica,21
+21,0003,Tecnología Mecánica,22
+22,0004,Mantenimiento Aeronáutico,22
+23,0005,Administración del Turismo,24
+24,0006,Administración Hotelera,24
+25,0007,Administración del Transporte,25
+26,0008,Organización Empresarial,25
+27,0009,Comercio Exterior,26
+28,0010,Administración Aduanera,28
+29,9999,Postgrado,29

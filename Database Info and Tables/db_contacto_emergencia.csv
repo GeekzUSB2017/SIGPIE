@@ -1,0 +1,10 @@
+contacto_emergencia.id,contacto_emergencia.nombres,contacto_emergencia.apellidos,contacto_emergencia.direccion,contacto_emergencia.relacion,contacto_emergencia.telefono_habitacion,contacto_emergencia.telefono_celular,contacto_emergencia.Correo
+1,Nancy,Hernandez,Charallave,Madre,0212-3981982,0414-3981982,nancy@gmail.com
+2,Maria,Ruiz,Santa Monica,Madre,0212-6613451,0414-2465830,maria@hotmail.com
+3,RASh,seg,no,Representante Legal,0212-2063336,0424-4365338,mco@usb.ve
+4,mamá de Zulaima,Chiquin,Charallave,Madre,0212-1234567,0412-5847587,zchiquin@usb.ve
+5,melanie,gomes,La guaira,Otro,0212-8748877,0421-9874563,melanie@gmail.com
+6,melanie,gomes,La guaira,Otro,0212-9410791,0421-9874563,melanie@gmail.com
+7,dsd,dsad,asdsd,Representante Legal,0000-0000000,0000-0000000,dd@gmail.com
+8,Rafael,Palma,La Victoria,Padre,0244-3225432,0414-4909145,rafapalmarios@hotmail.com
+9,Adriana,Pineda,Santa Monica,Otro,0212-1234567,0414-1234567,adrianapineda@usb.ve
