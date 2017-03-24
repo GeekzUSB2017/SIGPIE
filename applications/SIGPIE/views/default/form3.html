@@ -126,7 +126,12 @@
   $("#no_table_segunda_opcion").change(function(){
 
     if ($("#no_table_segunda_opcion").is(':checked')) {
-        $("#segunda_opcion").show();
+      $("#segunda_opcion").show();
+      $("#no_table_pais_2").prop('required',true);
+      $("#no_table_convenio_2").prop('required',true);
+      $("#no_table_universidad_2").prop('required',true);
+      $("#no_table_actividad_2").prop('required',true);
+      $("#no_table_periodo_2").prop('required',true);
     }
     else if ($("#no_table_segunda_opcion").not(':checked')){
       $("#segunda_opcion").hide();
@@ -135,7 +140,11 @@
       $("#no_table_universidad_2").val("");
       $("#no_table_actividad_2").val("");
       $("#no_table_periodo_2").val("");
-
+      $("#no_table_pais_2").prop('required',false);
+      $("#no_table_convenio_2").prop('required',false);
+      $("#no_table_universidad_2").prop('required',false);
+      $("#no_table_actividad_2").prop('required',false);
+      $("#no_table_periodo_2").prop('required',false);
     }
   });
 

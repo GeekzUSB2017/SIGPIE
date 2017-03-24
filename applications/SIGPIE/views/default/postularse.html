@@ -245,18 +245,27 @@
         $("#no_table_oral").val("");
         $("#no_table_escrito").val("");
         $("#no_table_lectura").val("");
+        $("#no_table_oral").prop('required',false);
+        $("#no_table_escrito").prop('required',false);
+        $("#no_table_lectura").prop('required',false);
       }
       else{
         $("#campos_idioma").show();
+        $("#no_table_oral").prop('required',true);
+        $("#no_table_escrito").prop('required',true);
+        $("#no_table_lectura").prop('required',true);
+
       };
     });
     $("#no_table_relacion_cont").change(function(){
       if ($(this).val() == "Otro"){
         $("#otra_relacion").show();
+        $("#no_table_relacion_otro").prop('required',true);
       }
       else{
         $("#otra_relacion").hide();
         $("#no_table_relacion_otro").val("");
+        $("#no_table_relacion_otro").prop('required',false);
 
       };
     });

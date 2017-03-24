@@ -97,13 +97,13 @@
       if ($(this).val() == "3"){
         $("#nombre_postgrado").show();
         $("#informacion_academica_postgrado_nombre").prop('required',true);
-
+        $("#informacion_academica_carrera").prop('required',false);
         $("#carrera").hide();
-        $("#informacion_academica_carrera").val("29");
       }
       else{
         $("#nombre_postgrado").hide();
         $("#informacion_academica_carrera").val("");
+        $("#informacion_academica_carrera").prop('required',true);
         $("#carrera").show();
         $("#informacion_academica_postgrado_nombre").prop('required',false);
         $("#informacion_academica_postgrado_nombre").val("");
