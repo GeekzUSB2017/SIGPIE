@@ -1,0 +1,4 @@
+materia.id,materia.formulario,materia.codigo_usb,materia.materia_usb,materia.creditos_usb,materia.codigo_ext,materia.materia_ext,materia.numero_horas,materia.fk_estudiante
+1,1,PS111,SISTEMAS I,3,PS1234,XXX,33,5
+3,1,d322,2222,2,d222,222,22,4
+4,1,4y,ysg,5,253,etew,4,6

@@ -1,0 +1,79 @@
+universidad.id,universidad.pais,universidad.nombre,universidad.convenio,universidad.cupos
+1,1,Universidad de Siegen,1,5
+2,2,Universidad Nacional de San Martín,1,4
+3,3,Universidad De Swinburne,1,1
+4,4,Pontificia Universidad Católica de Chile,1,2
+5,4,Pontificia Universidad Católica de Valparaíso,1,1
+6,5,Universidad del Atlántico,1,4
+7,5,Corporación Tecnológica de Bogotá,1,0
+8,5,Universidad del Externado,1,2
+9,5,Pontificia Universidad Bolivariana,1,3
+10,6,Universidad de Sun Moon,1,2
+11,7,Universidad de Cuenca,1,4
+12,8,Universidad de Granada,1,3
+13,8,Universidad de Jaume I,1,1
+14,8,Universidad de la Laguna,1,6
+15,8,Universidad Rey Juan Carlos,1,4
+16,8,Universidad de Zaragoza,1,10
+17,9,Universidad de Oklahoma,1,0
+18,10,Universidad de Abo Akademi,1,5
+19,11,EPF Escuala de Ingenieros,1,6
+20,11,Université de Pau et des Pays de  L'adour,1,5
+21,11,Grupo INSA,1,5
+22,11,Universidad de Franche-Comté,1,3
+23,11,Telecom-Sudparis,1,6
+24,11,Universidad Tecnológica de Compiègne,1,5
+25,12,Politecnico di Milano,1,9
+26,13,Universidad de Tohoku,1,2
+27,13,Universidad Tecnológica de Nagaoka,1,5
+28,14,Universidad Autónoma de Baja California,1,4
+29,14,Universidad Veracruzana,1,2
+30,15,Universidad Noruega de Ciencia y Tecnología,1,2
+31,16,Universidad de Coimbra,1,0
+32,17,Universidad de Uppsala,1,1
+33,17,Universidad de Lund,1,5
+34,1,Universidad Stuttgart,2,1
+35,1,Universidad Tecnológica de Munich,2,3
+36,18,Universidad Católica de Lovaina,2,4
+37,19,Universidad de Sao Paulo,2,25
+38,4,Universidad Técnica Federico Santa Maria-Valparaíso,2,2
+39,5,Pontificia Universidad Javeriana,2,10
+40,8,Universidad Politécnica de Cataluña,2,4
+41,8,Universidad Politécnica de Madrid,2,16
+42,11,Instituto Politécnico de Grenoble,2,2
+43,20,Universidad Tecnológica de Panamá,2,4
+44,21,AGH Universidad de Ciencias y Tecnología,2,6
+45,16,Universidad de Porto,2,12
+46,16,Instituto Superior Técnico Universidad de Lisboa,2,3
+47,22,Universidad Técnica Checa en Praga (CTU),2,3
+48,2,Universidad Nacional de Cuyo,3,10
+49,2,Universidad Nacional de Quilmes,3,12
+50,2,Universidad Nacional de San Martín,3,20
+51,23,Universidad Privada Santa Cruz de la Sierra,3,15
+52,23,Universidad Católica Boliviana San Pablo,3,0
+53,19,Universidad Estadal de Campinas,3,15
+54,19,Universidad de Sao Paulo,3,25
+55,4,Pontificia Universidad Católica de Chile,3,8
+56,4,Pontificia Universidad Católica de Valparaíso,3,10
+57,4,Universidad Austral de Chile,3,20
+58,4,Universidad de Concepción,3,5
+59,4,Universidad de Talca,3,10
+60,4,Universidad de Tarapacá,3,3
+61,5,Pontificia Universidad Javeriana (Bogotá),3,10
+62,5,Pontificia Universidad Javeriana (Calí),3,15
+63,5,Universidad de Los Andes,3,10
+64,5,Universidad del Norte,3,50
+65,5,Universidad del Valle,3,18
+66,24,Universidad de Costa Rica,3,1
+67,7,Escuela Superior Politécnica del Litoral,3,20
+68,8,Universidad Politécnica de Cataluña,3,90
+69,8,Universidad de Barcelona,3,12
+70,12,Università Degli Studi di Genova,3,95
+71,14,Instituto Tecnológico y de Estudios Superiores de Monterrey,3,40
+72,14,Universidad Autónoma Metropolitana,3,5
+73,25,Pontificia Universidad Católica del Perú,3,10
+74,25,Universidad de Lima,3,6
+75,25,Universidad del Pacífico,3,4
+76,25,Universidad Peruana Cayetano Heredia,3,2
+77,26,Universidad Católica del Uruguay,3,10
+78,27,Universidad Centroccidental Lisandri Alvarado,3,57
