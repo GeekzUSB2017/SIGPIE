@@ -53,6 +53,7 @@ Navegar hasta la carpeta recien descargada y descomprimida y ejecutar de la sigu
 
 python web2py.py  
 
+Cargar desde el appadmin de web2py (localhost:8000/admin) en la base de datos los archivos CSV que contienen la información necesiaria para poder llenar correctamente los formularios. Para esto, dentro del admin de web2py, se seleccionar el Botón Manage de la aplicación SIGPIE, Edit, presionar el botón database administration, y cargar los archivos CSV uno por uno desde la opción Import. Si ocurre que se genera un error por FOREIGN KEY, seguir cargando los archivos CSV en las tablas restantes y al terminar, volver a intentar cargar de nuevo los archivos que dieron error. Esto ocurre porque al momento de cargar los datos en una cierta tabla, no existe la referencia (foreign key) a otra tabla que aun no se ha llenado. 
 ## REFERENCIAS  
 Repositorio para descargar pyfpdf: https://github.com/reingart/pyfpdf  
 Documentación de pyfpdf: https://pyfpdf.readthedocs.io/en/latest/  
