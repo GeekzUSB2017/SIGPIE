@@ -369,77 +369,77 @@ def planestudios():
 					Field('creditos_usb_2', 'integer', label='N° de créditos'),
 					Field('codigo_ext_2', 'string', label='Código'),
 					Field('materia_ext_2', 'string', label='Denominación'),
-					Field('numero_horas_2', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_2', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_3', 'string', label='Código'),
 					Field('materia_usb_3', 'string', requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_3', 'integer', label='N° de créditos'),
 					Field('codigo_ext_3', 'string', label='Código'),
 					Field('materia_ext_3', 'string', label='Denominación'),
-					Field('numero_horas_3', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_3', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_4', 'string', label='Código'),
 					Field('materia_usb_4', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_4', 'integer', label='N° de créditos'),
 					Field('codigo_ext_4', 'string', label='Código'),
 					Field('materia_ext_4', 'string', label='Denominación'),
-					Field('numero_horas_4', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_4', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_5', 'string', label='Código'),
 					Field('materia_usb_5', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_5', 'integer', label='N° de créditos'),
 					Field('codigo_ext_5', 'string', label='Código'),
 					Field('materia_ext_5', 'string', label='Denominación'),
-					Field('numero_horas_5', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_5', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_6', 'string', label='Código'),
 					Field('materia_usb_6', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_6', 'integer', label='N° de créditos'),
 					Field('codigo_ext_6', 'string', label='Código'),
 					Field('materia_ext_6', 'string', label='Denominación'),
-					Field('numero_horas_6', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_6', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_7', 'string', label='Código'),
 					Field('materia_usb_7', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_7', 'integer', label='N° de créditos'),
 					Field('codigo_ext_7', 'string', label='Código'),
 					Field('materia_ext_7', 'string', label='Denominación'),
-					Field('numero_horas_7', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_7', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_8', 'string', label='Código'),
 					Field('materia_usb_8', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_8', 'integer', label='N° de créditos'),
 					Field('codigo_ext_8', 'string', label='Código'),
 					Field('materia_ext_8', 'string', label='Denominación'),
-					Field('numero_horas_8', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_8', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_9', 'string', label='Código'),
 					Field('materia_usb_9', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_9', 'integer', label='N° de créditos'),
 					Field('codigo_ext_9', 'string', label='Código'),
 					Field('materia_ext_9', 'string', label='Denominación'),
-					Field('numero_horas_9', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_9', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_10', 'string', label='Código'),
 					Field('materia_usb_10', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_10', 'integer', label='N° de créditos'),
 					Field('codigo_ext_10', 'string', label='Código'),
 					Field('materia_ext_10', 'string', label='Denominación'),
-					Field('numero_horas_10', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_10', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_11', 'string', label='Código'),
 					Field('materia_usb_11', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_11', 'integer', label='N° de créditos'),
 					Field('codigo_ext_11', 'string', label='Código'),
 					Field('materia_ext_11', 'string', label='Denominación'),
-					Field('numero_horas_11', 'integer', label='N° de créditos/N° de horas x semana'),
+					Field('numero_horas_11', 'string', label='N° de créditos/N° de horas x semana'),
 
 					Field('codigo_usb_12', 'string', label='Código'),
 					Field('materia_usb_12', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_12', 'integer', label='N° de créditos'),
 					Field('codigo_ext_12', 'string', label='Código'),
 					Field('materia_ext_12', 'string', label='Denominación'),
-					Field('numero_horas_12', 'integer', label='N° de créditos/N° de horas x semana')
+					Field('numero_horas_12', 'string', label='N° de créditos/N° de horas x semana')
 					)
 
 			estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
@@ -1298,4 +1298,3 @@ def gestionar_administradores():
 		o['_value'] = "Guardar"
 
 	return dict(grid = grid)
-
