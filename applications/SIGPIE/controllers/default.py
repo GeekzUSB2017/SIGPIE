@@ -1279,3 +1279,13 @@ def nuevo_convenio():
 		o['_value'] = "Guardar"
 
 	return dict(grid=grid)
+
+@auth.requires_login()
+def gestionar_administradores():
+	export_classes = dict(csv=False, json=False, html=False,
+						  tsv=False, xml=False, csv_with_hidden_cols=False,
+						  tsv_with_hidden_cols=False)
+
+	grid = SQLFORM.grid(db.auth_user, exportclasses=export_classes)
+	return dict(grid = grid)
+
