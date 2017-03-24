@@ -1287,7 +1287,7 @@ def gestionar_administradores():
 						  tsv=False, xml=False, csv_with_hidden_cols=False,
 						  tsv_with_hidden_cols=False)
 
-	grid = SQLFORM.grid(db.auth_user, exportclasses=export_classes)
+	grid = SQLFORM.grid(db.auth_user, exportclasses=export_classes, deletable=False)
 
 	if grid.create_form or grid.update_form:
 		o = grid.element(_type='submit', _value='%s' % T('Submit'))
