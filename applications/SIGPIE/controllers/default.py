@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 from applications.SIGPIE.modules.ubsutils import get_ldap_data
 from applications.SIGPIE.modules.ubsutils import random_key
-
 import datetime
-
-URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 import cStringIO
 import csv
 from gluon.sqlhtml import ExportClass
 
+URL_RETORNO = "http%3A%2F%2Flocalhost%3A8000%2FSIGPIE%2Fdefault%2Flogin_cas"
 
+# En el siguiente archivo se encuentran todas las funciones que llaman a una vista
+#del sistema. Estas funciones retornan diccionarios, algunos vacios: los cuales 
+#solamente llaman a la vista en html ubicada en la carpeta /default/views, y otros
+#devuelven algunos diccionarios con argumentos que van a ser utilizados dentro de 
+#la parte logica de las vistas.
+
+
+#Clase utilizada para exportar los datos en CSV de la base de datos
 class ExporterCSVlabel(ExportClass):
 	label = 'CSV (real labels)'
 	file_ext = "csv"
@@ -64,14 +70,16 @@ def register():
 
 
 def index():
-	if session.usuario is not None:
-		redirect(URL('welcome'))
+	if session.usuario is not None: #Esta verificacion se hace constantemente. Se utiliza para verificar que el usuario haya iniciado sesion
+		redirect(URL('welcome')) #en el sistema y no que esta ingresando por medio de la URL directamente 
 	else:
 		return dict()
+
 
 @auth.requires_login()
 def administrador():
 	return dict()
+
 
 def about():
 	if session.usuario is not None:
@@ -79,6 +87,7 @@ def about():
 		return dict(estudiante = estudiante)
 	else:
 		redirect(URL('index'))
+
 
 def renuncia():
 	if session.usuario is not None:
@@ -106,8 +115,10 @@ def renuncia():
 	else:
 		redirect(URL('index'))
 
+
 def renunciar():
 	return dict()
+
 
 def postularse():
 	if session.usuario is not None:
@@ -1075,9 +1086,11 @@ def documentos():
 	else:
 		redirect(URL('index'))
 
+
 def ejemplo_flujograma():
 	estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
 	return dict(estudiante=estudiante)
+
 
 def login_cas():
 
@@ -1209,9 +1222,7 @@ def lista_postulados():
 			   'universidad_2.convenio': 'Tipo de Interambio',
 			   'estudiante.periodo_2': 'Tiempo de Intercambio'}
 
-	#Let's specify a default sort order on date_of_birth column in grid
-	#default_sort_order=[db.contact.date_of_birth]
-
+	
 	#Creating the grid object
 	grid = SQLFORM.grid(query=query, left=left, fields=fields, headers=headers, create=False,
 						deletable=False, editable=False, maxtextlength=128, paginate=10,
@@ -1270,6 +1281,7 @@ def nuevo_convenio():
 		o['_value'] = "Guardar"
 
 	return dict(grid=grid)
+
 
 @auth.requires_login()
 def gestionar_administradores():
