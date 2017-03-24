@@ -394,7 +394,10 @@
   $(document).ready(function() {
     $('div.cod').each(function() {
       var $cod = $(this);
-      $cod.hide()
+      var $child = $(this).children("input"); 
+      if ($child.val() == ""){
+        $cod.hide()
+      }
     });
 
     $("#no_table_materia_usb_1").change(function(){
