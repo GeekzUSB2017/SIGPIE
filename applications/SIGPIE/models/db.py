@@ -261,7 +261,7 @@ db.define_table('materia',
                 Field('creditos_usb', 'integer'),
                 Field('codigo_ext', 'string'),
                 Field('materia_ext', 'string'),
-                Field('numero_horas','integer'),
+                Field('numero_horas','string'),
                 Field('fk_estudiante', db.estudiante, requires=IS_IN_DB(db, db.estudiante.id, '%(nombre)s'))
                 )
 
