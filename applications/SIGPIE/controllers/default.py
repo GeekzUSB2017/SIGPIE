@@ -1088,6 +1088,10 @@ def documentos():
 	else:
 		redirect(URL('index'))
 
+def ejemplo_flujograma():
+	estudiante = db(db.estudiante.carnet == session.usuario['usbid']).select().first()
+	return dict(estudiante=estudiante)
+
 def login_cas():
 
 	if not request.vars.getfirst('ticket'):

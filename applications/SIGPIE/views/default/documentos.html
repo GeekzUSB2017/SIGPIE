@@ -30,7 +30,7 @@
 
 				<div class="form-group">
 					<label for="ci-f">Foto: <span style="color:red;">*</span> </label>
-					<p>Adjunte una foto carnet actualizada de su persona.</p>
+					<p>Adjunta una foto carnet actualizada de tu persona.</p>
 					{{if recaudo != None and recaudo.foto != "" and recaudo.foto != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.foto}}
@@ -41,7 +41,7 @@
 
 				<div class="form-group">
 					<label for="ci-f">Cédula de Identidad: <span style="color:red;">*</span> </label>
-					<p>Adjunte una fotocopia de su cédula de identidad.</p>
+					<p>Adjunta una copia de tu cédula de identidad.</p>
 					{{if recaudo != None and recaudo.cedula != "" and recaudo.cedula != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.cedula}}
@@ -52,8 +52,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="usbid-f">Carnet USB: <span style="color:red;">*</span> </label>
-					<p>Adjunte una copia de su carnet de la USB.</p>
+					<label for="usbid-f">Carné USB: <span style="color:red;">*</span> </label>
+					<p>Adjunta una copia de tu carné de la USB.</p>
 					{{if recaudo != None and recaudo.carnet != "" and recaudo.carnet != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.carnet}}
@@ -65,7 +65,7 @@
 
 				<div class="form-group">
 					<label for="expediente-f">Informe Académico: <span style="color:red;">*</span> </label>
-					<P>Adjunte su informe académico actualizado.</P>
+					<P>Adjunta tu informe académico actualizado.</P>
 					{{if recaudo != None and recaudo.informe_academico != "" and recaudo.informe_academico != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.informe_academico}}
@@ -77,7 +77,7 @@
 
 				<div class="form-group">
 					<label for="comprobante-f">Comprobante de Inscripción: <span style="color:red;">*</span> </label>
-					<p>Copia del comprobante de inscripción correspondiente al trimestre en curso.</p>
+					<p style="text-align:justify;">Adjunta una copia del comprobante de inscripción correspondiente al trimestre en curso.</p>
 					{{if recaudo != None and recaudo.comprobante != "" and recaudo.comprobante != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.comprobante}}
@@ -88,7 +88,7 @@
 				</div>
 				<div class="form-group">
 					<label for="cele-f">Programas de Estudio de la Universidad Extranjera: <span style="color:red;">*</span> </label>
-					<p>Adjunte los programas de estudio de las asignaturas que ingresó anteriormente.</p>
+					<p style="text-align:justify;">Adjunta los programas de estudio de las asignaturas que ingresaste anteriormente.</p>
 					{{if recaudo != None and recaudo.programas_de_estudio != "" and recaudo.programas_de_estudio != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.programas_de_estudio}}
@@ -104,7 +104,7 @@
 
 				<div class="form-group">
 					<label for="motivacion-f">Carta de Motivación: <span style="color:red;">*</span> </label>
-					<p>Carta de motivación para cursar estudios en la Universidad seleccionada dirigida a el/la Coordinador(a) Docente respectivo(a).</p>
+					<p style="text-align:justify;">Adjunta tu carta de motivación para cursar estudios en la Universidad seleccionada dirigida a el/la Coordinador(a) Docente respectivo(a).</p>
 					{{if recaudo != None and recaudo.carta_motivacion != "" and recaudo.carta_motivacion != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.carta_motivacion}}
@@ -116,7 +116,8 @@
 
 				<div class="form-group">
 					<label for="grafo-f">Flujograma: <span style="color:red;">*</span> </label>
-					<p>El flujograma debe indicar las materias cursadas y aprobadas a la fecha, las materias pendientes por cursar antes de iniciar el PIE y las materias que cursará en la USB cuando regrese a Venezuela.</p>
+					<p style="text-align:justify;">Adjunta tu flujograma, debes indicar las materias cursadas y aprobadas a la fecha, las materias pendientes por cursar antes de iniciar el PIE y las materias que cursarás en la USB cuando regreses a Venezuela.</p>
+					<a href="{{=URL('ejemplo_flujograma')}}"> Dar click aquí para ver ejemplo de un flujograma</a>
 					{{if recaudo != None and recaudo.flujograma != "" and recaudo.flujograma != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.flujograma}}
@@ -128,7 +129,7 @@
 
 				<div class="form-group">
 					<label for="expediente-f">Currículo Vitae: <span style="color:red;">*</span> </label>
-					<p>Adjunte su currículo vitae actualizado(sólo etapa universitaria) y las fotocopias que respalden su contenido.</p>
+					<p style="text-align:justify;">Adjunta tu currículo vitae actualizado(sólo etapa universitaria) y las fotocopias que respalden su contenido.</p>
 					{{if recaudo != None and recaudo.curriculum_vitae != "" and recaudo.curriculum_vitae != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.curriculum_vitae}}
@@ -140,7 +141,7 @@
 				{{if idioma.nombre != "Español":}}
 					<div class="form-group">
 						<label for="cele-f">Certificados de estudios de lengua extranjera: <span style="color:red;">*</span> </label>
-						<p>Evidencia de manejo de la lengua extranjera, de postularse a una universidad que no sea de habla hispana.</p>
+						<p style="text-align:justify;">Adjunta los certificados que evidencian de manejo de la lengua extranjera, de postularte a una universidad que no sea de habla hispana.</p>
 						{{if recaudo != None and recaudo.certificado_lengua != "" and recaudo.certificado_lengua != None:}}
 							<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 							{{=form_documentos.custom.widget.certificado_lengua}}
@@ -153,7 +154,7 @@
 
 				<div class="form-group">
 					<label for="cele-f">Actividades Extracurriculares:</label>
-					<p>Adjunte los documentos que evidencian las actividades extracurriculares que ha realizado.</p>
+					<p style="text-align:justify;">Adjunta los documentos que evidencian las actividades extracurriculares que has realizado.</p>
 					{{if recaudo != None and recaudo.actividades_extracurriculares != "" and recaudo.actividades_extracurriculares != None:}}
 						<p style="color: blue; font-weight: bold"><strong>Archivo cargado, si desea modificarlo, cargue uno nuevo</strong></p>
 						{{=form_documentos.custom.widget.actividades_extracurriculares}}

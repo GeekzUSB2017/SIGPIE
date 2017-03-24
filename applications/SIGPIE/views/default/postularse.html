@@ -15,6 +15,8 @@
 
   <div class="container-fluid">
     <div class="row" id="pwd-container">
+      <p style="text-align:justify; font-size:16px;"> Para poder postularse al Programa de Intercambio debe llenar los datos pedidos en todas las páginas del formulario a continuación, siguiendo las indicaciones de cada campo.</p>
+    <div class="row" id="pwd-container">
       <h2 style=" font-size:125%; text-align:center; font-weight: bold; color: black">DATOS PERSONALES </h2>
     </div>
   </div>
@@ -39,26 +41,26 @@
         <!--Cedula de estudiante-->
         <div class="form-group row">
           <label class="col-xs-4" text-align="left" style="color:black">Cédula de identidad:</label>
-    	    <div class="col-xs-2">
+          <div class="col-xs-2">
                 <select class="form-control">
                   <option>V</option>
                   <option>E</option>
                 </select>
-    	    </div>
-    	    <div class="col-xs-4">
+          </div>
+          <div class="col-xs-4">
                 {{=form_estudiante.custom.widget.cedula}}
-    	    </div>
+          </div>
         </div>
 
         <!--Check de Becado-->
         <div class="form-group">
-          <label for="becado" style="color:black">Marque si usted es becado:</label>
+          <label for="becado" style="color:black">Marca la casilla si eres becado:</label>
           {{=form_estudiante.custom.widget.becado}}
         </div>
 
         <!--Carnet de estudiante-->
         <div class="form-group">
-          <label for="carnet" style="color:black">Nº Carnet:</label>
+          <label for="carnet" style="color:black">Nº Carné:</label>
           {{=form_estudiante.custom.widget.carnet}}
         </div>
 
@@ -71,7 +73,7 @@
         <!--Nacionalidad de estudiante-->
         <div class="form-group">
           <label style="color:black">Nacionalidad:<span style="color:red;">*</span></label>
-          {{form_estudiante.custom.widget.nacionalidad.update(_placeholder="Nacionalidad")}}
+          {{form_estudiante.custom.widget.nacionalidad.update(_placeholder="Tu Nacionalidad")}}
           {{=form_estudiante.custom.widget.nacionalidad}}
         </div>
 
@@ -85,7 +87,7 @@
         <!--Direccion de estudiante-->
         <div class="form-group">
           <label style="color:black;"for="direccion">Dirección Domicilio Actual:<span style="color:red;">*</span></label>
-            {{form_estudiante.custom.widget.direccion.update(_placeholder="Dirección actual del estudiante")}}
+            {{form_estudiante.custom.widget.direccion.update(_placeholder="Tu dirección actual")}}
             {{=form_estudiante.custom.widget.direccion}}
         </div>
         <!--Idioma a usar estudiante-->
@@ -144,14 +146,14 @@
             <!--Email estudiante-->
             <div class="form-group">
               <label style="color:black;" for="e-mail">E-mail:<span style="color:red;">*</span></label>
-              {{form_estudiante.custom.widget.correo.update(_placeholder="Su E-mail")}}
+              {{form_estudiante.custom.widget.correo.update(_placeholder="Tu E-mail")}}
               {{=form_estudiante.custom.widget.correo}}
             </div>
 
             <!-- Redes sociales estudiante-->
             <div class="form-group">
               <label style="color:black;" for="redes">Redes Sociales:</label>
-              {{form_estudiante.custom.widget.redes_sociales.update(_placeholder="Sus redes sociales")}}
+              {{form_estudiante.custom.widget.redes_sociales.update(_placeholder="Tus redes sociales")}}
               {{=form_estudiante.custom.widget.redes_sociales}}
             </div>
           </div>
