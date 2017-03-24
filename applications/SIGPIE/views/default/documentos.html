@@ -189,7 +189,44 @@
 {{ block custom_script }}
 <script>
   $(document).ready(function() {
- 
+
+  	$("#guardar").click(function(){
+ 	var lleno = true;
+  	if (!$("#recaudos_foto").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_cedula").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_carnet").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_informe_academico").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_comprobante").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_programas_de_estudio").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_carta_motivacion").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_flujograma").val()){
+  		lleno = false;
+  	}
+  	if (!$("#recaudos_curriculum_vitae").val()){
+  		lleno = false;
+  	}
+  
+  	if (lleno){
+  		alert("!Enhorabuena! has completado tu postulación")
+  	}
+  	}
   });
+  });
+
+
 </script>
 {{ end }}
