@@ -69,12 +69,11 @@ def expediente():
 		f["pais1"] = pais1.nombre.decode("utf8").encode("latin1")
 		f["universidad_1"] = universidad1.nombre.decode("utf8").encode("latin1")
 		f["convenio"] = convenio1.nombre.decode("utf8").encode("latin1")
+		f['actividad_1'] = estudiante.actividad_1.decode("utf8").encode("latin1")
+		f['periodo_1'] = estudiante.periodo_1.decode("utf8").encode("latin1")
 
 		f["logo_univ"] = "./applications/SIGPIE/static/logo_usb.png"
 		f["foto"] = "./applications/SIGPIE/uploads/{0}".format(recaudos.foto)
-		
-
-
 
 		#Escribo la informacion en el pdf
 		stuff = open("/tmp/{0}(1).pdf".format(estudiante.carnet), 'w')
@@ -87,17 +86,10 @@ def expediente():
 		#Lo almaceno en la base
 		db(db.estudiante.carnet == session.usuario['usbid']).update(pagina_1 = stuff)
 		stuff.close()
-		
-		#Descomentar para mostrar pdf recien generado
-
-
-
-
+	
 		############
 		# PAGINA 2 #
 		############
-
-
 
 		g = Template(format="letter",
 					 title="Pagina 2 Expediente")
