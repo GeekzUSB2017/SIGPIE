@@ -392,13 +392,46 @@
 {{ block custom_script }}
 <script>
   $(document).ready(function() {
-    $('div.cod').each(function() {
-      var $cod = $(this);
-      var $child = $(this).children("input"); 
-      if ($child.val() == ""){
-        $cod.hide()
-      }
-    });
+  
+
+    if (!$("#no_table_codigo_usb_1").val()){
+      $(".cod1").hide();
+    }
+    if (!$("#no_table_codigo_usb_2").val()){
+      $(".cod2").hide();
+    }
+    if (!$("#no_table_codigo_usb_3").val()){
+      $(".cod3").hide();
+    }
+    if (!$("#no_table_codigo_usb_4").val()){
+      $(".cod4").hide();
+    }
+    if (!$("#no_table_codigo_usb_5").val()){
+      $(".cod5").hide();
+    }
+    if (!$("#no_table_codigo_usb_6").val()){
+      $(".cod6").hide();
+    }
+    if (!$("#no_table_codigo_usb_7").val()){
+      $(".cod7").hide();
+    }
+    if (!$("#no_table_codigo_usb_8").val()){
+      $(".cod8").hide();
+    }
+    if (!$("#no_table_codigo_usb_9").val()){
+      $(".cod9").hide();
+    }
+    if (!$("#no_table_codigo_usb_10").val()){
+      $(".cod10").hide();
+    }
+    if (!$("#no_table_codigo_usb_11").val()){
+      $(".cod11").hide();
+    }
+    if (!$("#no_table_codigo_usb_12").val()){
+      $(".cod12").hide();
+    }
+
+
 
     $("#no_table_materia_usb_1").change(function(){
       if ($(this).val() == "Electiva de Área"){
