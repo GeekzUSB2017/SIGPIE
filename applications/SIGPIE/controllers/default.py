@@ -1282,10 +1282,16 @@ def nuevo_convenio():
 
 @auth.requires_login()
 def gestionar_administradores():
+	query = db(db.auth_user)
 	export_classes = dict(csv=False, json=False, html=False,
 						  tsv=False, xml=False, csv_with_hidden_cols=False,
 						  tsv_with_hidden_cols=False)
 
 	grid = SQLFORM.grid(db.auth_user, exportclasses=export_classes)
+
+	if grid.create_form or grid.update_form:
+		o = grid.element(_type='submit', _value='%s' % T('Submit'))
+		o['_value'] = "Guardar"
+
 	return dict(grid = grid)
 
