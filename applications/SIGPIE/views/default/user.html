@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
 
 {{block css}}
-  <link href="{{=URL('static', 'css/user.css')}}" rel="stylesheet">
   <link href="{{=URL('static', 'css/navbarhome.css')}}" rel="stylesheet">
+  <link href="{{=URL('static', 'css/user.css')}}" rel="stylesheet">
   <link href="{{=URL('static', 'css/bootstrap.min.css')}}" rel="stylesheet">
 {{end}}
 
@@ -10,27 +10,26 @@
   <!--{{=auth()}}-->
   <div class="container">
     <div class="row" id="pwd-container">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
+      <div class="col-lg-4 col-md-4 col-xs-4"></div>
+      <div class="col-lg-4 col-md-4 col-xs-4">
         <section class="login-form">
           <form method="post" role="login">
             <img src="../static/css/images/climatico.jpg" class="img-responsive" alt="" />
             <div class="pwstrength_viewport_progress"></div>
             <div>
               {{=login}}
-              <a href="{{=URL('register')}}">Crear cuenta</a> o <a href="#">restablecer contraseña</a>
-            </div>
+              <a href="{{=URL('register')}}">Crear cuenta</a>
           </form>
         </section>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-lg-4 col-md-4 col-xs-4"></div>
     </div>
     <p><br><br></p>
   </div>
 {{end}}
 {{block footer}} 
   <footer>
-      <div class="col-md-1"></div>
+      <div class="col-lg-1 col-md-1 col-xs-1"></div>
       <p>&copy; 2017 DRIC USB &middot;</p>
   </footer>
 
