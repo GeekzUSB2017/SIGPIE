@@ -331,7 +331,6 @@ def form3():
 				form.vars.periodo_2 = estudiante.periodo_2
 
 			if form.process().accepted:
-				print("Entre")
 				db(db.estudiante.carnet == session.usuario['usbid']).update(
 							universidad_1=form.vars.universidad_1,
 							periodo_1=form.vars.periodo_1,
@@ -364,77 +363,77 @@ def planestudios():
 					Field('materia_ext_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='Denominación'),
 					Field('numero_horas_1', 'string', requires=IS_NOT_EMPTY(error_message = 'Debe completar este campo'), label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_2', 'string', label='Código'),
+					Field('codigo_usb_2', 'string', required=False, label='Código'),
 					Field('materia_usb_2', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_2', 'integer', label='N° de créditos'),
 					Field('codigo_ext_2', 'string', label='Código'),
 					Field('materia_ext_2', 'string', label='Denominación'),
 					Field('numero_horas_2', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_3', 'string', label='Código'),
+					Field('codigo_usb_3', 'string', required=False, label='Código'),
 					Field('materia_usb_3', 'string', requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_3', 'integer', label='N° de créditos'),
 					Field('codigo_ext_3', 'string', label='Código'),
 					Field('materia_ext_3', 'string', label='Denominación'),
 					Field('numero_horas_3', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_4', 'string', label='Código'),
+					Field('codigo_usb_4', 'string', required=False, label='Código'),
 					Field('materia_usb_4', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_4', 'integer', label='N° de créditos'),
 					Field('codigo_ext_4', 'string', label='Código'),
 					Field('materia_ext_4', 'string', label='Denominación'),
 					Field('numero_horas_4', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_5', 'string', label='Código'),
+					Field('codigo_usb_5', 'string', required=False, label='Código'),
 					Field('materia_usb_5', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_5', 'integer', label='N° de créditos'),
 					Field('codigo_ext_5', 'string', label='Código'),
 					Field('materia_ext_5', 'string', label='Denominación'),
 					Field('numero_horas_5', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_6', 'string', label='Código'),
+					Field('codigo_usb_6', 'string', required=False, label='Código'),
 					Field('materia_usb_6', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_6', 'integer', label='N° de créditos'),
 					Field('codigo_ext_6', 'string', label='Código'),
 					Field('materia_ext_6', 'string', label='Denominación'),
 					Field('numero_horas_6', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_7', 'string', label='Código'),
+					Field('codigo_usb_7', 'string', required=False, label='Código'),
 					Field('materia_usb_7', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_7', 'integer', label='N° de créditos'),
 					Field('codigo_ext_7', 'string', label='Código'),
 					Field('materia_ext_7', 'string', label='Denominación'),
 					Field('numero_horas_7', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_8', 'string', label='Código'),
+					Field('codigo_usb_8', 'string', required=False, label='Código'),
 					Field('materia_usb_8', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_8', 'integer', label='N° de créditos'),
 					Field('codigo_ext_8', 'string', label='Código'),
 					Field('materia_ext_8', 'string', label='Denominación'),
 					Field('numero_horas_8', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_9', 'string', label='Código'),
+					Field('codigo_usb_9', 'string', required=False, label='Código'),
 					Field('materia_usb_9', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_9', 'integer', label='N° de créditos'),
 					Field('codigo_ext_9', 'string', label='Código'),
 					Field('materia_ext_9', 'string', label='Denominación'),
 					Field('numero_horas_9', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_10', 'string', label='Código'),
+					Field('codigo_usb_10', 'string', required=False, label='Código'),
 					Field('materia_usb_10', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_10', 'integer', label='N° de créditos'),
 					Field('codigo_ext_10', 'string', label='Código'),
 					Field('materia_ext_10', 'string', label='Denominación'),
 					Field('numero_horas_10', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_11', 'string', label='Código'),
+					Field('codigo_usb_11', 'string', required=False, label='Código'),
 					Field('materia_usb_11', 'string',requires=IS_IN_SET(tipo_mat,zero=None), label='Denominación'),
 					Field('creditos_usb_11', 'integer', label='N° de créditos'),
 					Field('codigo_ext_11', 'string', label='Código'),
 					Field('materia_ext_11', 'string', label='Denominación'),
 					Field('numero_horas_11', 'integer', label='N° de créditos/N° de horas x semana'),
 
-					Field('codigo_usb_12', 'string', label='Código'),
+					Field('codigo_usb_12', 'string', required=False, label='Código'),
 					Field('materia_usb_12', 'string', requires=IS_IN_SET(tipo_mat,zero=None),label='Denominación'),
 					Field('creditos_usb_12', 'integer', label='N° de créditos'),
 					Field('codigo_ext_12', 'string', label='Código'),
@@ -579,7 +578,6 @@ def planestudios():
 				form.vars.numero_horas_12 = materia_12.numero_horas
 
 			if form.process().accepted:
-
 				if materia_1 != None:
 					db((db.materia.formulario == 1) & (db.materia.fk_estudiante == estudiante.id)).update(
 								codigo_usb=form.vars.codigo_usb_1,
@@ -599,8 +597,7 @@ def planestudios():
 								numero_horas=form.vars.numero_horas_1,
 								fk_estudiante=estudiante.id)
 
-				if (form.vars.codigo_usb_2 != '' and
-					form.vars.materia_usb_2 != '' and
+				if (form.vars.materia_usb_2 != '' and
 					form.vars.creditos_usb_2 != '' and
 					form.vars.codigo_ext_2 != '' and
 					form.vars.materia_ext_2 != '' and
@@ -639,8 +636,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_3 != '' and
-					form.vars.materia_usb_3 != '' and
+				if (form.vars.materia_usb_3 != '' and
 					form.vars.creditos_usb_3 != '' and
 					form.vars.codigo_ext_3 != '' and
 					form.vars.materia_ext_3 != '' and
@@ -679,8 +675,7 @@ def planestudios():
 					redirect(URL('planestudios'))
 
 
-				if (form.vars.codigo_usb_4 != '' and
-					form.vars.materia_usb_4 != '' and
+				if (form.vars.materia_usb_4 != '' and
 					form.vars.creditos_usb_4 != '' and
 					form.vars.codigo_ext_4 != '' and
 					form.vars.materia_ext_4 != '' and
@@ -718,8 +713,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_5 != '' and
-					form.vars.materia_usb_5 != '' and
+				if (form.vars.materia_usb_5 != '' and
 					form.vars.creditos_usb_5 != '' and
 					form.vars.codigo_ext_5 != '' and
 					form.vars.materia_ext_5 != '' and
@@ -757,8 +751,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_6 != '' and
-					form.vars.materia_usb_6 != '' and
+				if (form.vars.materia_usb_6 != '' and
 					form.vars.creditos_usb_6 != '' and
 					form.vars.codigo_ext_6 != '' and
 					form.vars.materia_ext_6 != '' and
@@ -796,8 +789,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_7 != '' and
-					form.vars.materia_usb_7 != '' and
+				if (form.vars.materia_usb_7 != '' and
 					form.vars.creditos_usb_7 != '' and
 					form.vars.codigo_ext_7 != '' and
 					form.vars.materia_ext_7 != '' and
@@ -835,8 +827,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_8 != '' and
-					form.vars.materia_usb_8 != '' and
+				if (form.vars.materia_usb_8 != '' and
 					form.vars.creditos_usb_8 != '' and
 					form.vars.codigo_ext_8 != '' and
 					form.vars.materia_ext_8 != '' and
@@ -874,8 +865,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_9 != '' and
-					form.vars.materia_usb_9 != '' and
+				if (form.vars.materia_usb_9 != '' and
 					form.vars.creditos_usb_9 != '' and
 					form.vars.codigo_ext_9 != '' and
 					form.vars.materia_ext_9 != '' and
@@ -913,8 +903,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_10 != '' and
-					form.vars.materia_usb_10 != '' and
+				if (form.vars.materia_usb_10 != '' and
 					form.vars.creditos_usb_10 != '' and
 					form.vars.codigo_ext_10 != '' and
 					form.vars.materia_ext_10 != '' and
@@ -952,8 +941,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_11 != '' and
-					form.vars.materia_usb_11 != '' and
+				if (form.vars.materia_usb_11 != '' and
 					form.vars.creditos_usb_11 != '' and
 					form.vars.codigo_ext_11 != '' and
 					form.vars.materia_ext_11 != '' and
@@ -991,8 +979,7 @@ def planestudios():
 				else:
 					redirect(URL('planestudios'))
 
-				if (form.vars.codigo_usb_12 != '' and
-					form.vars.materia_usb_12 != '' and
+				if (form.vars.materia_usb_12 != '' and
 					form.vars.creditos_usb_12 != '' and
 					form.vars.codigo_ext_12 != '' and
 					form.vars.materia_ext_12 != '' and
