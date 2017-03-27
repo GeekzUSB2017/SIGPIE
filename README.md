@@ -19,7 +19,7 @@ libssl-dev
 ldap-utils  
 gcc  
 pdftk  
-fpdf (ver mas abajo) 
+fpdf *(ver mas abajo) *
 
 Para instalarlas, ejecutar el siguiente comando desde un terminal:  
 
